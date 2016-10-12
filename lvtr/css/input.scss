@@ -1,0 +1,44 @@
+$secondary_color_grey:#414A52;
+$secondary_color_white:#e3e3e3;
+
+
+@import url(https://fonts.googleapis.com/css?family=PT+Sans);
+* {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'PT Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight:bold;
+}
+p, h1, h2, h3, h4, h5, h6, i {
+	color:$secondary_color_grey;
+}
+.cover {
+	text-align:center;
+
+	i {
+		font-size:5em;
+	}
+	.row {
+		// text-align:center;
+	}
+	div, p, button {
+		margin-bottom: 10em;
+	}
+	p {
+		font-size:1.5em;
+	}
+}
+
+.toolbar {
+	h1, p {
+		color:$secondary_color_white;
+	}
+}
+.login-results {
+	text-align:center;
+	padding:1em;
+}

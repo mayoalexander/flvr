@@ -1,0 +1,11 @@
+[12-Oct-2016 10:48:15 America/Chicago] PHP Notice:  Undefined index: user_active in /home/freelabelnet/public_html/lvtr/header.php on line 58
+[12-Oct-2016 10:50:34 America/Chicago] PHP Notice:  Undefined property: Config::$post_data in /home/freelabelnet/public_html/lvtr/config.php on line 71
+[12-Oct-2016 10:50:34 America/Chicago] PHP Notice:  Undefined variable: post_url in /home/freelabelnet/public_html/lvtr/config.php on line 79
+[12-Oct-2016 10:50:34 America/Chicago] PHP Notice:  Undefined property: Config::$post_data in /home/freelabelnet/public_html/lvtr/config.php on line 82
+[12-Oct-2016 10:50:34 America/Chicago] PHP Notice:  Undefined property: Config::$post_data in /home/freelabelnet/public_html/lvtr/config.php on line 83
+[12-Oct-2016 10:50:34 America/Chicago] PHP Notice:  Undefined property: Config::$post_data in /home/freelabelnet/public_html/lvtr/config.php on line 87
+[12-Oct-2016 10:50:34 America/Chicago] PHP Notice:  Undefined variable: twitter in /home/freelabelnet/public_html/lvtr/config.php on line 450
+[12-Oct-2016 10:50:34 America/Chicago] PHP Notice:  Undefined variable: shortname in /home/freelabelnet/public_html/lvtr/config.php on line 450
+[12-Oct-2016 10:50:34 America/Chicago] PHP Notice:  Undefined property: Config::$post_data in /home/freelabelnet/public_html/lvtr/config.php on line 90
+[12-Oct-2016 10:50:34 America/Chicago] PHP Notice:  Undefined index: user_name in /home/freelabelnet/public_html/lvtr/header.php on line 58
+[12-Oct-2016 10:50:34 America/Chicago] PHP Notice:  Undefined index: user_active in /home/freelabelnet/public_html/lvtr/header.php on line 58

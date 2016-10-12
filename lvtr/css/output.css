@@ -1,0 +1,144 @@
+.hero {
+  padding-top: 9em;
+  padding-bottom: 5em; }
+
+.videoWrapper {
+  width: 320px;
+  background: #f4f4f4;
+  margin: 0 auto;
+  position: relative;
+  top: 30%;
+  box-shadow: 0 0 83px -10px rgba(0, 0, 0, 0.51);
+  border: none;
+  border-radius: 5px; }
+  .videoWrapper img, .videoWrapper video {
+    border-radius: 5px 5px 0 0; }
+  .videoWrapper button {
+    background: transparent;
+    color: #58595B;
+    border-color: transparent;
+    border-radius: 5px; }
+  .videoWrapper .btn-full {
+    width: 100%; }
+  .videoWrapper button:hover, .videoWrapper button:active, .videoWrapper button:focus {
+    color: #000000;
+    border-color: transparent; }
+  .videoWrapper .loginLinks {
+    padding-top: 15px; }
+  .videoWrapper .icon-adjust {
+    padding-bottom: 2px !important; }
+  .videoWrapper .loginLinks a {
+    display: block;
+    text-align: center; }
+  .videoWrapper .loginTitle {
+    font-size: 26px;
+    margin-bottom: 15px;
+    color: #AC1A2F;
+    text-align: center; }
+  .videoWrapper .btn-group {
+    width: 100%;
+    display: block; }
+    .videoWrapper .btn-group button {
+      height: 60px;
+      border-radius: 0px;
+      border: transparent; }
+    .videoWrapper .btn-group button:hover {
+      border: transparent; }
+    .videoWrapper .btn-group button:active, .videoWrapper .btn-group button:focus {
+      background-color: #e6e6e6;
+      color: #AC1A2F; }
+    .videoWrapper .btn-group #btn525 {
+      position: relative;
+      left: 1px; }
+  .videoWrapper #HelicopterSelect button {
+    width: 107.3px; }
+  .videoWrapper #contPhotoShare button {
+    width: 160.5px; }
+  .videoWrapper #btnRetake {
+    display: none; }
+  .videoWrapper #btnRetake, .videoWrapper #completePhoto, .videoWrapper #btnTakePhoto {
+    height: 60px; }
+  .videoWrapper #btnTakePhoto, .videoWrapper #btnRetake {
+    margin-top: 12.5px; }
+  .videoWrapper #HelicopterSelect, .videoWrapper #contPhotoShare {
+    width: 100%; }
+    .videoWrapper #HelicopterSelect div, .videoWrapper #contPhotoShare div {
+      padding: 0em; }
+  .videoWrapper #contPhotoShare button {
+    color: #ffffff; }
+  .videoWrapper #DownloadImage {
+    background-color: #58595B; }
+  .videoWrapper .btn-default.disabled {
+    border-color: transparent; }
+  .videoWrapper #launchCameraButton {
+    opacity: 0;
+    cursor: pointer;
+    height: 447px;
+    border: 2px dotted red;
+    position: absolute;
+    width: 100%;
+    visibility: none;
+    z-index: 1000; }
+  .videoWrapper #launchCameraLabel {
+    color: #58595b;
+    position: absolute;
+    font-size: 10em;
+    width: 100%;
+    text-align: center;
+    margin-top: 110px; }
+    .videoWrapper #launchCameraLabel i {
+      text-shadow: 0px 1px 100px #000; }
+    .videoWrapper #launchCameraLabel span {
+      font-size: 14px;
+      display: block;
+      position: relative;
+      bottom: 3.5em; }
+
+#contPhotoShare #Facebookbutton {
+  display: none; }
+#contPhotoShare button {
+  width: 160.5px; }
+
+#intro {
+  padding: 1em; }
+
+.navbar-home-top-wrap {
+  min-height: 90px; }
+
+.btn-default .active, .btn:focus, .btn.active:focus, .btn:active:focus, .btn:active {
+  outline: none;
+  color: #AC1A2F; }
+
+#btnTakePhoto:hover, #btnRetake:hover, #btnRetake:active {
+  background: transparent;
+  box-shadow: NONE; }
+
+.videoPlaceholder {
+  width: 320px;
+  height: 280px;
+  background-color: #222;
+  border-radius: 5px; }
+
+/* TRANSITIONS */
+.rotateimagecss {
+  -ms-transform: rotate(90deg);
+  /* IE 9 */
+  -webkit-transform: rotate(90deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(90deg);
+  position: relative;
+  top: 40px;
+  right: 55px; }
+
+@media (min-width: 768px) {
+  .hero {
+    padding-top: 1em;
+    padding-bottom: 1em; }
+
+  .loginWrapper {
+    width: 50%; } }
+@media (min-width: 992px) {
+  #contPhotoShare, #HelicopterSelect {
+    margin-top: 5em; } }
+
+/*# sourceMappingURL=output.css.map */
