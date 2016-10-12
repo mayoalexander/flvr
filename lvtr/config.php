@@ -161,7 +161,7 @@ class Config
 		return $info;
 	}
 
-	function view($modual,$data)
+	function view($modual,$data=NULL)
 	{
 		$url = ROOT.'views/'.$modual.'.php';
 		include($url);
