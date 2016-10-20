@@ -239,6 +239,10 @@
 	#postWrapper {
 		padding:0px;
 	}
+	#postWrapper .form-control {
+		font-size:2em;
+		height: auto;
+	}
 	.rss-container section {
 		margin-bottom: 5em;
 		text-align: center;
