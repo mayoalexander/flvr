@@ -213,24 +213,30 @@ $(function(){
 		    	str = $(this)[0].value.replace(/\s+/g, '');
 		    	$(this)[0].value = str;
 		    }
+			var $y = $(this).val();
+			var $newy = $y.replace(/\s+/g, '');
+			if ($newy.toLowerCase().indexOf("@") >= 0) {
+				console.log('yes mane');
+			} else {
+				$(this)[0].value = "@" + $(this)[0].value;
+				console.log('No mane');
+			}
+
 		});
 	});
 
+
+
+	function addAtSign() {
+
+	}
 
 /*
 	TWITTER SUBMISSION FORMATTING
 */
 		// trim twitter username
 		$("#social").keypress(function() {
-		  var $y = $(this).val();
-		  var $newy = $y.replace(/\s+/g, '');
-		  if ($newy.toLowerCase().indexOf("@") >= 0) {
-		    // console.log('yes mane');
-		  //   $newy = $newy.append('@');
-		  } else {
-		    $newy = '@'+ $newy;
-		    // console.log('No mane');
-		  }
+		  
 		  $(this).val($newy);
 		});
 

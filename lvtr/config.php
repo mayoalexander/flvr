@@ -776,7 +776,7 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 	}
 
 
-	function get_post_by_search($slug, $user_name, $page=0, $show_private=false) {
+	function get_post_by_search($slug, $user_name=NULL, $page=0, $show_private=false) {
 		require(ROOT.'config/connection.php');
 		if (isset($user_name)) {
 			$uc = "AND `user_name` = '$user_name'";

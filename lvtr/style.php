@@ -162,6 +162,15 @@
 	.profile .tracklist-panel button {
 		border:none;
 	}
+	.tracklist-panel .btn-link:focus {
+	    outline: none;
+	    color:red;
+	}
+	.tracklist-panel .btn-link:hover {
+		text-decoration: none;
+	    color:red;
+	}
+
 	.tracklist-panel img {
 		width: 100%;
 		display:block;
@@ -280,6 +289,11 @@
 		.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
 			color:<?php echo $site->primary_color; ?>;
 		}
+
+		#postModal .form-control {
+			font-size: 3em;
+		}
+
 		.modal-content, .dropdown-menu {
 			background-color:#101010;
 		}

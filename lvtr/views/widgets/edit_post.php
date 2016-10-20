@@ -1,5 +1,5 @@
 <?php
-include_once('/kunden/homepages/0/d643120834/htdocs/lvtr/config.php');
+include_once('/home/freelabelnet/public_html/lvtr/config.php');
 $config = new Config();
 $post = $config->get_post_by_id($_GET['post_id']);
 ?>
