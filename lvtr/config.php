@@ -115,7 +115,7 @@ class Config
 			$nav[] = 'Upload';
 			$nav[] = 'Help';
 			$nav[] = 'Logout';
-			$nav[] = '<span class="upgrade-button">Upgrade</span>';
+			// $nav[] = '<span class="upgrade-button">Upgrade</span>';
 		}
 		if ($user_active=='100') {
 			$nav[] = 'Admin';
