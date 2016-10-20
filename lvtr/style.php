@@ -237,7 +237,7 @@
 		width: 100%;
 	}
 	#postWrapper {
-		padding:0px;
+		/*padding:0px;*/
 	}
 	#postWrapper .form-control {
 		font-size:2em;
