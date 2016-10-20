@@ -5,5 +5,3 @@
 
 
 <?php include('footer.php'); ?>
-
-
