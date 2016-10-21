@@ -7,7 +7,7 @@ if ($_SERVER["HTTP_HOST"]==='freelabel.net') {
 	define("SITE", "http://freelabel.net/lvtr/");
 } else {
 	define("ROOT", $_SERVER["DOCUMENT_ROOT"] ."/");
-	define("SITE", 'http://localhost:8888/');
+	define("SITE", 'http://mayodot.com/lvtr/');
 }
 
 /**

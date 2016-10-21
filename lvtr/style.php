@@ -226,6 +226,9 @@
 		max-width: 800px;
 		/*min-height: 400px;*/
 	}
+	.file-upload-results hr {
+		border:0;
+	}
 	.file-upload-results .btn {
 		margin-bottom: 1em;
 	}
