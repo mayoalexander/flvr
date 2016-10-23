@@ -38,11 +38,11 @@ $liked = $site->get_user_liked($_SESSION['user_name']);
 					<p><?php echo $profile['location']; ?></p>
 				</div>
 			</panel>
-			<panel>
+			<panel class="hidden-xs hidden-sm">
 				<h4>Friends</h5>
 				<?php $site->display_friends_list($friends); ?>
 			</panel>
-			<panel>
+			<panel class="hidden-xs hidden-sm">
 				<h4>Likes</h5>
 				<?php $site->display_liked_posts($liked); ?>
 			</panel>

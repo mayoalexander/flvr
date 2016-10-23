@@ -72,6 +72,22 @@
 	});
 	
 
+
+	// $('.tracklist-panel a').click(function(e){
+	$('.add-post-trigger ').click(function(e){
+		e.preventDefault();
+		$('#postModal').modal('show');
+		// $.get('views/widgets/view_post.php', {
+		$.get('views/widgets/add_to_categories.php', {
+			post_id: $(this).attr('data-id'),
+			user_name: $(this).attr('data-user')
+		}, function(result){
+			$('#postWrapper').html(result);
+		});
+	});
+
+
+
 	$('.delete-post-trigger').click(function(e){
 		e.preventDefault();
 		var data = $(this);

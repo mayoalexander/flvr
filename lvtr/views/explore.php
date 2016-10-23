@@ -8,7 +8,9 @@ $site = new Config();
 if ($_POST['source']=='dashboard') {
 	// echo "show private tracks";
 }
-$posts = $site->get_user_media('admin', $_POST['page']);
+// $posts = $site->get_user_media('admin', $_POST['page']);
+$posts = $site->get_explore_posts($_SESSION['user_name'], $_POST['page']);
+
 ?>
 <div class="container">
 	<h1 class="page-header">Explore</h1>

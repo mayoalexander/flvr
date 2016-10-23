@@ -36,7 +36,7 @@ foreach ($feeds as $feed) {
 		}
 	   // $build .= '<textarea class="rss-content form-control" rows="4">'.$content.'</textarea>';
 	   $build .= '<div class="rss-content form-control" style="display:none;" rows="4">'.$content.'</div>';
-	   $build .= '<button class="get-mp3-trigger btn btn-primary btn-xs">Get MP3</button>';
+	   $build .= '<button class="get-mp3-trigger btn btn-success btn-xs">Download File</button>';
 	   $build .= '<button class="search-rss-trigger btn btn-primary btn-xs" data-title="'.$item->title.'">Search</button>';
 	   // $build .= '<!-- Rounded switch -->
 				// <label class="switch">
