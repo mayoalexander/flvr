@@ -70,6 +70,21 @@ The FREELABEL Network provides the Administrator with tools to manage userbase, 
 
 
 
+## Radio Control
+
+####FTP
+```zsh
+ftp s95fa8cba2.uf29485319@pink.radio.co
+```
+key: `d111ea334e75`
+
+
+
+
+
+
+
+
 
 
 ## Browsers
