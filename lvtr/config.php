@@ -296,6 +296,7 @@ class Config
 
 						  	'.$delete_button.'
 						  	<li><button class="like-post-trigger btn btn-link" data-id="'.$post['id'].'" data-user="'.$user_name_session.'"><i class="fa fa-star-o"></i> Like</button></li>
+						  	<li><button class="add-post-trigger btn btn-link" data-id="'.$post['id'].'" data-user="'.$user_name_session.'"><i class="fa fa-plus"></i> Add To</button></li>
 						  	<li><button class="share-post-trigger btn btn-link" data-id="'.$post['id'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-method="twitter"><i class="fa fa-twitter"></i> Twitter</button></li>
 						  	<li><button class="share-post-trigger btn btn-link" data-id="'.$post['id'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-method="facebook"><i class="fa fa-facebook" ></i> Facebook</button></li>
 						    <input type="hidden" name="user_name" value="'.$post['user_name'].'">
@@ -583,7 +584,7 @@ class Config
 		echo '<a href="'.$this->url.'views/view.php?user_name='.$profile['id'].'" >asdf'.$profile['id'].'</a>';
 	}
 
-	function display_video_controls($profile, $setting='user_name') {
+	function display_video_controls($profile=NULL, $setting='user_name') {
 		echo '<button class="btn btn-link expand-video"><i class="fa fa-expand"></i></button>';
 	}
 
@@ -642,6 +643,24 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 	}
 
 
+
+	function get_user_categories($user_name) {
+		$db_page = $page * 20;
+		require(ROOT.'config/connection.php');
+		$query = "SELECT * FROM categories WHERE user_name = '$user_name' ORDER BY id DESC LIMIT $db_page, 20";
+		// $query = "SELECT * FROM `likes` ;
+		if ($result = mysqli_query($con,$query)) {		
+			while ($row = mysqli_fetch_assoc($result)) {
+						$categories[] = $row;
+					}
+		} else {
+			$categories = NULL;
+		}
+	    mysqli_close($con);
+		return $categories;
+	}
+
+
 	function display_friends_list($friends) {
 		if ($friends) {
 			foreach ($friends as $key => $post) {
@@ -661,11 +680,12 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 	function display_users_list($user_profiles) {
 		if ($user_profiles) {
 			foreach ($user_profiles as $key => $profile) {
+				$profile['user_name'] = $profile['id'];
 				echo '<p class="userlist-item row">';
-					echo '<span class="col-md-2 col-sm-1"><img src="'.$profile['photo'].'"/></span>';
-					echo '<span class="col-md-2 col-sm-2">'.$profile['id'].'</span>';
-					echo '<span class="col-md-2 col-sm-2 text-muted">'.$this->get_time_ago(strtotime($profile['date_created'])).'</span>';
-					echo '<i class="fa fa-ellipsis-h pull-right view-details-user"></i>';
+					echo '<span class="col-md-2 col-sm-3"><img src="'.$profile['photo'].'"/></span>';
+					echo '<span class="col-md-2 col-sm-3"><a href="'.$this->get_user_url($profile).'" target="_blank">'.$profile['id'].'</a></span>';
+					echo '<span class="col-md-2 col-sm-3 text-muted">'.$this->get_time_ago(strtotime($profile['date_created'])).'</span>';
+					echo '<i class="fa fa-ellipsis-h pull-right"></i>';
 				echo '</p>';
 			}
 		} else {
@@ -800,6 +820,28 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 	    mysqli_close($con);
 		return $post;
 	}
+
+
+	function get_explore_posts($user_name=NULL, $page=0) {
+		require(ROOT.'config/connection.php');
+		$status = "AND `status`='public'"; // $slug = get_user_slugs($user_name); [0] = category
+		$slug = '';
+		$query = "SELECT * FROM `feed` 
+		WHERE `user_name` LIKE '%$slug%' $status
+		OR `blogtitle` LIKE '%$slug%' $status
+		OR `twitter` LIKE '%$slug%' $status
+		ORDER BY `id` DESC LIMIT 24";
+		$result = mysqli_query($con,$query);
+		while ($row = mysqli_fetch_assoc($result)) {
+			$post[] = $row;
+		}
+		// var_dump($query);
+
+	    mysqli_close($con);
+		return $post;
+	}
+
+
 
 
 
@@ -1090,6 +1132,16 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 	return $build;
   }
 
+
+  public function create_select_dropdown($array, $input_key=NULL) {
+
+	$build='<select name="'.$input_key.'" class="form-control">';
+	foreach ($array as $key => $item) {
+		$build .= '<option value="'.$item['name'].'">'.$item['name'].'</option>';
+	}
+	$build.="</select>";
+	return $build;
+  }
 
 
 

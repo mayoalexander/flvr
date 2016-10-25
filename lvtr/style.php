@@ -9,7 +9,7 @@
 	}
 	body {
 		margin-top: 50px;
-		margin-bottom: 100px;
+		margin-bottom: 0px;
 	}
 	a {
 		color:<?php echo $site->primary_color; ?>;
@@ -120,6 +120,9 @@
 		display: inline-block;
 		font-size:2em;
 		text-transform: uppercase;
+	}
+	.profile {
+		margin-bottom: 80px;
 	}
 	.profile .pull-right {
 		text-align: right;
@@ -260,14 +263,18 @@
 		padding-top: 2em;
 		margin-top: 1.5em;
 	}
+
 	.header_banner {
 		background-color: #303030;
-		height: 100vh;
+		height: 94vh;
 		padding-top: 25vh;
 		text-align: center;
 		background-position: center center;
 		background-size: cover;
 		background-image: url("http://freelabel.net/dev/storage/app/media/pexels-photo-87351.jpeg");
+	}
+	.header_banner .btn , .buttons-wrapper a  {
+		background-color: rgba(0,0,0,0.5);
 	}
 	.hero-01 {
 		background-image: url("http://freelabel.net/dev/storage/app/media/pexels-photo-87351.jpeg");
@@ -300,6 +307,12 @@
 		#postModal .form-control {
 			font-size: 3em;
 		}
+		.modal-footer .btn {
+			background-color: transparent;
+		}
+		.modal-dialog {
+			margin-top: 30vh;
+		}
 
 		.modal-content, .dropdown-menu {
 			background-color:#101010;
@@ -307,6 +320,10 @@
 		.navbar-default .navbar-collapse, .navbar-default .navbar-form {
 			border:none;
 			box-shadow: none;
+		}
+		.modal-backdrop {
+			transition: all 1s;
+		    opacity:0.85 !important;
 		}
 	.upload-profile-photo-area {
 		border: dashed 4px #303030;

@@ -139,8 +139,9 @@
         newsrc = src.replace('https://w.soundcloud.com/player/?visual=true&url=', '');
         newsrc = src.replace('https://w.soundcloud.com/player/?url=', '');
         var url = 'http://anything2mp3.com?url=' + decodeURI(newsrc);
-      } else if (src.includes('applemusic')) {
-        // var url = 'http://keepvid.com?url=' + encodeURI(src);
+      } else if (src.includes('youtu')) {
+        var url = 'http://keepvid.com?url=' + encodeURI(src);
+      } else {
         alert('this is not a valid url!: ' + src );
         return;
       }

@@ -12,7 +12,7 @@ if ($user_status) {
 	// echo 'user logged in: show dashboard';
 } else {
 	$data = $site->getPhotoAds('admin' , 'advertise registration', 10);
-	$site->view('mag',$data);
+	$site->view('cover',$data);
 	// echo 'user not logged in: show cover page';
 }
 
