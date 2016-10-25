@@ -1,4 +1,4 @@
-	<style type="text/css">
+`	<style type="text/css">
 	body, html {
 		background-color: <?php echo $site->background_color; ?>;
 		color: <?php echo $site->body_text_light; ?>;
@@ -241,6 +241,11 @@
 	}
 	.profile_audio_img {
 		width: 100%;
+	}
+
+	.manage_user_options li {
+		font-size:2em;
+		list-style-type: none;
 	}
 	#postWrapper {
 		/*padding:0px;*/

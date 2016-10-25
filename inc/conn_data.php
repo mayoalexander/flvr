@@ -2,10 +2,10 @@
 //Variables for connecting to your database.
 //These variable values come from your hosting account.
 
-$hostname = "freelabelnet.db.13071759.hostedresource.com";
-$username = "freelabelnet";
-$dbname = "freelabelnet";
-$password = "Simplicity93!";
+$hostname = "107.180.46.203";
+$username = "freelabeladmin";
+$dbname = "amrusers";
+$password = "Redwalrus123!";
 
 /*
 $hostname = "localhost";

@@ -1,8 +1,8 @@
 <?php
-$servername = "freelabelnet.db.13071759.hostedresource.com";
-$username = "freelabelnet";
-$password = "Simplicity93!";
-$dbname = "freelabelnet";
+$servername = "107.180.46.203";
+$username = "freelabeladmin";
+$password = "Redwalrus123!";
+$dbname = "amrusers";
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     // set the PDO error mode to exception

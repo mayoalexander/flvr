@@ -131,6 +131,9 @@ class Config
 		return $build;
 	}
 
+
+
+
 	function get_info($table, $user_name)
 	{
 		include(ROOT.'config/connection.php');
@@ -243,7 +246,7 @@ class Config
 
 
 
-	function get_user_data($user_name, $user_email=NULL) {
+	function get_user_data($user_name, $user_email=NULL, $fullprofile=NULL) {
 		require(ROOT.'config/connection.php');
 		if (isset($user_email)) {
 			$ue = "OR `user_email` = '$user_email'";
@@ -253,6 +256,11 @@ class Config
 		$query = "SELECT * FROM `users` WHERE `user_name` = '$user_name' $ue LIMIT 1";
 		$result = mysqli_query($con,$query);
 		$user = mysqli_fetch_assoc($result);
+
+
+		if (isset($fullprofile)) {
+			$user = array_merge($user, $this->get_user_profile($user_name));
+		}
 	    mysqli_close($con);
 		return $user;
 	}
@@ -286,9 +294,9 @@ class Config
 	{
 
 		if ($post['type']!=='photo') {
-			$launch_button = 'fa-play';
+			$icon = 'fa-play';
 		} else {
-			$launch_button = 'fa-expand';
+			$icon = 'fa-expand';
 		}
 
 		return '<span class="play_button button-tint btn btn-link btn-'.$post['id'].' pull-left" style="display:inline-block;" data-type="'.$post['type'].'" data-mp3="'.$post['trackmp3'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'"><i class="fa '.$icon.'"></i></span>';
@@ -302,8 +310,6 @@ class Config
 		} else {
 			$delete_button = '';
 		}
-
-
 
 		return '
 						<div class="dropdown clearfix">
@@ -704,7 +710,7 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 					echo '<span class="col-md-2 col-sm-3"><a href="'.$this->get_user_url($profile).'" target="_blank">'.$profile['id'].'</a></span>';
 					echo '<span class="col-md-2 col-sm-3 text-muted">'.$this->get_time_ago(strtotime($profile['date_created'])).'</span>';
 					echo '<span class="col-md-2 col-sm-3 text-muted">'.$media_status.'</span>';
-					echo '<i class="fa fa-ellipsis-h pull-right"></i>';
+					echo '<i class="fa fa-ellipsis-h pull-right view-details" data-user='.$profile['id'].'></i>';
 				echo '</p>';
 			}
 		} else {
@@ -732,7 +738,6 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 				echo '</p>';
 		}
 	}
-
 
 
 
@@ -1185,6 +1190,100 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 
   }
 
+
+
+
+
+
+
+
+
+	function display_manage_user_options($session)
+	{
+
+		if (!isset($session)) {
+			$nav[] = 'Login';
+			$nav[] = 'Register';
+		} else {
+			$nav[] = 'View';
+			$nav[] = 'Contact';
+			$nav[] = 'Promote';
+			$nav[] = 'Schedule';
+		}
+
+		$build='';
+		foreach ($nav as $link) {
+			$build .= '<li class="manage-user-trigger"><a href="#">'.$link.'</a></li>';
+		}
+		return $build;
+	}
+
+
+
+
+
+
+
+
+  /* UPDATING DATA */
+	function showProfilePicture($value) {
+		echo '<h4><i class="fa fa-photo"></i> Update Photo</h4>
+		<div class="upload-profile-photo-area clearfix">
+			<input type="file" class="form-control post_photo file_input" name="photo" style="height:200px;">
+			<img src="'.$value.'">
+			<span class="file-upload-results"></span>
+		</div>';
+	}
+
+	function textInput($key , $value, $class=null) {
+
+		if (isset($class) && $class===true) {
+			$class = 'promo-date-picker';
+			$value = date('Y-m-d', strtotime($value));
+		} else {
+			$class = '';
+		}
+
+		echo '<label>'.ucfirst($key).'</label><input type="text" name="'.$key.'" class="form-control '.$class.'" value="'.$value.'">';
+	}
+
+	function textArea($key , $value) {
+		echo "<label>".ucfirst($key)."</label><textarea class='form-control' name='description' >".$value."</textarea>";
+	}
+
+	function hiddenInput($key , $value) {
+		echo "<input type='hidden' class='form-control' name='".$key."' value='".$value."' >";
+	}
+
+	function displayInputGroup($post) {
+		/* LOAD CONFIGURATION APP */
+		foreach ($post as $key => $value) {
+			switch ($key) {
+				case 'description':
+					textArea($key, $value);
+					break;
+				case 'blogtitle':
+					textInput($key , $value);
+					break;
+				case 'twitter':
+					textInput($key , $value);
+					break;
+				case 'start_date':
+					textInput($key , $value,true);
+					break;
+				case 'desc':
+					textInput($key , $value);
+					break;
+				// case 'photo':
+				// 	echo 'photo!: '.$value;
+				// 	showProfilePicture($key , $value);
+				// 	break;
+				case 'id':
+					hiddenInput($key , $value);
+					break;
+			}
+		}
+	}
 
 
 

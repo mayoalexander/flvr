@@ -187,11 +187,26 @@
 
 
 
-	$('.view-details-user').click(function(e){
-		alert('hello');
+	$('.view-details').click(function(e){
+		var elem = $(this);
+		var data = { user_name: elem.attr('data-user') }
+		var modal = $('#postModal').modal('show');
+		var url = 'http://freelabel.net/lvtr/views/admin/manage-user.php';
+		var wrap = $('#postModal .modal-body');
+		$.get(url,data,function(result){
+			wrap.html(result);
+		});
 	});
 
 
+
+
+
+	$('.manage-user-trigger').click(function(e){
+		var elem = $(this);
+		var data = elem.text();
+		alert(data);;
+	});
 
 
 	$('.load_more_button').click(function(){

@@ -23,7 +23,8 @@ if ($page_url == 'http://thebae.watch/') {
    : "http://thebae.watch/"
    );
 } else {
-  define("ROOT", $_SERVER["DOCUMENT_ROOT"].$_SERVER['REQUEST_URI']);
+  // define("ROOT", $_SERVER["DOCUMENT_ROOT"].$_SERVER['REQUEST_URI']);
+  define("ROOT", '/home/freelabelnet/public_html/');
   define("SITE", 'http://freelabel.net/');
   define("SITE_SHORT", 'FREELABEL.net');
   define("SITE_NAME", 'FREELABEL');
@@ -4197,6 +4198,7 @@ class Config
   function __construct()
   {
     include_once(ROOT.'config/index.php');
+    date_default_timezone_set('America/Chicago');
     $todays_date = date('Y-m-d');
     if (!isset($_SESSION)) {
       // start_session();

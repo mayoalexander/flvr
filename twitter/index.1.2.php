@@ -1,5 +1,5 @@
 <?php
-include_once('/kunden/homepages/0/d643120834/htdocs/config/index.php');
+include_once('/home/freelabelnet/public_html/config/index.php');
 
 
 //echo $_SESSION['user_name'];
@@ -43,25 +43,22 @@ GRAB ALL SCRIPT VALUES
         //function getPremadeTweets(){
         function saveTwitterData($type , $related_user , $data)
                   {
-                      include_once('/kunden/homepages/0/d643120834/htdocs/config/index.php');
-                      include('../inc/conn.php');
-                      $sql = "INSERT INTO  `freelabelnet`.`twitter_data` (`id` ,`type` ,`related_user` ,`data`)
+                      include_once(ROOT.'config/index.php');
+                      include(ROOT.'inc/conn.php');
+                      $sql = "INSERT INTO  `twitter_data` (`id` ,`type` ,`related_user` ,`data`)
                       VALUES (NULL ,  '".$type."',  '".$related_user."',  '".$data."')";
                       // use exec() because no results are returned
                       $conn->exec($sql);
                       //echo "Successfully Saved to DB. ";
                   }
         function checkIfAlreadyExists($type , $related_user , $data) {
-                      include_once('/kunden/homepages/0/d643120834/htdocs/config/index.php');
+                      include_once(ROOT.'config/index.php');
                       include(ROOT.'inc/conn_data.php');
                       $sql = "SELECT * 
                               FROM  `twitter_data` WHERE `type` LIKE 'direct_message' AND `related_user` LIKE '$related_user' ORDER BY `id` LIMIT 1";
                       // use exec() because no results are returned
                       $result = mysqli_query($con,$sql);
                       if($row = mysqli_fetch_array($result)) {
-                        //print_r($row);
-                        //print_r($row['count']);
-                        //echo '<hr><hr>';
                         $send_tweet_ornot = true;
                         // already sent to prompt
                         // echo 'Sending 2nd Follow Up: [@'.$related_user.']<br>';
@@ -767,10 +764,11 @@ if($_GET['som']=='1')
                       <script>
                       function execSOM(linkToTweet) {
                           //window.open(linkToTweet);
-                          $.get(linkToTweet).done(function(data){
+                          //$.get(linkToTweet).done(function(data){
                             $(".som-log").append(linkToTweet + "<br>");
                             console.log(linkToTweet);
-                          });
+                            alert(linkToTweet);
+                          //});
                       }
                       setTimeout( function () { execSOM("'.$link_to_tweet.'"); }  , '.$timeOutTime.');
                       </script>';
