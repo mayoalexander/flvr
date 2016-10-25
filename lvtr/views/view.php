@@ -104,14 +104,20 @@ if ($profile==NULL) {
 				
 			<div class="col-md-12 col-xs-12">
 				<?php 
-					$media = $site->get_post_by_search($user['user_name']); 
-					shuffle($media);
+					if (!$media==NULL) {
+						$media = $site->get_post_by_search($user['user_name']); 
 					
-					$media1 = $site->get_post_by_search($profile['twitter']); 
-					foreach ($media1 as $value) {
-						array_push($media, $value);
+
+						shuffle($media);
+					
+						$media1 = $site->get_post_by_search($profile['twitter']); 
+						foreach ($media1 as $value) {
+							array_push($media, $value);
+						}
+						echo $site->display_media_grid($media);
+					} else {
+						echo $profile['name'].' has not uploaded any new music yet!';
 					}
-					echo $site->display_media_grid($media);
 				?>
 			</div>
 

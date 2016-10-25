@@ -1,7 +1,11 @@
 <?php
 include_once('../config.php');
 $site = new Config();
-$site->require_login($_SESSION); 
+if ($site->require_login($_SESSION)===true) { 
+	// if logged in, and no content, redirect to the uploader
+	$site->require_content($_SESSION['user_name']); 
+} 
+
 $user = $site->get_user_data($_SESSION['user_name']);
 $profile = $site->get_user_profile($_SESSION['user_name']);
 $media = $site->get_user_media($_SESSION['user_name'], 0); // '0' pulling the 1st page results

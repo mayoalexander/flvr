@@ -193,6 +193,14 @@ class Config
 			return true;
 		}
 	}
+	function require_content($user_name) {
+		$media = $this->get_user_media($user_name);
+		if (!isset($media)) {
+			echo "<script>window.location.assign('{$this->url}?ctrl=upload');</script>";
+		} else {
+			return true;
+		}
+	}
 
 
 	function check_notifications($user_id) {
@@ -681,10 +689,16 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 		if ($user_profiles) {
 			foreach ($user_profiles as $key => $profile) {
 				$profile['user_name'] = $profile['id'];
+				if (!$this->get_user_media($profile['id'])=='') {
+					$media_status = 'View Tracks';
+				} else {
+					$media_status = '';
+				}
 				echo '<p class="userlist-item row">';
 					echo '<span class="col-md-2 col-sm-3"><img src="'.$profile['photo'].'"/></span>';
 					echo '<span class="col-md-2 col-sm-3"><a href="'.$this->get_user_url($profile).'" target="_blank">'.$profile['id'].'</a></span>';
 					echo '<span class="col-md-2 col-sm-3 text-muted">'.$this->get_time_ago(strtotime($profile['date_created'])).'</span>';
+					echo '<span class="col-md-2 col-sm-3 text-muted">'.$media_status.'</span>';
 					echo '<i class="fa fa-ellipsis-h pull-right"></i>';
 				echo '</p>';
 			}
