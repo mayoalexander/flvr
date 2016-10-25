@@ -318,6 +318,12 @@
 		width: 100%;
 		display: block;
 	}
+
+
+
+	.view-details-user:hover {
+		cursor: pointer;
+	}
 /*	.upload-profile-photo-area .profile_photo {
 		visibility: hidden;
 		height: inherit;

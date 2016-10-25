@@ -1,0 +1,6 @@
+plugin:
+    name: 'freelabel.feed::lang.plugin.name'
+    description: 'freelabel.feed::lang.plugin.description'
+    author: freelabel
+    icon: oc-icon-adn
+    homepage: ''

@@ -10,3 +10,6 @@ $users = $site->get_all_users('users');
 	<h1 class="page-header">Clients</h1>
 	<?php $site->display_users_list($users); ?>
 </section>
+
+
+<script type="text/javascript" src="<?php echo $site->url; ?>/js/dashboard.js"></script>

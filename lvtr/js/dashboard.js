@@ -171,6 +171,10 @@
 
 
 
+	$('.view-details-user').click(function(e){
+		alert('hello');
+	});
+
 
 
 

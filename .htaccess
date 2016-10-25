@@ -13,6 +13,14 @@ RewriteRule ^register$ 										users/index/marketing/
 RewriteRule ^register/$ 									users/index/marketing/
 
 
+RewriteRule ^dashboard$ 										lvtr/
+RewriteRule ^dashboard/$ 										lvtr/
+
+RewriteRule ^dev$ 												dev/
+RewriteRule ^dev/$ 												dev/
+
+RewriteRule ^home$ 												prod/
+RewriteRule ^home/$ 											prod/
 
 
 

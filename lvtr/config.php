@@ -662,10 +662,10 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 		if ($user_profiles) {
 			foreach ($user_profiles as $key => $profile) {
 				echo '<p class="userlist-item row">';
-					echo '<span class="col-md-2 col-sm-3"><img src="'.$profile['photo'].'"/></span>';
-					echo '<span class="col-md-2 col-sm-3">'.$profile['id'].'</span>';
-					echo '<span class="col-md-2 col-sm-3 text-muted">'.$this->get_time_ago(strtotime($profile['date_created'])).'</span>';
-					echo '<i class="fa fa-ellipsis-h pull-right"></i>';
+					echo '<span class="col-md-2 col-sm-1"><img src="'.$profile['photo'].'"/></span>';
+					echo '<span class="col-md-2 col-sm-2">'.$profile['id'].'</span>';
+					echo '<span class="col-md-2 col-sm-2 text-muted">'.$this->get_time_ago(strtotime($profile['date_created'])).'</span>';
+					echo '<i class="fa fa-ellipsis-h pull-right view-details-user"></i>';
 				echo '</p>';
 			}
 		} else {
@@ -944,7 +944,35 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 	}
 
 
+	function add($table, $data, $id='') {
+		include(ROOT.'config/connection.php');
+		$i=1;
+		$q_data='';
+		foreach ($data as $key => $value) {
+			if ($key!=='action' && $key!=='id') {
+				$q_data.= '`'.$key.'`=\''.mysqli_real_escape_string($con,$value).'\'';
+				if ($i!==(count($data)-2)) {
+					$q_data .=', ';
+				}
+				$i++;
+			}
+		}
+		$query = "UPDATE `$table` SET $q_data WHERE `id` = ".$data['id'];
+		$editquery = mysqli_query($con,$query);
+		if ($editquery) {
+		  $res = true;
+		} else {
+		  $res = false;
+		}
+	    mysqli_close($con);
+		return $res;
+	}
 
+
+	function includeJs($library)
+	{
+		// echo '<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>';
+	}
 
 
 
