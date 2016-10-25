@@ -85,12 +85,7 @@ $site->update_stats($post['views'], $post['id']);
 				<div class="col-md-6 col-xs-12">
 				<?php //echo $site->display_media_grid($post); ?>
 						<a class="profile_image" href="#">
-							<?php 
-								// $main_post[] = array_shift($media);
-								// $main_post[] = $post;
-								echo $site->display_media_grid(array($post)); 
-							?>
-						<div><?php echo $site->display_video_controls(); ?></div>
+							<?php echo $site->display_media_grid(array($post)); ?>
 						</a>
 				</div>
 
@@ -102,8 +97,12 @@ $site->update_stats($post['views'], $post['id']);
 					<div class="track-details">
 						<div><?php echo '<hr>'.$post['description']; ?></div>
 						<div class="track-controls"></div>
-						<h4 class="page-header">Related</h4>
-						<?php echo $site->display_media_grid($media); ?>
+						<?php 
+							if ($media) {
+								echo '<h4 class="page-header">Related</h4>';
+								echo $site->display_media_grid($media,);
+							} 
+						?>
 					</div>
 
 				</div>

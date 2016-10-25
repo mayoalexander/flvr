@@ -284,7 +284,14 @@ class Config
 
 	function display_play_button($post)
 	{
-		return '<span class="play_button button-tint btn btn-link btn-'.$post['id'].' pull-left" style="display:inline-block;" data-type="'.$post['type'].'" data-mp3="'.$post['trackmp3'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'"><i class="fa fa-play"></i></span>';
+
+		if ($post['type']!=='photo') {
+			$launch_button = 'fa-play';
+		} else {
+			$launch_button = 'fa-expand';
+		}
+
+		return '<span class="play_button button-tint btn btn-link btn-'.$post['id'].' pull-left" style="display:inline-block;" data-type="'.$post['type'].'" data-mp3="'.$post['trackmp3'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'"><i class="fa '.$icon.'"></i></span>';
 	}
 
 
@@ -295,6 +302,9 @@ class Config
 		} else {
 			$delete_button = '';
 		}
+
+
+
 		return '
 						<div class="dropdown clearfix">
 						'.$this->display_play_button($post).'
@@ -328,8 +338,6 @@ class Config
 	}
 
 	function display_media_grid($media, $user_name_session=NULL, $page=0) {
-		// var_dump(count($media));
-		// var_dump(count($media));
 		if (count($media)!==1) {
 			$col = 'col-md-4 col-sm-6';
 		} else {
@@ -592,9 +600,6 @@ class Config
 		echo '<a href="'.$this->url.'views/view.php?user_name='.$profile['id'].'" >asdf'.$profile['id'].'</a>';
 	}
 
-	function display_video_controls($profile=NULL, $setting='user_name') {
-		echo '<button class="btn btn-link expand-video"><i class="fa fa-expand"></i></button>';
-	}
 
 
 
