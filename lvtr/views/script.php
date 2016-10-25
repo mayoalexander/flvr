@@ -1,3 +1,10 @@
+<?php
+
+require('../config.php');
+$site = new Config();	
+$script = $site->get_script();		
+?>
+
 <a name='updated'></a>
 <div class='container'>
 	<a name="script">
@@ -5,76 +12,15 @@
 		<form name="theScript" class='the-script' method="POST" action="http://freelabel.net/x/update_script.php" >
 <a name-'dms'></a>
 				<?php
-					require('../config.php');
-					$site = new Config();	
-					$script = $site->get_script();		
+					
 
 					foreach ($script[0] as $key => $value) {
-				  		echo '<div class="lead script-item list-group-item" ><data class="edit" id="lead-script-'.$key.'-'.$row['id'].'" >'.$value.'</data></div>';
+				  		// echo '<div class="lead script-item list-group-item" ><data class="edit" id="lead-script-'.$key.'-'.$row['id'].'" >'.$value.'</data></div>';
+				  		echo '<input type="text" name="'.$key.'" value="'.$value.'" class="form-control">';
+				  		// echo '<div class="lead script-item list-group-item" ><data class="edit" id="lead-script-'.$key.'-'.$row['id'].'" >'.$value.'</data></div>';
 				  		$i++;
 				  	}
-				if (file_exists('../inc/connection.php')) {
-					include('../inc/connection.php');
-				}
-				if (file_exists('../../../inc/connection.php')) {
-					include('../../../inc/connection.php');
-				}
-				
-				$result = mysqli_query($con,"SELECT * FROM script ORDER BY id DESC LIMIT 1");
-				$i=0;
-				while($row = mysqli_fetch_assoc($result))
-				  {
-				  	$script = $row;
-				  	$script_id = $row['id'];
-				  	$i=1;
-				  	
-				  	$i++;
-					
-					/*$send_out_message	= $row['send_out'];
-				  	$first		= $row['first'];
-					$second		= $row['second'];
-					$third		= $row['third'];
-					$fourth		= $row['fourth'];
-					$fifth		= $row['fifth'];
-					
-					$sixth		= $row['sixth'];
-					$seventh	= $row['seventh'];
-					$eighth		= $row['eighth'];
-					$ninth		= $row['ninth'];
-					$tenth		= $row['tenth'];
-					$eleventh	= $row['eleventh'];
-					$twitpic_send_out = $row['twitpic'];
 
-					$follow_up_1	=	$row['follow_up_1'];
-					$follow_up_2	=	$row['follow_up_2'];
-					$follow_up_3	=	$row['follow_up_3'];
-					$follow_up_4	=	$row['follow_up_4'];
-					$follow_up_5	=	$row['follow_up_5'];
-
-
-					echo '<div class="alert alert-success" ><h2 id="sub_label">DM AUTO-RESPONSE:</h2>';
-				  	echo '<input id="script_twitpic" name="twitpic" class="script form-control" type="text" value="'.$twitpic_send_out.'" ></div><br><br>';
-					echo '<span class="label label-warning">MASS SOM MESSAGE:</span> <input id="script_send_out" name="send_out" class="script form-control" type="text" value="'.$send_out_message.'" ><br><br>';
-				  	echo '<span class="label label-success" id="script_label">FIRST:</span><input class="script form-control" type="text" name="first" value="'.$first.'" ><br>';
-				  	echo '<span class="label label-success" id="script_label">SECOND:</span><input class="script form-control" type="text" name="second" value="'.$second.'" ><br>';
-				  	echo '<span class="label label-success" id="script_label">THIRD</span><input class="script form-control" type="text" name="third" value="'.$third.'"><br>';
-				  	echo '<span class="label label-success" id="script_label">FOURTH</span><input class="script form-control" type="text" name="fourth" value="'.$fourth.'" ><br>';
-				  	echo '<span class="label label-success" id="script_label">FIFTH</span><input class="script form-control" type="text" name="fifth" value="'.$fifth.'" ><br>';
-
-				  	echo '<div class="input-group"><span class="input-group-addon" onclick="tweetScript(\''.$sixth.'\')" ><span class="glyphicon glyphicon-link"></span></span><span class="label label-primary" id="script_label">LEAD1</span><input class="script form-control" type="text" name="sixth" value="'.$sixth.'" ></div><br>';
-				  	echo '<div class="input-group"><span class="input-group-addon" onclick="tweetScript(\''.$seventh.'\')"><span class="glyphicon glyphicon-link"></span></span><span class="label label-primary" id="script_label">LEAD2</span><input class="script form-control" type="text" name="seventh" value="'.$seventh.'" ></div><br>';
-				  	echo '<div class="input-group"><span class="input-group-addon" onclick="tweetScript(\''.$eighth.'\')"><span class="glyphicon glyphicon-link"></span></span><span class="label label-primary" id="script_label">LEAD3</span><input class="script form-control" type="text" name="eighth" value="'.$eighth.'" ></div><br>';
-				  	echo '<div class="input-group"><span class="input-group-addon" onclick="tweetScript(\''.$ninth.'\')"><span class="glyphicon glyphicon-link"></span></span><span class="label label-primary" id="script_label">LEAD5</span><input class="script form-control" type="text" name="ninth" value="'.$ninth.'" ></div><br>';
-				  	echo '<div class="input-group"><span class="input-group-addon" onclick="tweetScript(\''.$tenth.'\')"><span class="glyphicon glyphicon-link"></span></span><span class="label label-primary" id="script_label">LEAD6</span><input class="script form-control" type="text" name="tenth" value="'.$tenth.'" ></div><br>';
-				  	echo '<div class="input-group"><span class="input-group-addon" onclick="tweetScript(\''.$eleventh.'\')"><span class="glyphicon glyphicon-link"></span></span><span class="label label-primary" id="script_label">LEAD7</span><input class="script form-control" type="text" name="eleventh" value="'.$eleventh.'" ></div><br>';
-
-				  	echo '<div class="input-group"><span class="input-group-addon"><span class="glyphicon glyphicon-link"></span></span><span class="label label-warning" id="script_label">DM Response 1</span><input class="script form-control" type="text" name="follow_up_1" value="'.$follow_up_1.'" ></div><br>';
-				  	echo '<div class="input-group"><span class="input-group-addon"><span class="glyphicon glyphicon-link"></span></span><span class="label label-warning" id="script_label">DM Response 2</span><input class="script form-control" type="text" name="follow_up_2" value="'.$follow_up_2.'" ></div><br>';
-				  	echo '<div class="input-group"><span class="input-group-addon"><span class="glyphicon glyphicon-link"></span></span><span class="label label-warning" id="script_label">DM Response 3</span><input class="script form-control" type="text" name="follow_up_3" value="'.$follow_up_3.'" ></div><br>';
-				  	echo '<div class="input-group"><span class="input-group-addon"><span class="glyphicon glyphicon-link"></span></span><span class="label label-warning" id="script_label">CALL US</span><input class="script form-control" type="text" name="follow_up_4" value="'.$follow_up_4.'" ></div><br>';
-				  	echo '<div class="input-group"><span class="input-group-addon"><span class="glyphicon glyphicon-link"></span></span><span class="label label-warning" id="script_label">DM Response 5</span><input class="script form-control" type="text" name="follow_up_5" value="'.$follow_up_5.'" ></div><br>';
-				  	*/
-				}
 				?>
 
 <hr>
@@ -89,6 +35,21 @@
 					<li>Whats the most messed up, tragic, or craziest thing that has happened in your music careers so far?</li>
 					<li>What advice do you have for other musicians and fans that listen to your music and watch your moves?</li>
 				</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 				<?php 
 
 // 				$phonescript = "Hi this is YO NAME with FREELABEL Radio & Magazine. Our DJs approved your submissions & wanted me to follow up with you about getting your account created so we can start getting you placed on our radio & magazine interviews, projects, videos, & events this month.<br><br><br>

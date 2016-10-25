@@ -25,7 +25,9 @@
 							<h4><i class="fa fa-photo"></i> Upload Profile Photo</h4>
 							<input type="file" class="form-control profile_photo file_input" name="photo" >
 							<img src="<?php $site->display_profile_photo($profile); ?>">
-							<span class="file-upload-results"></span>
+							<span class="file-upload-results">
+								<input type="hidden" name="photo" value="<?php $site->display_profile_photo($profile); ?>">
+							</span>
 						</div>
 					</div>
 

@@ -1014,16 +1014,31 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 		include(ROOT.'config/connection.php');
 		$i=1;
 		$q_data='';
+		echo 'count: '.(count($data)-1);
+		var_dump($data);
 		foreach ($data as $key => $value) {
 			if ($key!=='action' && $key!=='id') {
-				$q_data.= '`'.$key.'`=\''.mysqli_real_escape_string($con,$value).'\'';
-				if ($i!==(count($data)-2)) {
+				$q_data.= ''.$key;
+				if ($i!==(count($data)-1)) {
 					$q_data .=', ';
 				}
 				$i++;
 			}
 		}
+		$i=1;
+		$q_data2='';
+		foreach ($data as $key => $value) {
+			if ($key!=='action' && $key!=='id') {
+				$q_data2.= "'".$value."'";
+				if ($i!==(count($data)-1)) {
+					$q_data2 .=', ';
+				}
+				$i++;
+			}
+		}
 		$query = "UPDATE `$table` SET $q_data WHERE `id` = ".$data['id'];
+		$query = "INSERT INTO $table ($q_data) VALUES ($q_data2)";
+		echo $query.'<hr>';
 		$editquery = mysqli_query($con,$query);
 		if ($editquery) {
 		  $res = true;

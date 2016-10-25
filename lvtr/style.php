@@ -1,4 +1,4 @@
-`	<style type="text/css">
+	<style type="text/css">
 	body, html {
 		background-color: <?php echo $site->background_color; ?>;
 		color: <?php echo $site->body_text_light; ?>;
@@ -90,6 +90,12 @@
 		border:none;
 		outline: none;
 		box-shadow: none;
+		border-left: 2px transparent solid;
+		transition: all 1s;
+	}
+	.form-control:focus {
+		border-left: 2px <?php echo $site->primary_color; ?> solid;
+		color: <?php echo $site->body_text_light; ?>;
 	}
 	.container .form-control {
 		font-size: 1.5em;
@@ -244,7 +250,6 @@
 	}
 
 	.manage_user_options li {
-		font-size:2em;
 		list-style-type: none;
 	}
 	#postWrapper {

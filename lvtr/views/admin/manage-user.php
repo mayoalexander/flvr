@@ -23,7 +23,10 @@ $profile = $site->get_user_data($_GET['user_name'], NULL, 1);
 
 $rawdata='';
 foreach ($profile as $key => $value) {
-	$rawdata .= $key.': '.$value.'<br>';
+	$rawdata .= '
+	<h5>'.$key.'</h5>
+	<input type="text" name="'.$key.'" value="'.$value.'" class="form-control">';
+
 }
 ?>
 

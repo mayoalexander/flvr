@@ -220,3 +220,20 @@
 			wrap.html(result);
 		});
 	});
+
+
+
+
+
+	$('.add-to-category-form').submit(function(e){
+		var url = 'http://freelabel.net/lvtr/config/update.php';
+
+		e.preventDefault();
+		var form = $(this);
+		var data = form.serialize();
+
+		form.hide();
+		$.post(url, data ,function(result){
+			alert(result);
+		})
+	});

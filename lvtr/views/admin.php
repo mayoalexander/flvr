@@ -16,6 +16,7 @@ $site = new Config();
 		<label>widgets/submissions</label>
     <label>Automation</label>
     <label>Script</label>
+    <label>SOM</label>
 	</div>
 	<hr>
 </section>
