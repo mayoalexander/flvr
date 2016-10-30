@@ -317,6 +317,9 @@
 		#postModal .form-control {
 			font-size: 3em;
 		}
+		#postModal {
+		    z-index: 1000000;
+		}
 		.modal-footer .btn {
 			background-color: transparent;
 		}

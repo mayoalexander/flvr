@@ -255,3 +255,19 @@
 		e.preventDefault();
 		registerUser('<?php echo $site->url; ?>', $(this));
 	});
+
+
+	
+	$('.add-to-category-form').submit(function(e){
+		var url = 'http://freelabel.net/lvtr/config/update.php';
+
+		e.preventDefault();
+		var form = $(this);
+		var data = form.serialize();
+		alert(data);
+
+		form.hide();
+		$.post(url, data ,function(result){
+			alert(result);
+		})
+	});
