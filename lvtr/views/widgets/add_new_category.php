@@ -14,7 +14,7 @@ $config = new Config();
 
 <form class="add-to-category-form row" style="padding:3em;">
 	<h2>Add New Category</h2>
-	<div class="col-md-7 col-sm-7"><input class="form-control" type="text" name="name" placeholder="Enter title.."></div>
+	<div class="col-md-7 col-sm-7"><input class="form-control" type="text" name="name" placeholder="Enter title.." required></div>
 	<div class="col-md-5 col-sm-5"><button class="btn btn-primary btn-block pull-right">Add</button></div>
 	<input type="hidden" name="user_name" value="<?php echo $_GET['user_name'] ?>">
 	<input type="hidden" name="action" value="add_new_category">

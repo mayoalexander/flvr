@@ -712,7 +712,6 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 		$db_page = $page * 20;
 		require(ROOT.'config/connection.php');
 		$query = "SELECT * FROM `categories_posts` WHERE `user_name` = '$user_name' AND `name` = '$category' ORDER BY `id` DESC LIMIT $db_page, 20";
-		echo $query;
 		if ($result = mysqli_query($con,$query)) {		
 			while ($row = mysqli_fetch_assoc($result)) {
 						$friends[] = $row;
@@ -747,11 +746,9 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 
 
 	function display_categories_list($categories) {
-		var_dump($categories);
-		exit;
 		if ($categories) {
 			foreach ($categories as $key => $post) {
-				echo '<p class="categorieslist-item" data-id="'.$post['id'].'" data-id="'.$post['user_name'].'">';
+				echo '<p class="categorieslist-item" data-id="'.$post['id'].'" data-user="'.$post['user_name'].'">';
 					echo '<b>'.$post['name'].'</b>';
 					echo '<i class="edit-category fa fa-ellipsis-h pull-right" data-id="'.$post['id'].'"></i>';
 				echo '</p>';
