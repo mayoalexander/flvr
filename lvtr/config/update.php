@@ -31,3 +31,13 @@ if ($_POST['action']==='insert') {
 		echo 'Something went wrong!';
 	}
 }
+
+
+
+if ($_POST['action']==='add_new_category') {
+	if ($site->add('categories', $_POST)) {
+		echo 'Successfully Updated!';
+	}	else {
+		echo 'Something went wrong!';
+	}
+}

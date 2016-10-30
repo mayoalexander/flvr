@@ -31,8 +31,8 @@ class Config
 		// $this->logo = 'http://freelabel.net/images/fllogo.png';
 		// $this->logo = 'http://freelabel.net/upload/server/php/upload/alex-mayo-logo-unicolor-150--39539 1985-.png';
 		$this->title = 'FREELABEL';
-		$this->description = 'TV | RADIO | MAG';
-		$this->description_long = 'TV | RADIO | MAG';
+		$this->description = 'CREATE | UPLOAD | SHARE';
+		$this->description_long = 'CREATE | UPLOAD | SHARE';
 		$this->default_user_img = 'http://www.chemistry.uwc.ac.za/users/eiwuoha/default_profile.jpg';
 		// $this->url = 'http://freelabel.net/lvtr/';
 		// $this->url = 'http://localhost:8888/';
@@ -110,6 +110,7 @@ class Config
 		} else {
 			$nav[] = 'Dashboard';
 			$nav[] = 'Explore';
+			$nav[] = 'Categories';
 			$nav[] = 'Likes';
 			$nav[] = 'Profile';
 			$nav[] = 'Upload';
@@ -691,6 +692,23 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 		} else {
 				echo '<p class="friendslist-item">';
 					echo '<p>You have no friends! :(</p>';
+					// echo '<i class="fa fa-ellipsis-h pull-right"></i>';
+				echo '</p>';
+		}
+	}
+
+
+	function display_categories_list($categories) {
+		if ($categories) {
+			foreach ($categories as $key => $post) {
+				echo '<p class="categorieslist-item">';
+					echo '<b>'.$post['name'].'</b>';
+					echo '<i class="edit-category fa fa-ellipsis-h pull-right"></i>';
+				echo '</p>';
+			}
+		} else {
+				echo '<p class="categorieslist-item">';
+					echo '<p>You have no categories! :(</p>';
 					// echo '<i class="fa fa-ellipsis-h pull-right"></i>';
 				echo '</p>';
 		}

@@ -764,11 +764,11 @@ if($_GET['som']=='1')
                       <script>
                       function execSOM(linkToTweet) {
                           //window.open(linkToTweet);
-                          //$.get(linkToTweet).done(function(data){
+                          $.get(linkToTweet).done(function(data){
                             $(".som-log").append(linkToTweet + "<br>");
                             console.log(linkToTweet);
-                            alert(linkToTweet);
-                          //});
+                            // alert(linkToTweet);
+                          });
                       }
                       setTimeout( function () { execSOM("'.$link_to_tweet.'"); }  , '.$timeOutTime.');
                       </script>';

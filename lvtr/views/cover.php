@@ -1,10 +1,12 @@
 <?php
 // show registration info
+include_once('../config.php');
+$site = new Config();
 ?>
 <header class="header_banner hero-01">
 	
 	<h1>FREELABEL</h1>
-	<p>TV | RADIO | MAG</p>
+	<p><?php echo $site->description; ?></p>
 	<section class="row">
 		<a href="<?php echo $site->url; ?>?ctrl=register" class="btn btn-success btn-lg call-to-action">Get Started</a>
 	</section>
