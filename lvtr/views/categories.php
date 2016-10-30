@@ -1,7 +1,7 @@
 <?php
 include_once('../config.php');
 $site = new Config();
-$ads = $site->get_user_categories('admin'); // '0' pulling the 1st page results
+$ads = $site->get_user_categories($_SESSION['user_name']); // '0' pulling the 1st page results
 
 ?>
 

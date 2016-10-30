@@ -8,6 +8,8 @@ $profile = $site->get_user_profile($_GET['user_name']);
 $media = $site->get_user_media($_GET['user_name'], 0); // '0' pulling the 1st page results
 $friends = $site->get_user_friends($_GET['user_name'], 0); // '0' pulling the 1st page results
 
+
+
 if ($profile==NULL) {
 	include(ROOT.'views/profile_not_configured.php');
 	include(ROOT.'footer.php');
@@ -104,10 +106,8 @@ if ($profile==NULL) {
 				
 			<div class="col-md-12 col-xs-12">
 				<?php 
-					if (!$media==NULL) {
-						$media = $site->get_post_by_search($user['user_name']); 
-					
-
+					if (!$site->get_post_by_search($user['user_name'])==NULL) { 
+						$media = $site->get_post_by_search($user['user_name']);
 						shuffle($media);
 					
 						$media1 = $site->get_post_by_search($profile['twitter']); 

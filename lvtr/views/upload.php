@@ -19,8 +19,9 @@ $site->require_login();
 	<div class="dashboard-header">
 		<h1 class="pull-left">Upload</h1>
 		<div class="pull-right">
+			<button class="btn btn-primary add-new-post"><i class="fa fa-plus"></i> Add New Post</button>
 			<!-- Aritst / All <i class="fa fa-caret-down"></i> -->
-			<select class="form-control" >
+			<select class="form-control hidden">
 				<option>View</option>
 				<option>View</option>
 				<option>View</option>

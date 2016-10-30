@@ -4,20 +4,7 @@ $site = new Config();
 ?>
 <div class="container">
 
-	<form class="form-signin">
-		<h2 class="form-signin-heading">Login</h2>
-		<div class="login-results"></div>
-		<label for="user_name" class="sr-only">Username</label>
-		<input type="text" id="user_name" class="form-control" placeholder="Enter Username.." name="user_name" required autofocus required>
-		<label for="user_password" class="sr-only">Password</label>
-		<input id="user_password" class="form-control" name="user_password" placeholder="Enter Password.."  type=password required>
-		<div class="checkbox">
-			<label>
-				<input type="checkbox" value="remember-me"> Remember me
-			</label>
-		</div>
-		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-	</form>
+	<?php $site->display_login_form(); ?>
 
 </div> <!-- /container -->
 

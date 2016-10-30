@@ -237,3 +237,21 @@
 			alert(result);
 		})
 	});
+
+
+	$('.pricing_button').click(function() {
+		var type = $(this).attr('data-type');
+		$('#user_type')[0].value = type;
+		console.log($('#user_type')[0].value);
+		console.log('set to : ' + type + ' and its ' + $('#user_type')[0].value);
+	});
+	$('#user_name').keyup(function(e){
+		if(e.keyCode == 32){
+	    	str = $(this)[0].value.replace(/\s+/g, '');
+	    	$(this)[0].value = str;
+	    }
+	});
+	$('.form-signin').submit(function(e) {
+		e.preventDefault();
+		registerUser('<?php echo $site->url; ?>', $(this));
+	});
