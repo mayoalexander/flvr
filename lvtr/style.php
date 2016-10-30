@@ -161,6 +161,13 @@
 	.list-group-item {
 		background:transparent;
 	}
+	.category-container h1 {
+		margin-top:0;
+	}
+	.edit-category:hover, .categorieslist-item:hover  {
+		cursor: pointer;
+		color: <?php echo $site->primary_color; ?>;
+	}
 	.tracklist-item img, .userlist-item img {
 		width:36px;
 	}

@@ -681,6 +681,54 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 	}
 
 
+
+
+
+
+
+
+// 	function get_category_posts($category, $user_name, $page=0) {
+// 		$db_page = $page * 20;
+// 		require(ROOT.'config/connection.php');
+// 		$query = "SELECT *
+// FROM categories
+// INNER JOIN categories_posts
+// ON categories.name=categories_posts.id WHERE categories_posts.user_name = '$user_name' ORDER BY categories_posts.id DESC LIMIT $db_page, 20";
+// 		if ($result = mysqli_query($con,$query)) {		
+// 			while ($row = mysqli_fetch_assoc($result)) {
+// 						$liked[] = $row;
+// 					}
+// 		} else {
+// 			$liked = NULL;
+// 		}
+// 	    mysqli_close($con);
+// 		return $liked;
+// 	}
+
+
+
+
+	function get_category_posts($category, $user_name, $page=0) {
+		$db_page = $page * 20;
+		require(ROOT.'config/connection.php');
+		$query = "SELECT * FROM `categories_posts` WHERE `user_name` = '$user_name' AND `name` = '$category' ORDER BY `id` DESC LIMIT $db_page, 20";
+		echo $query;
+		if ($result = mysqli_query($con,$query)) {		
+			while ($row = mysqli_fetch_assoc($result)) {
+						$friends[] = $row;
+					}
+		} else {
+			$friends = NULL;
+		}
+	    mysqli_close($con);
+		return $friends;
+	}
+
+
+
+
+
+
 	function display_friends_list($friends) {
 		if ($friends) {
 			foreach ($friends as $key => $post) {
@@ -699,11 +747,13 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 
 
 	function display_categories_list($categories) {
+		var_dump($categories);
+		exit;
 		if ($categories) {
 			foreach ($categories as $key => $post) {
-				echo '<p class="categorieslist-item">';
+				echo '<p class="categorieslist-item" data-id="'.$post['id'].'" data-id="'.$post['user_name'].'">';
 					echo '<b>'.$post['name'].'</b>';
-					echo '<i class="edit-category fa fa-ellipsis-h pull-right"></i>';
+					echo '<i class="edit-category fa fa-ellipsis-h pull-right" data-id="'.$post['id'].'"></i>';
 				echo '</p>';
 			}
 		} else {
@@ -813,6 +863,28 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 	    mysqli_close($con);
 		return $post;
 	}
+
+
+
+
+	function get_category_by_id($slug) {
+		require(ROOT.'config/connection.php');
+		$query = "SELECT * FROM `categories` WHERE `id` = '$slug' ORDER BY `id` DESC LIMIT 1";
+		$result = mysqli_query($con,$query);
+		if (mysqli_num_rows($result)===0) {
+			echo "Uh oh, there was no category found!";
+			exit;
+		} else {
+			while ($row = mysqli_fetch_assoc($result)) {
+				$post = $row;
+			}
+		}
+	    mysqli_close($con);
+		return $post;
+	}
+
+
+
 
 
 	function get_post_by_twitter($slug, $title_slug=NULL) {
@@ -1032,8 +1104,8 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 		include(ROOT.'config/connection.php');
 		$i=1;
 		$q_data='';
-		echo 'count: '.(count($data)-1);
-		var_dump($data);
+		// echo 'count: '.(count($data)-1);
+		// var_dump($data);
 		foreach ($data as $key => $value) {
 			if ($key!=='action' && $key!=='id') {
 				$q_data.= ''.$key;
@@ -1056,7 +1128,7 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 		}
 		$query = "UPDATE `$table` SET $q_data WHERE `id` = ".$data['id'];
 		$query = "INSERT INTO $table ($q_data) VALUES ($q_data2)";
-		echo $query.'<hr>';
+		// echo $query.'<hr>';
 		$editquery = mysqli_query($con,$query);
 		if ($editquery) {
 		  $res = true;

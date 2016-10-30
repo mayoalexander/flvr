@@ -209,16 +209,5 @@ $site->require_login();
 	});
 
 
-
-
-	$('.add-new-post').click(function() {
-		var modal = $('#postModal');
-		var body = $('#postModal .modal-body');
-		modal.modal('show');
-		var url = '<?php echo $site->url; ?>views/widgets/add_new_post.php';
-		$.get(url, function(result){
-			body.html(result);
-		});
-	});
 });
 </script>

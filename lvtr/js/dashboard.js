@@ -253,11 +253,11 @@
 	});
 	$('.form-signin').submit(function(e) {
 		e.preventDefault();
-		registerUser('<?php echo $site->url; ?>', $(this));
+		registerUser('http://freelabel.net/lvtr/', $(this));
 	});
 
 
-	
+
 	$('.add-to-category-form').submit(function(e){
 		var url = 'http://freelabel.net/lvtr/config/update.php';
 
@@ -271,3 +271,17 @@
 			alert(result);
 		})
 	});
+
+
+
+	$('.add-new-post').click(function() {
+		var modal = $('#postModal');
+		var body = $('#postModal .modal-body');
+		modal.modal('show');
+		var url = 'http://freelabel.net/lvtr/views/widgets/add_new_post.php';
+		$.get(url, function(result){
+			body.html(result);
+		});
+	});
+
+

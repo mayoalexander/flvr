@@ -34,11 +34,12 @@ $config = new Config();
 		e.preventDefault();
 		var form = $(this);
 		var data = form.serialize();
-		alert(data);
 
 		form.hide();
 		$.post(url, data ,function(result){
 			alert(result);
+			$('#postModal').modal('hide');
+			window.location.reload();
 		})
 	});
 

@@ -1,15 +1,6 @@
 <?php
 include_once('/home/freelabelnet/public_html/lvtr/config.php');
 $config = new Config();
-// $post = $config->get_post_by_id($_GET['post_id']);
-
-// $categories = $config->get_user_categories($_GET['user_name']);
-// $dropdown = $config->create_select_dropdown($categories, 'name');
-// // foreach ($categories as $key => $category) {
-// // 	echo $category['name'].'<br>';
-// // }
-
-// var_dump($categories);
 ?>
 
 <form class="add-to-category-form row" style="padding:3em;">
