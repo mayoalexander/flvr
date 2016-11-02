@@ -47,7 +47,7 @@ class Config
 		$this->packages['trial'] = 'http://freelabel.net/confirm/trial';
 		$this->packages['basic'] = 'http://freelabel.net/confirm/basic';
 
-
+		
 		if ($_SERVER['SCRIPT_NAME']=='/lvtr/views/public.php') {
 			if (isset($_GET['post_id'])) {
 				// echo 'searching by id';
