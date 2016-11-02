@@ -711,7 +711,24 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 	function get_category_posts($category, $user_name, $page=0) {
 		$db_page = $page * 20;
 		require(ROOT.'config/connection.php');
-		$query = "SELECT * FROM `categories_posts` WHERE `user_name` = '$user_name' AND `name` = '$category' ORDER BY `id` DESC LIMIT $db_page, 20";
+
+		// $query = "SELECT * FROM `categories_posts` 
+		// WHERE `user_name` = '$user_name' 
+		// AND `name` = '$category' 
+		// ORDER BY `id` DESC LIMIT $db_page, 20";
+
+		// WHERE `categories_posts.user_name` = '$user_name' 
+		// AND `categories_posts.name` = '$category'
+
+		$query = "SELECT *
+		FROM categories_posts
+		INNER JOIN feed
+		ON categories_posts.post_id=feed.id 
+		-- WHERE `feed.id` = '15759'
+		WHERE categories_posts.user_name = '$user_name'
+		AND categories_posts.name = '$category'
+		ORDER BY categories_posts.id DESC LIMIT $db_page, 20";
+
 		if ($result = mysqli_query($con,$query)) {		
 			while ($row = mysqli_fetch_assoc($result)) {
 						$friends[] = $row;
@@ -759,6 +776,10 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 					// echo '<i class="fa fa-ellipsis-h pull-right"></i>';
 				echo '</p>';
 		}
+	}
+
+	function display_categories_post($posts) {
+		$this->display_media_grid($posts);
 	}
 
 	function display_users_list($user_profiles) {
