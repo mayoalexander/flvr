@@ -23,9 +23,6 @@ RewriteRule ^home$ 												prod/
 RewriteRule ^home/$ 											prod/
 
 
-
-
-
 RewriteRule ^@([\w-]+)/$ 									/lvtr/views/public.php?twitter=$1&blog_title=$2
 RewriteRule ^@([\w-]+)$ 									/lvtr/views/public.php?twitter=$1&blog_title=$2
 

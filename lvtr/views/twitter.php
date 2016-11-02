@@ -30,33 +30,55 @@ $compose_new_form = '
 </select>
 </form>';
 
-var_dump($_POST['action']);
 
 if (isset($_POST['action'])) {
+	echo 'Action: '.$_POST['action'];
 	switch ($_POST['action']) {
 
-/* POST TO PUBLIC */
+		/* POST TO PUBLIC */
 		case 'post_public':
 			$setting = 'statuses/update';
 			$options['status'] = $_POST['message'];
 			$content = $connection->post($setting, $options);
 			// echo '<pre>';
-			var_dump($content);
+			// var_dump($content);
 			break;
 
-
-		case 'direct_messages':
-			$setting = 'direct_messages';
-			$content = $connection->get($setting);
-			break;
-
+		/* COMPOSE NEW */
 		case 'compose_new':
 			echo $compose_new_form;
 			break;
+
+		/* DIRECT MESSAGES - VIEW*/
+		case 'direct_messages':
+			$setting = 'direct_messages';
+			$content = $connection->get($setting);
+			echo $site->display_direct_messages($content);
+			break;
+
+		/* DIRECT MESSAGES - POST*/
 		case 'send_direct_message':
 			$setting = 'direct_messages/new';
 			$options['text'] = $_POST['message'];
 			$options['screen_name'] = $_POST['twitter'];
+			$content = $connection->post($setting, $options);
+			// var_dump($content);
+			break;
+
+		/* USER TIMELINE */
+		case 'statuses/user_timeline':
+			$setting = 'statuses/user_timeline';
+			$options['screen_name'] = $_POST['twitter'];
+			$options['count'] = '100';
+			$content = $connection->get($setting, $options);
+			echo $site->display_twitter_timeline($content);
+			break;
+
+
+		/* DIRECT MESSAGES - VIEW*/
+		case 'statuses/destroy':
+			$setting = 'statuses/destroy';
+			$options['id'] = $_POST['id'];
 			$content = $connection->post($setting, $options);
 			var_dump($content);
 			break;
@@ -67,10 +89,10 @@ if (isset($_POST['action'])) {
 			break;
 	}
 } else {
-	$content = 'nothing happening..';
+	$content = NULL;
 }
 ?>
-<?php echo $site->display_direct_messages($content);?>
+
 
 
 <?php if (!isset($_POST['action'])) { ?>
@@ -80,8 +102,8 @@ if (isset($_POST['action'])) {
 		<button class="twOpen btn btn-primary">compose_new</button>
 		<button class="twOpen btn btn-primary">direct_messages</button>
 		<button class="twOpen btn btn-primary">statuses/user_timeline</button>
+		<button class="twOpen btn btn-primary">statuses/destroy</button>
 		<hr>
-		<?php echo $site->display_direct_messages($content);?>
 	</div>
 <?php } ?>
 
@@ -103,7 +125,9 @@ if (isset($_POST['action'])) {
 <!-- SCRIPTS -->
 <script type="text/javascript">
 	$('.twOpen').click(function(){
-		var action = $(this).text();
+		var button = $(this);
+
+		var action = button.text();
 		var data = {action: action};
 		var elem = $('.widget-container');
 		elem.html('wait nigga..');
@@ -117,6 +141,19 @@ if (isset($_POST['action'])) {
 		var data = elem.serialize();
 		$.post("<?php echo $_SERVER['SCRIPT_NAME']?>", data, function(result) {
 			elem.html(result);
+		});
+	});
+
+	$('.delete-twitter-post').click(function(){
+		var elem = $('.widget-container');
+		var button = $(this);
+		var id = button.attr('data-id');
+		button.text('Please wait..');
+
+		var data = { id: id, action : 'statuses/destroy'}
+		$.post("<?php echo $_SERVER['SCRIPT_NAME']?>", data, function(result) {
+			button.text('Deleted!');
+			button.parent().parent().hide('fast');
 		});
 	});
 </script>

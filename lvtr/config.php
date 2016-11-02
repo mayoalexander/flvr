@@ -47,7 +47,7 @@ class Config
 		$this->packages['trial'] = 'http://freelabel.net/confirm/trial';
 		$this->packages['basic'] = 'http://freelabel.net/confirm/basic';
 
-		
+
 		if ($_SERVER['SCRIPT_NAME']=='/lvtr/views/public.php') {
 			if (isset($_GET['post_id'])) {
 				// echo 'searching by id';
@@ -1218,22 +1218,72 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 
 
 	function display_direct_messages($content) {
-		foreach ($content as $key => $message) {
-			$sender_twitter = $message->sender->screen_name;
-			$sender_name = $message->sender->name;
-			$sender_location = $message->sender->location;
-			$sender_msg = $message->text;
-			$sender_img = $message->sender->profile_image_url;
-			$msg =  '<blockquote><p>'.$sender_msg.'</p><footer>'.$sender_name.' in <cite title="Source Title">'.$sender_location.'</cite></footer></blockquote>';
-			$messages[$sender_twitter]['sender'] = $sender_twitter;
-			$messages[$sender_twitter]['sender_img'] = $sender_img;
-			$messages[$sender_twitter]['messages'][]['text'] = $msg;
-		}
-		foreach ($messages as $convo) {
-			echo '<h4 class="page-header"><img width="36px" src="'.$convo['sender_img'].'" class="img-thumbnail">@'.$convo['sender'].'</h4>';
-			foreach ($convo['messages'] as $message) {
-				echo $message['text'];
+		if (isset($content)) {
+			foreach ($content as $key => $message) {
+				$sender_twitter = $message->sender->screen_name;
+				$sender_name = $message->sender->name;
+				$sender_location = $message->sender->location;
+				$sender_msg = $message->text;
+				$sender_img = $message->sender->profile_image_url;
+				$msg =  '<blockquote><p>'.$sender_msg.'</p><footer>'.$sender_name.' in <cite title="Source Title">'.$sender_location.'</cite></footer></blockquote>';
+				$messages[$sender_twitter]['sender'] = $sender_twitter;
+				$messages[$sender_twitter]['sender_img'] = $sender_img;
+				$messages[$sender_twitter]['messages'][]['text'] = $msg;
 			}
+			foreach ($messages as $convo) {
+				echo '<h4 class="page-header"><img width="36px" src="'.$convo['sender_img'].'" class="img-thumbnail">@'.$convo['sender'].'</h4>';
+				foreach ($convo['messages'] as $message) {
+					echo $message['text'];
+				}
+				echo '<textarea class="form-control" rows="3" placeholder="Enter Message.."></textarea>';
+			}
+		} else {
+			echo 'Failed to display direct messages... display_direct_messages()';
+		}
+	}
+
+
+
+
+
+
+
+	function display_twitter_timeline($content) {
+		if (isset($content)) {
+			foreach ($content as $key => $message) {
+				$sender_twitter = $message->user->screen_name;
+				$id_str = $message->id_str;
+				$sender_name = $message->user->name;
+				$created_at = $message->created_at;
+				$sender_location = $message->user->location;
+				$sender_msg = $message->text;
+				$sender_img = $message->user->profile_image_url;
+
+				if ($message->favorited) {
+					$favorited = 'yay';
+				} else {
+					$favorited = 'nai';
+				}
+
+				$msg =  '<blockquote><p>'.$sender_msg.'</p>
+				<footer>
+					'.$this->get_time_ago(strtotime($created_at)).' '.$favorited.'
+					<button class="btn btn-primary delete-twitter-post" data-id="'.$id_str.'" ><i class="fa fa-trash"></i></button>
+				</footer>
+				</blockquote>';
+				$messages[$sender_twitter]['sender'] = $sender_twitter;
+				$messages[$sender_twitter]['sender_img'] = $sender_img;
+				$messages[$sender_twitter]['messages'][]['text'] = $msg;
+			}
+			foreach ($messages as $convo) {
+				echo '<h4 class="page-header"><img width="36px" src="'.$convo['sender_img'].'" class="img-thumbnail">@'.$convo['sender'].'</h4>';
+				foreach ($convo['messages'] as $message) {
+					echo $message['text'];
+				}
+				echo '<textarea class="form-control" rows="3" placeholder="Enter Message.."></textarea>';
+			}
+		} else {
+			echo 'Failed to display direct messages... display_direct_messages()';
 		}
 	}
 
