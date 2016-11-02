@@ -97,7 +97,7 @@
 		border-left: 2px <?php echo $site->primary_color; ?> solid;
 		color: <?php echo $site->body_text_light; ?>;
 	}
-	.form-control-password {
+	.form-control-login {
 		background: transparent;
 		border: none;
 	    outline: none;
