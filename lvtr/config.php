@@ -1469,7 +1469,7 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 		<label for="user_name" class="sr-only">Username</label>
 		<input type="text" id="user_name" class="form-control" placeholder="Enter Username.." name="user_name" required autofocus required>
 		<label for="user_password" class="sr-only">Password</label>
-		<input id="user_password" class="form-control" name="user_password" placeholder="Enter Password.."  type=password required>
+		<input id="user_password" class="form-control-password" name="user_password" placeholder="Enter Password.."  type=password required>
 		<div class="checkbox">
 			<label>
 				<input type="checkbox" value="remember-me"> Remember me

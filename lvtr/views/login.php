@@ -5,7 +5,6 @@ $site = new Config();
 <div class="container">
 
 	<?php $site->display_login_form(); ?>
-
 </div> <!-- /container -->
 
 <!-- <script type="text/javascript" href="<?php echo $site->url; ?>js/browser.js"></script> -->
@@ -18,7 +17,7 @@ $(function(){
 	  if (ua.indexOf('chrome') > -1) {
 	    // alert("chrome") // Chrome
 	  } else {
-	  	$('#user_password').attr('type','text');
+	  	// $('#user_password').attr('type','text');
 	  }
 	}
 	$('.form-signin').submit(function(e) {
