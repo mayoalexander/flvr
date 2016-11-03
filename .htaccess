@@ -23,31 +23,6 @@ RewriteRule ^home$ 												prod/
 RewriteRule ^home/$ 											prod/
 
 
-RewriteRule ^@([\w-]+)/$ 									/lvtr/views/public.php?twitter=$1&blog_title=$2
-RewriteRule ^@([\w-]+)$ 									/lvtr/views/public.php?twitter=$1&blog_title=$2
-
-RewriteRule ^@([\w-]+)/id/([\w-]+)/$ 						/lvtr/views/public.php?post_id=$2
-RewriteRule ^@([\w-]+)/id/([\w-]+)$ 							/lvtr/views/public.php?post_id=$2
-
-RewriteRule ^@([\w-]+)/([\w-]+)/$ 							/lvtr/views/public.php?twitter=$1&blog_title=$2
-RewriteRule ^@([\w-]+)/([\w-]+)$ 							/lvtr/views/public.php?twitter=$1&blog_title=$2
-
-
-RewriteRule ^@([\w-]+)/@([\w-]+)/$ 		/config/profile.php?user_twitter_name=$1&blog_title=$2
-RewriteRule ^@([\w-]+)/@([\w-]+)$ 		/config/profile.php?user_twitter_name=$1&blog_title=$2
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 RewriteRule ^pricing$ 										users/index/marketing_pricing/
 RewriteRule ^pricing/$ 										users/index/marketing_pricing/
@@ -134,6 +109,18 @@ RewriteRule ^L/@([\w-]+)/([\w-]+)$ 									/config/profile.php?user_twitter_nam
 #RewriteRule ^L/@([\w-]+)/([\w-]+)$ 									/config/profile.php?user_twitter_name=$1&blog_title=$2
 
 
+RewriteRule ^@([\w-]+)/$ 									/lvtr/views/public.php?twitter=$1&blog_title=$2
+RewriteRule ^@([\w-]+)$ 									/lvtr/views/public.php?twitter=$1&blog_title=$2
+
+RewriteRule ^@([\w-]+)/id/([\w-]+)/$ 						/lvtr/views/public.php?post_id=$2
+RewriteRule ^@([\w-]+)/id/([\w-]+)$ 							/lvtr/views/public.php?post_id=$2
+
+RewriteRule ^@([\w-]+)/([\w-]+)/$ 							/lvtr/views/public.php?twitter=$1&blog_title=$2
+RewriteRule ^@([\w-]+)/([\w-]+)$ 							/lvtr/views/public.php?twitter=$1&blog_title=$2
+
+
+RewriteRule ^@([\w-]+)/@([\w-]+)/$ 		/config/profile.php?user_twitter_name=$1&blog_title=$2
+RewriteRule ^@([\w-]+)/@([\w-]+)$ 		/config/profile.php?user_twitter_name=$1&blog_title=$2
 
 
 
@@ -226,4 +213,3 @@ RewriteRule ^tour/([[0-9]+]*)$ 				users/index/image/?id=$1
 #RewriteRule ^pic/#([[0-9]+]*)$ 				/images/?id=$1
 #RewriteRule ^pic/([[0-9]+]*)/$ 				/images/?id=$1
 #RewriteRule ^pic/([[0-9]+]*)$ 				/images/?id=$1
-

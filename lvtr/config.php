@@ -33,7 +33,10 @@ class Config
 		$this->title = 'FREELABEL';
 		$this->description = 'CREATE | UPLOAD | SHARE';
 		$this->description_long = 'CREATE | UPLOAD | SHARE';
+		$this->meta_keywords = 'music promotion,music promotions,music promotions company,music promotions companies,music promotion company,music promotion companies,music promotion services,music promotion blog,free music promotion,music promotion sites,	
+online music promotion,free music promotion sites,hip hop music promotion,music promotion app,music promotion package,music promotion service,best music promotion services,independent music promotion,free music promotions,indie music promotion,free online music promotion,music promotional items,music promotion jobs,online music promotion services,buy music promotion,music promotion free';
 		$this->default_user_img = 'http://www.chemistry.uwc.ac.za/users/eiwuoha/default_profile.jpg';
+
 		// $this->url = 'http://freelabel.net/lvtr/';
 		// $this->url = 'http://localhost:8888/';
 		$this->facebook_url = 'http://facebook.com/freelabelnet';
@@ -75,6 +78,7 @@ class Config
 	}
 	return "<title>".$this->page_title."</title>
 	<meta name=\"description\" content='".$this->page_title.' // '.$this->description_long." '/>
+	<meta name='keywords' content='$this->meta_keywords' />
 	<meta name='twitter:card' content='summary_large_image' />
 	<meta name='twitter:player' content='".$post_url."' />
 	<meta name='twitter:player:width' content='300' />
