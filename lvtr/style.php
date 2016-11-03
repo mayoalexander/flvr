@@ -247,17 +247,31 @@
 		height:340px;
 	}
 
+	.progress {
+		text-align: center;
+		margin: auto;
+		max-width: 400px;
+	}
 	.file-upload-results {
 		text-align: center;
 		margin:auto;
 		max-width: 800px;
-		/*min-height: 400px;*/
+	}
+	.btn-link:hover, .btn-link:focus {
+		text-decoration: none;
+		color:<?php echo $site->primary_color; ?>;
 	}
 	.file-upload-results hr {
 		border:0;
 	}
-	.file-upload-results .btn {
+	.file-upload-results .btn-link {
 		margin-bottom: 1em;
+	}
+	.file-upload-results .btn-link {
+		color:#e3e3e3;
+	}
+	.file-upload-results .btn-success,.file-upload-results .btn-primary, {
+		color:#303030;
 	}
 	.file-upload-results .form-control {
 		margin-bottom: 2em;

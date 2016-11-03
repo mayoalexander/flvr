@@ -3,23 +3,12 @@ include_once('../config.php');
 $site = new Config();
 $site->require_login();
 ?>
-<style type="text/css">
-	.progress {
-		text-align: center;
-		margin: auto;
-		max-width: 400px;
-	}
-	.file-upload-results .btn {
-		color:#303030;
-	}
-</style>
-
 <section class="dashboard">
 
 	<div class="dashboard-header">
 		<h1 class="pull-left">Upload</h1>
 		<div class="pull-right">
-			<button class="btn btn-primary add-new-post"><i class="fa fa-plus"></i> Add New Post</button>
+			<button class="btn btn-primary add-new-post hidden"><i class="fa fa-plus"></i> Add New Post</button>
 			<!-- Aritst / All <i class="fa fa-caret-down"></i> -->
 			<select class="form-control hidden">
 				<option>View</option>
@@ -137,7 +126,6 @@ $site->require_login();
 	                // alert(jqXHR.statusText + 'oh no it didnt work!')
 	                $('.file-upload-results').html('You didnt upload the correct file format!');
 	            }).done(function (result) {
-	            	$('.file-upload-results').addClass('well');
 	            	$('.file-upload-results').addClass('clearfix');
 	            	$('.file-upload-results').append('<input type="submit" name="submit_file" value="Upload File" class="btn btn-success pull-right">');
 	            	$('.file-upload-results').append('<span onclick="location.reload()" class="btn btn-danger pull-right"><i class="fa fa-close" ></i></span>');

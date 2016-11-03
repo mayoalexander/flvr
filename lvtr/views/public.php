@@ -61,6 +61,7 @@ $site->update_stats($post['views'], $post['id']);
 				letter-spacing: 10px;
 				text-shadow: 2px 2px 20px #000000;
 				box-shadow: 0 0 10px #303030;
+				height: 100vh;
 			}
 			.jumbotron {
 				padding: 0;
