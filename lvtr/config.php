@@ -358,9 +358,11 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 		$load_more_button = '<button data-user="'.$user_name_session.'" data-next="'.($page+1).'" class="load_more_button btn btn-link btn-block">Load More</button>';
 		//
 		if (isset($media)) {
+			$i=0;
 			foreach ($media as $key => $post) {
-
-				// if (getimagesize($post['photo']) !== false) { // check if photo exists
+					if ($i===0) {
+						echo '<div class="row section">';
+					}
 					echo '<article class="tracklist-panel '.$col.'">';
 						echo '<a href="'.$this->create_url($post).'" data-id="'.$post['id'].'"> 
 						<img src="'.$post['photo'].'"/> 
@@ -370,7 +372,12 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 						'.$post['blogtitle'];
 						echo '<div>'.$this->display_post_status($post).'</div>';
 					echo '</article>';
-				// }
+					if ($i===2) {
+						echo '</div>';
+						$i=0;
+					} else {
+						$i++;
+					}
 			}
 			if (count($media)==20) {
 				echo $load_more_button;

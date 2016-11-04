@@ -22,6 +22,7 @@ $site->update_stats($post['views'], $post['id']);
 */
 
 ?>
+
 		<style type="text/css">
 			.profile_image img, .profile_image video, .profile img, .profile_image img {
 				width: 100%;
@@ -45,9 +46,9 @@ $site->update_stats($post['views'], $post['id']);
 				color:<?php echo $site->primary_color; ?>
 			}
 			#play_button {
-			    position: absolute;
 			    text-align: center;
 			    /* padding: 5em; */
+			    position: absolute;
 			    bottom: 2em;
 			    right: 4em;
 			    text-shadow: 1px 1px 30px #000;
@@ -58,11 +59,21 @@ $site->update_stats($post['views'], $post['id']);
 			.profile-header-banner {
 				background-position: center center;
 				font-weight: 700;
-				letter-spacing: 10px;
+				/*letter-spacing: 10px;*/
 				text-shadow: 2px 2px 20px #000000;
 				box-shadow: 0 0 10px #303030;
 				height: 100vh;
+				background-size: cover;
 			}
+			.profile-header-banner h1 {
+				font-size: 10vw;
+			}
+			.profile-header-banner p {
+				font-size: 4vw;
+			}
+/*			.profile .section {
+				padding-top:20vh;
+			}*/
 			.jumbotron {
 				padding: 0;
 			}
@@ -74,34 +85,28 @@ $site->update_stats($post['views'], $post['id']);
 			}
 		</style>
 
-<div class="jumbotron profile-header-banner" style="background-image:url('<?php echo $post['photo']; ?>');">
-	<div class="background-tint">
-		<h1><?php echo $post['twitter']; ?></h1>
-		<p><?php echo($post['blogtitle']); ?></p>
-	</div>
-</div>
+		<div class="jumbotron profile-header-banner section" style="background-image:url('<?php echo $post['photo']; ?>');">
+			<div class="background-tint">
+				<h1><?php echo $post['twitter']; ?></h1>
+				<p><?php echo($post['blogtitle']); ?></p>
+				<div>
+					<?php echo $site->display_play_button($post); ?>
+				</div>
+			</div>
+		</div>
+
 		<section class="profile container">
 
 			<section class="profile-body clearfix">
-				<div class="col-md-6 col-xs-12">
-				<?php //echo $site->display_media_grid($post); ?>
-						<a class="profile_image" href="#">
-							<?php echo $site->display_media_grid(array($post)); ?>
-						</a>
-				</div>
 
-				<div class="col-md-6 col-xs-12">
-					<h3><?php echo($post['blogtitle']); ?></h3>
-					<h4>
-						<?php echo $post['twitter']; ?>
-					</h4>
+				<div class="row">
 					<div class="track-details">
-						<div><?php echo '<hr>'.$post['description']; ?></div>
+						<div><?php echo $post['description']; ?></div>
 						<div class="track-controls"></div>
 						<?php 
 							if ($media) {
 								echo '<h4 class="page-header">Related</h4>';
-								echo $site->display_media_grid($media,);
+								echo $site->display_media_grid($media);
 							} 
 						?>
 					</div>
@@ -117,10 +122,25 @@ $site->update_stats($post['views'], $post['id']);
 		</section>
 
 
-		
 		<script type="text/javascript" src="<?php echo $site->url ?>js/dashboard.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.5/jquery.scrollify.js"></script>
 		<script type="text/javascript">
 			$(function(){
+				// $.scrollify({
+				//         section : ".section",
+				//         interstitialSection : "",
+				//         easing: "easeOutExpo",
+				//         scrollSpeed: 1100,
+				//         offset : 0,
+				//         scrollbars: true,
+				//         standardScrollElements: "",
+				//         setHeights: true,
+				//         overflowScroll: true,
+				//         before:function() {},
+				//         after:function() {},
+				//         afterResize:function() {},
+				//         afterRender:function() {}
+				//     });
 
 				/* CONFIG FUNCTIONS */
 				function playButton(elem) {

@@ -201,6 +201,11 @@
 	.tracklist-panel img {
 		width: 100%;
 		display:block;
+		transition: all 0.5s;
+		transition-timing-function: ease;
+	}
+	.tracklist-panel img:hover {
+		border:solid <?php echo $site->primary_color; ?> 10px;
 	}
 	.tracklist-panel b {
 		display: block;
@@ -401,6 +406,34 @@
 			margin: auto;
 			max-height: 80vh;
 		}
+
+		.play_button {
+			background-color: #FE3F44;
+			border-radius: 50%;
+			position: relative;
+			top: 10px;
+		    right: 10px;
+		}
+		.play_button i {
+			position: relative;
+		    left: 1px;
+		    top: 1px;
+		}
+		.profile-header-banner .play_button .fa-play, .profile-header-banner .play_button .fa-pause {
+			padding:1vh;
+			position: relative;
+			font-size:5vh;
+		    left: 6px;
+		    top: 6px;
+		}
+		.profile-header-banner .play_button {
+			width: 100px;
+		    height: 100px;
+		}
+		.profile-header-banner .play_button .fa-pause {
+			    left: 1px;	
+		}
+		
 
 		input:checked + .slider {
 			background-color: #2196F3;
