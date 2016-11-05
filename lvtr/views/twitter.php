@@ -123,6 +123,7 @@ if (isset($_POST['action'])) {
 
 
 <!-- SCRIPTS -->
+<!-- <script type="text/javascript" src="http://freelabel.net/lvtr/js/dashboard.js"></script> -->
 <script type="text/javascript">
 	$('.twOpen').click(function(){
 		var button = $(this);
@@ -156,6 +157,28 @@ if (isset($_POST['action'])) {
 			button.parent().parent().hide('fast');
 		});
 	});
+
+
+
+	/* NOT FINISHED */
+	$('.twitter-response-box').submit(function(e) {
+		e.preventDefault();
+		var value = $(this).find('input').val();
+		alert(value);
+	});
+
+	/* NOT FINISHED */
+	$('.add-to-leads-button').click(function(e) {
+		var lead_username = $(this).attr('data-user');
+		alert(lead_username);
+	});
+
+	/* NOT FINISHED */
+	$('.add-to-leads-button').click(function(e) {
+		var lead_username = $(this).attr('data-user');
+		alert(lead_username);
+	});
+
 </script>
 
 

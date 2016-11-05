@@ -41,6 +41,12 @@
 		font-weight: 300;
 		margin-right:2em;
 	}
+
+
+	.data-container {
+		padding-bottom: 5vh;
+	}
+
 	label:hover, .notifications {
 		color:<?php echo $site->primary_color; ?>;
 		cursor: pointer;
@@ -375,6 +381,9 @@
 			transition: all 1s;
 		    opacity:0.85 !important;
 		}
+
+
+
 	.upload-profile-photo-area {
 		border: dashed 4px #303030;
 	}
@@ -384,6 +393,20 @@
 	.upload-profile-photo-area img {
 		width: 100%;
 		display: block;
+	}
+
+	.lead-message {
+		border-left: solid 3px <?php echo $site->primary_color; ?>;
+	    display: block;
+	    margin-bottom: 15px;
+	    padding-left: 10px;
+	}
+	.leadlist-item .priority {
+		font-size:5em;
+		background-color: <?php echo $site->primary_color; ?>
+		font-weight:bolder;
+		color:#fff;
+		display: inline-block;
 	}
 
 

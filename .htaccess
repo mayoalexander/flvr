@@ -22,6 +22,10 @@ RewriteRule ^dev/$ 												dev/
 RewriteRule ^home$ 												prod/
 RewriteRule ^home/$ 											prod/
 
+RewriteRule ^category/([\w-]+)/$ 				lvtr/views/category_public.php?id=$1
+RewriteRule ^category/([\w-]+)$ 				lvtr/views/category_public.php?id=$1
+
+
 
 
 RewriteRule ^pricing$ 										users/index/marketing_pricing/

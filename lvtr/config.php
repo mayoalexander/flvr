@@ -35,7 +35,7 @@ class Config
 		$this->description_long = 'CREATE | UPLOAD | SHARE';
 		$this->meta_keywords = 'music promotion,music promotions,music promotions company,music promotions companies,music promotion company,music promotion companies,music promotion services,music promotion blog,free music promotion,music promotion sites,	
 online music promotion,free music promotion sites,hip hop music promotion,music promotion app,music promotion package,music promotion service,best music promotion services,independent music promotion,free music promotions,indie music promotion,free online music promotion,music promotional items,music promotion jobs,online music promotion services,buy music promotion,music promotion free';
-		$this->default_user_img = 'http://www.chemistry.uwc.ac.za/users/eiwuoha/default_profile.jpg';
+		$this->default_user_img = 'https://mcmprodaaas.s3.amazonaws.com/s3fs-public/styles/adaptive/public/profile-placeholder.png?itok=FCDqaoiV';
 
 		// $this->url = 'http://freelabel.net/lvtr/';
 		// $this->url = 'http://localhost:8888/';
@@ -820,6 +820,39 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 
 
 
+	function display_leads($leads) {
+		if ($leads) {
+			foreach ($leads as $key => $leaddata) {
+				$newleads[$leaddata['lead_twitter']][] = $leaddata['lead_name']; 
+			}
+
+
+
+			foreach ($newleads as $key => $lead) {
+				$priority = count($lead);
+				$twitter_url = "http://twitter.com/@".$key;
+
+				echo '<p class="leadlist-item row">';
+					echo '<span class="col-md-2 col-sm-3 priority">'.$priority.'</span>';
+					echo '<span class="col-md-2 col-sm-3"><a href="'.$twitter_url.'" target="_blank">@'.$key.'</a></span>';
+					echo '<span class="col-md-5 col-sm-3 text-muted">';
+					foreach ($lead as $key => $message) {
+						echo '<span class="lead-message">'.$message.'</span>';
+					}
+					echo '</span>';
+					echo '<i class="fa fa-ellipsis-h pull-right view-details" data-user='.$lead['id'].'></i>';
+				echo '</p>';
+			}
+		} else {
+				echo '<p class="userlist-item">';
+					echo '<p>You have no friends! :(</p>';
+					// echo '<i class="fa fa-ellipsis-h pull-right"></i>';
+				echo '</p>';
+		}
+	}
+
+
+
 	function display_liked_posts($liked) {
 		if ($liked) {
 			foreach ($liked as $key => $post) {
@@ -857,6 +890,27 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 	    mysqli_close($con);
 		return $posts;
 	}
+
+
+
+	function get_leads() {
+		require(ROOT.'config/connection.php');
+		$query = "SELECT * FROM `leads` ORDER BY `id` DESC LIMIT 500";
+		$result = mysqli_query($con,$query);
+		if (mysqli_num_rows($result)===0) {
+			echo "Uh oh, there was no posts found!";
+			exit;
+		} else {
+			while ($row = mysqli_fetch_assoc($result)) {
+				$leads[] = $row;
+			}
+		}
+	    mysqli_close($con);
+		return $leads;
+	}
+
+
+	
 
 	function get_all_users($table, $db_page=0) {
 		require(ROOT.'config/connection.php');
@@ -1242,11 +1296,18 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 				$messages[$sender_twitter]['messages'][]['text'] = $msg;
 			}
 			foreach ($messages as $convo) {
-				echo '<h4 class="page-header"><img width="36px" src="'.$convo['sender_img'].'" class="img-thumbnail">@'.$convo['sender'].'</h4>';
+				echo '<h4 class="page-header clearfix">
+				<img width="36px" src="'.$convo['sender_img'].'" class="img-thumbnail">
+				@'.$convo['sender'].'
+				<span class="pull-right">
+					<i class="fa fa-plus add-to-leads-button" data-user="'.$convo['sender'].'"></i>
+					<i class="fa fa-list open-script" data-user="'.$convo['sender'].'"></i>
+				</span>
+				</h4>';
 				foreach ($convo['messages'] as $message) {
 					echo $message['text'];
 				}
-				echo '<textarea class="form-control" rows="3" placeholder="Enter Message.."></textarea>';
+				echo '<form method="POST" class="twitter-response-box"><input class="form-control" rows="3" placeholder="Enter Message.."></input></form>';
 			}
 		} else {
 			echo 'Failed to display direct messages... display_direct_messages()';
