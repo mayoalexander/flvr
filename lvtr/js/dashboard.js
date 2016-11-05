@@ -1,3 +1,16 @@
+
+function checkIfPlaying(status) {
+	console.log(status);
+	if (status===true) {
+		// alert('playing next song!!!');
+	} else {
+		// console.log(status);
+	}
+}
+
+
+
+
 	function audioPlayer(elem) {
 			currentState = elem.html();
 			playButtonElem = '<i class="fa fa-play"></i>';
@@ -29,6 +42,8 @@
 
 			/* PLAY VIDEO */
 			if (FLPlayer.current.filetype=='video') {
+				FLPlayer.playerType = FLPlayer.current.filetype;
+
 				// preloadMetaData()
 				$('.play_button').html(playButtonElem); //reset all buttons
 				elem.html(pauseButtonElem);
@@ -51,6 +66,8 @@
 
 			/* PLAY AUDIO */
 			} else if (FLPlayer.current.filetype=='audio') { 
+				FLPlayer.playerType = FLPlayer.current.filetype;
+
 				// preloadMetaData()
 				audioPlayerText.text(activeMp3Text);
 				globalAudioPlayer.attr('src', activeMp3);
@@ -75,14 +92,16 @@
 
 
 			setInterval(function(){
+				if (FLPlayer.playerType=='video') {
+					checkIfPlaying(globalVideoPlayer[0].paused)
+				} else if (FLPlayer.playerType=='audio') {
+					checkIfPlaying(globalAudioPlayer[0].paused);
+				}
 				console.log('checking if playing...');
+
 			}, 2000);
 			console.log(FLPlayer);
 	}
-
-
-
-
 
 
 
