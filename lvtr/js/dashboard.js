@@ -9,9 +9,26 @@
 			var activeMp3 = elem.attr('data-mp3');
 			var activeMp3Type = elem.attr('data-type');
 			var activeMp3Text = elem.attr('data-twitter') + ' - ' + elem.attr('data-title');
-			
+			var tracks = [];
+			$.each($('.play_button'),function(index,value){
+				tracks[index] =  {
+					title: value.getAttribute('data-twitter') + ' - ' + value.getAttribute('data-title'),
+					file: value.getAttribute('data-mp3')
+				}
+			});
+
+			var FLPlayer = {};
+			FLPlayer.started = true;
+			FLPlayer.current = {
+				filetype : activeMp3Type,
+				title : activeMp3Text
+			}
+			FLPlayer.playlist = tracks;
+
+
+
 			/* PLAY VIDEO */
-			if (activeMp3Type=='video') {
+			if (FLPlayer.current.filetype=='video') {
 				// preloadMetaData()
 				$('.play_button').html(playButtonElem); //reset all buttons
 				elem.html(pauseButtonElem);
@@ -28,9 +45,12 @@
 				$('#postModal').modal('show');
 				$('#postWrapper').html('<video autoplay=1 loop=1 src="' + activeMp3 + '"/ class="video_player" id="global_video_player" controls>');
 
-			/* PLAY AUDIO */
-			} else if (activeMp3Type=='audio') { 
 
+
+				
+
+			/* PLAY AUDIO */
+			} else if (FLPlayer.current.filetype=='audio') { 
 				// preloadMetaData()
 				audioPlayerText.text(activeMp3Text);
 				globalAudioPlayer.attr('src', activeMp3);
@@ -52,7 +72,33 @@
 				}
 
 			}
+
+
+			setInterval(function(){
+				console.log('checking if playing...');
+			}, 2000);
+			console.log(FLPlayer);
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	$('.view-post-trigger').click(function(e){
 		e.preventDefault();
