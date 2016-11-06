@@ -11,7 +11,7 @@ $site = new Config();
 	<link type="text/css" href="<?php echo $site->url; ?>css/normalize.css">
 	<link type="text/css" href="<?php echo $site->url; ?>css/css/output.css">
 	<link type="text/css" href="<?php echo $site->url; ?>vendor/sorich87/bootstrap-tour/build/css/bootstrap-tour.min.css">
-	<link rel="stylesheet" href="<?php echo $site->url; ?>css/font-awesome.css">
+	<link rel="stylesheet" href="<?php echo $site->url; ?>css/font-awesome-4.7.0/css/font-awesome.min.css">
     <script type="text/javascript" src="<?php echo $site->url; ?>js/jquery.min.js"></script>
 	<script src="<?php echo $site->url; ?>js/bootstrap.min.js"></script>
 	<script type="text/javascript" href="<?php echo $site->url; ?>js/isMobile.min.js"></script>

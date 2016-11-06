@@ -125,7 +125,8 @@ if (isset($_POST['action'])) {
 <!-- SCRIPTS -->
 <!-- <script type="text/javascript" src="http://freelabel.net/lvtr/js/dashboard.js"></script> -->
 <script type="text/javascript">
-	$('.twOpen').click(function(){
+	$('.twOpen').click(function(e){
+		e.preventDefault();
 		var button = $(this);
 
 		var action = button.text();
@@ -145,7 +146,8 @@ if (isset($_POST['action'])) {
 		});
 	});
 
-	$('.delete-twitter-post').click(function(){
+	$('.delete-twitter-post').click(function(e){
+		e.preventDefault();
 		var elem = $('.widget-container');
 		var button = $(this);
 		var id = button.attr('data-id');
@@ -169,15 +171,30 @@ if (isset($_POST['action'])) {
 
 	/* NOT FINISHED */
 	$('.add-to-leads-button').click(function(e) {
+		e.preventDefault();
 		var lead_username = $(this).attr('data-user');
 		alert(lead_username);
 	});
 
 	/* NOT FINISHED */
 	$('.add-to-leads-button').click(function(e) {
+		e.preventDefault();
 		var lead_username = $(this).attr('data-user');
 		alert(lead_username);
 	});
+
+
+	/* NOT FINISHED */
+	$('.call-us-button').click(function(e) {
+		e.preventDefault();
+		var lead_username = $(this).attr('data-user');
+		var url = 'http://freelabel.net/som/index.php?post=1&text=d @' + lead_username + ' call us asap 347-994-0267';
+
+		window.open(encodeURI(url));
+	});
+
+
+	
 
 </script>
 

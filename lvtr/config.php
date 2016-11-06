@@ -1300,8 +1300,9 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 				<img width="36px" src="'.$convo['sender_img'].'" class="img-thumbnail">
 				@'.$convo['sender'].'
 				<span class="pull-right">
-					<i class="fa fa-plus add-to-leads-button" data-user="'.$convo['sender'].'"></i>
-					<i class="fa fa-list open-script" data-user="'.$convo['sender'].'"></i>
+					<a class="fa fa-plus add-to-leads-button" data-user="'.$convo['sender'].'" href="#"></a>
+					<a class="fa fa-list open-script" data-user="'.$convo['sender'].'" href="#"></a>
+					<a class="fa fa-phone call-us-button" data-user="'.$convo['sender'].'" href="#"></a>
 				</span>
 				</h4>';
 				foreach ($convo['messages'] as $message) {
