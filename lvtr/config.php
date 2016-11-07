@@ -35,7 +35,7 @@ class Config
 		$this->description_long = 'CREATE | UPLOAD | SHARE';
 		$this->meta_keywords = 'music promotion,music promotions,music promotions company,music promotions companies,music promotion company,music promotion companies,music promotion services,music promotion blog,free music promotion,music promotion sites,	
 online music promotion,free music promotion sites,hip hop music promotion,music promotion app,music promotion package,music promotion service,best music promotion services,independent music promotion,free music promotions,indie music promotion,free online music promotion,music promotional items,music promotion jobs,online music promotion services,buy music promotion,music promotion free';
-		$this->default_user_img = 'https://mcmprodaaas.s3.amazonaws.com/s3fs-public/styles/adaptive/public/profile-placeholder.png?itok=FCDqaoiV';
+		$this->default_user_img = 'http://freelabel.net/dev/storage/app/media/ui/placeholders/profile-placeholder.png';
 
 		// $this->url = 'http://freelabel.net/lvtr/';
 		// $this->url = 'http://localhost:8888/';
@@ -604,8 +604,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 	}
 
 	function display_profile_photo($profile) {
-		// if (getimagesize($profile['photo']) !== false) {
-		if (getimagesize($profile['photo']) !== false) {
+		if (isset($profile['photo']) && getimagesize($profile['photo']) !== false) {
 			echo $profile['photo'];
 		} else {
 			echo $this->default_user_img;
@@ -1212,7 +1211,6 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 			}
 		}
 		$query = "INSERT INTO $table ($q_data) VALUES ($q_data2)";
-		echo $query.'<hr>';
 		$editquery = mysqli_query($con,$query);
 		if ($editquery) {
 		  $res = true;
@@ -1302,9 +1300,9 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 				<img width="36px" src="'.$convo['sender_img'].'" class="img-thumbnail">
 				@'.$convo['sender'].'
 				<span class="pull-right">
-					<a class="fa fa-plus add-to-leads-button" data-user="'.$convo['sender'].'" href="#"></a>
-					<a class="fa fa-list open-script" data-user="'.$convo['sender'].'" href="#"></a>
-					<a class="fa fa-phone call-us-button" data-user="'.$convo['sender'].'" href="#"></a>
+					<a class="btn btn-success add-to-leads-button" data-user="'.$convo['sender'].'" href="#"><i class="fa fa-plus"></i> Add To Leads</a>
+					<a class="btn btn-success open-script hidden" data-user="'.$convo['sender'].'" href="#"><i class="fa fa-list"></i></a>
+					<a class="btn btn-primary call-us-button" data-user="'.$convo['sender'].'" href="#"><i class="fa fa-phone"></i> Call Us</a>
 				</span>
 				</h4>';
 				foreach ($convo['messages'] as $message) {

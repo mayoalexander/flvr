@@ -10,6 +10,16 @@ function checkIfPlaying(status) {
 
 
 
+function updateViewCallback(wrap, result) {
+	wrap.prepend('<div class="alert alert-success" style="position:absolute;"><strong>Success!</strong> ' + result + '</div>');
+	setTimeout(function() {
+		wrap.hide('fast');
+	},3000);
+	
+}
+
+
+
 
 	function audioPlayer(elem) {
 			currentState = elem.html();
@@ -319,8 +329,6 @@ function checkIfPlaying(status) {
 	$('.form-signin').submit(function(e) {
 		e.preventDefault();
 		var elem = $(this);
-		console.log(elem);
-		return;
 		registerUser('http://freelabel.net/lvtr/', $(this));
 	});
 
@@ -366,8 +374,7 @@ function checkIfPlaying(status) {
 		}
 		var url = 'http://freelabel.net/lvtr/config/update.php';
 		$.post(url, data, function(result){
-			alert(result);
-			wrap.hide('fast');
+			updateViewCallback(wrap, result)
 		});
 	});
 
