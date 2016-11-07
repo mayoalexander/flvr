@@ -825,6 +825,7 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 			foreach ($leads as $key => $leaddata) {
 				$newleads[$leaddata['lead_twitter']][] = $leaddata['lead_name']; 
 			}
+			$date_added =$this->get_time_ago(strtotime($leads[0]['entry_date']));
 
 
 
@@ -833,7 +834,8 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 				$twitter_url = "http://twitter.com/@".$key;
 
 				echo '<p class="leadlist-item row">';
-					echo '<span class="col-md-2 col-sm-3 priority">'.$priority.'</span>';
+					echo '<span class="col-md-1 col-sm-3 priority">'.$priority.'</span>';
+					echo '<span class="col-md-1 col-sm-3">'.$date_added.'</span>';
 					echo '<span class="col-md-2 col-sm-3"><a href="'.$twitter_url.'" target="_blank">@'.$key.'</a></span>';
 					echo '<span class="col-md-5 col-sm-3 text-muted">';
 					foreach ($lead as $key => $message) {
@@ -1202,16 +1204,15 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 		$q_data2='';
 		foreach ($data as $key => $value) {
 			if ($key!=='action' && $key!=='id') {
-				$q_data2.= "'".$value."'";
+				$q_data2.= "'".mysqli_real_escape_string($con,$value)."'";
 				if ($i!==(count($data)-1)) {
 					$q_data2 .=', ';
 				}
 				$i++;
 			}
 		}
-		$query = "UPDATE `$table` SET $q_data WHERE `id` = ".$data['id'];
 		$query = "INSERT INTO $table ($q_data) VALUES ($q_data2)";
-		// echo $query.'<hr>';
+		echo $query.'<hr>';
 		$editquery = mysqli_query($con,$query);
 		if ($editquery) {
 		  $res = true;
@@ -1296,6 +1297,7 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 				$messages[$sender_twitter]['messages'][]['text'] = $msg;
 			}
 			foreach ($messages as $convo) {
+				echo '<article>';
 				echo '<h4 class="page-header clearfix">
 				<img width="36px" src="'.$convo['sender_img'].'" class="img-thumbnail">
 				@'.$convo['sender'].'
@@ -1309,6 +1311,7 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 					echo $message['text'];
 				}
 				echo '<form method="POST" class="twitter-response-box"><input class="form-control" rows="3" placeholder="Enter Message.."></input></form>';
+				echo '</article>';
 			}
 		} else {
 			echo 'Failed to display direct messages... display_direct_messages()';

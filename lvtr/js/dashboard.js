@@ -318,6 +318,9 @@ function checkIfPlaying(status) {
 	});
 	$('.form-signin').submit(function(e) {
 		e.preventDefault();
+		var elem = $(this);
+		console.log(elem);
+		return;
 		registerUser('http://freelabel.net/lvtr/', $(this));
 	});
 
@@ -346,6 +349,25 @@ function checkIfPlaying(status) {
 		var url = 'http://freelabel.net/lvtr/views/widgets/add_new_post.php';
 		$.get(url, function(result){
 			body.html(result);
+		});
+	});
+
+
+
+	$('.add-to-leads-button').click(function(e) {
+		e.preventDefault();
+		var lead_username = $(this).attr('data-user');
+		var wrap = $(this).parent().parent().parent();
+		var lead_name = $(this).parent().parent().parent().find('blockquote').text();
+		var data = {
+			lead_twitter:lead_username,
+			lead_name:lead_name,
+			action:'add_to_leads'
+		}
+		var url = 'http://freelabel.net/lvtr/config/update.php';
+		$.post(url, data, function(result){
+			alert(result);
+			wrap.hide('fast');
 		});
 	});
 

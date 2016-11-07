@@ -123,7 +123,7 @@ if (isset($_POST['action'])) {
 
 
 <!-- SCRIPTS -->
-<!-- <script type="text/javascript" src="http://freelabel.net/lvtr/js/dashboard.js"></script> -->
+<script type="text/javascript" src="http://freelabel.net/lvtr/js/dashboard.js"></script>
 <script type="text/javascript">
 	$('.twOpen').click(function(e){
 		e.preventDefault();
@@ -169,19 +169,8 @@ if (isset($_POST['action'])) {
 		alert(value);
 	});
 
-	/* NOT FINISHED */
-	$('.add-to-leads-button').click(function(e) {
-		e.preventDefault();
-		var lead_username = $(this).attr('data-user');
-		alert(lead_username);
-	});
 
 	/* NOT FINISHED */
-	$('.add-to-leads-button').click(function(e) {
-		e.preventDefault();
-		var lead_username = $(this).attr('data-user');
-		alert(lead_username);
-	});
 
 
 	/* NOT FINISHED */

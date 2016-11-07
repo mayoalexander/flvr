@@ -60,4 +60,14 @@ if ($_POST['action']==='edit_category') {
 
 
 
+if ($_POST['action']==='add_to_leads') {
+	if ($site->add('leads', $_POST)) {
+		echo 'Successfully Updated!';
+	}	else {
+		echo 'Something went wrong!';
+	}
+}
+
+
+
 

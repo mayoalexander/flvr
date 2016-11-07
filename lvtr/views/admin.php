@@ -18,6 +18,7 @@ $site = new Config();
     <label>Script</label>
     <label>SOM</label>
     <label>Leads</label>
+    <label>Images</label>
 	</div>
 	<hr>
 </section>
