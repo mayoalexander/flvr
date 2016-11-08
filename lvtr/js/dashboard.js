@@ -179,6 +179,22 @@ function updateViewCallback(wrap, result) {
 		// alert();
 	});
 
+
+
+	$('.delete-categories-trigger').click(function(e){
+		e.preventDefault();
+		var data = $(this);
+		var category_id = $(this).attr('data-id');
+		wrap = $(this).parent();
+		$.post('http://freelabel.net/lvtr/config/update.php', {
+			action: 'delete_category',
+			category_id: category_id
+		}, function(result){
+			updateViewCallback(wrap, result);
+		});
+	});
+
+
 	$('.tracklist-panel a').click(function(e){
 		e.preventDefault();
 		// var data = $(this).find('.play_button');

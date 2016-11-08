@@ -7,8 +7,8 @@ $ads = $site->get_user_categories($_SESSION['user_name']); // '0' pulling the 1s
 
 
 <div class="container">
-	<div class="subnav clearfix">
-		<h1 class="page-header">Your Categories
+	<div class="subnav">
+		<h1 class="page-header clearfix">Your Categories
 		<button class="btn btn-primary pull-right add-new-category"><i class="fa fa-plus"></i> Add New Category</button>
 		</h1>
 	</div>
@@ -20,7 +20,7 @@ $ads = $site->get_user_categories($_SESSION['user_name']); // '0' pulling the 1s
 </div>
 
 
-<script type="text/javascript" class="http://freelabel.net/lvtr/js/dashboard.js"></script>
+<script type="text/javascript" src="http://freelabel.net/lvtr/js/dashboard.js"></script>
 <script type="text/javascript">
 	
 	$(function() {
@@ -47,6 +47,9 @@ $ads = $site->get_user_categories($_SESSION['user_name']); // '0' pulling the 1s
 			body.html(result);
 		});
 	});
+
+
+
 
 
 	$('.categorieslist-item b').click(function(){

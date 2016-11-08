@@ -283,10 +283,17 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 		return $user;
 	}
 
+
+	function get_hero_img() {
+		$rand = rand(0,9);
+		echo 'http://freelabel.net/dev/storage/app/media/ui/backgrounds/00'.$rand.'.jpg';
+	}
+
 	function get_user_media($user_name, $page=0) {
-		$db_page = $page * 20;
+		$range = 21;
+		$db_page = $page * $range;
 		require(ROOT.'config/connection.php');
-		$query = "SELECT * FROM `feed` WHERE `user_name` = '$user_name' ORDER BY `id` DESC LIMIT $db_page, 20";
+		$query = "SELECT * FROM `feed` WHERE `user_name` = '$user_name' ORDER BY `id` DESC LIMIT $db_page, $range";
 		$result = mysqli_query($con,$query);
 		while ($row = mysqli_fetch_assoc($result)) {
 			$media[] = $row;
@@ -411,8 +418,14 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 		echo $embed;
 	}
 
-	function display_delete_button($post) {
-			return '<li><button class="delete-post-trigger btn btn-link" data-id="'.$post['id'].'"><i class="fa fa-trash"></i> Delete</button></li>';
+	function display_delete_button($post, $table=NULL) {
+		if (isset($table)) {
+			$action = 'delete-'.$table.'-trigger';
+		} else {
+			$action = 'delete-post-trigger';
+		}
+		return '<li><button class="'.$action.' btn btn-link" data-id="'.$post['id'].'"><i class="fa fa-trash"></i> Delete</button></li>';
+
 	}
 	function display_edit_button($post) {
 			return '<li><button class="edit-post-trigger btn btn-link" data-id="'.$post['id'].'"><i class="fa fa-edit"></i> Edit</button></li>';
@@ -1560,7 +1573,7 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 			<h2 class="form-signin-heading">Create Your Account</h2>
 			<div class="login-results"></div>
 			<label for="user_name" class="sr-only">Username</label>
-			<input type="text" name="user_name" id="user_name" class="form-control-login" placeholder="Choose Username.." required autocomplete="off" autofocus>
+			<input type="text" name="user_name" id="user_name" class="form-control-login" placeholder="Choose Username.." required autocomplete="off" pattern="[A-Za-z]{3}" autofocus>
 			<label for="user_email" class="sr-only">Email address</label>
 			<input type="email" name="user_email" id="user_email" class="form-control-login" placeholder="Enter Email Address.." required autocomplete="off" autofocus>
 			<label for="user_password" class="sr-only">Password</label>

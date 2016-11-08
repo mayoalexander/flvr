@@ -9,7 +9,12 @@ $posts = $site->get_category_posts($category['name'],$_GET['user_name']);
 
 // exit;
 ?>
-<h1 class="page-header"><?php echo $category['name']; ?></h1>
+<h1 class="page-header clearfix">
+	<?php echo $category['name']; ?>
+	<div class="pull-right category-nav">
+		<?php echo $site->display_delete_button($category, 'categories'); ?>
+	</div>
+</h1>
 <?php 
 	if ($posts===NULL) {
 		echo 'No posts have been added!';

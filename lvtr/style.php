@@ -99,6 +99,8 @@
 		border-left: 2px transparent solid;
 		transition: all 1s;
 	}
+
+
 	.form-control:focus {
 		border-left: 2px <?php echo $site->primary_color; ?> solid;
 		color: <?php echo $site->body_text_light; ?>;
@@ -180,6 +182,12 @@
 	}
 	.category-container h1 {
 		margin-top:0;
+	}
+	.category-nav li {
+		list-style-type: none;
+	}
+	.category-nav .btn-link {
+		color:#e3e3e3;
 	}
 	.edit-category:hover, .categorieslist-item:hover  {
 		cursor: pointer;
@@ -320,7 +328,6 @@
 	.header_banner {
 		background-color: #303030;
 		height: 94vh;
-		padding-top: 25vh;
 		text-align: center;
 		background-position: center center;
 		background-size: cover;
@@ -328,6 +335,11 @@
 	}
 	.header_banner .btn , .buttons-wrapper a  {
 		background-color: rgba(0,0,0,0.5);
+	}
+	.header_banner .background-tint {
+	    background: rgba(0,0,0,0.5);
+	    padding-top: 10em;
+	    height: inherit;
 	}
 	.hero-01 {
 		background-image: url("http://freelabel.net/dev/storage/app/media/pexels-photo-87351.jpeg");
@@ -483,9 +495,10 @@
 
 
 @media(max-width: 600px) {
-	.header_banner {
-		padding:1em;
-		padding-top:17.5vh;
+	.header_banner .background-tint {
+		padding: 2em;
+		padding-top: 30vh;
+		height: inherit;
 	}
 	.header_banner, .header_banner h1{
 		font-size: 2em;

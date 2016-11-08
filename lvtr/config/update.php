@@ -15,6 +15,7 @@ if ($_POST['action']==='delete_category') {
 	if ($site->delete('categories', $_POST['category_id'])) {
 		echo 'Successfully Deleted';
 	}	else {
+		var_dump($_POST);
 		echo 'Something went wrong!';
 	}
 }

@@ -236,7 +236,6 @@ $(function(){
 */
 		// trim twitter username
 		$("#social").keypress(function() {
-		  
 		  $(this).val($newy);
 		});
 
