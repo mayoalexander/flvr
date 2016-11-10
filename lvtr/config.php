@@ -50,6 +50,14 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 		$this->packages['trial'] = 'http://freelabel.net/confirm/trial';
 		$this->packages['basic'] = 'http://freelabel.net/confirm/basic';
 
+		$this->twitter['consumer_key'] = 'yaN4EQqnWE8Q4YGFL4lR0xRxi';
+		$this->twitter['consumer_secret'] = 'rudYALyDVhfGosR3L4WxPt3go4X6rRwlSuwfmYspkqEJbo9wmX';
+		$this->twitter['oauth_token'] = '1018532587-poe2C6ra1KH6JCJGYGO1ql6VGZUg4zDT0wxB4Ps';
+		$this->twitter['oauth_token_secret'] = 'u0ShvMlr3O0MoJC0vO7fkLZMVYMWjJB0cDRtAzOGvGKmH';
+		$this->twitter['oauth_callback'] = 'http://freelabel.net/lvtr/?ctrl=twitter';
+		$this->twitter['screen_name'] = 'FreeLabelNet';
+		$this->twitter['user_id'] = '1018532587';
+		$this->twitter['x_auth_expires'] = '0';
 
 		if ($_SERVER['SCRIPT_NAME']=='/lvtr/views/public.php') {
 			if (isset($_GET['post_id'])) {
@@ -807,12 +815,19 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 
 	function display_users_list($user_profiles) {
 		if ($user_profiles) {
+				echo '<p class="userlist-item row page-header">';
+					echo '<span class="col-md-2 col-sm-3">Photo</span>';
+					echo '<span class="col-md-2 col-sm-3">Username</span>';
+					echo '<span class="col-md-2 col-sm-3 text-muted">Date Created</span>';
+					echo '<span class="col-md-2 col-sm-3 text-muted">Media Uploaded</span>';
+					echo '<i class="fa fa-ellipsis-h pull-right view-details" data-user='.$profile['id'].'></i>';
+				echo '</p>';
 			foreach ($user_profiles as $key => $profile) {
 				$profile['user_name'] = $profile['id'];
 				if (!$this->get_user_media($profile['id'])=='') {
-					$media_status = 'View Tracks';
+					$media_status = '<i class="fa fa-check text-success"></i>';
 				} else {
-					$media_status = '';
+					$media_status = '<i class="fa fa-close text-danger"></i>';
 				}
 				echo '<p class="userlist-item row">';
 					echo '<span class="col-md-2 col-sm-3"><img src="'.$profile['photo'].'"/></span>';
@@ -856,6 +871,11 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 					echo '</span>';
 					echo '<i class="fa fa-ellipsis-h pull-right view-details" data-user='.$lead['id'].'></i>';
 				echo '</p>';
+				echo '<div class="row">';
+					echo '<form method="POST" class="twitter-response-box col-md-11" data-twitter="'.$key.'"><input class="form-control" rows="3" placeholder="Enter Message.."></input></form>
+					<div class="col-md-1 btn btn-primary">Send</div>
+					</div>';
+				echo '</div>';
 			}
 		} else {
 				echo '<p class="userlist-item">';
@@ -1102,7 +1122,7 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 		$phone = mysqli_real_escape_string($con, $data['phone']);
 		$photo = mysqli_real_escape_string($con, $data['photo']);
 		$brand = mysqli_real_escape_string($con, $data['brand']);
-		$twitter = mysqli_real_escape_string($con, $data['twitter']);
+		$twitter = mysqli_real_escape_string($con, trim($data['twitter']));
 		$description = mysqli_real_escape_string($con, $data['description']);
 		$instagram = mysqli_real_escape_string($con, $data['instagram']);
 		$soundcloud = mysqli_real_escape_string($con, $data['soundcloud']);
@@ -1293,7 +1313,6 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 
 
 
-
 	function display_direct_messages($content) {
 		if (isset($content)) {
 			foreach ($content as $key => $message) {
@@ -1308,7 +1327,7 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 				$messages[$sender_twitter]['messages'][]['text'] = $msg;
 			}
 			foreach ($messages as $convo) {
-				echo '<article>';
+				echo '<article class="message-item">';
 				echo '<h4 class="page-header clearfix">
 				<img width="36px" src="'.$convo['sender_img'].'" class="img-thumbnail">
 				@'.$convo['sender'].'
@@ -1321,7 +1340,11 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 				foreach ($convo['messages'] as $message) {
 					echo $message['text'];
 				}
-				echo '<form method="POST" class="twitter-response-box"><input class="form-control" rows="3" placeholder="Enter Message.."></input></form>';
+
+				echo '<div class="row">
+				<form method="POST" class="twitter-response-box col-md-11" data-twitter="'.$convo['sender'].'"><input class="form-control" rows="3" placeholder="Enter Message.."></input></form>
+				<div class="col-md-1 btn btn-primary">Send</div>
+				</div>';
 				echo '</article>';
 			}
 		} else {
@@ -1573,7 +1596,7 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 			<h2 class="form-signin-heading">Create Your Account</h2>
 			<div class="login-results"></div>
 			<label for="user_name" class="sr-only">Username</label>
-			<input type="text" name="user_name" id="user_name" class="form-control-login" placeholder="Choose Username.." required autocomplete="off" pattern="[A-Za-z]{3}" autofocus>
+			<input type="text" name="user_name" id="user_name" class="form-control-login" placeholder="Choose Username.." required autocomplete="off" autofocus>
 			<label for="user_email" class="sr-only">Email address</label>
 			<input type="email" name="user_email" id="user_email" class="form-control-login" placeholder="Enter Email Address.." required autocomplete="off" autofocus>
 			<label for="user_password" class="sr-only">Password</label>

@@ -2,20 +2,14 @@
 include_once('../config.php');
 require "../vendor/autoload.php";
 use Abraham\TwitterOAuth\TwitterOAuth;
-session_start();
-$access_token['oauth_token'] = '1018532587-pZivWibRwTz1uXmUgWS9XfnQw3HidZ7bLJuwowD';
-$access_token['oauth_token_secret'] = '9hc6heSLfF1CTKdAlpScQwiAor9iP0CVLKHz8VzGVmhCi';
-$access_token['screen_name'] = 'FreeLabelNet';
-$access_token['user_id'] = '1018532587';
-$access_token['x_auth_expires'] = '0';
-$_SESSION['access_token'] = $access_token;
-
-define('CONSUMER_KEY', 'yaN4EQqnWE8Q4YGFL4lR0xRxi');
-define('CONSUMER_SECRET', 'rudYALyDVhfGosR3L4WxPt3go4X6rRwlSuwfmYspkqEJbo9wmX');
-define('OAUTH_CALLBACK', 'http://freelabel.net/lvtr/?ctrl=twitter');
-
-$connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
 $site = new Config();
+
+$connection = new TwitterOAuth(
+	$site->twitter['consumer_key'], 
+	$site->twitter['consumer_secret'], 
+	$site->twitter['oauth_token'], 
+	$site->twitter['oauth_token_secret']
+	);
 
 $friends = $site->get_friends('admin');
 $friends_dropdown = $site->display_friends_list_dropdown($friends);
@@ -52,7 +46,8 @@ if (isset($_POST['action'])) {
 		/* DIRECT MESSAGES - VIEW*/
 		case 'direct_messages':
 			$setting = 'direct_messages';
-			$content = $connection->get($setting);
+			$options['count'] = 200;
+			$content = $connection->get($setting,$options);
 			echo $site->display_direct_messages($content);
 			break;
 
@@ -160,13 +155,22 @@ if (isset($_POST['action'])) {
 		});
 	});
 
-
+function sendDirectMessage(twitter_name, message) {
+		var url = encodeURI('http://freelabel.net/som/index.php?post=1&text=d @' + twitter_name + ' ' + message);
+		$.get(url, function(result){
+			alert(result);
+		});
+}
 
 	/* NOT FINISHED */
 	$('.twitter-response-box').submit(function(e) {
 		e.preventDefault();
-		var value = $(this).find('input').val();
-		alert(value);
+		var message = $(this).find('input').val();
+		var twitter = $(this).attr('data-twitter');
+		var wrap = $(this).parent().parent();
+		sendDirectMessage(twitter,message);
+		wrap.hide('fast');
+		// updateViewCallback(wrap,result);
 	});
 
 
@@ -177,9 +181,8 @@ if (isset($_POST['action'])) {
 	$('.call-us-button').click(function(e) {
 		e.preventDefault();
 		var lead_username = $(this).attr('data-user');
-		var url = 'http://freelabel.net/som/index.php?post=1&text=d @' + lead_username + ' call us asap 347-994-0267';
-
-		window.open(encodeURI(url));
+		var url = encodeURI('http://freelabel.net/som/index.php?post=1&text=d @' + lead_username + ' call us asap 347-994-0267');
+		window.open(url);
 	});
 
 

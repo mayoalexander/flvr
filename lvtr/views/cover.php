@@ -87,7 +87,7 @@ $site = new Config();
 					<section class="cbp-so-section">
 
 						<figure class="cbp-so-side cbp-so-side-left">
-						<?php echo $site->display_login_form(); ?>
+						<?php //echo $site->display_login_form(); ?>
 							<!-- <img class="img-responsive" src="http://freelabel.net/dev/storage/app/media/pexels-photo-25877.jpg"> -->
 							<!-- <i class="fa fa-star" style="font-size:20em;top:2em;"></i> -->
 						</figure>

@@ -98,13 +98,28 @@ $site = new Config();
       <ul class="nav navbar-nav">
         
       </ul>
+      <ul class="nav navbar-nav">
+        <li class="progress">
+          <div class="progress-bar play-progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 67%;">67% Uploaded</div>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a class="currentTime" href="#">0:00</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-h"></i></a>
+          <ul class="dropdown-menu controls">
+            <li><a href="#" data-ctrl="expand" class="btn btn-link"><i class="fa fa-desktop"></i></a></li>
+            <li><a href="#" data-ctrl="play" class="btn btn-link"><i class="fa fa-pause"></i></a></li>
+            <li role="separator" class="divider"></li>
+          </ul>
+        </li>
+      </ul>
 
 
       <!-- navigation links -->
-      <ul class="controls nav navbar-nav navbar-right">
-        <li><a href="#" data-ctrl="expand" class="btn btn-link"><i class="fa fa-desktop"></i></a></li>
+      <ul class=" nav navbar-nav navbar-right">
         <!-- <li><a href="#"><i class="fa fa-fast-backward"></i></a></li> -->
-        <li><a href="#" data-ctrl="play" class="btn btn-link"><i class="fa fa-pause"></i></a></li>
         <!-- <li><a href="#"><i class="fa fa-fast-forward"></i></a></li> -->
       </ul>
       <!-- navigation links -->

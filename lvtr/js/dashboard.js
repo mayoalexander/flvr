@@ -8,6 +8,17 @@ function checkIfPlaying(status) {
 	}
 }
 
+function toHHMMSS(time) {
+    var sec_num = parseInt(time, 10); // don't forget the second param
+    var hours   = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+    if (hours   < 10) {hours   = "0"+hours;}
+    // if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    return minutes+':'+seconds;
+}
 
 
 function updateViewCallback(wrap, result) {
@@ -17,6 +28,23 @@ function updateViewCallback(wrap, result) {
 	},3000);
 	
 }
+
+function updateButtonCallback(wrap, button, result) {
+
+	button.text(result);
+	wrap.hide('fast');
+	
+	// setTimeout(function(){
+	// 	wrap.hide('fast');
+	// },500);
+	// elem.prepend(result);
+	
+}
+
+
+// var pComplete = Math.round(percentComplete * 100) + "%";
+// $('.play-progress-bar').css('width', pComplete);
+// $('.play-progress-bar').html(pComplete + " Uploaded");
 
 
 
@@ -107,9 +135,15 @@ function updateViewCallback(wrap, result) {
 				} else if (FLPlayer.playerType=='audio') {
 					checkIfPlaying(globalAudioPlayer[0].paused);
 				}
-				console.log('checking if playing...');
+				var currentTime = globalAudioPlayer[0].currentTime;
+				var totalTime = globalAudioPlayer[0].duration;
+				var percentComplete = currentTime / totalTime;
+				console.log((percentComplete * 100) + '%');
+				$('.currentTime').html(toHHMMSS(currentTime))
+				$('.play-progress-bar').css('width', percentComplete + '%')
+				console.log();
 
-			}, 2000);
+			}, 1000);
 			console.log(FLPlayer);
 	}
 
@@ -382,6 +416,7 @@ function updateViewCallback(wrap, result) {
 		e.preventDefault();
 		var lead_username = $(this).attr('data-user');
 		var wrap = $(this).parent().parent().parent();
+		var button = $(this);
 		var lead_name = $(this).parent().parent().parent().find('blockquote').text();
 		var data = {
 			lead_twitter:lead_username,
@@ -390,7 +425,7 @@ function updateViewCallback(wrap, result) {
 		}
 		var url = 'http://freelabel.net/lvtr/config/update.php';
 		$.post(url, data, function(result){
-			updateViewCallback(wrap, result)
+			updateButtonCallback(wrap, button, result)
 		});
 	});
 

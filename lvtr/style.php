@@ -9,7 +9,7 @@
 	}
 	body {
 		margin-top: 50px;
-		margin-bottom: 0px;
+		margin-bottom: 20vh;
 	}
 	a {
 		color:<?php echo $site->primary_color; ?>;
@@ -179,6 +179,9 @@
 	}
 	.list-group-item {
 		background:transparent;
+	}
+	.message-item {
+		/*border-top:3px solid <?php echo $site->primary_color; ?>;*/
 	}
 	.category-container h1 {
 		margin-top:0;
