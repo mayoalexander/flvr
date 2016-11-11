@@ -61,12 +61,12 @@
 
 					<div class=" col-md-4 col-sm-6">
 						<h4><i class="fa fa-twitter"></i> Twitter</h4>
-						<input type="text" class="form-control" name="twitter" placeholder="Enter your Twitter username.. (include &quot;@&quot; sign)" required="" value="<?php echo $profile['twitter'] ?>">
+						<input id="twitter" type="text" class="form-control" name="twitter" placeholder="Enter your Twitter username.. (include &quot;@&quot; sign)" required="" value="<?php echo $profile['twitter'] ?>">
 					</div>
 
 					<div class=" col-md-4 col-sm-6">
 						<h4><i class="fa fa-instagram"></i> Instagram <small>(optional)</small></h4>
-						<input type="text" class="form-control" name="instagram" placeholder="Enter Your Instagram Username.. (include &quot;@&quot; sign)" value="<?php echo $profile['instagram'] ?>">
+						<input id="instagram" type="text" class="form-control" name="instagram" placeholder="Enter Your Instagram Username.. (include &quot;@&quot; sign)" value="<?php echo $profile['instagram'] ?>">
 					</div>
 
 					<div class=" col-md-4 col-sm-6">
@@ -191,6 +191,25 @@
         });
 	});
 
+
+
+
+/*
+	TWITTER SUBMISSION FORMATTING
+*/
+		// trim twitter username
+		$("#twitter, #instagram").keypress(function() {
+		  var $y = $(this).val();
+		  var $newy = $y.replace(/\s+/g, '');
+		  if ($newy.toLowerCase().indexOf("@") >= 0) {
+		    // console.log('yes mane');
+		  //   $newy = $newy.append('@');
+		  } else {
+		    $newy = '@'+ $newy;
+		    // console.log('No mane');
+		  }
+		  $(this).val($newy);
+		});
 
 
 

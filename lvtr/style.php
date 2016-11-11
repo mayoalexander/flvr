@@ -9,7 +9,7 @@
 	}
 	body {
 		margin-top: 50px;
-		margin-bottom: 0px;
+		margin-bottom: 20vh;
 	}
 	a {
 		color:<?php echo $site->primary_color; ?>;
@@ -41,6 +41,12 @@
 		font-weight: 300;
 		margin-right:2em;
 	}
+
+
+	.data-container {
+		padding-bottom: 5vh;
+	}
+
 	label:hover, .notifications {
 		color:<?php echo $site->primary_color; ?>;
 		cursor: pointer;
@@ -93,9 +99,22 @@
 		border-left: 2px transparent solid;
 		transition: all 1s;
 	}
+
+
 	.form-control:focus {
 		border-left: 2px <?php echo $site->primary_color; ?> solid;
 		color: <?php echo $site->body_text_light; ?>;
+	}
+	.form-control-login {
+		background: transparent;
+		border: none;
+	    outline: none;
+	    box-shadow: none;
+	    border-left: 2px transparent solid;
+	    transition: all 1s;
+		font-size: 1.5em;
+		padding:0.5em;
+		width:100%;
 	}
 	.container .form-control {
 		font-size: 1.5em;
@@ -161,8 +180,17 @@
 	.list-group-item {
 		background:transparent;
 	}
+	.message-item {
+		/*border-top:3px solid <?php echo $site->primary_color; ?>;*/
+	}
 	.category-container h1 {
 		margin-top:0;
+	}
+	.category-nav li {
+		list-style-type: none;
+	}
+	.category-nav .btn-link {
+		color:#e3e3e3;
 	}
 	.edit-category:hover, .categorieslist-item:hover  {
 		cursor: pointer;
@@ -190,6 +218,11 @@
 	.tracklist-panel img {
 		width: 100%;
 		display:block;
+		transition: all 0.5s;
+		transition-timing-function: ease;
+	}
+	.tracklist-panel img:hover {
+		border:solid <?php echo $site->primary_color; ?> 10px;
 	}
 	.tracklist-panel b {
 		display: block;
@@ -236,17 +269,31 @@
 		height:340px;
 	}
 
+	.progress {
+		text-align: center;
+		margin: auto;
+		max-width: 400px;
+	}
 	.file-upload-results {
 		text-align: center;
 		margin:auto;
 		max-width: 800px;
-		/*min-height: 400px;*/
+	}
+	.btn-link:hover, .btn-link:focus {
+		text-decoration: none;
+		color:<?php echo $site->primary_color; ?>;
 	}
 	.file-upload-results hr {
 		border:0;
 	}
-	.file-upload-results .btn {
+	.file-upload-results .btn-link {
 		margin-bottom: 1em;
+	}
+	.file-upload-results .btn-link {
+		color:#e3e3e3;
+	}
+	.file-upload-results .btn-success,.file-upload-results .btn-primary, {
+		color:#303030;
 	}
 	.file-upload-results .form-control {
 		margin-bottom: 2em;
@@ -284,7 +331,6 @@
 	.header_banner {
 		background-color: #303030;
 		height: 94vh;
-		padding-top: 25vh;
 		text-align: center;
 		background-position: center center;
 		background-size: cover;
@@ -292,6 +338,11 @@
 	}
 	.header_banner .btn , .buttons-wrapper a  {
 		background-color: rgba(0,0,0,0.5);
+	}
+	.header_banner .background-tint {
+	    background: rgba(0,0,0,0.5);
+	    padding-top: 10em;
+	    height: inherit;
 	}
 	.hero-01 {
 		background-image: url("http://freelabel.net/dev/storage/app/media/pexels-photo-87351.jpeg");
@@ -345,6 +396,9 @@
 			transition: all 1s;
 		    opacity:0.85 !important;
 		}
+
+
+
 	.upload-profile-photo-area {
 		border: dashed 4px #303030;
 	}
@@ -354,6 +408,20 @@
 	.upload-profile-photo-area img {
 		width: 100%;
 		display: block;
+	}
+
+	.lead-message {
+		border-left: solid 3px <?php echo $site->primary_color; ?>;
+	    display: block;
+	    margin-bottom: 15px;
+	    padding-left: 10px;
+	}
+	.leadlist-item .priority {
+		font-size:5em;
+		background-color: <?php echo $site->primary_color; ?>
+		font-weight:bolder;
+		color:#fff;
+		display: inline-block;
 	}
 
 
@@ -376,6 +444,34 @@
 			margin: auto;
 			max-height: 80vh;
 		}
+
+		.play_button {
+			background-color: #FE3F44;
+			border-radius: 50%;
+			position: relative;
+			top: 10px;
+		    right: 10px;
+		}
+		.play_button i {
+			position: relative;
+		    left: 1px;
+		    top: 1px;
+		}
+		.profile-header-banner .play_button .fa-play, .profile-header-banner .play_button .fa-pause {
+			padding:1vh;
+			position: relative;
+			font-size:5vh;
+		    left: 6px;
+		    top: 6px;
+		}
+		.profile-header-banner .play_button {
+			width: 100px;
+		    height: 100px;
+		}
+		.profile-header-banner .play_button .fa-pause {
+			    left: 1px;	
+		}
+		
 
 		input:checked + .slider {
 			background-color: #2196F3;
@@ -402,9 +498,10 @@
 
 
 @media(max-width: 600px) {
-	.header_banner {
-		padding:1em;
-		padding-top:17.5vh;
+	.header_banner .background-tint {
+		padding: 2em;
+		padding-top: 30vh;
+		height: inherit;
 	}
 	.header_banner, .header_banner h1{
 		font-size: 2em;

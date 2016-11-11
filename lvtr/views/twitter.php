@@ -2,20 +2,14 @@
 include_once('../config.php');
 require "../vendor/autoload.php";
 use Abraham\TwitterOAuth\TwitterOAuth;
-session_start();
-$access_token['oauth_token'] = '1018532587-pZivWibRwTz1uXmUgWS9XfnQw3HidZ7bLJuwowD';
-$access_token['oauth_token_secret'] = '9hc6heSLfF1CTKdAlpScQwiAor9iP0CVLKHz8VzGVmhCi';
-$access_token['screen_name'] = 'FreeLabelNet';
-$access_token['user_id'] = '1018532587';
-$access_token['x_auth_expires'] = '0';
-$_SESSION['access_token'] = $access_token;
-
-define('CONSUMER_KEY', 'yaN4EQqnWE8Q4YGFL4lR0xRxi');
-define('CONSUMER_SECRET', 'rudYALyDVhfGosR3L4WxPt3go4X6rRwlSuwfmYspkqEJbo9wmX');
-define('OAUTH_CALLBACK', 'http://freelabel.net/lvtr/?ctrl=twitter');
-
-$connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
 $site = new Config();
+
+$connection = new TwitterOAuth(
+	$site->twitter['consumer_key'], 
+	$site->twitter['consumer_secret'], 
+	$site->twitter['oauth_token'], 
+	$site->twitter['oauth_token_secret']
+	);
 
 $friends = $site->get_friends('admin');
 $friends_dropdown = $site->display_friends_list_dropdown($friends);
@@ -30,33 +24,56 @@ $compose_new_form = '
 </select>
 </form>';
 
-var_dump($_POST['action']);
 
 if (isset($_POST['action'])) {
+	echo 'Action: '.$_POST['action'];
 	switch ($_POST['action']) {
 
-/* POST TO PUBLIC */
+		/* POST TO PUBLIC */
 		case 'post_public':
 			$setting = 'statuses/update';
 			$options['status'] = $_POST['message'];
 			$content = $connection->post($setting, $options);
 			// echo '<pre>';
-			var_dump($content);
+			// var_dump($content);
 			break;
 
-
-		case 'direct_messages':
-			$setting = 'direct_messages';
-			$content = $connection->get($setting);
-			break;
-
+		/* COMPOSE NEW */
 		case 'compose_new':
 			echo $compose_new_form;
 			break;
+
+		/* DIRECT MESSAGES - VIEW*/
+		case 'direct_messages':
+			$setting = 'direct_messages';
+			$options['count'] = 200;
+			$content = $connection->get($setting,$options);
+			echo $site->display_direct_messages($content);
+			break;
+
+		/* DIRECT MESSAGES - POST*/
 		case 'send_direct_message':
 			$setting = 'direct_messages/new';
 			$options['text'] = $_POST['message'];
 			$options['screen_name'] = $_POST['twitter'];
+			$content = $connection->post($setting, $options);
+			// var_dump($content);
+			break;
+
+		/* USER TIMELINE */
+		case 'statuses/user_timeline':
+			$setting = 'statuses/user_timeline';
+			$options['screen_name'] = $_POST['twitter'];
+			$options['count'] = '100';
+			$content = $connection->get($setting, $options);
+			echo $site->display_twitter_timeline($content);
+			break;
+
+
+		/* DIRECT MESSAGES - VIEW*/
+		case 'statuses/destroy':
+			$setting = 'statuses/destroy';
+			$options['id'] = $_POST['id'];
 			$content = $connection->post($setting, $options);
 			var_dump($content);
 			break;
@@ -67,10 +84,10 @@ if (isset($_POST['action'])) {
 			break;
 	}
 } else {
-	$content = 'nothing happening..';
+	$content = NULL;
 }
 ?>
-<?php echo $site->display_direct_messages($content);?>
+
 
 
 <?php if (!isset($_POST['action'])) { ?>
@@ -80,8 +97,8 @@ if (isset($_POST['action'])) {
 		<button class="twOpen btn btn-primary">compose_new</button>
 		<button class="twOpen btn btn-primary">direct_messages</button>
 		<button class="twOpen btn btn-primary">statuses/user_timeline</button>
+		<button class="twOpen btn btn-primary">statuses/destroy</button>
 		<hr>
-		<?php echo $site->display_direct_messages($content);?>
 	</div>
 <?php } ?>
 
@@ -101,9 +118,13 @@ if (isset($_POST['action'])) {
 
 
 <!-- SCRIPTS -->
+<script type="text/javascript" src="http://freelabel.net/lvtr/js/dashboard.js"></script>
 <script type="text/javascript">
-	$('.twOpen').click(function(){
-		var action = $(this).text();
+	$('.twOpen').click(function(e){
+		e.preventDefault();
+		var button = $(this);
+
+		var action = button.text();
 		var data = {action: action};
 		var elem = $('.widget-container');
 		elem.html('wait nigga..');
@@ -119,6 +140,54 @@ if (isset($_POST['action'])) {
 			elem.html(result);
 		});
 	});
+
+	$('.delete-twitter-post').click(function(e){
+		e.preventDefault();
+		var elem = $('.widget-container');
+		var button = $(this);
+		var id = button.attr('data-id');
+		button.text('Please wait..');
+
+		var data = { id: id, action : 'statuses/destroy'}
+		$.post("<?php echo $_SERVER['SCRIPT_NAME']?>", data, function(result) {
+			button.text('Deleted!');
+			button.parent().parent().hide('fast');
+		});
+	});
+
+function sendDirectMessage(twitter_name, message) {
+		var url = encodeURI('http://freelabel.net/som/index.php?post=1&text=d @' + twitter_name + ' ' + message);
+		$.get(url, function(result){
+			alert(result);
+		});
+}
+
+	/* NOT FINISHED */
+	$('.twitter-response-box').submit(function(e) {
+		e.preventDefault();
+		var message = $(this).find('input').val();
+		var twitter = $(this).attr('data-twitter');
+		var wrap = $(this).parent().parent();
+		sendDirectMessage(twitter,message);
+		wrap.hide('fast');
+		// updateViewCallback(wrap,result);
+	});
+
+
+	/* NOT FINISHED */
+
+
+	/* NOT FINISHED */
+	$('.call-us-button').click(function(e) {
+		e.preventDefault();
+		var lead_username = $(this).attr('data-user');
+		var url = encodeURI('http://freelabel.net/som/index.php?post=1&text=d @' + lead_username + ' call us asap 347-994-0267');
+		window.open(url);
+	});
+
+
+	
+
 </script>
 
 

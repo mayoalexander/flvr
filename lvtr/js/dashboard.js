@@ -1,3 +1,54 @@
+
+function checkIfPlaying(status) {
+	console.log(status);
+	if (status===true) {
+		// alert('playing next song!!!');
+	} else {
+		// console.log(status);
+	}
+}
+
+function toHHMMSS(time) {
+    var sec_num = parseInt(time, 10); // don't forget the second param
+    var hours   = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+    if (hours   < 10) {hours   = "0"+hours;}
+    // if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    return minutes+':'+seconds;
+}
+
+
+function updateViewCallback(wrap, result) {
+	wrap.prepend('<div class="alert alert-success" style="position:absolute;"><strong>Success!</strong> ' + result + '</div>');
+	setTimeout(function() {
+		wrap.hide('fast');
+	},3000);
+	
+}
+
+function updateButtonCallback(wrap, button, result) {
+
+	button.text(result);
+	wrap.hide('fast');
+	
+	// setTimeout(function(){
+	// 	wrap.hide('fast');
+	// },500);
+	// elem.prepend(result);
+	
+}
+
+
+// var pComplete = Math.round(percentComplete * 100) + "%";
+// $('.play-progress-bar').css('width', pComplete);
+// $('.play-progress-bar').html(pComplete + " Uploaded");
+
+
+
+
 	function audioPlayer(elem) {
 			currentState = elem.html();
 			playButtonElem = '<i class="fa fa-play"></i>';
@@ -9,9 +60,28 @@
 			var activeMp3 = elem.attr('data-mp3');
 			var activeMp3Type = elem.attr('data-type');
 			var activeMp3Text = elem.attr('data-twitter') + ' - ' + elem.attr('data-title');
-			
+			var tracks = [];
+			$.each($('.play_button'),function(index,value){
+				tracks[index] =  {
+					title: value.getAttribute('data-twitter') + ' - ' + value.getAttribute('data-title'),
+					file: value.getAttribute('data-mp3')
+				}
+			});
+
+			var FLPlayer = {};
+			FLPlayer.started = true;
+			FLPlayer.current = {
+				filetype : activeMp3Type,
+				title : activeMp3Text
+			}
+			FLPlayer.playlist = tracks;
+
+
+
 			/* PLAY VIDEO */
-			if (activeMp3Type=='video') {
+			if (FLPlayer.current.filetype=='video') {
+				FLPlayer.playerType = FLPlayer.current.filetype;
+
 				// preloadMetaData()
 				$('.play_button').html(playButtonElem); //reset all buttons
 				elem.html(pauseButtonElem);
@@ -28,8 +98,13 @@
 				$('#postModal').modal('show');
 				$('#postWrapper').html('<video autoplay=1 loop=1 src="' + activeMp3 + '"/ class="video_player" id="global_video_player" controls>');
 
+
+
+				
+
 			/* PLAY AUDIO */
-			} else if (activeMp3Type=='audio') { 
+			} else if (FLPlayer.current.filetype=='audio') { 
+				FLPlayer.playerType = FLPlayer.current.filetype;
 
 				// preloadMetaData()
 				audioPlayerText.text(activeMp3Text);
@@ -52,7 +127,41 @@
 				}
 
 			}
+
+
+			setInterval(function(){
+				if (FLPlayer.playerType=='video') {
+					checkIfPlaying(globalVideoPlayer[0].paused)
+				} else if (FLPlayer.playerType=='audio') {
+					checkIfPlaying(globalAudioPlayer[0].paused);
+				}
+				var currentTime = globalAudioPlayer[0].currentTime;
+				var totalTime = globalAudioPlayer[0].duration;
+				var percentComplete = currentTime / totalTime;
+				console.log((percentComplete * 100) + '%');
+				$('.currentTime').html(toHHMMSS(currentTime))
+				$('.play-progress-bar').css('width', percentComplete + '%')
+				console.log();
+
+			}, 1000);
+			console.log(FLPlayer);
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	$('.view-post-trigger').click(function(e){
 		e.preventDefault();
@@ -103,6 +212,22 @@
 		});
 		// alert();
 	});
+
+
+
+	$('.delete-categories-trigger').click(function(e){
+		e.preventDefault();
+		var data = $(this);
+		var category_id = $(this).attr('data-id');
+		wrap = $(this).parent();
+		$.post('http://freelabel.net/lvtr/config/update.php', {
+			action: 'delete_category',
+			category_id: category_id
+		}, function(result){
+			updateViewCallback(wrap, result);
+		});
+	});
+
 
 	$('.tracklist-panel a').click(function(e){
 		e.preventDefault();
@@ -253,6 +378,7 @@
 	});
 	$('.form-signin').submit(function(e) {
 		e.preventDefault();
+		var elem = $(this);
 		registerUser('http://freelabel.net/lvtr/', $(this));
 	});
 
@@ -281,6 +407,25 @@
 		var url = 'http://freelabel.net/lvtr/views/widgets/add_new_post.php';
 		$.get(url, function(result){
 			body.html(result);
+		});
+	});
+
+
+
+	$('.add-to-leads-button').click(function(e) {
+		e.preventDefault();
+		var lead_username = $(this).attr('data-user');
+		var wrap = $(this).parent().parent().parent();
+		var button = $(this);
+		var lead_name = $(this).parent().parent().parent().find('blockquote').text();
+		var data = {
+			lead_twitter:lead_username,
+			lead_name:lead_name,
+			action:'add_to_leads'
+		}
+		var url = 'http://freelabel.net/lvtr/config/update.php';
+		$.post(url, data, function(result){
+			updateButtonCallback(wrap, button, result)
 		});
 	});
 

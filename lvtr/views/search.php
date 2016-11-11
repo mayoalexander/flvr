@@ -5,14 +5,17 @@ if (isset($_GET['q']) && $_GET['q']!=='') { ?>
 	<div class="container page-header">
 	  <h1>Search Results for: <small><?php echo $_GET['q']; ?></small></h1>
 	</div>
-<?php 
-	$posts = $site->get_post_by_search($_GET['q']);
-	$site->display_media_grid($posts, $_SESSION['user_name']);
-} else { ?>
-	<div class="container page-header">
-	  <h1>No Results Found for: <small><?php echo $_GET['q']; ?></small></h1>
-	</div>
-<?php } ?>
+
+<section class="container">
+	<?php 
+		$posts = $site->get_post_by_search($_GET['q']);
+		$site->display_media_grid($posts, $_SESSION['user_name']);
+	} else { ?>
+		<div class="container page-header">
+		  <h1>No Results Found for: <small><?php echo $_GET['q']; ?></small></h1>
+		</div>
+	<?php } ?>
+</section>
 
 
 

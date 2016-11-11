@@ -141,6 +141,6 @@ foreach ($_FILES as $file) {
 			capture();
 			// console.log(video);
 			// alert('create thumbnail');
-		},2000);
+		},4000);
 	});
 </script>

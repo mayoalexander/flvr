@@ -1,16 +1,20 @@
 <?php 
 // include_once('/kunden/homepages/0/d643120834/htdocs/config/index.php');
-require "/kunden/homepages/0/d643120834/htdocs/social-test/vendor/autoload.php";
+// echo '<pre>';
+require $_SERVER['DOCUMENT_ROOT']."/lvtr/config.php";
+
+require $_SERVER['DOCUMENT_ROOT']."/social-test/vendor/autoload.php";
+$site = new Config();
 
 use Abraham\TwitterOAuth\TwitterOAuth;
 
 
 
 
-$access_token = '1018532587-pZivWibRwTz1uXmUgWS9XfnQw3HidZ7bLJuwowD';
-$access_token_secret = '9hc6heSLfF1CTKdAlpScQwiAor9iP0CVLKHz8VzGVmhCi';
+// $access_token = '1018532587-poe2C6ra1KH6JCJGYGO1ql6VGZUg4zDT0wxB4Ps';
+// $access_token_secret = 'u0ShvMlr3O0MoJC0vO7fkLZMVYMWjJB0cDRtAzOGvGKmH';
 
-$connection = new TwitterOAuth('yaN4EQqnWE8Q4YGFL4lR0xRxi', 'rudYALyDVhfGosR3L4WxPt3go4X6rRwlSuwfmYspkqEJbo9wmX', $access_token, $access_token_secret);
+$connection = new TwitterOAuth('yaN4EQqnWE8Q4YGFL4lR0xRxi', 'rudYALyDVhfGosR3L4WxPt3go4X6rRwlSuwfmYspkqEJbo9wmX', $site->twitter['oauth_token'], $site->twitter['oauth_token_secret']);
 
 /*
 ** Example call: http://freelabel.net/social-test/?a=uploadmedia&f=freelabel.net/images/fllogo.png

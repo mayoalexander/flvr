@@ -5,21 +5,21 @@ $category = $site->get_category_by_id($_GET['category_id']);
 
 $posts = $site->get_category_posts($category['name'],$_GET['user_name']);
 
+// $site->debug($posts,1);
 
 // exit;
 ?>
-<h1 class="page-header"><?php echo $category['name']; ?></h1>
+<h1 class="page-header clearfix">
+	<?php echo $category['name']; ?>
+	<div class="pull-right category-nav">
+		<?php echo $site->display_delete_button($category, 'categories'); ?>
+	</div>
+</h1>
 <?php 
 	if ($posts===NULL) {
 		echo 'No posts have been added!';
 	} else {
-		foreach ($posts as $key => $post) {
-			$post_data = $site->get_post_by_id($post['post_id']);
-			$image = '<img src="'.$post_data['photo'].'" height="50px"/>';
-			echo $image.$post_data['twitter'].': '.$post_data['blogtitle'].'<hr>';
-		}
-		// echo $site->display_media_grid($posts,$_SESSION['user_name'],0); 	
+		$site->display_categories_post($posts);	
 	}
 ?>
-
 <script type="text/javascript" src="<?php echo $site->url ?>js/dashboard.js"></script>

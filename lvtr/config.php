@@ -33,7 +33,10 @@ class Config
 		$this->title = 'FREELABEL';
 		$this->description = 'CREATE | UPLOAD | SHARE';
 		$this->description_long = 'CREATE | UPLOAD | SHARE';
-		$this->default_user_img = 'http://www.chemistry.uwc.ac.za/users/eiwuoha/default_profile.jpg';
+		$this->meta_keywords = 'music promotion,music promotions,music promotions company,music promotions companies,music promotion company,music promotion companies,music promotion services,music promotion blog,free music promotion,music promotion sites,	
+online music promotion,free music promotion sites,hip hop music promotion,music promotion app,music promotion package,music promotion service,best music promotion services,independent music promotion,free music promotions,indie music promotion,free online music promotion,music promotional items,music promotion jobs,online music promotion services,buy music promotion,music promotion free';
+		$this->default_user_img = 'http://freelabel.net/dev/storage/app/media/ui/placeholders/profile-placeholder.png';
+
 		// $this->url = 'http://freelabel.net/lvtr/';
 		// $this->url = 'http://localhost:8888/';
 		$this->facebook_url = 'http://facebook.com/freelabelnet';
@@ -47,6 +50,14 @@ class Config
 		$this->packages['trial'] = 'http://freelabel.net/confirm/trial';
 		$this->packages['basic'] = 'http://freelabel.net/confirm/basic';
 
+		$this->twitter['consumer_key'] = 'yaN4EQqnWE8Q4YGFL4lR0xRxi';
+		$this->twitter['consumer_secret'] = 'rudYALyDVhfGosR3L4WxPt3go4X6rRwlSuwfmYspkqEJbo9wmX';
+		$this->twitter['oauth_token'] = '1018532587-poe2C6ra1KH6JCJGYGO1ql6VGZUg4zDT0wxB4Ps';
+		$this->twitter['oauth_token_secret'] = 'u0ShvMlr3O0MoJC0vO7fkLZMVYMWjJB0cDRtAzOGvGKmH';
+		$this->twitter['oauth_callback'] = 'http://freelabel.net/lvtr/?ctrl=twitter';
+		$this->twitter['screen_name'] = 'FreeLabelNet';
+		$this->twitter['user_id'] = '1018532587';
+		$this->twitter['x_auth_expires'] = '0';
 
 		if ($_SERVER['SCRIPT_NAME']=='/lvtr/views/public.php') {
 			if (isset($_GET['post_id'])) {
@@ -75,6 +86,7 @@ class Config
 	}
 	return "<title>".$this->page_title."</title>
 	<meta name=\"description\" content='".$this->page_title.' // '.$this->description_long." '/>
+	<meta name='keywords' content='$this->meta_keywords' />
 	<meta name='twitter:card' content='summary_large_image' />
 	<meta name='twitter:player' content='".$post_url."' />
 	<meta name='twitter:player:width' content='300' />
@@ -279,10 +291,17 @@ class Config
 		return $user;
 	}
 
+
+	function get_hero_img() {
+		$rand = rand(0,9);
+		echo 'http://freelabel.net/dev/storage/app/media/ui/backgrounds/00'.$rand.'.jpg';
+	}
+
 	function get_user_media($user_name, $page=0) {
-		$db_page = $page * 20;
+		$range = 21;
+		$db_page = $page * $range;
 		require(ROOT.'config/connection.php');
-		$query = "SELECT * FROM `feed` WHERE `user_name` = '$user_name' ORDER BY `id` DESC LIMIT $db_page, 20";
+		$query = "SELECT * FROM `feed` WHERE `user_name` = '$user_name' ORDER BY `id` DESC LIMIT $db_page, $range";
 		$result = mysqli_query($con,$query);
 		while ($row = mysqli_fetch_assoc($result)) {
 			$media[] = $row;
@@ -354,9 +373,11 @@ class Config
 		$load_more_button = '<button data-user="'.$user_name_session.'" data-next="'.($page+1).'" class="load_more_button btn btn-link btn-block">Load More</button>';
 		//
 		if (isset($media)) {
+			$i=0;
 			foreach ($media as $key => $post) {
-
-				// if (getimagesize($post['photo']) !== false) { // check if photo exists
+					if ($i===0) {
+						echo '<div class="row section">';
+					}
 					echo '<article class="tracklist-panel '.$col.'">';
 						echo '<a href="'.$this->create_url($post).'" data-id="'.$post['id'].'"> 
 						<img src="'.$post['photo'].'"/> 
@@ -366,7 +387,12 @@ class Config
 						'.$post['blogtitle'];
 						echo '<div>'.$this->display_post_status($post).'</div>';
 					echo '</article>';
-				// }
+					if ($i===2) {
+						echo '</div>';
+						$i=0;
+					} else {
+						$i++;
+					}
 			}
 			if (count($media)==20) {
 				echo $load_more_button;
@@ -400,8 +426,14 @@ class Config
 		echo $embed;
 	}
 
-	function display_delete_button($post) {
-			return '<li><button class="delete-post-trigger btn btn-link" data-id="'.$post['id'].'"><i class="fa fa-trash"></i> Delete</button></li>';
+	function display_delete_button($post, $table=NULL) {
+		if (isset($table)) {
+			$action = 'delete-'.$table.'-trigger';
+		} else {
+			$action = 'delete-post-trigger';
+		}
+		return '<li><button class="'.$action.' btn btn-link" data-id="'.$post['id'].'"><i class="fa fa-trash"></i> Delete</button></li>';
+
 	}
 	function display_edit_button($post) {
 			return '<li><button class="edit-post-trigger btn btn-link" data-id="'.$post['id'].'"><i class="fa fa-edit"></i> Edit</button></li>';
@@ -593,8 +625,7 @@ class Config
 	}
 
 	function display_profile_photo($profile) {
-		// if (getimagesize($profile['photo']) !== false) {
-		if (getimagesize($profile['photo']) !== false) {
+		if (isset($profile['photo']) && getimagesize($profile['photo']) !== false) {
 			echo $profile['photo'];
 		} else {
 			echo $this->default_user_img;
@@ -711,7 +742,24 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 	function get_category_posts($category, $user_name, $page=0) {
 		$db_page = $page * 20;
 		require(ROOT.'config/connection.php');
-		$query = "SELECT * FROM `categories_posts` WHERE `user_name` = '$user_name' AND `name` = '$category' ORDER BY `id` DESC LIMIT $db_page, 20";
+
+		// $query = "SELECT * FROM `categories_posts` 
+		// WHERE `user_name` = '$user_name' 
+		// AND `name` = '$category' 
+		// ORDER BY `id` DESC LIMIT $db_page, 20";
+
+		// WHERE `categories_posts.user_name` = '$user_name' 
+		// AND `categories_posts.name` = '$category'
+
+		$query = "SELECT *
+		FROM categories_posts
+		INNER JOIN feed
+		ON categories_posts.post_id=feed.id 
+		-- WHERE `feed.id` = '15759'
+		WHERE categories_posts.user_name = '$user_name'
+		AND categories_posts.name = '$category'
+		ORDER BY categories_posts.id DESC LIMIT $db_page, 20";
+
 		if ($result = mysqli_query($con,$query)) {		
 			while ($row = mysqli_fetch_assoc($result)) {
 						$friends[] = $row;
@@ -761,14 +809,25 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 		}
 	}
 
+	function display_categories_post($posts) {
+		$this->display_media_grid($posts);
+	}
+
 	function display_users_list($user_profiles) {
 		if ($user_profiles) {
+				echo '<p class="userlist-item row page-header">';
+					echo '<span class="col-md-2 col-sm-3">Photo</span>';
+					echo '<span class="col-md-2 col-sm-3">Username</span>';
+					echo '<span class="col-md-2 col-sm-3 text-muted">Date Created</span>';
+					echo '<span class="col-md-2 col-sm-3 text-muted">Media Uploaded</span>';
+					echo '<i class="fa fa-ellipsis-h pull-right view-details" data-user='.$profile['id'].'></i>';
+				echo '</p>';
 			foreach ($user_profiles as $key => $profile) {
 				$profile['user_name'] = $profile['id'];
 				if (!$this->get_user_media($profile['id'])=='') {
-					$media_status = 'View Tracks';
+					$media_status = '<i class="fa fa-check text-success"></i>';
 				} else {
-					$media_status = '';
+					$media_status = '<i class="fa fa-close text-danger"></i>';
 				}
 				echo '<p class="userlist-item row">';
 					echo '<span class="col-md-2 col-sm-3"><img src="'.$profile['photo'].'"/></span>';
@@ -777,6 +836,46 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 					echo '<span class="col-md-2 col-sm-3 text-muted">'.$media_status.'</span>';
 					echo '<i class="fa fa-ellipsis-h pull-right view-details" data-user='.$profile['id'].'></i>';
 				echo '</p>';
+			}
+		} else {
+				echo '<p class="userlist-item">';
+					echo '<p>You have no friends! :(</p>';
+					// echo '<i class="fa fa-ellipsis-h pull-right"></i>';
+				echo '</p>';
+		}
+	}
+
+
+
+	function display_leads($leads) {
+		if ($leads) {
+			foreach ($leads as $key => $leaddata) {
+				$newleads[$leaddata['lead_twitter']][] = $leaddata['lead_name']; 
+			}
+			$date_added =$this->get_time_ago(strtotime($leads[0]['entry_date']));
+
+
+
+			foreach ($newleads as $key => $lead) {
+				$priority = count($lead);
+				$twitter_url = "http://twitter.com/@".$key;
+
+				echo '<p class="leadlist-item row">';
+					echo '<span class="col-md-1 col-sm-3 priority">'.$priority.'</span>';
+					echo '<span class="col-md-1 col-sm-3">'.$date_added.'</span>';
+					echo '<span class="col-md-2 col-sm-3"><a href="'.$twitter_url.'" target="_blank">@'.$key.'</a></span>';
+					echo '<span class="col-md-5 col-sm-3 text-muted">';
+					foreach ($lead as $key => $message) {
+						echo '<span class="lead-message">'.$message.'</span>';
+					}
+					echo '</span>';
+					echo '<i class="fa fa-ellipsis-h pull-right view-details" data-user='.$lead['id'].'></i>';
+				echo '</p>';
+				echo '<div class="row">';
+					echo '<form method="POST" class="twitter-response-box col-md-11" data-twitter="'.$key.'"><input class="form-control" rows="3" placeholder="Enter Message.."></input></form>
+					<div class="col-md-1 btn btn-primary">Send</div>
+					</div>';
+				echo '</div>';
 			}
 		} else {
 				echo '<p class="userlist-item">';
@@ -825,6 +924,27 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 	    mysqli_close($con);
 		return $posts;
 	}
+
+
+
+	function get_leads() {
+		require(ROOT.'config/connection.php');
+		$query = "SELECT * FROM `leads` ORDER BY `id` DESC LIMIT 500";
+		$result = mysqli_query($con,$query);
+		if (mysqli_num_rows($result)===0) {
+			echo "Uh oh, there was no posts found!";
+			exit;
+		} else {
+			while ($row = mysqli_fetch_assoc($result)) {
+				$leads[] = $row;
+			}
+		}
+	    mysqli_close($con);
+		return $leads;
+	}
+
+
+	
 
 	function get_all_users($table, $db_page=0) {
 		require(ROOT.'config/connection.php');
@@ -1002,7 +1122,7 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 		$phone = mysqli_real_escape_string($con, $data['phone']);
 		$photo = mysqli_real_escape_string($con, $data['photo']);
 		$brand = mysqli_real_escape_string($con, $data['brand']);
-		$twitter = mysqli_real_escape_string($con, $data['twitter']);
+		$twitter = mysqli_real_escape_string($con, trim($data['twitter']));
 		$description = mysqli_real_escape_string($con, $data['description']);
 		$instagram = mysqli_real_escape_string($con, $data['instagram']);
 		$soundcloud = mysqli_real_escape_string($con, $data['soundcloud']);
@@ -1116,16 +1236,14 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 		$q_data2='';
 		foreach ($data as $key => $value) {
 			if ($key!=='action' && $key!=='id') {
-				$q_data2.= "'".$value."'";
+				$q_data2.= "'".mysqli_real_escape_string($con,$value)."'";
 				if ($i!==(count($data)-1)) {
 					$q_data2 .=', ';
 				}
 				$i++;
 			}
 		}
-		$query = "UPDATE `$table` SET $q_data WHERE `id` = ".$data['id'];
 		$query = "INSERT INTO $table ($q_data) VALUES ($q_data2)";
-		// echo $query.'<hr>';
 		$editquery = mysqli_query($con,$query);
 		if ($editquery) {
 		  $res = true;
@@ -1195,24 +1313,87 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 
 
 
-
 	function display_direct_messages($content) {
-		foreach ($content as $key => $message) {
-			$sender_twitter = $message->sender->screen_name;
-			$sender_name = $message->sender->name;
-			$sender_location = $message->sender->location;
-			$sender_msg = $message->text;
-			$sender_img = $message->sender->profile_image_url;
-			$msg =  '<blockquote><p>'.$sender_msg.'</p><footer>'.$sender_name.' in <cite title="Source Title">'.$sender_location.'</cite></footer></blockquote>';
-			$messages[$sender_twitter]['sender'] = $sender_twitter;
-			$messages[$sender_twitter]['sender_img'] = $sender_img;
-			$messages[$sender_twitter]['messages'][]['text'] = $msg;
-		}
-		foreach ($messages as $convo) {
-			echo '<h4 class="page-header"><img width="36px" src="'.$convo['sender_img'].'" class="img-thumbnail">@'.$convo['sender'].'</h4>';
-			foreach ($convo['messages'] as $message) {
-				echo $message['text'];
+		if (isset($content)) {
+			foreach ($content as $key => $message) {
+				$sender_twitter = $message->sender->screen_name;
+				$sender_name = $message->sender->name;
+				$sender_location = $message->sender->location;
+				$sender_msg = $message->text;
+				$sender_img = $message->sender->profile_image_url;
+				$msg =  '<blockquote><p>'.$sender_msg.'</p><footer>'.$sender_name.' in <cite title="Source Title">'.$sender_location.'</cite></footer></blockquote>';
+				$messages[$sender_twitter]['sender'] = $sender_twitter;
+				$messages[$sender_twitter]['sender_img'] = $sender_img;
+				$messages[$sender_twitter]['messages'][]['text'] = $msg;
 			}
+			foreach ($messages as $convo) {
+				echo '<article class="message-item">';
+				echo '<h4 class="page-header clearfix">
+				<img width="36px" src="'.$convo['sender_img'].'" class="img-thumbnail">
+				@'.$convo['sender'].'
+				<span class="pull-right">
+					<a class="btn btn-success add-to-leads-button" data-user="'.$convo['sender'].'" href="#"><i class="fa fa-plus"></i> Add To Leads</a>
+					<a class="btn btn-success open-script hidden" data-user="'.$convo['sender'].'" href="#"><i class="fa fa-list"></i></a>
+					<a class="btn btn-primary call-us-button" data-user="'.$convo['sender'].'" href="#"><i class="fa fa-phone"></i> Call Us</a>
+				</span>
+				</h4>';
+				foreach ($convo['messages'] as $message) {
+					echo $message['text'];
+				}
+
+				echo '<div class="row">
+				<form method="POST" class="twitter-response-box col-md-11" data-twitter="'.$convo['sender'].'"><input class="form-control" rows="3" placeholder="Enter Message.."></input></form>
+				<div class="col-md-1 btn btn-primary">Send</div>
+				</div>';
+				echo '</article>';
+			}
+		} else {
+			echo 'Failed to display direct messages... display_direct_messages()';
+		}
+	}
+
+
+
+
+
+
+
+	function display_twitter_timeline($content) {
+		if (isset($content)) {
+			foreach ($content as $key => $message) {
+				$sender_twitter = $message->user->screen_name;
+				$id_str = $message->id_str;
+				$sender_name = $message->user->name;
+				$created_at = $message->created_at;
+				$sender_location = $message->user->location;
+				$sender_msg = $message->text;
+				$sender_img = $message->user->profile_image_url;
+
+				if ($message->favorited) {
+					$favorited = 'yay';
+				} else {
+					$favorited = 'nai';
+				}
+
+				$msg =  '<blockquote><p>'.$sender_msg.'</p>
+				<footer>
+					'.$this->get_time_ago(strtotime($created_at)).' '.$favorited.'
+					<button class="btn btn-primary delete-twitter-post" data-id="'.$id_str.'" ><i class="fa fa-trash"></i></button>
+				</footer>
+				</blockquote>';
+				$messages[$sender_twitter]['sender'] = $sender_twitter;
+				$messages[$sender_twitter]['sender_img'] = $sender_img;
+				$messages[$sender_twitter]['messages'][]['text'] = $msg;
+			}
+			foreach ($messages as $convo) {
+				echo '<h4 class="page-header"><img width="36px" src="'.$convo['sender_img'].'" class="img-thumbnail">@'.$convo['sender'].'</h4>';
+				foreach ($convo['messages'] as $message) {
+					echo $message['text'];
+				}
+				echo '<textarea class="form-control" rows="3" placeholder="Enter Message.."></textarea>';
+			}
+		} else {
+			echo 'Failed to display direct messages... display_direct_messages()';
 		}
 	}
 
@@ -1398,8 +1579,8 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 		<label for="user_name" class="sr-only">Username</label>
 		<input type="text" id="user_name" class="form-control" placeholder="Enter Username.." name="user_name" required autofocus required>
 		<label for="user_password" class="sr-only">Password</label>
-		<input id="user_password" class="form-control" name="user_password" placeholder="Enter Password.."  type=password required>
-		<div class="checkbox">
+		<input id="user_password" class="form-control-login" name="user_password" placeholder="Enter Password.."  type=password required>
+		<div class="checkbox hidden">
 			<label>
 				<input type="checkbox" value="remember-me"> Remember me
 			</label>
@@ -1415,11 +1596,11 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 			<h2 class="form-signin-heading">Create Your Account</h2>
 			<div class="login-results"></div>
 			<label for="user_name" class="sr-only">Username</label>
-			<input type="text" name="user_name" id="user_name" class="form-control" placeholder="Choose Username.." required autocomplete="off" autofocus>
+			<input type="text" name="user_name" id="user_name" class="form-control-login" placeholder="Choose Username.." required autocomplete="off" autofocus>
 			<label for="user_email" class="sr-only">Email address</label>
-			<input type="email" name="user_email" id="user_email" class="form-control" placeholder="Enter Email Address.." required autocomplete="off" autofocus>
+			<input type="email" name="user_email" id="user_email" class="form-control-login" placeholder="Enter Email Address.." required autocomplete="off" autofocus>
 			<label for="user_password" class="sr-only">Password</label>
-			<input type="password" name="user_password" id="user_password" class="form-control" placeholder="Enter Password.." required autocomplete="off">
+			<input type="password" name="user_password" id="user_password" class="form-control-login" placeholder="Enter Password.." required autocomplete="off">
 			<div class="checkbox">
 				<label>
 					<input type="checkbox" value="remember-me"> Remember me

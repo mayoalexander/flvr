@@ -15,6 +15,7 @@ if ($_POST['action']==='delete_category') {
 	if ($site->delete('categories', $_POST['category_id'])) {
 		echo 'Successfully Deleted';
 	}	else {
+		var_dump($_POST);
 		echo 'Something went wrong!';
 	}
 }
@@ -52,6 +53,16 @@ if ($_POST['action']==='add_new_category') {
 
 if ($_POST['action']==='edit_category') {
 	if ($site->update('categories', $_POST)) {
+		echo 'Successfully Updated!';
+	}	else {
+		echo 'Something went wrong!';
+	}
+}
+
+
+
+if ($_POST['action']==='add_to_leads') {
+	if ($site->add('leads', $_POST)) {
 		echo 'Successfully Updated!';
 	}	else {
 		echo 'Something went wrong!';
