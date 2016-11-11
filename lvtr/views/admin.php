@@ -19,6 +19,7 @@ $site = new Config();
     <label>SOM</label>
     <label>Leads</label>
     <label>Images</label>
+    <label>October</label>
 	</div>
 	<hr>
 </section>
