@@ -186,9 +186,10 @@ $site->require_login();
 		// alert(data);
 		console.log('about to start..');
 
-		elem.html('');
+		
 		status.html(PleaseWait);
 		$.post('<?php echo $site->url; ?>config/upload.php', data, function(result){
+			elem.html('');
 			elem.html(result);
 			// alert(result);
 			console.log('file uploaded! Data below');

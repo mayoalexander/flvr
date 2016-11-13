@@ -1,5 +1,5 @@
 <?php
-require('../config.php');
+include_once('../config.php');
 
 /**
 * 
@@ -83,6 +83,9 @@ class Upload extends Config
 
 
 }
+
+
+
 
 $upload = new Upload($_POST);
 $status = $upload->create_new_post();
