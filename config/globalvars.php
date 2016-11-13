@@ -1,4 +1,5 @@
 <?php 
+date_default_timezone_set('America/Chicago');
 function confirmStartSession() {
       if(session_id() == '' || !isset($_SESSION)) {
           // session isn't started

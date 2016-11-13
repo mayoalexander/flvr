@@ -46,6 +46,9 @@
                             <li class="clearfix"><img src="<?php echo $site->url?>public/templates/walk/upload/ico4.png" height="32" width="32" alt=""><span>Take Pics/Video Directly From Mobile</span></li>
                             <li class="clearfix"><img src="<?php echo $site->url?>public/templates/walk/upload/ico5.png" height="32" width="32" alt=""><span>Sync Everything in Your Cloud</span></li>
                         </ul>
+                        <div>
+                            <a href="http://freelabel.net/confirm/sub/#"" class="button button-stripe">Create Basic ($10/mo)</a>
+                        </div>
                     </div>
                     <div class="simple-img">
                         <!-- <img src="<?php echo $ads[$i]['image'];$i++;?>" height="508" width="587" alt=""> -->
@@ -62,14 +65,17 @@
                         <h2>At Your Fingertips</h2>
                         <p>Use FREELABEL to collect all of your favorite music, videos, and articles in one place. Create playlists, upload tracks, and share your profile to the world. Introduce your friends to all the new music that you love and create new movements.
                         <div class="discover-button clearfix">
-                            <a href="#" class="button button-download">
+                             <div>
+                                <a href="http://freelabel.net/confirm/basic/#"" class="button button-stripe">Create Exclusive ($60/mo)</a>
+                            </div>
+                            <!-- <a href="#" class="button button-download">
                                 <span class="button-download-title">Coming soon to</span>
                                 <span class="button-download-subtitle">Apple iOS</span>
                             </a>
                             <a href="#" class="button button-download android">
                                 <span class="button-download-title">Coming soon to</span>
                                 <span class="button-download-subtitle">Android</span>
-                            </a>
+                            </a> -->
                         </div>
                     </div>
                     <div class="discover-img">

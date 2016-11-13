@@ -59,6 +59,12 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 		$this->twitter['user_id'] = '1018532587';
 		$this->twitter['x_auth_expires'] = '0';
 
+		$this->pricing['sub_trial'] = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PA4HD77R69M68';
+		$this->pricing['pro_trial'] = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=J67CSAKQMWDT8';
+
+		$this->pricing['sub'] = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PA4HD77R69M68';
+		$this->pricing['pro'] = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=J67CSAKQMWDT8';
+
 		if ($_SERVER['SCRIPT_NAME']=='/lvtr/views/public.php') {
 			if (isset($_GET['post_id'])) {
 				// echo 'searching by id';

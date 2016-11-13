@@ -26,7 +26,7 @@ $site = new Config();
 <!-- <link rel="stylesheet" type="text/css" href="css/demo.css" /> -->
 <link rel="stylesheet" type="text/css" href="http://freelabel.net/lvtr/views/scroll/css/component.css" />
 <script src="http://freelabel.net/lvtr/views/scroll/js/modernizr.custom.js"></script>
-<div id="cbp-so-scroller" class="cbp-so-scroller">
+<div id="cbp-so-scroller" class="cbp-so-scroller container">
 	<section class="cbp-so-section container">
 		<article class="cbp-so-side cbp-so-side-left">
 			<h1>Organize Your Success</h1>
