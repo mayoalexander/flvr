@@ -1,6 +1,6 @@
 
 function checkIfPlaying(status) {
-	console.log(status);
+	// console.log(status);
 	if (status===true) {
 		// alert('playing next song!!!');
 	} else {
@@ -128,6 +128,7 @@ function updateButtonCallback(wrap, button, result) {
 
 			}
 
+			$('.play-progress-bar').html('')
 
 			setInterval(function(){
 				if (FLPlayer.playerType=='video') {
@@ -137,16 +138,27 @@ function updateButtonCallback(wrap, button, result) {
 				}
 				var currentTime = globalAudioPlayer[0].currentTime;
 				var totalTime = globalAudioPlayer[0].duration;
-				var percentComplete = currentTime / totalTime;
-				console.log((percentComplete * 100) + '%');
+				var percentComplete =  (currentTime / totalTime * 100) + '%';
 				$('.currentTime').html(toHHMMSS(currentTime))
-				$('.play-progress-bar').css('width', percentComplete + '%')
-				console.log();
+				$('.play-progress-bar').css('width', percentComplete)
+				// console.log(percentComplete);
 
 			}, 1000);
-			console.log(FLPlayer);
+			// console.log(FLPlayer);
 	}
 
+
+
+
+	$('.play-radio').click(function(){
+		var globalAudioPlayer = $('#global_audio_player');
+		var globalVideoPlayer = $('#global_video_player');
+		var audioPlayerText = $('#audio_player_text');
+
+		audioPlayerText.html('<script src="https://public.radio.co/embed/s95fa8cba2/song.js"></script>');
+		globalAudioPlayer[0].setAttribute('src','http://streaming.radio.co/s95fa8cba2/listen');
+		globalAudioPlayer[0].play();
+	});
 
 
 

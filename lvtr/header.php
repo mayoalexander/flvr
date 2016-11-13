@@ -98,7 +98,7 @@ $site = new Config();
       <ul class="nav navbar-nav">
         
       </ul>
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav play-progress-wrap">
         <li class="progress">
           <div class="progress-bar play-progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 67%;">67% Uploaded</div>
         </li>
@@ -111,6 +111,7 @@ $site = new Config();
           <ul class="dropdown-menu controls">
             <li><a href="#" data-ctrl="expand" class="btn btn-link"><i class="fa fa-desktop"></i></a></li>
             <li><a href="#" data-ctrl="play" class="btn btn-link"><i class="fa fa-pause"></i></a></li>
+            <li><a href="#" data-ctrl="play" class="btn btn-link play-radio"><i class="fa fa-signal"></i></a></li>
             <li role="separator" class="divider"></li>
           </ul>
         </li>

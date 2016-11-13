@@ -274,6 +274,15 @@
 		margin: auto;
 		max-width: 400px;
 	}
+	.play-progress-wrap .progress {
+		height: 40px;
+	    width: 40vw;
+	    margin-top: 5px;
+		background-color: transparent;
+	}
+	.play-progress-wrap .progress .play-progress-bar {
+		background-color: #FE3F44;
+	}
 	.file-upload-results {
 		text-align: center;
 		margin:auto;
@@ -398,6 +407,11 @@
 		}
 
 
+
+	.toolbar .navbar-brand {
+	    /*position: absolute;*/
+	    z-index: 1000;
+	}
 
 	.upload-profile-photo-area {
 		border: dashed 4px #303030;

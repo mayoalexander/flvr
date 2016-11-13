@@ -26,7 +26,6 @@
                     <p>Get yourself in the mix. Create a following. Upload and share music, videos, podcasts, images to get featured in Magazine, Radio, and TV publications.</p>
                     <div class="buttons-wrapper">
                         <a href="http://freelabel.net/confirm/trial/#" class="button">Try For Free</a>
-                        <!-- <a href="http://freelabel.net/confirm/sub/#"" class="button button-stripe">Create Basic ($10/mo)</a> -->
                     </div>
                 </div>
                 <!-- /.header-wrapper -->
