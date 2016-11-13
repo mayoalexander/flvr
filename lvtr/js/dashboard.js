@@ -293,7 +293,7 @@ function updateButtonCallback(wrap, button, result) {
 		// var post_url = 'http://freelabel.net/lvtr/views/public.php?post_id=' + post_id;
 		var post_url = 'http://freelabel.net/' + post_twitter + '/id/' + post_id;
 		var short_url = post_url.replace('http://', '');
-		var msg = '[FLMAG] ' + post_twitter + ': \n\n' + post_title + '\n\n' + short_url;
+		var msg = '[FL] ' + post_twitter + ': \n\n' + post_title + '\n\n' + short_url;
 		var twitter_url = 'https://twitter.com/intent/tweet?text=' + encodeURI(msg);
 		var facebook_url = 'https://www.facebook.com/sharer/sharer.php?u=' + post_url;
 		var method = data.attr('data-method');

@@ -400,7 +400,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 						$i++;
 					}
 			}
-			if (count($media)==20) {
+			if (count($media)==21) {
 				echo $load_more_button;
 			}
 		} else {
