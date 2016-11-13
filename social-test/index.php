@@ -1,7 +1,7 @@
 <?php 
 // include_once('/kunden/homepages/0/d643120834/htdocs/config/index.php');
 // echo '<pre>';
-require $_SERVER['DOCUMENT_ROOT']."/lvtr/config.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/lvtr/config.php";
 
 require $_SERVER['DOCUMENT_ROOT']."/social-test/vendor/autoload.php";
 $site = new Config();
