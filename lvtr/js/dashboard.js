@@ -441,4 +441,11 @@ function updateButtonCallback(wrap, button, result) {
 		});
 	});
 
+	$('.som-button').click(function(e){
+		e.preventDefault();
+		var path = $(this).attr('href');
+		$.get(path,function(results){
+			$('.som-results-container').html(results);
+		});
+	});
 

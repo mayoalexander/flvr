@@ -1,4 +1,7 @@
 <?php
+include_once('../config.php');
+$site = new Config();
+
 $iteration[] = '1';
 $iteration[] = '2';
 $iteration[] = '3';
@@ -25,12 +28,5 @@ echo '<a href="https://ads.twitter.com/accounts/gueorv/cards/show?url_id=9fou" t
 	
 </div>
 
-<script type="text/javascript">
-	$('.som-button').click(function(e){
-		e.preventDefault();
-		var path = $(this).attr('href');
-		$.get(path,function(results){
-			$('.som-results-container').html(results);
-		});
-	});
-</script>
+
+<script type="text/javascript" src="<?php echo $site->url ?>js/dashboard.js"></script>
