@@ -668,7 +668,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 	function get_user_friends($user_name, $page=0) {
 		$db_page = $page * 20;
 		require(ROOT.'config/connection.php');
-		$query = "SELECT * FROM `relationships` WHERE `user_name` = '$user_name' ORDER BY `id` DESC LIMIT $db_page, 20";
+		$query = "SELECT * FROM `relationships` WHERE `user_name` = '$user_name' ORDER BY `id` DESC LIMIT $db_page, 21";
 		if ($result = mysqli_query($con,$query)) {		
 			while ($row = mysqli_fetch_assoc($result)) {
 						$friends[] = $row;
@@ -683,10 +683,10 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 	function get_user_liked($user_name, $page=0) {
 		$db_page = $page * 20;
 		require(ROOT.'config/connection.php');
-		$query = "SELECT likes.user_name, likes.post_id, feed.blogtitle, feed.twitter
+		$query = "SELECT *
 FROM likes
 INNER JOIN feed
-ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id DESC LIMIT $db_page, 20";
+ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id DESC LIMIT $db_page, 21";
 		// $query = "SELECT * FROM `likes` ;
 		if ($result = mysqli_query($con,$query)) {		
 			while ($row = mysqli_fetch_assoc($result)) {
@@ -764,7 +764,7 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 		-- WHERE `feed.id` = '15759'
 		WHERE categories_posts.user_name = '$user_name'
 		AND categories_posts.name = '$category'
-		ORDER BY categories_posts.id DESC LIMIT $db_page, 20";
+		ORDER BY categories_posts.id DESC LIMIT $db_page, 21";
 
 		if ($result = mysqli_query($con,$query)) {		
 			while ($row = mysqli_fetch_assoc($result)) {
