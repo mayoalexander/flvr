@@ -325,7 +325,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 			$icon = 'fa-expand';
 		}
 
-		return '<span class="play_button button-tint btn btn-link btn-'.$post['id'].' pull-left" style="display:inline-block;" data-type="'.$post['type'].'" data-mp3="'.$post['trackmp3'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'"><i class="fa '.$icon.'"></i></span>';
+		return '<span class="play_button button-tint btn btn-link btn-'.$post['id'].' pull-left" style="display:inline-block;" data-type="'.$post['type'].'" data-mp3="'.$post['trackmp3'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-id="'.$post['id'].'"><i class="fa '.$icon.'"></i></span>';
 	}
 
 
@@ -1472,11 +1472,13 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 	    // echo 'window.open("'.$script.'");';
 	    // //echo 'alert("'.$script.'");';
 	    // echo '</script>';
+	    $status = true;
 	} else {
 	    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+	    $status = false;
 	}
 	mysqli_close($con);
-
+	return $status;
   }
 
 

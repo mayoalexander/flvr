@@ -137,23 +137,27 @@ $site->require_login();
 	                $('.filename').html('');
 	            });
 	        }
-	        function uploadFile(data, file) {
+
+	        function hideDropArea(data) {
 	        	data.hide();
 	        	$('.upload-trigger i').hide();
 	        	$(".filename").html(PleaseWait);
+	        }
+	        function uploadFile(data, file) {
 	        	var img = data.val();
 	        	var ext = img.split('.').pop();
 		        // if (ext.toLowerCase() !=='png' && ext.toLowerCase() !=='jpeg' && ext.toLowerCase() !=='jpg' && ext.toLowerCase() !=='gif') {
 		        	if (ext.toLowerCase() ==='png' || ext.toLowerCase() ==='jpeg' || ext.toLowerCase() ==='jpg' || ext.toLowerCase() ==='gif') {
 		        		path = '<?php echo $site->url; ?>config/upload-photo.php';
-		        	} else if (ext.toLowerCase() ==='mp4' || ext.toLowerCase() ==='mov') {
-		        		path = '<?php echo $site->url; ?>config/upload-video.php';
+		        	// } else if (ext.toLowerCase() ==='mp4' || ext.toLowerCase() ==='mov') {
+		        		// path = '<?php echo $site->url; ?>config/upload-video.php';
 		        	} else if (ext.toLowerCase() ==='mp3') {
 		        		path = '<?php echo $site->url; ?>config/upload-file.php';
 		        	} else {
-		        		alert('The file type '+ ext.toLowerCase() + ' is not allowed!');
+		        		alert('The file type '+ ext.toLowerCase() + ' is not allowed at this moment in time. We are working on a fix!');
+		        		return;
 		        	}
-		        	console.log('this is the path : ' + path);
+		        	hideDropArea(data);
 		        	processUpload(path, data, img, file);
 		} // end of uploadFile()
 
