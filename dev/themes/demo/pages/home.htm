@@ -1,28 +1,10 @@
-title = "Demonstration"
+title = "Landing Page"
 url = "/"
-layout = "flmain"
+layout = "fl-dev"
 is_hidden = 0
 ==
 {% content "hero/frontpage.htm" %}
 
-<div class="container">
-    <div class="container">
-    
-        <div class="col-md-4">
-        {% content "welcome.htm" %}
-        </div>
-        
-        <div class="col-md-8">
-        {% content "sales/frontpage.htm" %}
-        </div>
-        
-        <div class="col-md-8">
-        {% content "welcome.htm" %}
-        </div>
-        
-        <div class="col-md-4">
-        {% content "sales/frontpage.htm" %}
-        </div>
-        
-    </div>
-</div>
+{% partial "registration/slidingLayout" %}
+
+<div class="data-containerr"></div>

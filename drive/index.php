@@ -1,5 +1,5 @@
 <?php
- include_once('/kunden/homepages/0/d643120834/htdocs/config/index.php');
+ include_once('../config/index.php');
 
 
     // LOAD WEBSITE APPLICATIONS
