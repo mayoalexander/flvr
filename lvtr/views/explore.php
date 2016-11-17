@@ -9,7 +9,8 @@ if ($_POST['source']=='dashboard') {
 	// echo "show private tracks";
 }
 // $posts = $site->get_user_media('admin', $_POST['page']);
-$posts = $site->get_explore_posts($_SESSION['user_name'], $_POST['page']);
+// $posts = $site->get_explore_posts($_SESSION['user_name'], $_POST['page']);
+$posts = $site->get_user_liked('admin');
 
 ?>
 <div class="container">

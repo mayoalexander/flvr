@@ -42,6 +42,27 @@ function updateButtonCallback(wrap, button, result) {
 }
 
 
+function showNotification(result) {
+	console.log(result);	
+}
+
+
+function likePost(post_id,user_name) {
+	var url = 'http://freelabel.net/lvtr/config/like.php';
+	$.post(url, {post_id:post_id, user_name:user_name} , function(result) {
+		showNotification(result);
+	});
+}
+
+
+function savePlay(post_id,user_name) {
+	var url = 'http://freelabel.net/lvtr/config/update.php';
+	$.post(url, {post_id:post_id, user_name:user_name, action:'save_play'} , function(result) {
+		showNotification(result);
+	});
+}
+
+
 // var pComplete = Math.round(percentComplete * 100) + "%";
 // $('.play-progress-bar').css('width', pComplete);
 // $('.play-progress-bar').html(pComplete + " Uploaded");
@@ -249,6 +270,9 @@ function updateButtonCallback(wrap, button, result) {
 
 	$(".play_button").click(function(e) {
 		e.preventDefault();
+		var post_id = $(this).attr('data-id');
+		var user_name = 'admin';
+		savePlay(post_id, user_name);
 		audioPlayer($(this));
 	});	
 
@@ -314,11 +338,7 @@ function updateButtonCallback(wrap, button, result) {
 		var data = $(this);
 		var post_id = $(this).attr('data-id');
 		var user_name = $(this).attr('data-user');
-		var url = 'http://freelabel.net/lvtr/config/like.php';
-		$.post(url, {post_id:post_id, user_name:user_name} , function(result) {
-			console.log(result);
-			alert(result);
-		});
+		likePost(post_id, user_name);
 	});
 
 
@@ -441,4 +461,11 @@ function updateButtonCallback(wrap, button, result) {
 		});
 	});
 
+	$('.som-button').click(function(e){
+		e.preventDefault();
+		var path = $(this).attr('href');
+		$.get(path,function(results){
+			$('.som-results-container').html(results);
+		});
+	});
 

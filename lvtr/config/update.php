@@ -73,3 +73,15 @@ if ($_POST['action']==='add_to_leads') {
 
 
 
+
+if ($_POST['action']==='save_play') {
+	if ($site->like_post($_POST)) {
+		echo 'Successfully Updated!';
+	}	else {
+		echo 'Something went wrong!';
+	}
+}
+
+
+
+
