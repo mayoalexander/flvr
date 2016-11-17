@@ -1,7 +1,13 @@
 <?php
 include_once('../config.php');
 $site = new Config();
-$friends = $site->get_friends_cred($_SESSION['user_name']);
+if (isset($_SESSION['user_name'])) {
+	$user_name = $_SESSION['user_name'];
+} else {
+	$user_name = 'admin';
+}
+
+$friends = $site->get_friends_cred($user_name);
 ?>
 
 
@@ -22,7 +28,7 @@ $friends = $site->get_friends_cred($_SESSION['user_name']);
 		</div>
 		<div class="col-md-3">
 			<h3>How To Use:</h3>
-			<p>ITS FUCKIN SIMPLE! Use this form to send emails to niggas and make it look pretty nahh meann? - Yung Pretty Mayo</p>
+			<p>Right now, you can use this to send a message via twitter...</p>
 		</div>
 	</form>
 </div>

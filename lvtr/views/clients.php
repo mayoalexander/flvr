@@ -8,7 +8,9 @@ $users = $site->get_all_users('users');
 
 <section class="container">
 	<h1 class="page-header">Clients</h1>
-	<?php $site->display_users_list($users); ?>
+	<div class="clients list-group">
+		<?php $site->display_users_list($users); ?>
+	</div>
 </section>
 
 

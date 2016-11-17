@@ -124,7 +124,6 @@
     function openWidget(elem, siteURL){
       var d = elem.text();
       var url = siteURL + 'views/' + d.toLowerCase() + '.php';
-      
       var wrapper = $('.widget-container');
       // please wait
       wrapper.html('Loading..');

@@ -826,7 +826,9 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 					echo '<span class="col-md-2 col-sm-3">Username</span>';
 					echo '<span class="col-md-2 col-sm-3 text-muted">Date Created</span>';
 					echo '<span class="col-md-2 col-sm-3 text-muted">Media Uploaded</span>';
-					echo '<i class="fa fa-ellipsis-h pull-right view-details" data-user='.$profile['id'].'></i>';
+					echo '<span class="col-md-2 col-sm-3 text-muted">Active</span>';
+					echo '<span class="col-md-2 col-sm-3 text-muted">Controls</span>';
+					// echo '<i class="fa fa-ellipsis-h pull-right view-details" data-user='.$profile['id'].'></i>';
 				echo '</p>';
 			foreach ($user_profiles as $key => $profile) {
 				$profile['user_name'] = $profile['id'];
@@ -835,13 +837,24 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 				} else {
 					$media_status = '<i class="fa fa-close text-danger"></i>';
 				}
-				echo '<p class="userlist-item row">';
+				echo '<article class="userlist-item row list-group-item">';
 					echo '<span class="col-md-2 col-sm-3"><img src="'.$profile['photo'].'"/></span>';
 					echo '<span class="col-md-2 col-sm-3"><a href="'.$this->get_user_url($profile).'" target="_blank">'.$profile['id'].'</a></span>';
 					echo '<span class="col-md-2 col-sm-3 text-muted">'.$this->get_time_ago(strtotime($profile['date_created'])).'</span>';
 					echo '<span class="col-md-2 col-sm-3 text-muted">'.$media_status.'</span>';
-					echo '<i class="fa fa-ellipsis-h pull-right view-details" data-user='.$profile['id'].'></i>';
-				echo '</p>';
+					echo '<span class="col-md-2 col-sm-3 text-muted">'.$media_status.'</span>';
+					echo '<span class="col-md-2 col-sm-3 text-muted dropdown">
+							<div class="dropdown">
+							  <button class="btn btn-primary btn-block dropdown-toggle pull-right" type="button" data-toggle="dropdown" data-user='.$profile['id'].'> Options
+							  <span class="caret"></span></button>
+							  <ul class="dropdown-menu">
+							    <li><a href="#">HTML</a></li>
+							    <li><a href="#">CSS</a></li>
+							    <li><a href="#">JavaScript</a></li>
+							  </ul>
+							</div>
+					</span>';
+				echo '</article>';
 			}
 		} else {
 				echo '<p class="userlist-item">';

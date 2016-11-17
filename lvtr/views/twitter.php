@@ -127,8 +127,10 @@ if (isset($_POST['action'])) {
 		var action = button.text();
 		var data = {action: action};
 		var elem = $('.widget-container');
-		elem.html('wait nigga..');
-		$.post("<?php echo $_SERVER['SCRIPT_NAME']?>", data, function(result) {
+		// var path = "<?php echo $_SERVER['SCRIPT_NAME']?>";
+		var path = "http://freelabel.net/lvtr/views/twitter.php";
+		elem.html('loading....');
+		$.post(path, data, function(result) {
 			elem.html(result);
 		});
 	});
@@ -136,7 +138,7 @@ if (isset($_POST['action'])) {
 		e.preventDefault();
 		var elem = $(this);
 		var data = elem.serialize();
-		$.post("<?php echo $_SERVER['SCRIPT_NAME']?>", data, function(result) {
+		$.post(path, data, function(result) {
 			elem.html(result);
 		});
 	});
@@ -149,7 +151,7 @@ if (isset($_POST['action'])) {
 		button.text('Please wait..');
 
 		var data = { id: id, action : 'statuses/destroy'}
-		$.post("<?php echo $_SERVER['SCRIPT_NAME']?>", data, function(result) {
+		$.post(path, data, function(result) {
 			button.text('Deleted!');
 			button.parent().parent().hide('fast');
 		});

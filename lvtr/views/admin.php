@@ -7,20 +7,20 @@ $site = new Config();
 <section class="container">
 	<h1>Admin</h1>
 	<hr>
-	<div class="widget-navigation user-navi">
-    <label>RSS</label>
-    <label>Clients</label>
-    <label>Twitter</label>
-    <label>Emailer</label>
-    <label>Test</label>
-		<label>widgets/submissions</label>
-    <label>Automation</label>
-    <label>Script</label>
-    <label>SOM</label>
-    <label>Leads</label>
-    <label>Analytics</label>
-    <label>October</label>
-	</div>
+  <ul class="nav nav-tabs widget-navigation">
+    <li role="presentation" class="active"><a href="#">RSS</a></li>
+    <li role="presentation"><a href="#">Clients</a></li>
+    <li role="presentation"><a href="#">Twitter</a></li>
+    <li role="presentation"><a href="#">Emailer</a></li>
+    <li role="presentation"><a href="#">Test</a></li>
+    <li role="presentation"><a href="#">widgets/submissions</a></li>
+    <li role="presentation"><a href="#">Automation</a></li>
+    <li role="presentation"><a href="#">Script</a></li>
+    <li role="presentation"><a href="#">SOM</a></li>
+    <li role="presentation"><a href="#">Leads</a></li>
+    <li role="presentation"><a href="#">Analytics</a></li>
+    <li role="presentation"><a href="#">October</a></li>
+  </ul>
 	<hr>
 </section>
 
@@ -30,7 +30,9 @@ $site = new Config();
 
 
 <script type="text/javascript">
-	$('.widget-navigation label').click(function(e){
+	$('.widget-navigation a').click(function(e){
+    $('.widget-navigation a').parent().removeClass('active');
+    $(this).parent().addClass('active');
 		e.preventDefault();
 		openWidget($(this), '<?php echo $site->url; ?>');
 	});
