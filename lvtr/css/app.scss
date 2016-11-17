@@ -1,0 +1,68 @@
+$brand_red:#FE3F44;
+$brand_grey_light:#303030;
+$brand_bg_color:#101010;
+$brand_body_text_light:#e3e3e3;
+$brand_toolbar_text_color:#e3e3e3;
+$brand_notifications_color:#00b3ff;
+$brand_panel_color:transparent;
+$brand_well_color:rgba(64, 64, 64, 0.21);
+
+
+$brand_border_radius:2.5px;
+
+
+
+
+
+body, html {
+	background-color: $brand_bg_color;
+	color: $brand_body_text_light;
+	font-family:  sans-serif;
+	margin:0;
+
+}
+
+body {
+	margin-top: 50px;
+	margin-bottom: 20vh;
+	h1, h2, .jumbotron h1 {
+		color:$brand_red;
+	}
+}
+
+.jumbotron,
+.table-striped > tbody > tr:nth-child(odd) > td, 
+.table-striped > tbody > tr:nth-child(odd) > th, 
+.img-thumbnail,
+.panel,
+.well,
+.progress {
+	background-color:$brand_well_color;
+}
+
+.navbar-default {
+	background-color:$brand_grey_light;
+	border:$brand_bg_color;
+}
+.navbar-inverse {
+	background-color:$brand_panel_color;
+	border:$brand_bg_color;
+	border-bottom:3px solid $brand_red;
+	border-radius:0;
+}
+
+.btn, .input-group-addon, .form-control, .label, .nav-pills>li>a, .nav-tabs>li>a, .navbar, .alert, .progress, .panel, .well {
+  border-radius:$brand_border_radius;
+}
+.list-group-item:first-child {
+  border-top-left-radius: $brand-border-radius;
+  border-top-right-radius: $brand-border-radius;
+}
+.list-group-item:last-child {
+    margin-bottom: 0;
+    border-bottom-right-radius: $brand-border-radius;
+    border-bottom-left-radius: $brand-border-radius;
+}
+
+
+

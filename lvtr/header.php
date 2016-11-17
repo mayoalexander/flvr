@@ -7,9 +7,10 @@ $site = new Config();
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<?php echo $site->display_meta_tags(); ?>
-	<link rel="stylesheet" href="<?php echo $site->url; ?>css/bootstrap.css" >
+  <link rel="stylesheet" href="<?php echo $site->url; ?>css/bootstrap.css" >
 	<link type="text/css" href="<?php echo $site->url; ?>css/normalize.css">
-	<link type="text/css" href="<?php echo $site->url; ?>css/css/output.css">
+  <link rel="stylesheet" href="<?php echo $site->url; ?>css/app.css" >
+  <!-- <link type="text/css" href="<?php echo $site->url; ?>css/css/output.css"> -->
 	<link type="text/css" href="<?php echo $site->url; ?>vendor/sorich87/bootstrap-tour/build/css/bootstrap-tour.min.css">
 	<link rel="stylesheet" href="<?php echo $site->url; ?>css/font-awesome-4.7.0/css/font-awesome.min.css">
     <script type="text/javascript" src="<?php echo $site->url; ?>js/jquery.min.js"></script>

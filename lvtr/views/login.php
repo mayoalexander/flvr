@@ -5,6 +5,7 @@ $site = new Config();
 <div class="container">
 
 	<?php $site->display_login_form(); ?>
+	<!-- <hr><a href="#" class="forgot-password">Forgot Password</a> -->
 </div> <!-- /container -->
 
 <!-- <script type="text/javascript" href="<?php echo $site->url; ?>js/browser.js"></script> -->
@@ -23,6 +24,10 @@ $(function(){
 	$('.form-signin').submit(function(e) {
 		e.preventDefault();
 		loginUser('<?php echo $site->url; ?>', $(this));
+	});
+
+	$('.forgot-password').click(function(){
+		loadPage('forgot_password');
 	});
 });
 </script>

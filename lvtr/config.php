@@ -875,6 +875,7 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 						echo '<span class="lead-message">'.$message.'</span>';
 					}
 					echo '</span>';
+					echo '<a class="btn btn-primary call-us-button" data-user="'.$key.'" href="#"><i class="fa fa-phone"></i> Call Us</a>';
 					echo '<i class="fa fa-ellipsis-h pull-right view-details" data-user='.$lead['id'].'></i>';
 				echo '</p>';
 				echo '<div class="row">';
@@ -933,9 +934,13 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 
 
 
-	function get_leads() {
+	function get_leads($date_param=NULL) {
 		require(ROOT.'config/connection.php');
-		$query = "SELECT * FROM `leads` ORDER BY `id` DESC LIMIT 500";
+		$dp = '';
+		if ($date_param!==NULL) {
+			$dp = "WHERE `entry_date` LIKE '%".date('Y-m-d',strtotime($date_param))."%'";
+		}
+		$query = "SELECT * FROM `leads` $dp ORDER BY `id` DESC LIMIT 500";
 		$result = mysqli_query($con,$query);
 		if (mysqli_num_rows($result)===0) {
 			echo "Uh oh, there was no posts found!";
@@ -1327,7 +1332,7 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 				$sender_location = $message->sender->location;
 				$sender_msg = $message->text;
 				$sender_img = $message->sender->profile_image_url;
-				$msg =  '<blockquote><p>'.$sender_msg.'</p><footer>'.$sender_name.' in <cite title="Source Title">'.$sender_location.'</cite></footer></blockquote>';
+				$msg =  '<blockquote><p>'.$sender_msg.'</p></blockquote>'; // <footer>'.$sender_name.' in <cite title="Source Title">'.$sender_location.'</cite></footer>
 				$messages[$sender_twitter]['sender'] = $sender_twitter;
 				$messages[$sender_twitter]['sender_img'] = $sender_img;
 				$messages[$sender_twitter]['messages'][]['text'] = $msg;
@@ -1347,10 +1352,10 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 					echo $message['text'];
 				}
 
-				echo '<div class="row">
-				<form method="POST" class="twitter-response-box col-md-11" data-twitter="'.$convo['sender'].'"><input class="form-control" rows="3" placeholder="Enter Message.."></input></form>
-				<div class="col-md-1 btn btn-primary">Send</div>
-				</div>';
+				// echo '<div class="row">
+				// <form method="POST" class="twitter-response-box col-md-11" data-twitter="'.$convo['sender'].'"><input class="form-control" rows="3" placeholder="Enter Message.."></input></form>
+				// <div class="col-md-1 btn btn-primary">Send</div>
+				// </div>';
 				echo '</article>';
 			}
 		} else {

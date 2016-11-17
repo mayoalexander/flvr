@@ -73,6 +73,10 @@
         // $('title').html(capitalizeFirstLetter(tabName));
         console.log("Loading " + tabName);
         var url = 'http://freelabel.net/lvtr/views/' + tabName + '.php' ;
+        
+        var stateObj = { foo: "bar" };
+        history.pushState(stateObj, "page 2", '?ctrl='+tabName.toLowerCase());
+
         $.get(url, function(data){
             $(elem).html(data);
             addTracking('.play_button');

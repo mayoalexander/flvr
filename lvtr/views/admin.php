@@ -18,7 +18,7 @@ $site = new Config();
     <label>Script</label>
     <label>SOM</label>
     <label>Leads</label>
-    <label>Images</label>
+    <label>Analytics</label>
     <label>October</label>
 	</div>
 	<hr>

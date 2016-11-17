@@ -62,6 +62,7 @@ if ($_POST['action']==='edit_category') {
 
 
 if ($_POST['action']==='add_to_leads') {
+	$_POST['entry_date'] = date('Y-m-d h:s:i');
 	if ($site->add('leads', $_POST)) {
 		echo 'Successfully Updated!';
 	}	else {

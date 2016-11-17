@@ -1,16 +1,4 @@
 	<style type="text/css">
-	body, html {
-		background-color: <?php echo $site->background_color; ?>;
-		color: <?php echo $site->body_text_light; ?>;
-		font-family:  sans-serif;
-	}
-	body, html {
-		margin:0;
-	}
-	body {
-		margin-top: 50px;
-		margin-bottom: 20vh;
-	}
 	a {
 		color:<?php echo $site->primary_color; ?>;
 	}

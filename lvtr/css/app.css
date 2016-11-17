@@ -1,0 +1,44 @@
+body, html {
+  background-color: #101010;
+  color: #e3e3e3;
+  font-family: sans-serif;
+  margin: 0; }
+
+body {
+  margin-top: 50px;
+  margin-bottom: 20vh; }
+  body h1, body h2, body .jumbotron h1 {
+    color: #FE3F44; }
+
+.jumbotron,
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th,
+.img-thumbnail,
+.panel,
+.well,
+.progress {
+  background-color: rgba(64, 64, 64, 0.21); }
+
+.navbar-default {
+  background-color: #303030;
+  border: #101010; }
+
+.navbar-inverse {
+  background-color: transparent;
+  border: #101010;
+  border-bottom: 3px solid #FE3F44;
+  border-radius: 0; }
+
+.btn, .input-group-addon, .form-control, .label, .nav-pills > li > a, .nav-tabs > li > a, .navbar, .alert, .progress, .panel, .well {
+  border-radius: 2.5px; }
+
+.list-group-item:first-child {
+  border-top-left-radius: 2.5px;
+  border-top-right-radius: 2.5px; }
+
+.list-group-item:last-child {
+  margin-bottom: 0;
+  border-bottom-right-radius: 2.5px;
+  border-bottom-left-radius: 2.5px; }
+
+/*# sourceMappingURL=app.css.map */
