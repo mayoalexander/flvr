@@ -117,6 +117,19 @@ body {
 } 
 
 
+
+
+.nav > li > a:hover, 
+.nav > li > a:focus,
+.nav-tabs > li > a:hover,
+.nav-tabs > li.active > a, 
+.nav-tabs > li.active > a:hover, 
+.nav-tabs > li.active > a:focus {
+	background-color:transparent;
+	border-color:transparent;
+}
+
+
 /* BUTTONS */
 .btn {
 	transition:all 0.3s;
