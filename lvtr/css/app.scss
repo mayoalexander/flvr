@@ -1,11 +1,13 @@
 $brand_red:#FE3F44;
 $brand_grey_light:#303030;
+$brand_black:rgba(0, 0, 0, 0.41);
 $brand_bg_color:#101010;
 $brand_body_text_light:#e3e3e3;
 $brand_toolbar_text_color:#e3e3e3;
 $brand_notifications_color:#00b3ff;
 $brand_panel_color:transparent;
 $brand_well_color:rgba(64, 64, 64, 0.21);
+
 
 
 $brand_border_radius:2.5px;
@@ -36,10 +38,38 @@ body {
 .img-thumbnail,
 .panel,
 .well,
-.progress {
+.progress,
+.thumbnail {
 	background-color:$brand_well_color;
 }
 
+.thumbnail {
+	overflow:hidden;
+	border:none;
+	border-right:1px solid $brand_black;
+	border-bottom:1px solid $brand_black;
+	.caption p {
+		z-index: 1000;
+	}
+	img {
+		transform: scale(1.03);
+		// transform: scale(2);
+		transition:transform 0.5s;
+	}
+	img:hover {
+		transform: scale(1.13);
+		// transform: scale(2.13);
+	}
+}
+.page-header,
+.table th,
+.list-group-item,
+.well,
+.table > thead > tr > th, .table > tbody > tr > th, 
+.table > tfoot > tr > th, .table > thead > tr > td, 
+.table > tbody > tr > td, .table > tfoot > tr > td, {
+	border-color:$brand_well_color;
+}
 .navbar-default {
 	background-color:$brand_grey_light;
 	border:$brand_bg_color;
@@ -64,5 +94,35 @@ body {
     border-bottom-left-radius: $brand-border-radius;
 }
 
+
+.header_banner {
+	background-color: #303030;
+	height: 94vh;
+	text-align: center;
+	background-position: center center;
+	background-size: cover;
+	background-image: url("http://freelabel.net/dev/storage/app/media/pexels-photo-87351.jpeg");
+	.background-tint {
+	    background: rgba(0,0,0,0.5);
+	    padding-top: 10em;
+	    height: inherit;
+	}
+}
+
+.projects {
+	padding:0;
+	li {
+		list-style-type:none;
+	}	
+} 
+
+
+/* BUTTONS */
+.btn {
+	transition:all 0.3s;
+}
+.btn:hover {
+	border:1px solid $brand_well_color;
+}
 
 
