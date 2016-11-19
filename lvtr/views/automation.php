@@ -12,7 +12,7 @@ $_GET['recent'] = true;
 $_GET['mins'] = 4;
 $_GET['stayopen'] = 1;
 $_GET['som']=1;
-$range = 30;
+$range = 60;
 
  if($_GET['recent']){
 	 $todays_date = date('Y-m');
