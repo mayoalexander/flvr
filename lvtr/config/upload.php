@@ -66,6 +66,19 @@ class Upload extends Config
 				$twitpic = $this->getTwitpicURL($this->data, $key);
 			}
 
+
+
+
+			if (true) {
+				$filedata['trackmp3'] = $file;
+				$filedata['twitter'] = $twitter;
+				$filedata['blogtitle'] = $title[$key];
+				$this->uploadToRadio($filedata);
+			}
+			
+			
+
+
 			// run query
 			$query = "INSERT INTO feed (user_name, blogtitle, photo, twitter, status, trackmp3, type, description, poster, twitpic, submission_date, tags, blogentry)
 			VALUES ('$user_name', '".mysqli_real_escape_string($con, $title[$key])."', '".mysqli_real_escape_string($con, $photo)."', '".mysqli_real_escape_string($con, $twitter)."', '$status[$key]', '$file', '$type', '$description', '$posters[$key]', '$twitpic', '$submission_date', '$tags', '$blogentry')";

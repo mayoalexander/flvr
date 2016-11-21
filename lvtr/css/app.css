@@ -16,8 +16,31 @@ body {
 .img-thumbnail,
 .panel,
 .well,
-.progress {
+.progress,
+.thumbnail {
   background-color: rgba(64, 64, 64, 0.21); }
+
+.thumbnail {
+  overflow: hidden;
+  border: none;
+  border-right: 1px solid rgba(0, 0, 0, 0.41);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.41); }
+  .thumbnail .caption p {
+    z-index: 1000; }
+  .thumbnail img {
+    transform: scale(1.03);
+    transition: transform 0.5s; }
+  .thumbnail img:hover {
+    transform: scale(1.13); }
+
+.page-header,
+.table th,
+.list-group-item,
+.well,
+.table > thead > tr > th, .table > tbody > tr > th,
+.table > tfoot > tr > th, .table > thead > tr > td,
+.table > tbody > tr > td, .table > tfoot > tr > td {
+  border-color: rgba(64, 64, 64, 0.21); }
 
 .navbar-default {
   background-color: #303030;
@@ -40,5 +63,38 @@ body {
   margin-bottom: 0;
   border-bottom-right-radius: 2.5px;
   border-bottom-left-radius: 2.5px; }
+
+.header_banner {
+  background-color: #303030;
+  height: 94vh;
+  text-align: center;
+  background-position: center center;
+  background-size: cover;
+  background-image: url("http://freelabel.net/dev/storage/app/media/pexels-photo-87351.jpeg"); }
+  .header_banner .background-tint {
+    background: rgba(0, 0, 0, 0.5);
+    padding-top: 10em;
+    height: inherit; }
+
+.projects {
+  padding: 0; }
+  .projects li {
+    list-style-type: none; }
+
+.nav > li > a:hover,
+.nav > li > a:focus,
+.nav-tabs > li > a:hover,
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  background-color: transparent;
+  border-color: transparent; }
+
+/* BUTTONS */
+.btn {
+  transition: all 0.3s; }
+
+.btn:hover {
+  border: 1px solid rgba(64, 64, 64, 0.21); }
 
 /*# sourceMappingURL=app.css.map */

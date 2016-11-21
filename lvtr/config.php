@@ -1658,7 +1658,7 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 	*
 	*/
 	public function uploadToRadio($file) {
-		$fileupload = $file['trackmp3'];
+		$fileupload 	= str_replace('http://freelabel.net/lvtr/', '../', $file['trackmp3']);
 		$todays_date 	=	date('Ymd');
 		$ftp_server		=		"pink.radio.co"; 
 		$ftp_user_name	=		"s95fa8cba2.uf29485319"; 
@@ -1684,9 +1684,8 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 		} else {
 			$debug[] = 'There is No Set File!';
 			//print_r($file);
-			//print_r($fileupload);
-			//print_r($remote_file);
-
+			print_r($fileupload);
+			print_r($remote_file);
 		}
 
 
@@ -1710,8 +1709,10 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 
 
 		//print_r($file);
-		var_dump($debug);
-		//echo 'This is gone work, nigga.';
+		// $this->debug(scandir('.'));
+		// echo '<hr>'
+		// $this->debug($debug,1);
+		// echo 'This is gone work, nigga.';
 		//exit;
 		// return $ftp_status;
 		return $debug;

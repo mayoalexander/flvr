@@ -325,22 +325,10 @@
 		margin-top: 1.5em;
 	}
 
-	.header_banner {
-		background-color: #303030;
-		height: 94vh;
-		text-align: center;
-		background-position: center center;
-		background-size: cover;
-		background-image: url("http://freelabel.net/dev/storage/app/media/pexels-photo-87351.jpeg");
-	}
 	.header_banner .btn , .buttons-wrapper a  {
 		background-color: rgba(0,0,0,0.5);
 	}
-	.header_banner .background-tint {
-	    background: rgba(0,0,0,0.5);
-	    padding-top: 10em;
-	    height: inherit;
-	}
+
 	.hero-01 {
 		background-image: url("http://freelabel.net/dev/storage/app/media/pexels-photo-87351.jpeg");
 	}

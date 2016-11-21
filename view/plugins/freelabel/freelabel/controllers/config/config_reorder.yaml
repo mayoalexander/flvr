@@ -1,0 +1,4 @@
+title: Config
+modelClass: Freelabel\Freelabel\Models\System
+toolbar:
+    buttons: reorder_toolbar

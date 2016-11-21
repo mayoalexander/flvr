@@ -7,21 +7,38 @@ $site = new Config();
 <section class="container">
 	<h1>Admin</h1>
 	<hr>
-  <ul class="nav nav-tabs widget-navigation">
-    <li role="presentation" class="active"><a href="#">RSS</a></li>
-    <li role="presentation"><a href="#">Clients</a></li>
-    <li role="presentation"><a href="#">Twitter</a></li>
-    <li role="presentation"><a href="#">Emailer</a></li>
-    <li role="presentation"><a href="#">Test</a></li>
-    <li role="presentation"><a href="#">widgets/submissions</a></li>
-    <li role="presentation"><a href="#">Automation</a></li>
-    <li role="presentation"><a href="#">Script</a></li>
-    <li role="presentation"><a href="#">SOM</a></li>
-    <li role="presentation"><a href="#">Leads</a></li>
-    <li role="presentation"><a href="#">Analytics</a></li>
-    <li role="presentation"><a href="#">October</a></li>
-  </ul>
-	<hr>
+
+
+  <nav class="navbar navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapsex" data-target=".admin-nav">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Project name</a>
+      </div>
+      <div class="admin-nav collapsex">
+        <ul class="nav navbar-nav widget-navigation">
+          <li role="presentation" class="active"><a href="#">RSS</a></li>
+          <li role="presentation"><a href="#">Clients</a></li>
+          <li role="presentation"><a href="#">Twitter</a></li>
+          <li role="presentation"><a href="#">Emailer</a></li>
+          <li role="presentation"><a href="#">Test</a></li>
+          <li role="presentation"><a href="#">widgets/submissions</a></li>
+          <li role="presentation"><a href="#">Automation</a></li>
+          <li role="presentation"><a href="#">Script</a></li>
+          <li role="presentation"><a href="#">SOM</a></li>
+          <li role="presentation"><a href="#">Leads</a></li>
+          <li role="presentation"><a href="#">Analytics</a></li>
+          <li role="presentation"><a href="#">October</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+  <hr>
 </section>
 
 
@@ -33,15 +50,15 @@ $site = new Config();
 	$('.widget-navigation a').click(function(e){
     $('.widget-navigation a').parent().removeClass('active');
     $(this).parent().addClass('active');
-		e.preventDefault();
-		openWidget($(this), '<?php echo $site->url; ?>');
-	});
+    e.preventDefault();
+    openWidget($(this), '<?php echo $site->url; ?>');
+  });
 
 
 	$('.sc_url').submit(function(e){
 		e.preventDefault();
     openDownloadApi($(this).find('#url').val());
-	});
+  });
 </script>
 
 
