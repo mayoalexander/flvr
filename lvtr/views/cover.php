@@ -33,7 +33,7 @@ $site = new Config();
 			<p>FREELABEL gives you the tools to create a new experience for your fans and audiences. In a oversaturated industry, it's important to stand out from the rest.</p>
 		</article>
 		<figure class="cbp-so-side cbp-so-side-right">
-			<img class="img-responsive" src="http://freelabel.net/dev/storage/app/media/ui/placeholders/chart-35773_1280.png" style="max-width:350px;">
+			<img class="img-responsive" src="http://freelabel.net/view/storage/app/media/ui/placeholders/chart-35773_1280.png" style="max-width:350px;">
 			<!-- <i class="fa fa-briefcase" style="font-size:20em;top:2em;"></i> -->
 		</figure>
 	</section>
@@ -41,7 +41,7 @@ $site = new Config();
 
 	<section class="cbp-so-section">
 		<figure class="cbp-so-side cbp-so-side-left">
-			<!-- <img class="img-responsive" src="http://freelabel.net/dev/storage/app/media/team/mayo/people-party-dancing-music.jpg"> -->
+			<!-- <img class="img-responsive" src="http://freelabel.net/view/storage/app/media/team/mayo/people-party-dancing-music.jpg"> -->
 			<i class="fa fa-share-alt" style="font-size:20em;top:2em;"></i>
 		</figure>
 		<article class="cbp-so-side cbp-so-side-right">
@@ -58,13 +58,13 @@ $site = new Config();
 						<p></p>
 					</article>
 					<figure class="cbp-so-side cbp-so-side-right">
-						<!-- <img class="img-responsive" src="http://freelabel.net/dev/storage/app/media/pexels-photo-25877.jpg"> -->
+						<!-- <img class="img-responsive" src="http://freelabel.net/view/storage/app/media/pexels-photo-25877.jpg"> -->
 						<i class="fa fa-feed" style="font-size:20em;top:2em;"></i>
 					</figure>
 				</section>
 				<section class="cbp-so-section">
 					<figure class="cbp-so-side cbp-so-side-left">
-						<!-- <img class="img-responsive" src="http://freelabel.net/dev/storage/app/media/pexels-photo-25877.jpg"> -->
+						<!-- <img class="img-responsive" src="http://freelabel.net/view/storage/app/media/pexels-photo-25877.jpg"> -->
 						<i class="fa fa-book" style="font-size:20em;top:2em;"></i>
 					</figure>
 					<article class="cbp-so-side cbp-so-side-right">
@@ -80,7 +80,7 @@ $site = new Config();
 								<p>Upload all your exlusive videos for your community to view, like and share. Videos will be shot/promoted for ALL FREELABEL hosted events daily.</p>
 						</article>
 						<figure class="cbp-so-side cbp-so-side-right">
-							<!-- <img class="img-responsive" src="http://freelabel.net/dev/storage/app/media/pexels-photo-25877.jpg"> -->
+							<!-- <img class="img-responsive" src="http://freelabel.net/view/storage/app/media/pexels-photo-25877.jpg"> -->
 							<i class="fa fa-television" style="font-size:20em;top:2em;"></i>
 						</figure>
 					</section>
@@ -88,14 +88,14 @@ $site = new Config();
 
 						<figure class="cbp-so-side cbp-so-side-left">
 						<?php //echo $site->display_login_form(); ?>
-							<!-- <img class="img-responsive" src="http://freelabel.net/dev/storage/app/media/pexels-photo-25877.jpg"> -->
+							<!-- <img class="img-responsive" src="http://freelabel.net/view/storage/app/media/pexels-photo-25877.jpg"> -->
 							<!-- <i class="fa fa-star" style="font-size:20em;top:2em;"></i> -->
 						</figure>
 
 						<article class="cbp-so-side cbp-so-side-right">
 							<h2>Create Your Account</h2>
 							<h1>Showcase More Than Just Music</h1>
-								<p><button class="btn btn-primary btn-lg">Create Your Account</button></p>
+								<p><a href="<?php echo $site->url; ?>?ctrl=register" class="btn btn-primary btn-lg">Create Your Account</a></p>
 						</article>
 
 					</section>

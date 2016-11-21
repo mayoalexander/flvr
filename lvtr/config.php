@@ -35,7 +35,7 @@ class Config
 		$this->description_long = 'CREATE | UPLOAD | SHARE';
 		$this->meta_keywords = 'music promotion,music promotions,music promotions company,music promotions companies,music promotion company,music promotion companies,music promotion services,music promotion blog,free music promotion,music promotion sites,	
 online music promotion,free music promotion sites,hip hop music promotion,music promotion app,music promotion package,music promotion service,best music promotion services,independent music promotion,free music promotions,indie music promotion,free online music promotion,music promotional items,music promotion jobs,online music promotion services,buy music promotion,music promotion free';
-		$this->default_user_img = 'http://freelabel.net/dev/storage/app/media/ui/placeholders/profile-placeholder.png';
+		$this->default_user_img = 'http://freelabel.net/view/storage/app/media/ui/placeholders/profile-placeholder.png';
 
 		// $this->url = 'http://freelabel.net/lvtr/';
 		// $this->url = 'http://localhost:8888/';
@@ -300,7 +300,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 
 	function get_hero_img() {
 		$rand = rand(0,9);
-		echo 'http://freelabel.net/dev/storage/app/media/ui/backgrounds/00'.$rand.'.jpg';
+		echo 'http://freelabel.net/view/storage/app/media/ui/backgrounds/00'.$rand.'.jpg';
 	}
 
 	function get_user_media($user_name, $page=0) {
