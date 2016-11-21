@@ -819,14 +819,25 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 		$this->display_media_grid($posts);
 	}
 
+
+	function display_client_controls($profile) {
+		$data = "";
+		$data .= "<li class='contact-client' data-phone='".$profile['phone']."'><a href='#'><i class='fa fa-phone'></i> Contact</a></li>";
+		$data .= "<li class='contact-client' data-twitter='".$profile['twitter']."'><a href='#'><i class='fa fa-twitter'></i> View Twitter</a></li>";
+		$data .= "<li class='contact-client' data-id='".$profile['id']."'><a href='#'><i class='fa fa-archive'></i> Archive</a></li>";
+		$data .= "<li class='contact-client' data-id='".$profile['id']."'><a href='#'><i class='fa fa-envelope'></i> Email</a></li>";
+		return $data;
+	}
+
 	function display_users_list($user_profiles) {
 		if ($user_profiles) {
 				echo '<p class="userlist-item row page-header">';
-					echo '<span class="col-md-2 col-sm-3">Photo</span>';
+					echo '<span class="col-md-1 col-sm-3">Photo</span>';
 					echo '<span class="col-md-2 col-sm-3">Username</span>';
 					echo '<span class="col-md-2 col-sm-3 text-muted">Date Created</span>';
-					echo '<span class="col-md-2 col-sm-3 text-muted">Media Uploaded</span>';
-					echo '<span class="col-md-2 col-sm-3 text-muted">Active</span>';
+					echo '<span class="col-md-1 col-sm-3 text-muted">Media Uploaded</span>';
+					echo '<span class="col-md-2 col-sm-3 text-muted">Contact</span>';
+					echo '<span class="col-md-2 col-sm-3 text-muted">Location</span>';
 					echo '<span class="col-md-2 col-sm-3 text-muted">Controls</span>';
 					// echo '<i class="fa fa-ellipsis-h pull-right view-details" data-user='.$profile['id'].'></i>';
 				echo '</p>';
@@ -838,19 +849,18 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 					$media_status = '<i class="fa fa-close text-danger"></i>';
 				}
 				echo '<article class="userlist-item row list-group-item">';
-					echo '<span class="col-md-2 col-sm-3"><img src="'.$profile['photo'].'"/></span>';
+					echo '<span class="col-md-1 col-sm-3"><img src="'.$profile['photo'].'"/></span>';
 					echo '<span class="col-md-2 col-sm-3"><a href="'.$this->get_user_url($profile).'" target="_blank">'.$profile['id'].'</a></span>';
 					echo '<span class="col-md-2 col-sm-3 text-muted">'.$this->get_time_ago(strtotime($profile['date_created'])).'</span>';
-					echo '<span class="col-md-2 col-sm-3 text-muted">'.$media_status.'</span>';
-					echo '<span class="col-md-2 col-sm-3 text-muted">'.$media_status.'</span>';
+					echo '<span class="col-md-1 col-sm-3 text-muted">'.$media_status.'</span>';
+					echo '<span class="col-md-2 col-sm-3 text-muted">'.$profile['phone'].'</span>';
+					echo '<span class="col-md-2 col-sm-3 text-muted">'.$profile['location'].'</span>';
 					echo '<span class="col-md-2 col-sm-3 text-muted dropdown">
 							<div class="dropdown">
 							  <button class="btn btn-primary btn-block dropdown-toggle pull-right" type="button" data-toggle="dropdown" data-user='.$profile['id'].'> Options
 							  <span class="caret"></span></button>
 							  <ul class="dropdown-menu">
-							    <li><a href="#">HTML</a></li>
-							    <li><a href="#">CSS</a></li>
-							    <li><a href="#">JavaScript</a></li>
+							    '.$this->display_client_controls($profile).'
 							  </ul>
 							</div>
 					</span>';
