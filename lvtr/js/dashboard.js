@@ -469,3 +469,10 @@ function savePlay(post_id,user_name) {
 		});
 	});
 
+
+
+	$('.contact-client').click(function(e){
+		e.preventDefault();
+		alert('cntacting clients');
+	});
+
