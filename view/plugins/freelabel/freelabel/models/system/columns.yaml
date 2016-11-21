@@ -1,0 +1,15 @@
+columns:
+    id:
+        label: ID
+        type: number
+        searchable: true
+        sortable: true
+    blogtitle:
+        label: Title
+        type: text
+        searchable: true
+        sortable: true
+    description:
+        label: 'freelabel.freelabel::lang.plugin.description'
+        type: text
+        searchable: true
