@@ -923,7 +923,7 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 				echo '<p class="friendslist-item">';
 					echo '<b>'.$post['twitter'].' - '.$post['blogtitle'].'</b>';
 					echo '<i class="fa fa-ellipsis-h pull-right"></i>';
-				echo '</p>';
+				echo '</p>';∏
 			}
 		} else {
 				echo '<p class="friendslist-item">';
@@ -966,7 +966,7 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 		$query = "SELECT * FROM `leads` $dp ORDER BY `id` DESC LIMIT 500";
 		$result = mysqli_query($con,$query);
 		if (mysqli_num_rows($result)===0) {
-			echo "Uh oh, there was no posts found!";
+			echo "Uh oh, there was no leads found! (Search Filter: ".$date_param.") ";
 			exit;
 		} else {
 			while ($row = mysqli_fetch_assoc($result)) {
