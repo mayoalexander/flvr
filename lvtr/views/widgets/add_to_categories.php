@@ -3,8 +3,8 @@ include_once('/home/freelabelnet/public_html/lvtr/config.php');
 $config = new Config();
 $post = $config->get_post_by_id($_GET['post_id']);
 
-$categories = $config->get_user_categories($_GET['user_name']);
-$dropdown = $config->create_select_dropdown($categories, 'name');
+$categories = $config->get_user_categories($_SESSION['user_name']);
+$dropdown = $config->create_select_dropdown($categories, 'unique_id');
 // foreach ($categories as $key => $category) {
 // 	echo $category['name'].'<br>';
 // }

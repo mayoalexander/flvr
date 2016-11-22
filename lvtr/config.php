@@ -28,23 +28,20 @@ class Config
 		$this->body_text_light = '#e3e3e3';
 		$this->toolbar_color = '#303030'; 
 		$this->toolbar_text_color = '#e3e3e3';
-		// $this->logo = 'http://freelabel.net/images/fllogo.png';
-		// $this->logo = 'http://freelabel.net/upload/server/php/upload/alex-mayo-logo-unicolor-150--39539 1985-.png';
 		$this->title = 'FREELABEL';
 		$this->description = 'CREATE | UPLOAD | SHARE';
 		$this->description_long = 'CREATE | UPLOAD | SHARE';
 		$this->meta_keywords = 'music promotion,music promotions,music promotions company,music promotions companies,music promotion company,music promotion companies,music promotion services,music promotion blog,free music promotion,music promotion sites,	
 online music promotion,free music promotion sites,hip hop music promotion,music promotion app,music promotion package,music promotion service,best music promotion services,independent music promotion,free music promotions,indie music promotion,free online music promotion,music promotional items,music promotion jobs,online music promotion services,buy music promotion,music promotion free';
-		$this->default_user_img = 'http://freelabel.net/view/storage/app/media/ui/placeholders/profile-placeholder.png';
+		$this->default_user_img = $this->admin_url.'storage/app/media/ui/placeholders/profile-placeholder.png';
+		$this->logo = $this->url.'img/fllogo.png';
 
-		// $this->url = 'http://freelabel.net/lvtr/';
-		// $this->url = 'http://localhost:8888/';
 		$this->facebook_url = 'http://facebook.com/freelabelnet';
 		$this->twitter_url = 'http://twitter.com/freelabelnet';
 		$this->google_url = 'https://plus.google.com/118212974256600306207';
 
 		$this->url = SITE;
-		$this->logo = $this->url.'img/fllogo.png';
+		$this->admin_url = 'http://freelabel.net/view/';
 
 		$this->packages['sub'] = 'http://freelabel.net/confirm/sub';
 		$this->packages['trial'] = 'http://freelabel.net/confirm/trial';
@@ -300,7 +297,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 
 	function get_hero_img() {
 		$rand = rand(0,9);
-		echo 'http://freelabel.net/view/storage/app/media/ui/backgrounds/00'.$rand.'.jpg';
+		echo $this->admin_url.'storage/app/media/ui/backgrounds/00'.$rand.'.jpg';
 	}
 
 	function get_user_media($user_name, $page=0) {
@@ -328,11 +325,19 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 		return '<span class="play_button button-tint btn btn-link btn-'.$post['id'].' pull-left" style="display:inline-block;" data-type="'.$post['type'].'" data-mp3="'.$post['trackmp3'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-id="'.$post['id'].'"><i class="fa '.$icon.'"></i></span>';
 	}
 
+	function display_like_and_share_buttons($post,$user_name_session) {
+		return '<li><button class="like-post-trigger btn btn-link" data-id="'.$post['id'].'" data-user="'.$user_name_session.'"><i class="fa fa-star-o"></i> Like</button></li>
+	  	<li><button class="add-post-trigger btn btn-link" data-id="'.$post['id'].'" data-user="'.$user_name_session.'"><i class="fa fa-plus"></i> Add To</button></li>';
+	}
+
 
 	function display_share_button($post, $user_name_session=NULL) {
 		if (isset($user_name_session) && trim($user_name_session)==trim($post['user_name']) || $user_name_session=='admin') {
-			$delete_button = $this->display_delete_button($post);
-			$delete_button .= $this->display_edit_button($post);
+			$user_owned_buttons = $this->display_delete_button($post);
+			$user_owned_buttons .= $this->display_edit_button($post);
+			
+		} elseif (isset($user_name_session)) {
+			$logged_in_only_buttons .= $this->display_like_and_share_buttons($post,$user_name_session);
 		} else {
 			$delete_button = '';
 		}
@@ -344,9 +349,9 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 						  <ul class="dropdown-menu panel-body pull-right" aria-labelledby="dropdownMenu1">
 						  	<li><button class="view-post-trigger btn btn-link" data-id="'.$post['id'].'" data-user="'.$user_name_session.'"><i class="fa fa-globe"></i> View</button></li>
 
-						  	'.$delete_button.'
-						  	<li><button class="like-post-trigger btn btn-link" data-id="'.$post['id'].'" data-user="'.$user_name_session.'"><i class="fa fa-star-o"></i> Like</button></li>
-						  	<li><button class="add-post-trigger btn btn-link" data-id="'.$post['id'].'" data-user="'.$user_name_session.'"><i class="fa fa-plus"></i> Add To</button></li>
+						  	'.$user_owned_buttons.'
+						  	'.$logged_in_only_buttons.'
+
 						  	<li><button class="share-post-trigger btn btn-link" data-id="'.$post['id'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-method="twitter"><i class="fa fa-twitter"></i> Twitter</button></li>
 						  	<li><button class="share-post-trigger btn btn-link" data-id="'.$post['id'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-method="facebook"><i class="fa fa-facebook" ></i> Facebook</button></li>
 						    <input type="hidden" name="user_name" value="'.$post['user_name'].'">
@@ -617,6 +622,10 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 
 
 
+	function generateRandomString($length = 10) {
+	    return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+	}
+
 	function display_social_links($profile) {
 		if ($profile['twitter']!=='') {
 			echo '<p><a href="http://twitter.com/'.$profile['twitter'].'"><i class="fa fa-twitter"></i> '.$profile['twitter'].'</a></p>';
@@ -745,7 +754,7 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 
 
 
-	function get_category_posts($category, $user_name, $page=0) {
+	function get_category_posts($category_unique_id, $user_name, $page=0) {
 		$db_page = $page * 20;
 		require(ROOT.'config/connection.php');
 
@@ -763,7 +772,7 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 		ON categories_posts.post_id=feed.id 
 		-- WHERE `feed.id` = '15759'
 		WHERE categories_posts.user_name = '$user_name'
-		AND categories_posts.name = '$category'
+		AND categories_posts.unique_id = '$category_unique_id'
 		ORDER BY categories_posts.id DESC LIMIT $db_page, 21";
 
 		if ($result = mysqli_query($con,$query)) {		
@@ -923,7 +932,7 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 				echo '<p class="friendslist-item">';
 					echo '<b>'.$post['twitter'].' - '.$post['blogtitle'].'</b>';
 					echo '<i class="fa fa-ellipsis-h pull-right"></i>';
-				echo '</p>';∏
+				echo '</p>';
 			}
 		} else {
 				echo '<p class="friendslist-item">';
@@ -1278,6 +1287,7 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 			}
 		}
 		$query = "INSERT INTO $table ($q_data) VALUES ($q_data2)";
+		// $this->debug($query,1);
 		$editquery = mysqli_query($con,$query);
 		if ($editquery) {
 		  $res = true;
@@ -1474,11 +1484,11 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
   }
 
 
-  public function create_select_dropdown($array, $input_key=NULL) {
+  public function create_select_dropdown($array, $input_key='name') {
 
 	$build='<select name="'.$input_key.'" class="form-control">';
 	foreach ($array as $key => $item) {
-		$build .= '<option value="'.$item['name'].'">'.$item['name'].'</option>';
+		$build .= '<option value="'.$item[$input_key].'">'.$item['name'].'</option>';
 	}
 	$build.="</select>";
 	return $build;

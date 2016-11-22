@@ -44,6 +44,7 @@ if ($_POST['action']==='insert') {
 
 
 if ($_POST['action']==='add_new_category') {
+	$_POST['unique_id'] = $site->generateRandomString(10);
 	if ($site->add('categories', $_POST)) {
 		echo 'Successfully Updated!';
 	}	else {

@@ -3,7 +3,7 @@ include('../../config.php');
 $site = new Config();
 $category = $site->get_category_by_id($_GET['category_id']);
 
-$posts = $site->get_category_posts($category['name'],$_GET['user_name']);
+$posts = $site->get_category_posts($category['unique_id'],$_GET['user_name']);
 
 // $site->debug($posts,1);
 

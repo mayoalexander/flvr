@@ -12,7 +12,7 @@ $num_of_leads = count($leads_compiled);
 
 // $site->debug($num_of_leads,1);
 ?>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.js"></script>
 
 <div class="container row">
 	<h1>Analytics</h1>
@@ -40,7 +40,7 @@ $num_of_leads = count($leads_compiled);
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.js"></script>
+
 <script>
 
 function initializeChart() {
