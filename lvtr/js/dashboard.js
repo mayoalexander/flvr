@@ -60,9 +60,10 @@ function logSom(query_number) {
 	var data = {  };
 	$.post(url,{query_number:query_number, action:'log_som'}, function(result){
 		console.log(result);
+		alert(result);
 	});
+
 	// $.post(url,  , function(result) {
-	// 	alert(result);
 	// 	// showNotification(result);
 	// });
 }
@@ -477,10 +478,11 @@ function savePlay(post_id,user_name) {
 	$('.som-button').click(function(e){
 		e.preventDefault();
 		logSom($(this).text());
-		var path = $(this).attr('href');
-		$.get(path,function(results){
-			$('.som-results-container').html(results);
-		});
+		return;
+		// var path = $(this).attr('href');
+		// $.get(path,function(results){
+		// 	$('.som-results-container').html(results);
+		// });
 	});
 
 

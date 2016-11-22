@@ -40,7 +40,13 @@ $num_of_new_clients = count($site->get_new_clients('today'));
 		<?php echo $num_of_new_clients; ?>
 	</div>
 	<div class="col-md-6">
+	</div>
+
+	<div class="col-md-6">
 		<canvas id="myChart" width="400" height="400"></canvas>
+	</div>
+	<div class="col-md-6">
+		<canvas id="pieChart" width="400" height="400"></canvas>
 	</div>
 </div>
 
@@ -52,8 +58,8 @@ $num_of_new_clients = count($site->get_new_clients('today'));
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.js"></script>
 <script>
 
-function initializeChart() {
-	var ctx = document.getElementById("myChart");
+function initializeChart(chart) {
+	var ctx = document.getElementById(chart);
 	var dataset = ['<?php echo $num_of_leads; ?>','<?php echo $num_of_new_clients; ?>',]
 	var myChart = new Chart(ctx, {
 	    type: 'pie',
@@ -85,6 +91,7 @@ function initializeChart() {
 	});
 }
 
-initializeChart();
+initializeChart('myChart','bar');
+initializeChart('pieChart', 'pie');
 
 </script>
