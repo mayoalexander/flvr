@@ -54,6 +54,19 @@ function likePost(post_id,user_name) {
 	});
 }
 
+function logSom(query_number) {
+
+	var url = 'http://freelabel.net/lvtr/config/update.php';
+	var data = {  };
+	$.post(url,{query_number:query_number, action:'log_som'}, function(result){
+		console.log(result);
+	});
+	// $.post(url,  , function(result) {
+	// 	alert(result);
+	// 	// showNotification(result);
+	// });
+}
+
 
 function savePlay(post_id,user_name) {
 	var url = 'http://freelabel.net/lvtr/config/update.php';
@@ -463,6 +476,7 @@ function savePlay(post_id,user_name) {
 
 	$('.som-button').click(function(e){
 		e.preventDefault();
+		logSom($(this).text());
 		var path = $(this).attr('href');
 		$.get(path,function(results){
 			$('.som-results-container').html(results);
@@ -475,4 +489,15 @@ function savePlay(post_id,user_name) {
 		e.preventDefault();
 		alert('cntacting clients');
 	});
+
+
+
+	$('.call-us-button').click(function(e) {
+		e.preventDefault();
+		var lead_username = $(this).attr('data-user');
+		var url = encodeURI('http://freelabel.net/som/index.php?post=1&text=d @' + lead_username + ' call us asap 347-994-0267');
+		window.open(url);
+	});
+
+
 

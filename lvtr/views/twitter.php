@@ -179,13 +179,6 @@ function sendDirectMessage(twitter_name, message) {
 	/* NOT FINISHED */
 
 
-	/* NOT FINISHED */
-	$('.call-us-button').click(function(e) {
-		e.preventDefault();
-		var lead_username = $(this).attr('data-user');
-		var url = encodeURI('http://freelabel.net/som/index.php?post=1&text=d @' + lead_username + ' call us asap 347-994-0267');
-		window.open(url);
-	});
 
 
 	

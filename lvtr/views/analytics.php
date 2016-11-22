@@ -9,8 +9,11 @@ foreach ($leads as $key => $lead) {
 	$leads_compiled[$lead['lead_twitter']][] = $lead['lead_name'];
 }
 $num_of_leads = count($leads_compiled);
+$num_of_som = count($site->get_som('today'));
+$num_of_new_clients = count($site->get_new_clients('today'));
 
-// $site->debug($num_of_leads,1);
+
+// $site->debug($num_of_new_clients,1);
 ?>
 
 
@@ -20,7 +23,10 @@ $num_of_leads = count($leads_compiled);
 		<h3>Leads Today</h3>
 	</div>
 	<div class="col-md-2">
-		<h3>Leads Today</h3>
+		<h3>SOM Today</h3>
+	</div>
+	<div class="col-md-2">
+		<h3>New Clients</h3>
 	</div>
 </div>
 <div class="container row">
@@ -28,9 +34,12 @@ $num_of_leads = count($leads_compiled);
 		<?php echo $num_of_leads; ?>/100
 	</div>
 	<div class="col-md-2">
-		<?php echo $num_of_leads; ?>
+		<?php echo $num_of_som; ?>
 	</div>
-	<div class="col-md-8">
+	<div class="col-md-2">
+		<?php echo $num_of_new_clients; ?>
+	</div>
+	<div class="col-md-6">
 		<canvas id="myChart" width="400" height="400"></canvas>
 	</div>
 </div>
@@ -45,22 +54,20 @@ $num_of_leads = count($leads_compiled);
 
 function initializeChart() {
 	var ctx = document.getElementById("myChart");
-	var dataset = ['<?php echo $num_of_leads; ?>','<?php echo $num_of_leads; ?>',]
+	var dataset = ['<?php echo $num_of_leads; ?>','<?php echo $num_of_new_clients; ?>',]
 	var myChart = new Chart(ctx, {
-	    type: 'bar',
+	    type: 'pie',
 	    data: {
-	        labels: ['Leads',"Clients","Posts"],
+	        labels: ['Leads',"New Clients"],
 	        datasets: [{
 	            label: '# of Leads Today',
-	            data: [34,45,22],
+	            data: dataset,
 	            backgroundColor: [
 	                'rgba(255, 99, 132, 0.2)',
-	                'rgba(54, 162, 235, 0.2)',
 	                'rgba(255, 159, 64, 0.2)'
 	            ],
 	            borderColor: [
 	                'rgba(255,99,132,1)',
-	                'rgba(54, 162, 235, 1)',
 	                'rgba(255, 159, 64, 1)'
 	            ],
 	            borderWidth: 1

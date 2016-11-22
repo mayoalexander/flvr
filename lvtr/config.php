@@ -822,7 +822,8 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 
 	function display_client_controls($profile) {
 		$data = "";
-		$data .= "<li class='contact-client' data-phone='".$profile['phone']."'><a href='#'><i class='fa fa-phone'></i> Contact</a></li>";
+		
+		$data .= "<li class='contact-client call-us-button' data-user='".str_replace('@', '', $profile['twitter'])."'><a href='#'><i class='fa fa-phone'></i> Contact</a></li>";
 		$data .= "<li class='contact-client' data-twitter='".$profile['twitter']."'><a href='#'><i class='fa fa-twitter'></i> View Twitter</a></li>";
 		$data .= "<li class='contact-client' data-id='".$profile['id']."'><a href='#'><i class='fa fa-archive'></i> Archive</a></li>";
 		$data .= "<li class='contact-client' data-id='".$profile['id']."'><a href='#'><i class='fa fa-envelope'></i> Email</a></li>";
@@ -923,7 +924,7 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 				echo '<p class="friendslist-item">';
 					echo '<b>'.$post['twitter'].' - '.$post['blogtitle'].'</b>';
 					echo '<i class="fa fa-ellipsis-h pull-right"></i>';
-				echo '</p>';∏
+				echo '</p>';
 			}
 		} else {
 				echo '<p class="friendslist-item">';
@@ -978,6 +979,47 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 	}
 
 
+	function get_som($date_param=NULL) {
+		require(ROOT.'config/connection.php');
+		$dp = '';
+		if ($date_param!==NULL) {
+			$dp = "WHERE `entry_date` LIKE '%".date('Y-m-d',strtotime($date_param))."%'";
+		}
+		$query = "SELECT * FROM `som` $dp ORDER BY `id` DESC LIMIT 100";
+		$result = mysqli_query($con,$query);
+		if (mysqli_num_rows($result)===0) {
+			echo "Uh oh, there was no leads found! (Search Filter: ".$date_param.") ";
+			exit;
+		} else {
+			while ($row = mysqli_fetch_assoc($result)) {
+				$leads[] = $row;
+			}
+		}
+	    mysqli_close($con);
+		return $leads;
+	}
+
+
+	function get_new_clients($date_param=NULL) {
+		require(ROOT.'config/connection.php');
+		$dp = '';
+		if ($date_param!==NULL) {
+			$dp = "WHERE `date_created` LIKE '%".date('Y-m-d',strtotime($date_param))."%'";
+		}
+		$query = "SELECT * FROM `user_profiles` $dp ORDER BY `id` DESC LIMIT 100";
+		$result = mysqli_query($con,$query);
+		if (mysqli_num_rows($result)===0) {
+			echo "Uh oh, there was no leads found! (Search Filter: ".$date_param.") ";
+			exit;
+		} else {
+			while ($row = mysqli_fetch_assoc($result)) {
+				$leads[] = $row;
+			}
+		}
+	    mysqli_close($con);
+		return $leads;
+	}
+
 	
 
 	function get_all_users($table, $db_page=0) {
@@ -996,7 +1038,6 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 	    mysqli_close($con);
 		return $users;
 	}
-
 
 
 	function get_post_by_id($slug) {
