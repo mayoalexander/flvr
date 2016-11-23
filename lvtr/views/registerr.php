@@ -3,7 +3,6 @@
     $site = new Config();
     // $zoom = new Zoom();
     $posts = $site->get_user_media('admin', 0);
-    $ads = $site->getPhotoAds('admin', 'freelabel front', 6);
     $i=0;
 ?>
 

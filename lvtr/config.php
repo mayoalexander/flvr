@@ -831,10 +831,10 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 
 	function display_client_controls($profile) {
 		$data = "";
-		$data .= "<li class='contact-client' data-phone='".$profile['phone']."'><a href='#'><i class='fa fa-phone'></i> Contact</a></li>";
-		$data .= "<li class='contact-client' data-twitter='".$profile['twitter']."'><a href='#'><i class='fa fa-twitter'></i> View Twitter</a></li>";
-		$data .= "<li class='contact-client' data-id='".$profile['id']."'><a href='#'><i class='fa fa-archive'></i> Archive</a></li>";
-		$data .= "<li class='contact-client' data-id='".$profile['id']."'><a href='#'><i class='fa fa-envelope'></i> Email</a></li>";
+		
+		$data .= "<li class='call-us-button' data-user='".str_replace('@', '', $profile['twitter'])."'><a href='#'><i class='fa fa-phone'></i> Contact</a></li>";
+		$data .= "<li><a href='http://twitter.com/".$profile['twitter']."' target='_blank'><i class='fa fa-twitter'></i> View Twitter</a></li>";
+		$data .= "<li class='email-client' data-id='".$profile['id']."'><a href='#'><i class='fa fa-envelope'></i> Email</a></li>";
 		return $data;
 	}
 
@@ -987,6 +987,49 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 	}
 
 
+	function get_som($date_param=NULL) {
+		require(ROOT.'config/connection.php');
+		$dp = '';
+		if ($date_param!==NULL) {
+			$dp = "WHERE `entry_date` LIKE '%".date('Y-m-d',strtotime($date_param))."%'";
+		}
+		$query = "SELECT * FROM `som` $dp ORDER BY `id` DESC LIMIT 100";
+		var_dump($query);
+		exit;
+		$result = mysqli_query($con,$query);
+		if (mysqli_num_rows($result)===0) {
+			echo "Uh oh, there was no recent SOMs found! (Search Filter: ".$date_param.") ";
+			exit;
+		} else {
+			while ($row = mysqli_fetch_assoc($result)) {
+				$leads[] = $row;
+			}
+		}
+	    mysqli_close($con);
+		return $leads;
+	}
+
+
+	function get_new_clients($date_param=NULL) {
+		require(ROOT.'config/connection.php');
+		$dp = '';
+		if ($date_param!==NULL) {
+			$dp = "WHERE `date_created` LIKE '%".date('Y-m-d',strtotime($date_param))."%'";
+		}
+		$query = "SELECT * FROM `user_profiles` $dp ORDER BY `id` DESC LIMIT 100";
+		$result = mysqli_query($con,$query);
+		if (mysqli_num_rows($result)===0) {
+			echo "Uh oh, there was no new clients found! (Search Filter: ".$date_param.") ";
+			exit;
+		} else {
+			while ($row = mysqli_fetch_assoc($result)) {
+				$leads[] = $row;
+			}
+		}
+	    mysqli_close($con);
+		return $leads;
+	}
+
 	
 
 	function get_all_users($table, $db_page=0) {
@@ -1005,7 +1048,6 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 	    mysqli_close($con);
 		return $users;
 	}
-
 
 
 	function get_post_by_id($slug) {
@@ -1303,49 +1345,6 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 	{
 		// echo '<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>';
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-  public function getPhotoAds($user_name='admin' , $search_query='advertise registration', $limit=10) {
-    include(ROOT.'config/connection.php');
-    $sql = "SELECT * FROM  `images` WHERE  `desc` LIKE CONVERT( _utf8 '%$search_query%' USING latin1 ) COLLATE latin1_swedish_ci AND `user_name` LIKE '%$user_name%' ORDER BY `id` DESC LIMIT $limit";
-    $result_stats = mysqli_query($con,$sql);
-    $i=0;
-    while($row = mysqli_fetch_assoc($result_stats)) {
-      $photos[] = $row;
-    }
-
-    mysqli_close($con);
-    return $photos;
-  }
-
-
-	function display_ads_grid($media) {
-		if (isset($media)) {
-			foreach ($media as $key => $post) {
-				echo '<article class="tracklist-panel col-md-4">';
-					echo '<a href="'.$this->url.'views/promo.php?post_id='.$post['id'].'" data-id="'.$post['id'].'"> <img src="'.$post['image'].'"/> <b>'.$post['title'].'</b></a>';
-					echo $this->display_share_button($post);
-				echo '</article>';
-			}
-		} else {
-				echo '<p class="tracklist-item label nothing-found">';
-						echo '<i class="fa fa-alert"></i> No tracks uploaded..';
-				echo '</p>';
-		}
-	}
-
-
-
 
 
 

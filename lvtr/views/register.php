@@ -6,7 +6,6 @@
 
     // $zoom = new Zoom();
     $posts = $site->get_user_media('admin', 0);
-    $ads = $site->getPhotoAds('admin', 'freelabel front', 6);
     $i=0;
 ?>
 
@@ -50,7 +49,6 @@
                         </div>
                     </div>
                     <div class="simple-img">
-                        <!-- <img src="<?php echo $ads[$i]['image'];$i++;?>" height="508" width="587" alt=""> -->
                         <img src="<?php echo $site->url;?>img/chrisinterview.png" height="508" width="587" alt="">
 
                     </div>

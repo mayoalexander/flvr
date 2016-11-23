@@ -73,6 +73,19 @@ if ($_POST['action']==='add_to_leads') {
 
 
 
+if ($_POST['action']==='log_som') {
+	$_POST['entry_date'] = date('Y-m-d h:s:i');
+	// var_dump($_POST);
+	// exit;
+	if ($site->add('som', $_POST)) {
+		echo 'Successfully Updated!';
+	}	else {
+		echo 'Something went wrong updating SOM!';
+	}
+}
+
+
+
 
 
 if ($_POST['action']==='save_play') {
