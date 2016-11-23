@@ -55,16 +55,11 @@ function likePost(post_id,user_name) {
 }
 
 function logSom(query_number) {
-
 	var url = 'http://freelabel.net/lvtr/config/update.php';
 	var data = {  };
 	$.post(url,{query_number:query_number, action:'log_som'}, function(result){
 		console.log(result);
 	});
-	// $.post(url,  , function(result) {
-	// 	alert(result);
-	// 	// showNotification(result);
-	// });
 }
 
 
@@ -76,45 +71,38 @@ function savePlay(post_id,user_name) {
 }
 
 
-// var pComplete = Math.round(percentComplete * 100) + "%";
-// $('.play-progress-bar').css('width', pComplete);
-// $('.play-progress-bar').html(pComplete + " Uploaded");
+function audioPlayer(elem) {
+	currentState = elem.html();
+	playButtonElem = '<i class="fa fa-play"></i>';
+	pauseButtonElem = '<i class="fa fa-pause"></i>';
+	var globalAudioPlayer = $('#global_audio_player');
+	var globalVideoPlayer = $('#global_video_player');
+	var audioPlayerText = $('#audio_player_text');
+	var audioPlayerToolbar = $('.audio-player-toolbar');
+	var activeMp3 = elem.attr('data-mp3');
+	var activeMp3Type = elem.attr('data-type');
+	var activeMp3Text = elem.attr('data-twitter') + ' - ' + elem.attr('data-title');
+	var tracks = [];
+	$.each($('.play_button'),function(index,value){
+		tracks[index] =  {
+			title: value.getAttribute('data-twitter') + ' - ' + value.getAttribute('data-title'),
+			file: value.getAttribute('data-mp3')
+		}
+	});
+
+	var FLPlayer = {};
+	FLPlayer.started = true;
+	FLPlayer.current = {
+		filetype : activeMp3Type,
+		title : activeMp3Text
+	}
+	FLPlayer.playlist = tracks;
 
 
 
-
-	function audioPlayer(elem) {
-			currentState = elem.html();
-			playButtonElem = '<i class="fa fa-play"></i>';
-			pauseButtonElem = '<i class="fa fa-pause"></i>';
-			var globalAudioPlayer = $('#global_audio_player');
-			var globalVideoPlayer = $('#global_video_player');
-			var audioPlayerText = $('#audio_player_text');
-			var audioPlayerToolbar = $('.audio-player-toolbar');
-			var activeMp3 = elem.attr('data-mp3');
-			var activeMp3Type = elem.attr('data-type');
-			var activeMp3Text = elem.attr('data-twitter') + ' - ' + elem.attr('data-title');
-			var tracks = [];
-			$.each($('.play_button'),function(index,value){
-				tracks[index] =  {
-					title: value.getAttribute('data-twitter') + ' - ' + value.getAttribute('data-title'),
-					file: value.getAttribute('data-mp3')
-				}
-			});
-
-			var FLPlayer = {};
-			FLPlayer.started = true;
-			FLPlayer.current = {
-				filetype : activeMp3Type,
-				title : activeMp3Text
-			}
-			FLPlayer.playlist = tracks;
-
-
-
-			/* PLAY VIDEO */
-			if (FLPlayer.current.filetype=='video') {
-				FLPlayer.playerType = FLPlayer.current.filetype;
+	/* PLAY VIDEO */
+	if (FLPlayer.current.filetype=='video') {
+		FLPlayer.playerType = FLPlayer.current.filetype;
 
 				// preloadMetaData()
 				$('.play_button').html(playButtonElem); //reset all buttons
@@ -136,7 +124,7 @@ function savePlay(post_id,user_name) {
 
 				
 
-			/* PLAY AUDIO */
+				/* PLAY AUDIO */
 			} else if (FLPlayer.current.filetype=='audio') { 
 				FLPlayer.playerType = FLPlayer.current.filetype;
 
@@ -179,25 +167,20 @@ function savePlay(post_id,user_name) {
 
 			}, 1000);
 			// console.log(FLPlayer);
-	}
+		}
 
 
 
 
-	$('.play-radio').click(function(){
-		var globalAudioPlayer = $('#global_audio_player');
-		var globalVideoPlayer = $('#global_video_player');
-		var audioPlayerText = $('#audio_player_text');
+		$('.play-radio').click(function(){
+			var globalAudioPlayer = $('#global_audio_player');
+			var globalVideoPlayer = $('#global_video_player');
+			var audioPlayerText = $('#audio_player_text');
 
-		audioPlayerText.html('<script src="https://public.radio.co/embed/s95fa8cba2/song.js"></script>');
-		globalAudioPlayer[0].setAttribute('src','http://streaming.radio.co/s95fa8cba2/listen');
-		globalAudioPlayer[0].play();
-	});
-
-
-
-
-
+			audioPlayerText.html('<script src="https://public.radio.co/embed/s95fa8cba2/song.js"></script>');
+			globalAudioPlayer[0].setAttribute('src','http://streaming.radio.co/s95fa8cba2/listen');
+			globalAudioPlayer[0].play();
+		});
 
 
 
@@ -209,44 +192,49 @@ function savePlay(post_id,user_name) {
 
 
 
-	$('.view-post-trigger').click(function(e){
-		e.preventDefault();
-		window.open($(this).parent().parent().parent().parent().attr('href'));
-	});
+
+
+
+
+
+		$('.view-post-trigger').click(function(e){
+			e.preventDefault();
+			window.open($(this).parent().parent().parent().parent().attr('href'));
+		});
 
 	// $('.tracklist-panel a').click(function(e){
-	$('.edit-post-trigger').click(function(e){
-		e.preventDefault();
-		$('#postModal').modal('show');
+		$('.edit-post-trigger').click(function(e){
+			e.preventDefault();
+			$('#postModal').modal('show');
 		// $.get('views/widgets/view_post.php', {
-		$.get('views/widgets/edit_post.php', {
-			post_id: $(this).attr('data-id')
-		}, function(result){
-			$('#postWrapper').html(result);
+			$.get('views/widgets/edit_post.php', {
+				post_id: $(this).attr('data-id')
+			}, function(result){
+				$('#postWrapper').html(result);
+			});
 		});
-	});
-	
+
 
 
 	// $('.tracklist-panel a').click(function(e){
-	$('.add-post-trigger ').click(function(e){
-		e.preventDefault();
-		$('#postModal').modal('show');
+		$('.add-post-trigger ').click(function(e){
+			e.preventDefault();
+			$('#postModal').modal('show');
 		// $.get('views/widgets/view_post.php', {
-		$.get('views/widgets/add_to_categories.php', {
-			post_id: $(this).attr('data-id'),
-			user_name: $(this).attr('data-user')
-		}, function(result){
-			$('#postWrapper').html(result);
+			$.get('views/widgets/add_to_categories.php', {
+				post_id: $(this).attr('data-id'),
+				user_name: $(this).attr('data-user')
+			}, function(result){
+				$('#postWrapper').html(result);
+			});
 		});
-	});
 
 
 
-	$('.delete-post-trigger').click(function(e){
-		e.preventDefault();
-		var data = $(this);
-		var post_id = $(this).attr('data-id');
+		$('.delete-post-trigger').click(function(e){
+			e.preventDefault();
+			var data = $(this);
+			var post_id = $(this).attr('data-id');
 		// hide wrap
 		wrap = $(this).parent().parent().parent().parent().parent();
 		wrap.hide('fast');
@@ -261,35 +249,35 @@ function savePlay(post_id,user_name) {
 
 
 
-	$('.delete-categories-trigger').click(function(e){
-		e.preventDefault();
-		var data = $(this);
-		var category_id = $(this).attr('data-id');
-		wrap = $(this).parent();
-		$.post('http://freelabel.net/lvtr/config/update.php', {
-			action: 'delete_category',
-			category_id: category_id
-		}, function(result){
-			updateViewCallback(wrap, result);
+		$('.delete-categories-trigger').click(function(e){
+			e.preventDefault();
+			var data = $(this);
+			var category_id = $(this).attr('data-id');
+			wrap = $(this).parent();
+			$.post('http://freelabel.net/lvtr/config/update.php', {
+				action: 'delete_category',
+				category_id: category_id
+			}, function(result){
+				updateViewCallback(wrap, result);
+			});
 		});
-	});
 
 
-	$('.tracklist-panel a').click(function(e){
-		e.preventDefault();
+		$('.tracklist-panel a').click(function(e){
+			e.preventDefault();
 		// var data = $(this).find('.play_button');
 		// audioPlayer(data);
 	});
 
-	$(".play_button").click(function(e) {
-		e.preventDefault();
-		var post_id = $(this).attr('data-id');
-		var user_name = 'admin';
-		savePlay(post_id, user_name);
-		audioPlayer($(this));
-	});	
+		$(".play_button").click(function(e) {
+			e.preventDefault();
+			var post_id = $(this).attr('data-id');
+			var user_name = 'admin';
+			savePlay(post_id, user_name);
+			audioPlayer($(this));
+		});	
 
-	$('.controls a').click(function(e){
+		$('.controls a').click(function(e){
 		// e.preventDefault();
 		var elem = $(this);
 		var ctrl = elem.attr('data-ctrl')
@@ -321,12 +309,12 @@ function savePlay(post_id,user_name) {
 
 
 
-	$('.share-post-trigger').click(function(e){
-		e.preventDefault();
-		var data = $(this);
-		var post_id = $(this).attr('data-id');
-		var post_title = $(this).attr('data-title');
-		var post_twitter = $(this).attr('data-twitter');
+		$('.share-post-trigger').click(function(e){
+			e.preventDefault();
+			var data = $(this);
+			var post_id = $(this).attr('data-id');
+			var post_title = $(this).attr('data-title');
+			var post_twitter = $(this).attr('data-twitter');
 		// var post_url = 'http://freelabel.net/lvtr/views/public.php?post_id=' + post_id;
 		var post_url = 'http://freelabel.net/' + post_twitter + '/id/' + post_id;
 		var short_url = post_url.replace('http://', '');
@@ -346,158 +334,161 @@ function savePlay(post_id,user_name) {
 
 
 
-	$('.like-post-trigger').click(function(e){
-		e.preventDefault();
-		var data = $(this);
-		var post_id = $(this).attr('data-id');
-		var user_name = $(this).attr('data-user');
-		likePost(post_id, user_name);
-	});
-
-
-
-
-	$('.view-details').click(function(e){
-		var elem = $(this);
-		var data = { user_name: elem.attr('data-user') }
-		var modal = $('#postModal').modal('show');
-		var url = 'http://freelabel.net/lvtr/views/admin/manage-user.php';
-		var wrap = $('#postModal .modal-body');
-		$.get(url,data,function(result){
-			wrap.html(result);
+		$('.like-post-trigger').click(function(e){
+			e.preventDefault();
+			var data = $(this);
+			var post_id = $(this).attr('data-id');
+			var user_name = $(this).attr('data-user');
+			likePost(post_id, user_name);
 		});
-	});
 
 
 
 
-
-	$('.manage-user-trigger').click(function(e){
-		var elem = $(this);
-		var data = elem.text();
-		alert(data);;
-	});
-
-
-	$('.load_more_button').click(function(){
-		wrap = $(this).parent();
-		wrap.html('loading');
-		elem = $(this);
-		nextPage = elem.attr('data-next');
-		user_name = elem.attr('data-user');
-		url = 'http://freelabel.net/lvtr/views/feed.php';
-		$.post(url, {page:nextPage, user_name:user_name}, function(result){
-			wrap.html(result);
+		$('.view-details').click(function(e){
+			var elem = $(this);
+			var data = { user_name: elem.attr('data-user') }
+			var modal = $('#postModal').modal('show');
+			var url = 'http://freelabel.net/lvtr/views/admin/manage-user.php';
+			var wrap = $('#postModal .modal-body');
+			$.get(url,data,function(result){
+				wrap.html(result);
+			});
 		});
-	});
 
 
 
 
 
-	$('.add-to-category-form').submit(function(e){
-		var url = 'http://freelabel.net/lvtr/config/update.php';
-
-		e.preventDefault();
-		var form = $(this);
-		var data = form.serialize();
-
-		form.hide();
-		$.post(url, data ,function(result){
-			alert(result);
-		})
-	});
-
-
-	$('.pricing_button').click(function() {
-		var type = $(this).attr('data-type');
-		$('#user_type')[0].value = type;
-		console.log($('#user_type')[0].value);
-		console.log('set to : ' + type + ' and its ' + $('#user_type')[0].value);
-	});
-	$('#user_name').keyup(function(e){
-		if(e.keyCode == 32){
-	    	str = $(this)[0].value.replace(/\s+/g, '');
-	    	$(this)[0].value = str;
-	    }
-	});
-	$('.form-signin').submit(function(e) {
-		e.preventDefault();
-		var elem = $(this);
-		registerUser('http://freelabel.net/lvtr/', $(this));
-	});
-
-
-
-	$('.add-to-category-form').submit(function(e){
-		var url = 'http://freelabel.net/lvtr/config/update.php';
-
-		e.preventDefault();
-		var form = $(this);
-		var data = form.serialize();
-		alert(data);
-
-		form.hide();
-		$.post(url, data ,function(result){
-			alert(result);
-		})
-	});
-
-
-
-	$('.add-new-post').click(function() {
-		var modal = $('#postModal');
-		var body = $('#postModal .modal-body');
-		modal.modal('show');
-		var url = 'http://freelabel.net/lvtr/views/widgets/add_new_post.php';
-		$.get(url, function(result){
-			body.html(result);
+		$('.manage-user-trigger').click(function(e){
+			var elem = $(this);
+			var data = elem.text();
+			alert(data);;
 		});
-	});
 
 
-
-	$('.add-to-leads-button').click(function(e) {
-		e.preventDefault();
-		var lead_username = $(this).attr('data-user');
-		var wrap = $(this).parent().parent().parent();
-		var button = $(this);
-		var lead_name = $(this).parent().parent().parent().find('blockquote').text();
-		var data = {
-			lead_twitter:lead_username,
-			lead_name:lead_name,
-			action:'add_to_leads'
-		}
-		var url = 'http://freelabel.net/lvtr/config/update.php';
-		$.post(url, data, function(result){
-			updateButtonCallback(wrap, button, result)
+		$('.load_more_button').click(function(){
+			wrap = $(this).parent();
+			wrap.html('loading');
+			elem = $(this);
+			nextPage = elem.attr('data-next');
+			user_name = elem.attr('data-user');
+			url = 'http://freelabel.net/lvtr/views/feed.php';
+			$.post(url, {page:nextPage, user_name:user_name}, function(result){
+				wrap.html(result);
+			});
 		});
-	});
 
-	$('.som-button').click(function(e){
-		e.preventDefault();
-		logSom($(this).text());
-		var path = $(this).attr('href');
-		$.get(path,function(results){
-			$('.som-results-container').html(results);
+
+
+
+
+		$('.add-to-category-form').submit(function(e){
+			var url = 'http://freelabel.net/lvtr/config/update.php';
+
+			e.preventDefault();
+			var form = $(this);
+			var data = form.serialize();
+
+			form.hide();
+			$.post(url, data ,function(result){
+				alert(result);
+			})
 		});
-	});
+
+
+		$('.pricing_button').click(function() {
+			var type = $(this).attr('data-type');
+			$('#user_type')[0].value = type;
+			console.log($('#user_type')[0].value);
+			console.log('set to : ' + type + ' and its ' + $('#user_type')[0].value);
+		});
+		$('#user_name').keyup(function(e){
+			if(e.keyCode == 32){
+				str = $(this)[0].value.replace(/\s+/g, '');
+				$(this)[0].value = str;
+			}
+		});
+		$('.form-signin').submit(function(e) {
+			e.preventDefault();
+			var elem = $(this);
+			registerUser('http://freelabel.net/lvtr/', $(this));
+		});
 
 
 
-	$('.email-client').click(function(e){
-		e.preventDefault();
-		alert('emaling clients');
-	});
+		$('.add-to-category-form').submit(function(e){
+			var url = 'http://freelabel.net/lvtr/config/update.php';
+
+			e.preventDefault();
+			var form = $(this);
+			var data = form.serialize();
+			alert(data);
+
+			form.hide();
+			$.post(url, data ,function(result){
+				alert(result);
+			})
+		});
 
 
 
-	$('.call-us-button').click(function(e) {
-		e.preventDefault();
-		var lead_username = $(this).attr('data-user');
-		var url = encodeURI('http://freelabel.net/som/index.php?post=1&text=d @' + lead_username + ' call us asap 347-994-0267');
-		window.open(url);
-	});
+		$('.add-new-post').click(function() {
+			var modal = $('#postModal');
+			var body = $('#postModal .modal-body');
+			modal.modal('show');
+			var url = 'http://freelabel.net/lvtr/views/widgets/add_new_post.php';
+			$.get(url, function(result){
+				body.html(result);
+			});
+		});
+
+
+
+		$('.add-to-leads-button').click(function(e) {
+			e.preventDefault();
+			var lead_username = $(this).attr('data-user');
+			var wrap = $(this).parent().parent().parent();
+			var button = $(this);
+			var lead_name = $(this).parent().parent().parent().find('blockquote').text();
+			var data = {
+				lead_twitter:lead_username,
+				lead_name:lead_name,
+				action:'add_to_leads'
+			}
+			var url = 'http://freelabel.net/lvtr/config/update.php';
+			$.post(url, data, function(result){
+				updateButtonCallback(wrap, button, result)
+			});
+		});
+
+		$('.som-button').click(function(e){
+			e.preventDefault();
+			$(this).removeClass('btn-primary');
+			$(this).addClass('btn-success');
+			$(this).addClass('active');
+			logSom($(this).text());
+			var path = $(this).attr('href');
+			$.get(path,function(results){
+				$('.som-results-container').html(results);
+			});
+		});
+
+
+
+		$('.email-client').click(function(e){
+			e.preventDefault();
+			alert('emaling clients');
+		});
+
+
+
+		$('.call-us-button').click(function(e) {
+			e.preventDefault();
+			var lead_username = $(this).attr('data-user');
+			var url = encodeURI('http://freelabel.net/som/index.php?post=1&text=d @' + lead_username + ' call us asap 347-994-0267');
+			window.open(url);
+		});
 
 
 

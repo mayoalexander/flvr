@@ -84,8 +84,6 @@ if ($_POST['action']==='log_som') {
 
 
 
-
-
 if ($_POST['action']==='save_play') {
 	if ($site->like_post($_POST)) {
 		echo 'Successfully Updated!';
@@ -93,7 +91,3 @@ if ($_POST['action']==='save_play') {
 		echo 'Something went wrong!';
 	}
 }
-
-
-
-
