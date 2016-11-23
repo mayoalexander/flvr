@@ -11,8 +11,10 @@ if ($user_status) {
 	$site->view('dashboard');
 	// echo 'user logged in: show dashboard';
 } else {
-	$data = $site->getPhotoAds('admin' , 'advertise registration', 10);
+	// $data = $site->getPhotoAds('admin' , 'advertise registration', 10);
 	$site->view('cover',$data);
+	$dir = "../../view/themes/demo/content/sales/";
+	include($dir.'frontpage.htm');
 	// echo 'user not logged in: show cover page';
 }
 
