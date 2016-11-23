@@ -1,0 +1,19 @@
+title = "Google Analytics"
+url = "/tools/google-analytics"
+layout = "fl-dev"
+is_hidden = 0
+==
+<div class="container main"></div>
+<script type="text/javascript" src="http://freelabel.net/lvtr/js/application.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var data = {
+			client_website: window.location.host,
+			api_keys:"LkuUuTfrMo94jhghjhfgasLkuUuTfrMo94jhghjhfgas"
+		};
+		$.get('http://freelabel.net/lvtr/config/api/google-analytics.php', data, function(result) {
+			$('.main').html(result);
+			// console.log(result);
+		})
+	});
+</script>

@@ -1,0 +1,66 @@
+title = "Page"
+url = "/mag/:id"
+layout = "fl-dev"
+is_hidden = 0
+
+[blogPost]
+slug = "{{ :id }}"
+categoryPage = 404
+==
+{% set post = blogPost.post %}
+
+
+<header class="header_banner hero-01" style="background-image:url('http://freelabel.net/{{ post.featured_images[0].path }}');">
+
+    <div class="background-tint">
+
+        <h1>{{ post.title }}</h1>
+
+        <p>{{ post.published_at|date('M d, Y') }}</p>
+
+        <section class="row">
+            {% if record.cta_url %}
+
+                <a href="{{ record.cta_url }}" class="btn btn-lg btn-primary" target="_blank">{{ record.cta_button }} - ${{ record.cta_price }}</a>
+                
+            {% endif %}
+        </section>
+
+    </div>
+
+</header>
+
+
+
+<div class="container">
+    <h1 class="page-header">{{ post.title }}</h1>
+    <div class="content">{{ post.content_html|raw }}</div>
+    <hr>
+
+    {% if post.featured_images.count %}
+        <div class="featured-images text-center">
+            {% for image in post.featured_images %}
+                <p>
+                    <img
+                        data-src="{{ image.filename }}"
+                        src="{{ image.path }}"
+                        alt="{{ image.description }}"
+                        style="max-width: 100%" />
+                </p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <p class="info">
+        Posted
+        {% if post.categories.count %} in
+            {% for category in post.categories %}
+                <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        {% endif %}
+        on {{ post.published_at|date('M d, Y') }}
+    </p>
+</div>
+
+
+

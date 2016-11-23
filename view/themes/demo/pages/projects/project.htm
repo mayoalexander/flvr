@@ -46,12 +46,14 @@ notFoundMessage = "Record not found"
 
 		<h1>{{ record.blogtitle }}</h1>
 
-		<p>{{ record.twitter }}</p>
+		<p>@{{ record.twitter }}</p>
 
 		<section class="row">
+            {% if record.cta_url %}
 
-			<a href="http://freelabel.net/lvtr/?ctrl=register" class="btn btn-success btn-lg call-to-action">Get Started <i class="fa fa-arrow-right"></i></a>
-
+                <a href="{{ record.cta_url }}" class="btn btn-lg btn-primary" target="_blank">{{ record.cta_button }} - ${{ record.cta_price }}</a>
+                
+            {% endif %}
 		</section>
 
 	</div>
@@ -66,30 +68,35 @@ notFoundMessage = "Record not found"
 
     {% if record %}
 
-        <h4>Campaign:</h4>
-
         <h1 class="page-header">{{ record.blogtitle }}</h1>
 
-        <p>{{ record.twitter }}</p>
+        <p>@{{ record.twitter }}</p>
 
         <p>{{ record.description|raw }}</p>
 
-        <h3>Design:</h3>
+        <hr>
+            {% if record.cta_url %}
+
+                <a href="{{ record.cta_url }}" class="btn btn-lg btn-primary" target="_blank">{{ record.cta_button }} - ${{ record.cta_price }}</a>
+
+            {% endif %}
+
+<!--         <h3>Design:</h3>
 
         <p><b>Primary:</b> {{ record.primary_color }}</p>
 
         <p><b>Secondary:</b> {{ record.secondary_color }}</p>
 
-        <p><b>Photo:</b> {{ record.photo }}</p>
+        <p><b>Photo:</b> {{ record.photo }}</p> -->
 
-        
+<!--         
 
         <h3>Schedule:</h3>
 
         <p><b>Due:</b> {{ record.due_date }}</p>
 
         <p><b>Launch:</b> {{ record.launch_date }}</p>
-
+ -->
         
 
         

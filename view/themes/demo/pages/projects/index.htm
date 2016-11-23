@@ -78,7 +78,7 @@ pageNumber = "{{ :page }}"
 
                     <div class="thumbnail">
 
-                      <a href="href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}"">
+                      <a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}">
 
                         <img src="{{ record.photo |media }}" alt="{{ record.blogtitle }}">
 
@@ -90,7 +90,7 @@ pageNumber = "{{ :page }}"
 
                         <p>...</p>
 
-                        <p><a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}" class="btn btn-primary" role="button">View</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                        <p><a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}" class="btn btn-primary" role="button">View</a></p>
 
                       </div>
 
