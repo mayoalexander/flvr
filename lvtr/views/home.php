@@ -12,6 +12,8 @@ if ($user_status) {
 	// echo 'user logged in: show dashboard';
 } else {
 	$site->view('cover',$data);
+	$dir = "../../view/themes/demo/content/sales/";
+	include($dir.'frontpage.htm');
 	// echo 'user not logged in: show cover page';
 }
 

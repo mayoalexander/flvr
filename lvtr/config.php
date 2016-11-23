@@ -831,7 +831,6 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 
 	function display_client_controls($profile) {
 		$data = "";
-		
 		$data .= "<li class='call-us-button' data-user='".str_replace('@', '', $profile['twitter'])."'><a href='#'><i class='fa fa-phone'></i> Contact</a></li>";
 		$data .= "<li><a href='http://twitter.com/".$profile['twitter']."' target='_blank'><i class='fa fa-twitter'></i> View Twitter</a></li>";
 		$data .= "<li class='email-client' data-id='".$profile['id']."'><a href='#'><i class='fa fa-envelope'></i> Email</a></li>";
@@ -994,6 +993,7 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 			$dp = "WHERE `entry_date` LIKE '%".date('Y-m-d',strtotime($date_param))."%'";
 		}
 		$query = "SELECT * FROM `som` $dp ORDER BY `id` DESC LIMIT 100";
+
 		var_dump($query);
 		exit;
 		$result = mysqli_query($con,$query);
