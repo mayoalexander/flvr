@@ -315,21 +315,46 @@ function audioPlayer(elem) {
 			var post_id = $(this).attr('data-id');
 			var post_title = $(this).attr('data-title');
 			var post_twitter = $(this).attr('data-twitter');
-		// var post_url = 'http://freelabel.net/lvtr/views/public.php?post_id=' + post_id;
-		var post_url = 'http://freelabel.net/' + post_twitter + '/id/' + post_id;
-		var short_url = post_url.replace('http://', '');
-		var msg = '[FL] ' + post_twitter + ': \n\n' + post_title + '\n\n' + short_url;
-		var twitter_url = 'https://twitter.com/intent/tweet?text=' + encodeURI(msg);
-		var facebook_url = 'https://www.facebook.com/sharer/sharer.php?u=' + post_url;
-		var method = data.attr('data-method');
-		if (method == 'twitter') {
-			window.open(twitter_url);
-		} else if (method == 'facebook') {
-			window.open(facebook_url);
-		} else {
-			alert('Yeah something went wrong here');
-		}
-	});
+			// var post_url = 'http://freelabel.net/lvtr/views/public.php?post_id=' + post_id;
+			var post_url = 'http://freelabel.net/' + post_twitter + '/id/' + post_id;
+			var short_url = post_url.replace('http://', '');
+			var msg = '[FL] ' + post_twitter + ': \n\n' + post_title + '\n\n' + short_url;
+			var twitter_url = 'https://twitter.com/intent/tweet?text=' + encodeURI(msg);
+			var facebook_url = 'https://www.facebook.com/sharer/sharer.php?u=' + post_url;
+			var method = data.attr('data-method');
+			if (method == 'twitter') {
+				window.open(twitter_url);
+			} else if (method == 'facebook') {
+				window.open(facebook_url);
+			} else {
+				alert('Yeah something went wrong here');
+			}
+		});
+
+
+		$('.share-page-trigger').click(function(e){
+			e.preventDefault();
+			var data = $(this);
+			var post_id = $(this).attr('data-id');
+			var post_title = $(this).attr('data-title');
+			var post_twitter = $(this).attr('data-twitter');
+			// var post_url = 'http://freelabel.net/lvtr/views/public.php?post_id=' + post_id;
+			console.log(window.location);
+			var post_url = window.location.origin + window.location.pathname;
+			console.log(post_url);
+			var short_url = post_url.replace('http://', '');
+			var msg = '[FL] ' + post_twitter + ': \n\n' + post_title + '\n\n' + short_url;
+			var twitter_url = 'https://twitter.com/intent/tweet?text=' + encodeURI(msg);
+			var facebook_url = 'https://www.facebook.com/sharer/sharer.php?u=' + post_url;
+			var method = data.attr('data-method');
+			if (method == 'twitter') {
+				window.open(twitter_url);
+			} else if (method == 'facebook') {
+				window.open(facebook_url);
+			} else {
+				alert('Yeah something went wrong here');
+			}
+		});
 
 
 
