@@ -18,6 +18,7 @@ class Config
 	
 	function __construct()
 	{
+		$this->url = SITE;
 		$this->background_color = '#101010';
 		$this->primary_color = '#FE3F44';
 		$this->secondary_color_grey = '#414A52';
@@ -36,11 +37,12 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 		$this->default_user_img = $this->admin_url.'storage/app/media/ui/placeholders/profile-placeholder.png';
 		$this->logo = $this->url.'img/fllogo.png';
 
+
 		$this->facebook_url = 'http://facebook.com/freelabelnet';
 		$this->twitter_url = 'http://twitter.com/freelabelnet';
 		$this->google_url = 'https://plus.google.com/118212974256600306207';
 
-		$this->url = SITE;
+		
 		$this->admin_url = 'http://freelabel.net/view/';
 
 		$this->packages['sub'] = 'http://freelabel.net/confirm/sub';
@@ -325,19 +327,24 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 		return '<span class="play_button button-tint btn btn-link btn-'.$post['id'].' pull-left" style="display:inline-block;" data-type="'.$post['type'].'" data-mp3="'.$post['trackmp3'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-id="'.$post['id'].'"><i class="fa '.$icon.'"></i></span>';
 	}
 
-	function display_like_and_share_buttons($post,$user_name_session) {
+	function display_post_functions($post,$user_name_session) {
 		return '<li><button class="like-post-trigger btn btn-link" data-id="'.$post['id'].'" data-user="'.$user_name_session.'"><i class="fa fa-star-o"></i> Like</button></li>
 	  	<li><button class="add-post-trigger btn btn-link" data-id="'.$post['id'].'" data-user="'.$user_name_session.'"><i class="fa fa-plus"></i> Add To</button></li>';
 	}
 
+	function display_social_buttons($post) {
+		return '<li><button class="share-post-trigger btn btn-link" data-id="'.$post['id'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-method="twitter"><i class="fa fa-twitter"></i> Twitter</button></li>
+	  	<li><button class="share-post-trigger btn btn-link" data-id="'.$post['id'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-method="facebook"><i class="fa fa-facebook" ></i> Facebook</button></li>';
+	}
 
-	function display_share_button($post, $user_name_session=NULL) {
+
+	function display_post_options_button($post, $user_name_session=NULL) {
 		if (isset($user_name_session) && trim($user_name_session)==trim($post['user_name']) || $user_name_session=='admin') {
 			$user_owned_buttons = $this->display_delete_button($post);
 			$user_owned_buttons .= $this->display_edit_button($post);
 			
 		} elseif (isset($user_name_session)) {
-			$logged_in_only_buttons .= $this->display_like_and_share_buttons($post,$user_name_session);
+			$logged_in_only_buttons .= $this->display_post_functions($post,$user_name_session);
 		} else {
 			$delete_button = '';
 		}
@@ -352,8 +359,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 						  	'.$user_owned_buttons.'
 						  	'.$logged_in_only_buttons.'
 
-						  	<li><button class="share-post-trigger btn btn-link" data-id="'.$post['id'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-method="twitter"><i class="fa fa-twitter"></i> Twitter</button></li>
-						  	<li><button class="share-post-trigger btn btn-link" data-id="'.$post['id'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-method="facebook"><i class="fa fa-facebook" ></i> Facebook</button></li>
+						  	'.$this->display_social_buttons($post).'
 						    <input type="hidden" name="user_name" value="'.$post['user_name'].'">
 						  </ul>
 						</div>';
@@ -364,7 +370,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 			foreach ($media as $key => $post) {
 				echo '<article class="tracklist-item">';
 					echo '<a href="#" data-id="'.$post['id'].'"> <img src="'.$post['photo'].'"/> <b>'.$post['twitter'].'</b></a>: '.$post['blogtitle'];
-						echo $this->display_share_button($post);
+						echo $this->display_post_options_button($post);
 				echo '</article>';
 			}
 		} else {
@@ -392,7 +398,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 					echo '<article class="tracklist-panel '.$col.'">';
 						echo '<a href="'.$this->create_url($post).'" data-id="'.$post['id'].'"> 
 						<img src="'.$post['photo'].'"/> 
-						'.$this->display_share_button($post, $user_name_session).'
+						'.$this->display_post_options_button($post, $user_name_session).'
 						<b>'.$post['twitter'].'</b>
 						</a>
 						'.$post['blogtitle'];

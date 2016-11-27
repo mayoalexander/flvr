@@ -31,7 +31,6 @@
 
 
     addtionalDetails = '<textarea name="description" type="text" class="form-control" rows="3" placeholder="Enter Description.."></textarea>\
-
     <textarea name="description" type="text" class="form-control" rows="3" placeholder="Enter Description.."></textarea>';
 
 
