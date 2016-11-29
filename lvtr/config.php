@@ -999,9 +999,6 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 			$dp = "WHERE `entry_date` LIKE '%".date('Y-m-d',strtotime($date_param))."%'";
 		}
 		$query = "SELECT * FROM `som` $dp ORDER BY `id` DESC LIMIT 100";
-
-		var_dump($query);
-		exit;
 		$result = mysqli_query($con,$query);
 		if (mysqli_num_rows($result)===0) {
 			echo "Uh oh, there was no recent SOMs found! (Search Filter: ".$date_param.") ";
@@ -1025,8 +1022,7 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 		$query = "SELECT * FROM `user_profiles` $dp ORDER BY `id` DESC LIMIT 100";
 		$result = mysqli_query($con,$query);
 		if (mysqli_num_rows($result)===0) {
-			echo "Uh oh, there was no new clients found! (Search Filter: ".$date_param.") ";
-			exit;
+			$leads[] = NULL;
 		} else {
 			while ($row = mysqli_fetch_assoc($result)) {
 				$leads[] = $row;

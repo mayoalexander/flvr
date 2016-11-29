@@ -26,7 +26,6 @@ $site = new Config();
           <li role="presentation"><a href="#">Clients</a></li>
           <li role="presentation"><a href="#">Twitter</a></li>
           <li role="presentation"><a href="#">Emailer</a></li>
-          <li role="presentation"><a href="#">Test</a></li>
           <li role="presentation"><a href="#">widgets/submissions</a></li>
           <li role="presentation"><a href="#">Automation</a></li>
           <li role="presentation"><a href="#">Script</a></li>

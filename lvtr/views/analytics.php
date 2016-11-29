@@ -57,17 +57,18 @@ $num_of_new_clients = count($site->get_new_clients('today'));
 
 function initializeChart(chart) {
 	var ctx = document.getElementById(chart);
-	var dataset = ['<?php echo $num_of_leads; ?>','<?php echo $num_of_new_clients; ?>',]
+	var dataset = ['<?php echo ($num_of_leads * 0.1); ?>','<?php echo $num_of_new_clients; ?>','<?php echo ($num_of_som/4); ?>',]
 	var myChart = new Chart(ctx, {
-	    type: 'pie',
+	    type: 'doughnut',
 	    data: {
-	        labels: ['Leads',"New Clients"],
+	        labels: ['Leads',"New Clients", "SOM Deploys"],
 	        datasets: [{
 	            label: '# of Leads Today',
 	            data: dataset,
 	            backgroundColor: [
 	                'rgba(255, 99, 132, 0.2)',
-	                'rgba(255, 159, 64, 0.2)'
+	                'rgba(255, 159, 64, 0.2)',
+	                'pink'
 	            ],
 	            borderColor: [
 	                'rgba(255,99,132,1)',
@@ -77,13 +78,13 @@ function initializeChart(chart) {
 	        }]
 	    },
 	    options: {
-	        scales: {
-	            yAxes: [{
-	                ticks: {
-	                    beginAtZero:true
-	                }
-	            }]
-	        }
+	        // scales: {
+	        //     yAxes: [{
+	        //         ticks: {
+	        //             beginAtZero:true
+	        //         }
+	        //     }]
+	        // }
 	    }
 	});
 }
