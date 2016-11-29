@@ -489,6 +489,7 @@ function audioPlayer(elem) {
 
 		$('.som-button').click(function(e){
 			e.preventDefault();
+			$(this).removeClass('som-button');
 			$(this).removeClass('btn-primary');
 			$(this).addClass('btn-success');
 			$(this).addClass('active');
