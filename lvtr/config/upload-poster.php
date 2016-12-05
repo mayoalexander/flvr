@@ -70,7 +70,6 @@ foreach ($_FILES as $file) {
 
 
 		$thumb = make_thumb($src ,$path_thumb , 600 );
-		var_dump($thumb);
 		echo '<img style="width:100%;" src="'.$thumb.'"" class="img-thumbnail">';
 		// echo '<input type="text" name="title[]" id="title" placeholder="Enter Title.." class="form-control" required>';
 		echo '<input type="hidden" name="photo[]" id="photo" value="'.$path.'">';
