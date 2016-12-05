@@ -3,7 +3,7 @@ include_once('../config.php');
 $site = new Config();
 
 $sourcePath = $_FILES['photos']['tmp_name'];       // Storing source path of the file in a variable
-$targetPath = "img/uploads/".$_FILES['photos']['name'][0]; // Target path where file is to be stored
+$targetPath = "public/img/uploads/".$_FILES['photos']['name'][0]; // Target path where file is to be stored
 $temp =$sourcePath[0] ;
 
 //echo '<pre>';
@@ -59,20 +59,18 @@ foreach ($_FILES as $file) {
 	$photo = $arr[1].'-'.$rand.'-.'.$arr[0];
 	// echo $temp.' acutally moving to '.	$photo;
 
-	$new_path = 'img/uploads/'.$photo;
+	$new_path = 'public/img/uploads/'.$photo;
 	$loadStatus = move_uploaded_file($temp,'../'.$new_path) ;    // Moving Uploaded file
 	if ($loadStatus) {
 		$path = $site->url.$new_path;
 		//echo 'YAY! it worked! ' .$path;
 
-		$src = '../img/uploads/'.$photo;
-		$path_thumb = '../img/uploads/thumb/'.$photo;
+		$src = '../public/img/uploads/'.$photo;
+		$path_thumb = '../public/img/uploads/thumb/'.$photo;
 
-		// $dir = readdir('../');
-		// var_dump($path);
 
 		$thumb = make_thumb($src ,$path_thumb , 600 );
-		// var_dump($thumb);
+		var_dump($thumb);
 		echo '<img style="width:100%;" src="'.$thumb.'"" class="img-thumbnail">';
 		// echo '<input type="text" name="title[]" id="title" placeholder="Enter Title.." class="form-control" required>';
 		echo '<input type="hidden" name="photo[]" id="photo" value="'.$path.'">';
