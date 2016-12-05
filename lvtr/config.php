@@ -1734,7 +1734,7 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 
 		$_GET['a']  = 'uploadmedia';
 		$_GET['f']  = str_replace('http://', '', $post['photo'][$key]);
-		$_GET['t'] = '[NEW] '.$post['twitter'][$key].'
+		$_GET['t'] = '[FL] '.$post['twitter'][$key].'
 
 '.$post['title'][$key].'
 

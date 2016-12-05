@@ -29,6 +29,10 @@ class Upload extends Config
 		// include('twitter.php');
 		return;
 	}
+	function formatTwitter($twitter) {
+		$twitter = str_replace('http://twitter.com/', '', strtolower($twitter));
+		return $twitter;
+	}
 
 
 	function create_new_post() {
@@ -62,13 +66,17 @@ class Upload extends Config
 			} else {
 				$twitter = $this->data['twitter'];
 			}
+			/* clean up twitter */
+				$twitter = $this->formatTwitter($twitter);
+
+			/* POST TO TWITTER */
 			if ($status[$key]=='public') {
 				$twitpic = $this->getTwitpicURL($this->data, $key);
 			}
 
 
 
-
+			/* UPLOAD TO RADIO - add button for later */
 			if (true) {
 				$filedata['trackmp3'] = $file;
 				$filedata['twitter'] = $twitter;
