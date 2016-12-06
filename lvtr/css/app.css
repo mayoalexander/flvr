@@ -96,7 +96,8 @@ body {
     border: 2px solid #FE3F44; }
 
 /* FORMS */
-.form-control-login {
+.form-control-login,
+.edit input {
   background: transparent;
   outline: none;
   box-shadow: none;
@@ -109,6 +110,10 @@ body {
 
 .form-validation-success {
   border: 2px solid green; }
+
+.edit input {
+  background-color: transparent;
+  color: red; }
 
 .nav > li > a:hover,
 .nav > li > a:focus,

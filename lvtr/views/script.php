@@ -2,6 +2,8 @@
 
 require('../config.php');
 $site = new Config();	
+
+$site->debug($_SERVER,1);
 $script = $site->get_script();		
 ?>
 
@@ -12,11 +14,11 @@ $script = $site->get_script();
 		<form name="theScript" class='the-script' method="POST" action="http://freelabel.net/x/update_script.php" >
 <a name-'dms'></a>
 				<?php
-					
 
 					foreach ($script[0] as $key => $value) {
 				  		// echo '<div class="lead script-item list-group-item" ><data class="edit" id="lead-script-'.$key.'-'.$row['id'].'" >'.$value.'</data></div>';
-				  		echo '<input type="text" name="'.$key.'" value="'.$value.'" class="form-control">';
+				  		// echo '<input type="text" name="'.$key.'" value="'.$value.'" class="form-control">';
+				  		echo '<p id="script-'.$key.'-'.$script[0]['id'].'" class="lead edit">'.$value.'</p>';
 				  		// echo '<div class="lead script-item list-group-item" ><data class="edit" id="lead-script-'.$key.'-'.$row['id'].'" >'.$value.'</data></div>';
 				  		$i++;
 				  	}
@@ -35,19 +37,6 @@ $script = $site->get_script();
 					<li>Whats the most messed up, tragic, or craziest thing that has happened in your music careers so far?</li>
 					<li>What advice do you have for other musicians and fans that listen to your music and watch your moves?</li>
 				</ul>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 				<?php 
@@ -95,3 +84,11 @@ $script = $site->get_script();
 			</div>
 		
 		</form>
+
+
+<script type="text/javascript" src="http://freelabel.net/lvtr/js/jeditable.js"></script>
+<script type="text/javascript">
+$(function(){
+     $('.edit').editable('http://www.freelabel.net/lvtr/config/edit.php');
+});
+</script>

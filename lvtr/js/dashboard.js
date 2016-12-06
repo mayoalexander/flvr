@@ -547,8 +547,8 @@ function audioPlayer(elem) {
 			// 	// alert(result);
 			// });
 
-			return;
-			window.location.assign($(this).attr('href'));
+			// return;
+			// window.location.assign($(this).attr('href'));
 
 		});
 		// $('.registration-form-ajax input').keyup(function(){

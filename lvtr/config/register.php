@@ -9,8 +9,6 @@ $site = new Config();
 */
 
 
-	// $site->debug($_POST['user_type'],1);
-
 
 // check if user exists
 if ($site->check_if_user_exists($_POST)===NULL) {

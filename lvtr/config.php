@@ -6,7 +6,7 @@ if ($_SERVER["HTTP_HOST"]==='freelabel.net') {
 	define("ROOT", $_SERVER["DOCUMENT_ROOT"] ."/lvtr/");
 	define("SITE", "http://freelabel.net/lvtr/");
 } else {
-	define("ROOT", $_SERVER["DOCUMENT_ROOT"] ."/");
+	define("ROOT", $_SERVER["DOCUMENT_ROOT"] ."/lvtr/");
 	define("SITE", 'http://mayodot.com/lvtr/');
 }
 
@@ -1498,6 +1498,8 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 
 
 
+
+
   public function like_post() {
   	include(ROOT.'config/connection.php');
 	  	$sql = "INSERT INTO `likes` (`id` ,`post_id` ,`user_name` ,`date_liked`)
@@ -1505,12 +1507,6 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 	);";
 	// var_dump($sql);
 	if (mysqli_query($con, $sql)) {
-	    // echo '<script>';
-	    // //echo 'window.open('')';
-	    // //echo 'alert()';
-	    // echo 'window.open("'.$script.'");';
-	    // //echo 'alert("'.$script.'");';
-	    // echo '</script>';
 	    $status = true;
 	} else {
 	    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
@@ -1519,6 +1515,39 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 	mysqli_close($con);
 	return $status;
   }
+
+
+
+	public function edit_title($data)
+	{
+		$data = explode('-', $data['id']);
+		$table = $data[0];
+		$param = $data[1];
+		$id = $data[2];
+		$value = $data['value'];
+
+		/* FORMAT NEEDS TO BE id="table-param-value" */
+		switch ($table) {
+			case 'script':
+				$query = "UPDATE `$table` SET `$param`='$value' WHERE `id`=$id";
+				break;
+			
+			default:
+				echo 'uh oh, something went wrong! this action is not configured!';
+				break;
+		}
+
+		/* RUN QUERY */
+	  	include(ROOT.'config/connection.php');
+		// if (mysqli_query($con, $query)) {
+		//     $status = true;
+		// } else {
+		//     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+		//     $status = false;
+		// }
+		// mysqli_close($con);
+		// return $status;
+	}
 
 
 
