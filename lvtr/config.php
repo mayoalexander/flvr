@@ -34,6 +34,7 @@ class Config
 		$this->description_long = 'CREATE | UPLOAD | SHARE';
 		$this->meta_keywords = 'music promotion,music promotions,music promotions company,music promotions companies,music promotion company,music promotion companies,music promotion services,music promotion blog,free music promotion,music promotion sites,	
 online music promotion,free music promotion sites,hip hop music promotion,music promotion app,music promotion package,music promotion service,best music promotion services,independent music promotion,free music promotions,indie music promotion,free online music promotion,music promotional items,music promotion jobs,online music promotion services,buy music promotion,music promotion free';
+		$this->admin_url = 'http://freelabel.net/view/';
 		$this->default_user_img = $this->admin_url.'storage/app/media/ui/placeholders/profile-placeholder.png';
 		$this->logo = $this->url.'img/fllogo.png';
 
@@ -43,7 +44,6 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 		$this->google_url = 'https://plus.google.com/118212974256600306207';
 
 		
-		$this->admin_url = 'http://freelabel.net/view/';
 
 		$this->packages['sub'] = 'http://freelabel.net/confirm/sub';
 		$this->packages['trial'] = 'http://freelabel.net/confirm/trial';
@@ -1638,8 +1638,14 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 
 
 
-	function display_registration_form() {
-		echo '<form class="form-signin">
+	function display_registration_form($display_button=false, $display_packages=false) {
+		if ($display_button) {
+			$button = '<button class="btn btn-lg btn-primary btn-block" type="submit">Continue</button>';
+		} else {
+			// $button = 'sdklf';
+			$button = $this->display_packages();
+		}
+		echo '<form class="form-signin registration-form-ajax">
 			<h2 class="form-signin-heading">Create Your Account</h2>
 			<div class="login-results"></div>
 			<label for="user_name" class="sr-only">Username</label>
@@ -1648,14 +1654,36 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 			<input type="email" name="user_email" id="user_email" class="form-control-login" placeholder="Enter Email Address.." required autocomplete="off" autofocus>
 			<label for="user_password" class="sr-only">Password</label>
 			<input type="password" name="user_password" id="user_password" class="form-control-login" placeholder="Enter Password.." required autocomplete="off">
-			<div class="checkbox">
-				<label>
-					<input type="checkbox" value="remember-me"> Remember me
-				</label>
-			</div>
-			<input type="hidden" name="user_type" value="trial" id="user_type">
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Create Account</button>
+			<input type="hidden" name="user_type" value="notset" id="user_type">
+			'.$button.'
 		</form>';
+	}
+
+
+	function display_packages() {
+		return '<br><br>
+		<div class="form-signin">
+			<h2 class="form-signin-heading">Account Type</h2>
+			<div class="row">
+				<div class="col-md-6 account-type-panel">
+					<div class="panel" data-package="sub">
+						<h4>Basic</h4>
+						<p class="price">$10</p>
+						<p class="price-subtitle">/per month</p>
+					</div>
+				</div>
+				<div class="col-md-6 account-type-panel">
+					<div class="panel" data-package="basic">
+						<h4>Exclusive</h4>
+						<p class="price">$60</p>
+						<p class="price-subtitle">/per month</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<button class="btn btn-primary pay-with-paypal disabled" href="#" type="submit">Pay with PayPal</button>
+			</div>
+		</div>';
 	}
 
 

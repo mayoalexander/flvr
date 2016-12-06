@@ -101,7 +101,7 @@ body {
 	text-align: center;
 	background-position: center center;
 	background-size: cover;
-	background-image: url("http://freelabel.net/dev/storage/app/media/pexels-photo-87351.jpeg");
+	background-image: url("http://freelabel.net/view/storage/app/media/pexels-photo-87351.jpeg");
 	.background-tint {
 	    background: rgba(0,0,0,0.5);
 	    padding-top: 10em;
@@ -115,6 +115,44 @@ body {
 		list-style-type:none;
 	}	
 } 
+
+/* REGISTRATION PAGE */
+.account-type-panel {
+	border:2px solid transparent;
+	.panel {
+		cursor:pointer;
+		border:2px solid transparent;
+	}
+	.price {
+		font-size:3em;
+		font-weight: bolder;
+	}
+	.price-subtitle {
+		font-size:0.8em;
+	}
+	.active {
+		border:2px solid $brand_red;
+	}
+}
+
+
+
+
+/* FORMS */
+.form-control-login {
+	background: transparent;
+    outline: none;
+    box-shadow: none;
+    border-left: 2px transparent solid;
+    transition: all 1s;
+	font-size: 1.5em;
+	padding:0.5em;
+	width:100%;
+	border:2px solid transparent;
+}
+.form-validation-success {
+	border:2px solid green;
+}
 
 
 

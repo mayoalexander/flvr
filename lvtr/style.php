@@ -93,17 +93,6 @@
 		border-left: 2px <?php echo $site->primary_color; ?> solid;
 		color: <?php echo $site->body_text_light; ?>;
 	}
-	.form-control-login {
-		background: transparent;
-		border: none;
-	    outline: none;
-	    box-shadow: none;
-	    border-left: 2px transparent solid;
-	    transition: all 1s;
-		font-size: 1.5em;
-		padding:0.5em;
-		width:100%;
-	}
 	.container .form-control {
 		font-size: 1.5em;
 		padding: 1em;

@@ -32,7 +32,7 @@
       results = $('.login-results');
       var data = elem.serialize();
       var url = siteUrl + 'config/register.php';
-      console.log(data);
+
       $.post(url , data, function(result){
         results.addClass('label');
         results.addClass('label-warning');

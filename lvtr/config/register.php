@@ -9,13 +9,15 @@ $site = new Config();
 */
 
 
+	// $site->debug($_POST['user_type'],1);
 
 
 // check if user exists
 if ($site->check_if_user_exists($_POST)===NULL) {
 	echo $site->create_new_user($_POST);
 	$site->set_session($_POST);
-	echo "<script>window.location.assign('".$site->url."?ctrl=profile');</script>";
+	// echo "<script>window.location.assign('".$site->url."?ctrl=profile');</script>";
+	echo "<script>window.location.assign('http://freelabel.net/confirm/".$_POST['user_type']."');</script>";
 } else {
 	echo 'User already exists, please choose a different username!';
 }

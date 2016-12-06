@@ -517,4 +517,44 @@ function audioPlayer(elem) {
 		});
 
 
+		$('.account-type-panel').click(function(){
+			$('.account-type-panel .panel').removeClass('active');
+			var packageWrap = $(this).find('.panel');
+			var url = "http://freelabel.net/confirm/" + packageWrap.attr('data-package');
+			var payPalButton = $('.pay-with-paypal');
+			console.log(payPalButton);
+			packageWrap.addClass('active');
+			payPalButton.removeClass('disabled');
+			payPalButton.attr('href', url);
+			$('#user_type').val(packageWrap.attr('data-package'));
+		});
+
+
+		$('.pay-with-paypal').click(function(e){
+			e.preventDefault();
+			// save profile via ajax
+			var form = $(this).parent().parent().parent();
+			var data = form.serialize();
+			var action = $(this).parent().parent().attr('action');
+			registerUser('http://freelabel.net/lvtr/', form);
+			// console.log(form);
+			// console.log(data);
+
+			// $.post(url , data, function(result){
+			// 	results.addClass('label');
+			// 	results.addClass('label-warning');
+			// 	results.html(result);
+			// 	// alert(result);
+			// });
+
+			return;
+			window.location.assign($(this).attr('href'));
+
+		});
+		// $('.registration-form-ajax input').keyup(function(){
+		// 	$(this).addClass('form-validation-success');
+		// 	console.log('input has changed!');
+		// });
+
+
 
