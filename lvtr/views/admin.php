@@ -22,17 +22,18 @@ $site = new Config();
       </div>
       <div class="admin-nav collapsex">
         <ul class="nav navbar-nav widget-navigation">
-          <li role="presentation" class="active"><a href="#">RSS</a></li>
-          <li role="presentation"><a href="#">Clients</a></li>
-          <li role="presentation"><a href="#">Twitter</a></li>
-          <li role="presentation"><a href="#">Emailer</a></li>
-          <li role="presentation"><a href="#">widgets/submissions</a></li>
-          <li role="presentation"><a href="#">Automation</a></li>
-          <li role="presentation"><a href="#">Script</a></li>
-          <li role="presentation"><a href="#">SOM</a></li>
-          <li role="presentation"><a href="#">Leads</a></li>
-          <li role="presentation"><a href="#">Analytics</a></li>
-          <li role="presentation"><a href="#">October</a></li>
+          <li><a href="#" data-page="RSS">RSS</a></li>
+          <li><a href="#" data-page="Clients">Clients</a></li>
+          <li><a href="#" data-page="Twitter">Twitter</a></li>
+          <li><a href="#" data-page="Emailer">Emailer</a></li>
+          <li><a href="#" data-page="widgets/submissions">Submissions</a></li>
+          <li><a href="#" data-page="Automation">Automation</a></li>
+          <li><a href="#" data-page="Script">Script</a></li>
+          <li><a href="#" data-page="SOM">SOM</a></li>
+          <li><a href="#" data-page="Leads">Leads</a></li>
+          <li><a href="#" data-page="Analytics">Analytics</a></li>
+          <li><a href="#" data-page="October">October</a></li>
+          <li><a href="#" data-page="Promos">Promos</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>

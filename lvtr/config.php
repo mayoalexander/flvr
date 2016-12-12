@@ -889,6 +889,52 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 	}
 
 
+	function display_client_list($user_profiles) {
+		if ($user_profiles) {
+				echo '<p class="userlist-item row page-header">';
+					echo '<span class="col-md-1 col-sm-3">Photo</span>';
+					echo '<span class="col-md-2 col-sm-3">Username</span>';
+					echo '<span class="col-md-2 col-sm-3 text-muted">Date Created</span>';
+					echo '<span class="col-md-1 col-sm-3 text-muted">Media Uploaded</span>';
+					echo '<span class="col-md-2 col-sm-3 text-muted">Contact</span>';
+					echo '<span class="col-md-2 col-sm-3 text-muted">Location</span>';
+					echo '<span class="col-md-2 col-sm-3 text-muted">Controls</span>';
+					// echo '<i class="fa fa-ellipsis-h pull-right view-details" data-user='.$profile['id'].'></i>';
+				echo '</p>';
+			foreach ($user_profiles as $key => $profile) {
+				// $profile['user_name'] = $profile['id'];
+				if (!$this->get_user_media($profile['id'])=='') {
+					$media_status = '<i class="fa fa-check text-success"></i>';
+				} else {
+					$media_status = '<i class="fa fa-close text-danger"></i>';
+				}
+				echo '<article class="userlist-item row list-group-item">';
+					echo '<span class="col-md-1 col-sm-3"><img src="'.$profile['photo'].'"/></span>';
+					echo '<span class="col-md-2 col-sm-3"><a href="'.$this->get_user_url($profile).'" target="_blank">'.$profile['user_name'].'</a></span>';
+					echo '<span class="col-md-2 col-sm-3 text-muted">'.$this->get_time_ago(strtotime($profile['date_created'])).'</span>';
+					echo '<span class="col-md-1 col-sm-3 text-muted">'.$media_status.'</span>';
+					echo '<span class="col-md-2 col-sm-3 text-muted">'.$profile['user_id'].'</span>';
+					echo '<span class="col-md-2 col-sm-3 text-muted">'.$profile['user_name'].'</span>';
+					echo '<span class="col-md-2 col-sm-3 text-muted dropdown">
+							<div class="dropdown">
+							  <button class="btn btn-primary btn-block dropdown-toggle pull-right" type="button" data-toggle="dropdown" data-user='.$profile['id'].'> Options
+							  <span class="caret"></span></button>
+							  <ul class="dropdown-menu">
+							    '.$this->display_client_controls($profile).'
+							  </ul>
+							</div>
+					</span>';
+				echo '</article>';
+			}
+		} else {
+				echo '<p class="userlist-item">';
+					echo '<p>You have no friends! :(</p>';
+					// echo '<i class="fa fa-ellipsis-h pull-right"></i>';
+				echo '</p>';
+		}
+	}
+
+
 
 	function display_leads($leads) {
 		if ($leads) {
@@ -971,6 +1017,24 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 
 
 
+	function get_all_promos() {
+		require(ROOT.'config/connection-october.php');
+		$query = "SELECT * FROM `freelabel_freelabel_` ORDER BY `id` DESC LIMIT 100";
+		$result = mysqli_query($con,$query);
+		if (mysqli_num_rows($result)===0) {
+			echo "Uh oh, there was no posts found!";
+			exit;
+		} else {
+			while ($row = mysqli_fetch_assoc($result)) {
+				$posts[] = $row;
+			}
+		}
+	    mysqli_close($con);
+		return $posts;
+	}
+
+
+
 	function get_leads($date_param=NULL) {
 		require(ROOT.'config/connection.php');
 		$dp = '';
@@ -1032,7 +1096,26 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 		return $leads;
 	}
 
+
 	
+
+	function get_all_clients($table, $db_page=0) {
+		require(ROOT.'config/connection.php');
+$query = "SELECT *
+FROM users ORDER BY user_id DESC LIMIT 100";
+		$result = mysqli_query($con,$query);
+		if (mysqli_num_rows($result)===0) {
+			echo "Uh oh, there was no users found!";
+			exit;
+		} else {
+			while ($row = mysqli_fetch_assoc($result)) {
+				$users[] = $row;
+			}
+		}
+	    mysqli_close($con);
+		return $users;
+	}
+
 
 	function get_all_users($table, $db_page=0) {
 		require(ROOT.'config/connection.php');
@@ -1192,9 +1275,10 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 		$query = "INSERT INTO users (user_name, user_email, user_password)
 		VALUES ('$user_name', '$user_email', '$user_password')";
 		if ($result = mysqli_query($con,$query)) {
-		    $res = "New User Created! Proceed to create profile";
+		    $res = true;
 		} else {
-		    $res = "Error: " . $sql . "<br>" . mysqli_error($con);
+		    echo "Error: " . $sql . "<br>" . mysqli_error($con);
+		    $res = false;
 		}
 	    mysqli_close($con);
 		return $res;
@@ -1787,6 +1871,7 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 	}
 
 
+
 	public function getTwitpicURL($post, $key=0) {
 
 		$_GET['a']  = 'uploadmedia';
@@ -1805,39 +1890,49 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 
 
 
-	public function sendMail($emailToSendTo, $trackname, $twittername, $trackmp3, $photo , $phone) {
+	public function sendMail($emailToSendTo, $subject, $content) {
 
 
-		include(ROOT.'mailer/PHPMailerAutoload.php');
+		// include(ROOT.'vendor/phpmailer/PHPMailerAutoload.php');
+		include('/home/freelabelnet/public_html/vendor/phpmailer/phpmailer/PHPMailerAutoload.php');
+		// include('/home/freelabelnet/public_html/vendor/phpmailer/autoloader.php');
 		$mail_message_body = '
 		<html>
 			<head>
-				<link rel="stylesheet" type="text/css" href="http://freelabel.net/css/normalize.css">
-			  	<link rel="stylesheet" type="text/css" href="http://freelabel.net/bootstrap-3.3.4/dist/css/bootstrap.css"> 
-			  	<link rel="stylesheet" type="text/css" href="http://freelabel.net/bootstrap-3.3.4/dist/css/bootstrap-theme.min.css">
-			  	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-			  	<link rel="stylesheet" type="text/css" href="http://freelabel.net/css/bootstrap-social/bootstrap-social.css">
-			  	<link rel="stylesheet" type="text/css" href="http://freelabel.net/css/style.css">
+
+				<style>
+					html,body {
+						background-color:#101010;
+					}
+					h1, h2, h3, h4, h5, h6 {
+						color:#FE3F44;
+					}
+					body {
+						width:600px;
+						margin:2em auto;
+						color:#e3e3e3;
+						background-color:#101010;
+					}
+					hr {
+						border:transparent;
+					}
+				</style>
 			</head>
 
 			<body>
 				<header>
-					<img src="http://freelabel.net/images/fllogo.png" style="width:200px;display:block;margin:auto;">
+					<img src="http://freelabel.net/lvtr/img/fllogo.png" style="width:180px;display:block;margin:auto;">
 				</header>
 				<hr>
-				<img src="'.$photo.'" style="width:100%;display:block;margin:auto;">
-				<h1>[NEW] "'.$trackname.'" - '.$twittername.'</h1>
-				<h3>Your music has been successfully added to the FREELABEL library. <a href="http://freelabel.net/'.$twittername.'" class="btn btn-primary btn-success">View Now</a></h3>
-				<p>For stats, booking single, project releases, or interviews, you will need to proceed with creating an account at FREELABEL. <a href="http://freelabel.net/" class="btn btn-primary btn-success">Create An Account</a></p>
+				<div class="container">
+					'.$content.'
+				</div>
+
 			</body>
-			<details>
-				<p>Phone: '.$phone.'<p>
-				<p>Twitter: '.$twittername.'<p>
-			</details>
-			<hr>
 			<footer>
-				FREELABEL Staff<br>
-				info@freelabel.net<br>
+				<strong>FREELABEL NETWORKS</strong><br>
+				FREELABEL.net<br>
+				admin@freelabel.net<br>
 				(347)-994-0267
 			</footer>
 		</html>';
@@ -1847,29 +1942,32 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 		// Set PHPMailer to use the sendmail transport
 		$mail->isSendmail();
 		//Set who the message is to be sent from
-		$mail->setFrom('info@freelabel.net', 'FREELABEL SUBMISSIONS');
+		$mail->setFrom('info@freelabel.net', 'FREELABEL');
 		//Set an alternative reply-to address
-		$mail->addReplyTo('replyto@freelabel.com', 'FREELABEL SUBMISSIONS');
+		$mail->addReplyTo('replyto@freelabel.com', 'FREELABEL');
 		//Set who the message is to be sent to
-		$mail->addAddress($emailToSendTo, 'ARTIST: '.$twittername);
+		$mail->addAddress($emailToSendTo);
 		//Set the subject line
-		$mail->Subject = $twittername.' - "'.$trackname.'" was Added to FREELABEL!';
-		$mail->AddBCC('notifications@freelabel.net', $name = "FL Staff");
+		$mail->Subject = $subject;
+		$mail->AddBCC('mayoalexandertd@icloud.com', $name = "FL Staff");
+		// $mail->AddBCC('admin@freelabel.net', $name = "FL Staff");
 		//Read an HTML message body from an external file, convert referenced images to embedded,
 		//convert HTML into a basic plain-text alternative body
 		$mail->msgHTML($mail_message_body);
 		//Replace the plain text body with one created manually
 		$mail->AltBody = 'This is a plain-text message body';
 		//Attach the uploaded file
-		$mail->addAttachment($trackmp3);
+		// $mail->addAttachment($trackmp3);
 
 		//send the message, check for errors
 		if (!$mail->send()) {
-			$result=true;
+			$result=false;
 		    echo "Mailer Error: " . $mail->ErrorInfo;
 		} else {
-			$result=false;
-		    //echo "Message sent to ".$emailToSendTo;
+			$result=true;
+		    // echo "Message sent to ".$emailToSendTo;
+		    // echo '<hr>';
+		    // echo $mail_message_body;
 		}
 		return $result;
 

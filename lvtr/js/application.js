@@ -89,7 +89,11 @@
 
      function getPageData(tabName) {
       if (tabName==undefined || tabName=='session') {
-        loadPage('home');
+        // loadPage('home');
+        var url = 'http://freelabel.net/lvtr/views/home.php';
+        $.get(url, function(data){
+          $('.data-container').html(data);
+        });
         return;
       }
       loadPage(tabName);
@@ -122,7 +126,8 @@
 
 
     function openWidget(elem, siteURL){
-      var d = elem.text();
+      var d = elem.attr('data-page');
+      // alert(d);
       var url = siteURL + 'views/' + d.toLowerCase() + '.php';
       var wrapper = $('.widget-container');
       // please wait

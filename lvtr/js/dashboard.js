@@ -517,6 +517,17 @@ function audioPlayer(elem) {
 		});
 
 
+
+		// /* WIDGET NAV */
+		// $('.widget-navigation a').click(function(e){
+		//     $('.widget-navigation a').parent().removeClass('active');
+		//     $(this).parent().addClass('active');
+		//     e.preventDefault();
+		//     openWidget($(this), 'http://freelabel.net/lvtr/');
+		// });
+
+
+
 		$('.account-type-panel').click(function(){
 			$('.account-type-panel .panel').removeClass('active');
 			var packageWrap = $(this).find('.panel');
