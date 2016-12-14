@@ -35,6 +35,24 @@ function hiddenInput($key , $value) {
 	echo "<input type='hidden' class='form-control' name='".$key."' value='".$value."' >";
 }
 
+
+function dropdown($key , $value) {
+
+	if (strtolower($value)==='public') {
+		$opposite = 'private';
+	} else {
+		$opposite = 'public';
+	}
+	echo "<select class='form-control' name='".$key."'>
+
+	<option value='".$value."'>".$value."</option>
+	<option value='".$opposite."'>".$opposite."</option>
+	</select>
+
+
+	";
+}
+
 function displayInputGroup($post) {
 	/* LOAD CONFIGURATION APP */
 	foreach ($post as $key => $value) {
@@ -53,6 +71,9 @@ function displayInputGroup($post) {
 				break;
 			case 'desc':
 				textInput($key , $value);
+				break;
+			case 'status':
+				dropdown($key , $value);
 				break;
 			// case 'photo':
 			// 	echo 'photo!: '.$value;
