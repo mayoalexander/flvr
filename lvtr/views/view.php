@@ -114,7 +114,13 @@ if ($profile==NULL) {
 						foreach ($media1 as $value) {
 							array_push($media, $value);
 						}
-						echo $site->display_media_grid($media);
+
+						foreach ($media as $key => $value) {
+							// echo '<pre>';
+							$posts[$value['id']] = $value;
+							// echo $value.'<br>';
+						}
+						echo $site->display_media_grid($posts);
 					} else {
 						echo $profile['name'].' has not uploaded any new music yet!';
 					}

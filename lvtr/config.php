@@ -144,7 +144,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 
 		$build='';
 		foreach ($nav as $link) {
-			$build .= '<li class="navi_button"><a href="#">'.$link.'</a></li>';
+			$build .= '<li class="nav-item navi_button"><a class="nav-link" href="#">'.$link.'</a></li>';
 		}
 		return $build;
 	}
@@ -640,13 +640,13 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 
 	function display_social_links($profile) {
 		if ($profile['twitter']!=='') {
-			echo '<p><a href="http://twitter.com/'.$profile['twitter'].'"><i class="fa fa-twitter"></i> '.$profile['twitter'].'</a></p>';
+			echo '<p><a href="http://twitter.com/'.$profile['twitter'].'" target="_blank"><i class="fa fa-twitter"></i> '.$profile['twitter'].'</a></p>';
 		}
 		if ($profile['instagram']!=='') {
-			echo '<p><a href="http://instagram.com/'.$profile['instagram'].'"><i class="fa fa-instagram"></i> '.$profile['instagram'].'</a></p>';
+			echo '<p><a href="http://instagram.com/'.$profile['instagram'].'" target="_blank"><i class="fa fa-instagram"></i> '.$profile['instagram'].'</a></p>';
 		}
 		if (trim($profile['facebook'])!=='') {
-			echo '<p><a href="http://facebook.com/'.$profile['facebook'].'"><i class="fa fa-facebook"></i> '.$profile['facebook'].'</a></p>';
+			echo '<p><a href="http://facebook.com/'.$profile['facebook'].'" target="_blank"><i class="fa fa-facebook"></i> '.$profile['facebook'].'</a></p>';
 		}
 
 	}
