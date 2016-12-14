@@ -115,6 +115,7 @@ body {
   background-color: transparent;
   color: red; }
 
+/* NAVIGATION BAR */
 .nav > li > a:hover,
 .nav > li > a:focus,
 .nav-tabs > li > a:hover,
@@ -123,6 +124,15 @@ body {
 .nav-tabs > li.active > a:focus {
   background-color: transparent;
   border-color: transparent; }
+
+.dropdown-menu li a {
+  color: #e3e3e3; }
+  .dropdown-menu li a:hover {
+    background-color: transparent;
+    color: #FE3F44; }
+  .dropdown-menu li a:focus {
+    background-color: #FE3F44;
+    color: #303030; }
 
 /* BUTTONS */
 .btn {

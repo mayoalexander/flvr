@@ -1,0 +1,30 @@
+@import url(https://fonts.googleapis.com/css?family=PT+Sans);
+* {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'PT Sans', sans-serif; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold; }
+
+p, h1, h2, h3, h4, h5, h6, i {
+  color: #414A52; }
+
+.cover {
+  text-align: center; }
+  .cover i {
+    font-size: 5em; }
+  .cover div, .cover p, .cover button {
+    margin-bottom: 10em; }
+  .cover p {
+    font-size: 1.5em; }
+
+.toolbar h1, .toolbar p {
+  color: #e3e3e3; }
+
+.login-results {
+  text-align: center;
+  padding: 1em; }
+
+/*# sourceMappingURL=input.css.map */

@@ -1,5 +1,6 @@
 $brand_red:#FE3F44;
 $brand_grey_light:#303030;
+$brand_grey_dark:#303030;
 $brand_black:rgba(0, 0, 0, 0.41);
 $brand_bg_color:#101010;
 $brand_body_text_light:#e3e3e3;
@@ -165,6 +166,7 @@ body {
 
 
 
+/* NAVIGATION BAR */
 .nav > li > a:hover, 
 .nav > li > a:focus,
 .nav-tabs > li > a:hover,
@@ -174,6 +176,22 @@ body {
 	background-color:transparent;
 	border-color:transparent;
 }
+.dropdown-menu  {
+	li a {
+		color:$brand_body_text_light;
+		&:hover {
+			background-color:transparent;
+			color:$brand_red;
+		}
+		&:focus {
+			background-color:$brand_red;
+			color:$brand_grey_dark;
+		}
+	}
+}
+
+
+
 
 
 /* BUTTONS */
