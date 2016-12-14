@@ -339,11 +339,17 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 
 
 	function display_post_options_button($post, $user_name_session=NULL) {
+		$logged_in_only_buttons='';
 		if (isset($user_name_session) && trim($user_name_session)==trim($post['user_name']) || $user_name_session=='admin') {
+
+			/* DISPLAY LIKE, FAV, DELETE, AND EDIT */
 			$user_owned_buttons = $this->display_delete_button($post);
 			$user_owned_buttons .= $this->display_edit_button($post);
+			$logged_in_only_buttons .= $this->display_post_functions($post,$user_name_session);
 			
 		} elseif (isset($user_name_session)) {
+			
+			/* DISPLAY LIKE, FAV, DELETE, AND EDIT */
 			$logged_in_only_buttons .= $this->display_post_functions($post,$user_name_session);
 		} else {
 			$delete_button = '';
