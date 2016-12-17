@@ -2,12 +2,14 @@
 include_once('../config.php');
 $site = new Config();
 
+
+
 $promos = $site->get_all_promos('users');
 // $site->debug($promos,1);
 ?>
 
 <section class="container">
-	<h1 class="page-header">Promos</h1>
+	<h1 class="page-header">Events</h1>
 	<div class="clients list-group">
 		<?php $site->display_promos_grid($promos); ?>
 	</div>

@@ -1,17 +1,22 @@
 <?php
 include_once('../config.php');
 $site = new Config();
+/*
+	this page is used by the dashboard search in views/dasbhoard.php
+*/
 
-$promos = $site->get_all_promos('users');
-// $site->debug($promos,1);
+if ($_POST['source']=='dashboard') {
+	// echo "show private tracks";
+}
+// $posts = $site->get_user_media('admin', $_POST['page']);
+$posts = $site->get_explore_posts($_SESSION['user_name'], $_POST['page']);
+// $posts = $site->get_user_liked('admin');
+
 ?>
-
-<section class="container">
-	<h1 class="page-header">Promos</h1>
-	<div class="clients list-group">
-		<?php $site->display_media_grid($promos); ?>
+<div class="container">
+	<h1 class="page-header">Magazine</h1>
+	<div>
+		<?php $site->display_media_grid($posts, $_SESSION['user_name'], $_POST['page']); ?>
 	</div>
-</section>
-
-
-<script type="text/javascript" src="<?php echo $site->url; ?>/js/dashboard.js"></script>
+</div>
+<script type="text/javascript" src="<?php echo $site->url ?>js/dashboard.js"></script>
