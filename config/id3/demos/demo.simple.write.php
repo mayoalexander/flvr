@@ -15,16 +15,6 @@
 
 //die('Due to a security issue, this demo has been disabled. It can be enabled by removing line '.__LINE__.' in '.$_SERVER['PHP_SELF']);
 
-$TextEncoding = 'UTF-8';
-
-require_once('../getid3/getid3.php');
-// Initialize getID3 engine
-$getID3 = new getID3;
-$getID3->setOption(array('encoding'=>$TextEncoding));
-
-require_once('../getid3/write.php');
-// Initialize getID3 tag-writing module
-$tagwriter = new getid3_writetags;
 
 function fixGetURL($url) {
 	// $url = urldecode($url);
@@ -37,11 +27,24 @@ if ($_GET['mp3']!=='') {
 	echo 'No Data Sent!';
 	exit;
 }
-$tagwriter->filename = $mp3;
-//$tagwriter->filename = '../../../upload/server/php/files/Akobi_%20First%20Born%20S%20%28u%29%20n%20%281%29.mp3';
-//$tagwriter->filename = '/kunden/homepages/0/d643120834/htdocs/upload/server/php/files/Akobi_%20First%20Born%20S%20%28u%29%20n%20%281%29.mp3';
-//$tagwriter->filename = '/kunden/homepages/0/d643120834/htdocs/upload/server/php/files/nevercall.mp3';
 
+
+
+
+
+$TextEncoding = 'UTF-8';
+
+require_once('/home/freelabelnet/public_html/config/id3/getid3/getid3.php');
+// Initialize getID3 engine
+$getID3 = new getID3;
+$getID3->setOption(array('encoding'=>$TextEncoding));
+
+require_once('/home/freelabelnet/public_html/config/id3/getid3/write.php');
+// Initialize getID3 tag-writing module
+$tagwriter = new getid3_writetags;
+
+
+$tagwriter->filename = $mp3;
 
 
 $tagwriter->tagformats = array('id3v1');

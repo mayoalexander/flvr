@@ -76,6 +76,14 @@ class Upload extends Config
 
 
 
+			/* UPDATE ID3 TAGS */
+			if (true) {
+				$filedata['trackmp3'] = $file;
+				$filedata['twitter'] = $twitter;
+				$filedata['blogtitle'] = $title[$key];
+				$this->updateId3Tags($filedata);
+			}
+
 			/* UPLOAD TO RADIO - add button for later */
 			if (true) {
 				$filedata['trackmp3'] = $file;

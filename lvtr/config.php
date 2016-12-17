@@ -2022,6 +2022,66 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 
 
 
+	function fixUrlToPath($url) {
+		// $url = urldecode($url);
+		$mp3 = str_replace('http://freelabel.net/', '/home/freelabelnet/public_html/', $url);
+		return $mp3;
+	}
+
+	public function updateId3Tags($filedata) {
+		
+
+		$TextEncoding = 'UTF-8';
+
+		require_once('/home/freelabelnet/public_html/config/id3/getid3/getid3.php');
+		// Initialize getID3 engine
+		$getID3 = new getID3;
+		$getID3->setOption(array('encoding'=>$TextEncoding));
+
+		require_once('/home/freelabelnet/public_html/config/id3/getid3/write.php');
+		// Initialize getID3 tag-writing module
+		$tagwriter = new getid3_writetags;
+
+
+		$tagwriter->filename = $this->fixUrlToPath($filedata['trackmp3']);
+
+
+		$tagwriter->tagformats = array('id3v1');
+		//$tagwriter->tagformats = array('id3v2.3');
+
+		// set various options (optional)
+		$tagwriter->overwrite_tags    = true;  // if true will erase existing tag data and write only passed data; if false will merge passed data with existing tag data (experimental)
+		$tagwriter->remove_other_tags = false; // if true removes other tag formats (e.g. ID3v1, ID3v2, APE, Lyrics3, etc) that may be present in the file and only write the specified tag format(s). If false leaves any unspecified tag formats as-is.
+		$tagwriter->tag_encoding      = $TextEncoding;
+		$tagwriter->remove_other_tags = true;
+
+		// populate data array
+		$TagData = array(
+			'title'         => array($filedata['blogtitle']),
+			'artist'        => array($filedata['twitter']),
+			'album'         => array('FREELABEL PRESENTS: '.$_GET['twitter']),
+			'year'          => array('2017'),
+			'genre'         => array('Good Music'),
+			'comment'       => array('All New Music @ FREELABEL.net'),
+			//'track'         => array('01/10'),
+			'popularimeter' => array('email'=>'admin@freelabel.net', 'rating'=>128, 'data'=>0),
+		);
+		$tagwriter->tag_data = $TagData;
+
+		// write tags
+		if ($tagwriter->WriteTags()) {
+			echo 'Success! ';
+			// print_r($_GET);
+			if (!empty($tagwriter->warnings)) {
+				echo 'There were some warnings:<br>'.implode('<br><br>', $tagwriter->warnings);
+			}
+		} else {
+			echo 'Failed to write tags!<br>'.implode('<br><br>', $tagwriter->errors);
+		}
+		
+	}
+
+
 	public function sendMail($emailToSendTo, $subject, $content) {
 
 
