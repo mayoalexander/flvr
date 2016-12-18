@@ -84,6 +84,7 @@ class Upload extends Config
 				$this->updateId3Tags($filedata);
 			}
 
+
 			/* UPLOAD TO RADIO - add button for later */
 			if (true) {
 				$filedata['trackmp3'] = $file;
@@ -91,7 +92,6 @@ class Upload extends Config
 				$filedata['blogtitle'] = $title[$key];
 				$this->uploadToRadio($filedata);
 			}
-			
 			
 
 
@@ -121,4 +121,4 @@ $status = $upload->create_new_post();
 if ($status) {
 	echo $upload->postTotwitter();
 }
-echo $status;
+// echo $status;

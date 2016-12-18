@@ -1,0 +1,78 @@
+title = "Pricing"
+url = "/pricing"
+layout = "freelabel400"
+is_hidden = 0
+
+[builderList]
+modelClass = "Freelabel\Freelabel\Models\Packages"
+scope = "-"
+displayColumn = "name"
+noRecordsMessage = "No records found"
+detailsPage = "pricing/detail"
+detailsKeyColumn = "name"
+detailsUrlParameter = "slug"
+pageNumber = "{{ :page }}"
+==
+{% set records = builderList.records %}
+{% set displayColumn = builderList.displayColumn %}
+{% set noRecordsMessage = builderList.noRecordsMessage %}
+{% set detailsPage = builderList.detailsPage %}
+{% set detailsKeyColumn = builderList.detailsKeyColumn %}
+{% set detailsUrlParameter = builderList.detailsUrlParameter %}
+
+{% content 'hero/slider' %}
+
+<div class="container pricing-list">
+    <h1 class="page-header">Pricing</h1>
+        
+        
+    {% for record in records %}
+    
+        <div class="row">
+            <div class="col-md-7">
+                {% if detailsPage %}
+                    <a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}">
+                {% endif %}
+                
+                {% if record.photo %}
+                    <img class="img-responsive" src="http://freelabel.net/view/storage/app/media/{{ record.photo }}" alt="">
+                {% else %}
+                    <img class="img-responsive" src="http://placehold.it/700x300" alt="">
+                {% endif %}
+                
+                    
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3>{{ attribute(record, displayColumn) }}</h3>
+                <h4>{{ record.subtitle }}</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
+                <a class="btn btn-primary" href="{{ record.url }}" target="_blank">Start {{ record.name }}</a>
+                <a class="btn btn-default" href="{{ record.url }}" target="_blank">More Info<span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+    {% else %}
+        <li class="no-data">{{ noRecordsMessage }}</li>
+    {% endfor %}
+        
+        
+{% if records.lastPage > 1 %}
+    <ul class="pagination">
+        {% if records.currentPage > 1 %}
+            <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage-1) }) }}">&larr; Prev</a></li>
+        {% endif %}
+
+        {% for page in 1..records.lastPage %}
+            <li class="{{ records.currentPage == page ? 'active' : null }}">
+                <a href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
+            </li>
+        {% endfor %}
+
+        {% if records.lastPage > records.currentPage %}
+            <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage+1) }) }}">Next &rarr;</a></li>
+        {% endif %}
+    </ul>
+{% endif %}
+
+
+</div>

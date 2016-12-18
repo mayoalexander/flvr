@@ -1,5 +1,21 @@
 title = "Login"
 url = "/login"
-layout = "flmain"
+layout = "freelabel400"
 is_hidden = 0
 ==
+<div class="container">
+	<form class="form-signin" style="max-width: 350px;margin:auto;">
+		<h2 class="form-signin-heading">Login</h2>
+		<div class="login-results"></div>
+		<label for="user_name" class="sr-only">Username</label>
+		<input type="text" id="user_name" class="form-control" placeholder="Enter Username.." name="user_name" required="" autofocus="">
+		<label for="user_password" class="sr-only">Password</label>
+		<input id="user_password" class="form-control-login" name="user_password" placeholder="Enter Password.." type="password" required="">
+		<div class="checkbox hidden">
+			<label>
+				<input type="checkbox" value="remember-me"> Remember me
+			</label>
+		</div>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+	</form>
+</div>

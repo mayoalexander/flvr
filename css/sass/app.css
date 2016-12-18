@@ -1,0 +1,185 @@
+/* GOOGLE FONTS */
+@import url("https://fonts.googleapis.com/css?family=Abel|Fjalla+One|Open+Sans+Condensed:300|Raleway");
+body, html {
+  background-color: #101010;
+  color: #676767;
+  font-family: sans-serif;
+  margin: 0; }
+
+body {
+  font-family: "Abel"; }
+  body h1, body h2, body .jumbotron h1 {
+    color: #FE3F44; }
+  body hr {
+    border-color: #303030; }
+
+a {
+  color: #FE3F44;
+  transition: opacity 1s; }
+  a:hover {
+    text-decoration: none;
+    color: #e3e3e3; }
+
+.jumbotron,
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th,
+.img-thumbnail,
+.panel,
+.well,
+.progress,
+.thumbnail {
+  background-color: rgba(64, 64, 64, 0.21); }
+
+.thumbnail {
+  overflow: hidden;
+  border: none;
+  border-right: 1px solid rgba(0, 0, 0, 0.41);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.41); }
+  .thumbnail .caption {
+    color: #e3e3e3; }
+    .thumbnail .caption p {
+      z-index: 1000; }
+  .thumbnail img {
+    transform: scale(1.03);
+    transition: transform 0.5s; }
+  .thumbnail img:hover {
+    transform: scale(1.13); }
+
+.page-header,
+.table th,
+.list-group-item,
+.well,
+.table > thead > tr > th, .table > tbody > tr > th,
+.table > tfoot > tr > th, .table > thead > tr > td,
+.table > tbody > tr > td, .table > tfoot > tr > td {
+  border-color: rgba(64, 64, 64, 0.21); }
+
+.navbar-brand img {
+  width: 40px;
+  display: inline-block;
+  position: relative;
+  bottom: 10px; }
+.navbar-brand span {
+  position: relative;
+  bottom: 1px;
+  font-size: 2em; }
+
+.navbar-default {
+  background-color: #303030;
+  border: #101010; }
+
+.navbar-inverse {
+  background-color: rgba(0, 0, 0, 0.85);
+  border: #101010;
+  border-bottom: 3px solid #FE3F44;
+  border-radius: 0; }
+  .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
+    color: #e3e3e3; }
+
+.btn, .input-group-addon, .form-control, .label, .nav-pills > li > a, .nav-tabs > li > a, .navbar, .alert, .progress, .panel, .well {
+  border-radius: 2.5px; }
+
+.list-group-item:first-child {
+  border-top-left-radius: 2.5px;
+  border-top-right-radius: 2.5px; }
+
+.list-group-item:last-child {
+  margin-bottom: 0;
+  border-bottom-right-radius: 2.5px;
+  border-bottom-left-radius: 2.5px; }
+
+.header_banner {
+  background-color: #303030;
+  height: 94vh;
+  text-align: center;
+  background-position: center center;
+  background-size: cover;
+  background-image: url("http://freelabel.net/view/storage/app/media/pexels-photo-87351.jpeg"); }
+  .header_banner .background-tint {
+    background: rgba(0, 0, 0, 0.5);
+    padding-top: 10em;
+    height: inherit; }
+
+.projects {
+  padding: 0; }
+  .projects li {
+    list-style-type: none; }
+
+/* REGISTRATION PAGE */
+.account-type-panel {
+  border: 2px solid transparent; }
+  .account-type-panel .panel {
+    cursor: pointer;
+    border: 2px solid transparent; }
+  .account-type-panel .price {
+    font-size: 3em;
+    font-weight: bolder; }
+  .account-type-panel .price-subtitle {
+    font-size: 0.8em; }
+  .account-type-panel .active {
+    border: 2px solid #FE3F44; }
+
+.pricing-list .row {
+  padding: 2em; }
+
+/* FORMS */
+.form-control-login,
+.edit input {
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+  border-left: 2px transparent solid;
+  transition: all 1s;
+  font-size: 1.5em;
+  padding: 0.5em;
+  width: 100%;
+  border: 2px solid transparent; }
+
+.form-validation-success {
+  border: 2px solid green; }
+
+.form-control {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-radius: 0px;
+  box-shadow: none;
+  border-left: 2px transparent solid;
+  transition: all 1s;
+  font-size: 1.5em;
+  padding: 1em; }
+  .form-control:focus {
+    border-left: 2px #FE3F44 solid;
+    color: #e3e3e3; }
+
+.edit input {
+  background-color: transparent;
+  color: red; }
+
+/* NAVIGATION BAR */
+.nav > li > a:hover,
+.nav > li > a:focus,
+.nav-tabs > li > a:hover,
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  background-color: transparent;
+  border-color: transparent; }
+
+.dropdown-menu li a {
+  color: #e3e3e3; }
+  .dropdown-menu li a:hover {
+    background-color: transparent;
+    color: #FE3F44; }
+  .dropdown-menu li a:focus {
+    background-color: #FE3F44;
+    color: #303030; }
+
+/* BUTTONS */
+.btn {
+  transition: all 0.3s; }
+
+.btn:hover {
+  border: 1px solid rgba(64, 64, 64, 0.21); }
+
+/*# sourceMappingURL=app.css.map */

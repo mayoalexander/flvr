@@ -2070,7 +2070,7 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 
 		// write tags
 		if ($tagwriter->WriteTags()) {
-			echo 'Success! ';
+			// echo 'Success! ';
 			// print_r($_GET);
 			if (!empty($tagwriter->warnings)) {
 				echo 'There were some warnings:<br>'.implode('<br><br>', $tagwriter->warnings);

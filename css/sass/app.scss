@@ -1,0 +1,280 @@
+$brand_red:#FE3F44;
+$brand_grey_light:#303030;
+$brand_grey_dark:#303030;
+$brand_black_transparent:rgba(0, 0, 0, 0.85);
+$brand_black:rgba(0, 0, 0, 0.41);
+$brand_bg_color:#101010;
+$brand_body_text_light:#e3e3e3;
+$brand_body_text_muted:#676767;
+$brand_toolbar_text_color:#e3e3e3;
+$brand_notifications_color:#00b3ff;
+$brand_panel_color:transparent;
+$brand_well_color:rgba(64, 64, 64, 0.21);
+
+
+$font_family_raleway: 'Raleway';
+$font_family_openSansCondensed: 'Open Sans Condensed';
+$font_family_fjallaOne: 'Fjalla One';
+$font_family_abel: 'Abel';
+
+
+$brand_border_radius:2.5px;
+
+
+/* GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css?family=Abel|Fjalla+One|Open+Sans+Condensed:300|Raleway');
+
+
+
+
+body, html {
+	background-color: $brand_bg_color;
+	color: $brand_body_text_muted;
+	font-family:  sans-serif;
+	margin:0;
+
+}
+
+body {
+	font-family:$font_family_abel;
+	h1, h2, .jumbotron h1 {
+		color:$brand_red;
+	}
+	h1, h2, h3, h4, h5,h6 {
+		// font-family:$font_family_openSansCondensed;
+	}
+	hr {
+		border-color:$brand_grey_dark;
+	}
+}
+
+a {
+	color:$brand_red;
+	transition:opacity 1s;
+	&:hover {
+		// opacity:0.8;
+		text-decoration: none;
+		color:$brand_body_text_light;
+	}
+}
+
+
+
+.jumbotron,
+.table-striped > tbody > tr:nth-child(odd) > td, 
+.table-striped > tbody > tr:nth-child(odd) > th, 
+.img-thumbnail,
+.panel,
+.well,
+.progress,
+.thumbnail {
+	background-color:$brand_well_color;
+}
+
+.thumbnail {
+	overflow:hidden;
+	border:none;
+	border-right:1px solid $brand_black;
+	border-bottom:1px solid $brand_black;
+	.caption {
+		color:#e3e3e3;
+		p {
+			z-index: 1000;
+		}	
+	}
+
+
+	img {
+		transform: scale(1.03);
+		// transform: scale(2);
+		transition:transform 0.5s;
+	}
+	img:hover {
+		transform: scale(1.13);
+		// transform: scale(2.13);
+	}
+}
+.page-header,
+.table th,
+.list-group-item,
+.well,
+.table > thead > tr > th, .table > tbody > tr > th, 
+.table > tfoot > tr > th, .table > thead > tr > td, 
+.table > tbody > tr > td, .table > tfoot > tr > td, {
+	border-color:$brand_well_color;
+}
+
+
+.navbar-brand {
+	img {
+		width:40px;
+		display: inline-block;
+		position:relative;
+		bottom: 10px;
+	}
+	span {
+		position: relative;
+	    bottom: 1px;
+	    font-size: 2em;
+	}
+} 
+
+.navbar-default {
+	background-color:$brand_grey_light;
+	border:$brand_bg_color;
+}
+.navbar-inverse {
+	background-color:$brand_black_transparent;
+	border:$brand_bg_color;
+	border-bottom:3px solid $brand_red;
+	border-radius:0;
+	.navbar-nav>li>a, .navbar-brand {
+		color:#e3e3e3;
+	}
+}
+
+.btn, .input-group-addon, .form-control, .label, .nav-pills>li>a, .nav-tabs>li>a, .navbar, .alert, .progress, .panel, .well {
+  border-radius:$brand_border_radius;
+}
+.list-group-item:first-child {
+  border-top-left-radius: $brand-border-radius;
+  border-top-right-radius: $brand-border-radius;
+}
+.list-group-item:last-child {
+    margin-bottom: 0;
+    border-bottom-right-radius: $brand-border-radius;
+    border-bottom-left-radius: $brand-border-radius;
+}
+
+
+.header_banner {
+	background-color: #303030;
+	height: 94vh;
+	text-align: center;
+	background-position: center center;
+	background-size: cover;
+	background-image: url("http://freelabel.net/view/storage/app/media/pexels-photo-87351.jpeg");
+	.background-tint {
+	    background: rgba(0,0,0,0.5);
+	    padding-top: 10em;
+	    height: inherit;
+	}
+}
+
+.projects {
+	padding:0;
+	li {
+		list-style-type:none;
+	}	
+} 
+
+/* REGISTRATION PAGE */
+.account-type-panel {
+	border:2px solid transparent;
+	.panel {
+		cursor:pointer;
+		border:2px solid transparent;
+	}
+	.price {
+		font-size:3em;
+		font-weight: bolder;
+	}
+	.price-subtitle {
+		font-size:0.8em;
+	}
+	.active {
+		border:2px solid $brand_red;
+	}
+}
+
+
+
+.pricing-list {
+	.row {
+		padding:2em;
+	}
+}
+
+
+
+
+/* FORMS */
+.form-control-login,
+.edit input {
+	background: transparent;
+    outline: none;
+    box-shadow: none;
+    border-left: 2px transparent solid;
+    transition: all 1s;
+	font-size: 1.5em;
+	padding:0.5em;
+	width:100%;
+	border:2px solid transparent;
+}
+.form-validation-success {
+	border:2px solid green;
+}
+
+.form-control {
+	background-color: transparent;
+    border: none;
+    outline: none;
+    border-radius:0px;
+    box-shadow: none;
+    border-left: 2px transparent solid;
+    transition: all 1s;
+	font-size: 1.5em;
+	padding: 1em;
+    &:focus {
+		border-left: 2px #FE3F44 solid;
+		color: #e3e3e3;
+	}
+}
+
+.edit {
+	input {
+		background-color:transparent;
+		color:red;
+	}
+}
+
+
+
+
+/* NAVIGATION BAR */
+.nav > li > a:hover, 
+.nav > li > a:focus,
+.nav-tabs > li > a:hover,
+.nav-tabs > li.active > a, 
+.nav-tabs > li.active > a:hover, 
+.nav-tabs > li.active > a:focus {
+	background-color:transparent;
+	border-color:transparent;
+}
+.dropdown-menu  {
+	li a {
+		color:$brand_body_text_light;
+		&:hover {
+			background-color:transparent;
+			color:$brand_red;
+		}
+		&:focus {
+			background-color:$brand_red;
+			color:$brand_grey_dark;
+		}
+	}
+}
+
+
+
+
+
+/* BUTTONS */
+.btn {
+	transition:all 0.3s;
+}
+.btn:hover {
+	border:1px solid $brand_well_color;
+}
+
+

@@ -1,0 +1,13 @@
+title = "pricing/detail"
+url = "/pricing/package/:slug"
+layout = "freelabel400"
+is_hidden = 0
+
+[builderDetails]
+modelClass = "RainLab\Builder\Models\Settings"
+identifierValue = "{{ :slug }}"
+modelKeyColumn = "name"
+displayColumn = "name"
+notFoundMessage = "Record not found"
+==
+{% component 'builderDetails' %}

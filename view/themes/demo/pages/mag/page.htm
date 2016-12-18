@@ -1,6 +1,5 @@
 title = "Page"
 url = "/mag/:id"
-layout = "fl-dev"
 is_hidden = 0
 
 [blogPost]
@@ -8,6 +7,42 @@ slug = "{{ :id }}"
 categoryPage = 404
 ==
 {% set post = blogPost.post %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ post.title }}</title>
+  <meta name="description" content='FREELABEL // TV | RADIO | MAG '/>
+  <meta name='twitter:card' content='summary_large_image' />
+  <meta name='twitter:player' content='' />
+  <meta name='twitter:player:width' content='300' />
+  <meta name='twitter:player:height' content='300' />
+  <meta name='twitter:image' content='http://freelabel.net{{ post.featured_images[0].path }}' />
+  <meta name='twitter:site' content='http://freelabel.net/view/mag/{{ post.slug }}' />
+  <meta name='twitter:creator' content='@freelabelnet' />
+  <meta name='twitter:title' content='{{ post.title }}' />
+  <meta name='twitter:text:description' content='{{ html_limit(html_strip(post.description),100) }}... | FREELABEL // TV | RADIO | MAG | Login at FREELABEL.net' />
+  <meta property='og:url' content='http://freelabel.net/view/mag/{{ post.slug }}'>
+  <meta property='og:title' content='{{ post.title }}'>
+  <meta property='og:description' content='{{ html_limit(html_strip(post.description),100) }} | FREELABEL // TV | RADIO | MAG | Login at FREELABEL.net'>
+  <meta property='og:image' content='http://freelabel.net{{ post.featured_images[0].path }}'>
+  <meta property='og:image:type' content='image/png'>
+  <meta property='og:image:width' content='1024'>
+  <meta property='og:image:height' content='1024'>
+  {% partial "templates/resources" %}
+</head>
+
+<body>
+
+
+{% partial "400/navigation" %}
+
+
+
+
+
+<!-- BODY AREA -->
+<!-- BODY AREA -->
+<!-- BODY AREA -->
 
 
 <header class="header_banner hero-01" style="background-image:url('http://freelabel.net/{{ post.featured_images[0].path }}');">
@@ -33,7 +68,13 @@ categoryPage = 404
 
 
 <div class="container">
-    <h1 class="page-header">{{ post.title }}</h1>
+    <div class="page-header clearfix row">
+        <div class="col-md-10"></div>
+        <div class="col-md-2 btn-group">
+            <button class="share-mag-trigger btn btn-link pull-right" data-id="{{ post.id }}" data-title="{{ post.title }}" data-twitter="@{{ post.twitter }}" data-method="twitter"><i class="fa fa-twitter"></i> Twitter</button>
+            <button class="share-mag-trigger btn btn-link pull-right" data-id="{{ post.id }}" data-title="{{ post.title }}" data-twitter="@{{ post.twitter }}" data-method="facebook"><i class="fa fa-facebook"></i> Facebook</button>
+        </div>
+    </div>
     <div class="content">{{ post.content_html|raw }}</div>
     <hr>
 
@@ -62,5 +103,18 @@ categoryPage = 404
     </p>
 </div>
 
+<script type="text/javascript" src="http://freelabel.net/lvtr/js/dashboard.js"></script>
+
+<!-- BODY AREA -->
+<!-- BODY AREA -->
+<!-- BODY AREA -->
 
 
+
+
+
+{% partial "templates/footer" %}
+
+</body>
+
+</html>
