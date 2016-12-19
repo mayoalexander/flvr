@@ -2,7 +2,12 @@ title = "Pricing List"
 url = "/pricing/list"
 layout = "freelabel400"
 is_hidden = 0
+
+[builderList]
+noRecordsMessage = "No records found"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
 ==
 {% content "hero/slider" %}
 
-{% content "frontpage/pricing" %}
+{% component 'builderList' %}

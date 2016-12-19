@@ -4,10 +4,22 @@ layout = "freelabel400"
 is_hidden = 0
 
 [builderDetails]
-modelClass = "RainLab\Builder\Models\Settings"
+modelClass = "Freelabel\Freelabel\Models\Packages"
 identifierValue = "{{ :slug }}"
 modelKeyColumn = "name"
 displayColumn = "name"
 notFoundMessage = "Record not found"
 ==
-{% component 'builderDetails' %}
+<div class="container">
+
+{% set record = builderDetails.record %}
+{% set displayColumn = builderDetails.displayColumn %}
+{% set notFoundMessage = builderDetails.notFoundMessage %}
+
+{% if record %}
+<h1 class="page-header">{{ attribute(record, displayColumn) }}</h1>
+{% else %}
+    {{ notFoundMessage }}
+{% endif %} 
+
+</div>

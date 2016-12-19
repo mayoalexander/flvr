@@ -371,7 +371,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 		}
 
 		return '
-						<div class="dropdown clearfix">
+						<div class="dropup clearfix">
 						'.$this->display_play_button($post).'
 						  <span class="button-tint btn btn-link btn-'.$post['id'].' dropdown-toggle pull-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="display:inline-block;"><i class="fa fa-ellipsis-h"></i></span>
 						  <ul class="dropdown-menu panel-body pull-right" aria-labelledby="dropdownMenu1">
@@ -418,6 +418,53 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 					}
 					echo '<article class="tracklist-panel '.$col.'">';
 						echo '<a href="'.$this->create_url($post).'" data-id="'.$post['id'].'"> 
+						<img src="'.$post['photo'].'" class="img-responsive"/> 
+						'.$this->display_post_options_button($post, $user_name_session).'
+						<b>'.$post['twitter'].'</b>
+						</a>
+						'.$post['blogtitle'];
+						echo '<div>'.$this->display_post_status($post).'</div>';
+					echo '</article>';
+					if ($i===2) {
+						echo '</div>';
+						$i=0;
+					} else {
+						$i++;
+					}
+			}
+			if (count($media)==21) {
+				echo $load_more_button;
+			}
+		} else {
+				echo '<p class="tracklist-item label nothing-found text-center">';
+						echo '<i class="fa fa-alert"></i> Nothing found..';
+				echo '</p>';
+		}
+
+	}
+
+
+
+
+
+
+	function display_media_grid_new($media, $user_name_session=NULL, $page=0) {
+		if (count($media)!==1) {
+			$col = 'col-md-4 col-sm-6';
+		} else {
+			$col = 'col-md-12';
+		}
+		//	pagination
+		$load_more_button = '<button data-user="'.$user_name_session.'" data-next="'.($page+1).'" class="load_more_button btn btn-link btn-block">Load More</button>';
+		//
+		if (isset($media)) {
+			$i=0;
+			foreach ($media as $key => $post) {
+					if ($i===0) {
+						echo '<div class="row section">';
+					}
+					echo '<article class="tracklist-panel thumbnail '.$col.'">';
+						echo '<a href="'.$this->create_url($post).'" data-id="'.$post['id'].'"> 
 						<img src="'.$post['photo'].'"/> 
 						'.$this->display_post_options_button($post, $user_name_session).'
 						<b>'.$post['twitter'].'</b>
@@ -442,6 +489,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 		}
 
 	}
+
 
 
 

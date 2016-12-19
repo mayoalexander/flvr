@@ -30,6 +30,7 @@ a {
 .thumbnail {
   background-color: rgba(64, 64, 64, 0.21); }
 
+/* CARDS & THUMBNAILS */
 .thumbnail {
   overflow: hidden;
   border: none;
@@ -42,8 +43,6 @@ a {
   .thumbnail img {
     transform: scale(1.03);
     transition: transform 0.5s; }
-  .thumbnail img:hover {
-    transform: scale(1.13); }
 
 .page-header,
 .table th,
@@ -166,14 +165,33 @@ a {
   background-color: transparent;
   border-color: transparent; }
 
-.dropdown-menu li a {
-  color: #e3e3e3; }
-  .dropdown-menu li a:hover {
-    background-color: transparent;
-    color: #FE3F44; }
-  .dropdown-menu li a:focus {
-    background-color: #FE3F44;
-    color: #303030; }
+/* DROPDOWN MENUS */
+.dropdown-menu {
+  background-color: rgba(0, 0, 0, 0.85);
+  border-radius: 1px;
+  width: 100%; }
+  .dropdown-menu li a {
+    color: #e3e3e3; }
+    .dropdown-menu li a:hover {
+      background-color: transparent;
+      color: #FE3F44; }
+    .dropdown-menu li a:focus {
+      background-color: #FE3F44;
+      color: #303030; }
+
+.tracklist-panel .dropdown-menu {
+  text-align: center; }
+  .tracklist-panel .dropdown-menu .btn-link {
+    color: #e3e3e3; }
+    .tracklist-panel .dropdown-menu .btn-link:hover {
+      color: #FE3F44;
+      text-decoration: none; }
+  .tracklist-panel .dropdown-menu li {
+    display: inline-block;
+    width: 49%; }
+    .tracklist-panel .dropdown-menu li .fa {
+      font-size: 2em;
+      display: block; }
 
 /* BUTTONS */
 .btn {

@@ -8,6 +8,7 @@ $brand_body_text_light:#e3e3e3;
 $brand_body_text_muted:#676767;
 $brand_toolbar_text_color:#e3e3e3;
 $brand_notifications_color:#00b3ff;
+$brand_white:#e3e3e3;
 $brand_panel_color:transparent;
 $brand_well_color:rgba(64, 64, 64, 0.21);
 
@@ -71,6 +72,8 @@ a {
 	background-color:$brand_well_color;
 }
 
+
+/* CARDS & THUMBNAILS */
 .thumbnail {
 	overflow:hidden;
 	border:none;
@@ -89,10 +92,10 @@ a {
 		// transform: scale(2);
 		transition:transform 0.5s;
 	}
-	img:hover {
-		transform: scale(1.13);
-		// transform: scale(2.13);
-	}
+	// img:hover {
+	// 	transform: scale(1.13);
+	// 	// transform: scale(2.13);
+	// }
 }
 .page-header,
 .table th,
@@ -251,7 +254,16 @@ a {
 	background-color:transparent;
 	border-color:transparent;
 }
+
+
+
+
+
+/* DROPDOWN MENUS */
 .dropdown-menu  {
+	background-color:$brand_black_transparent;
+	border-radius:1px;
+	width:100%;
 	li a {
 		color:$brand_body_text_light;
 		&:hover {
@@ -265,11 +277,36 @@ a {
 	}
 }
 
+.tracklist-panel {
+	.dropdown-menu {
+		text-align:center;
+		.btn-link {
+			color:$brand_white;
+			&:hover {
+				color:$brand_red;
+				text-decoration: none;
+			}
+		}
+		li {
+			display:inline-block;
+			width:49%;
+			
+			.fa {
+				font-size:2em;
+				display:block;
+			}
+		}
+	}
+}
+
 
 
 
 
 /* BUTTONS */
+// .btn-link {
+// 	color:$brand_red;
+// }
 .btn {
 	transition:all 0.3s;
 }

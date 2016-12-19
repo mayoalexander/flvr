@@ -89,7 +89,6 @@
 
      function getPageData(tabName) {
       if (tabName==undefined || tabName=='session') {
-        // loadPage('home');
         var url = 'http://freelabel.net/lvtr/views/home.php';
         $.get(url, function(data){
           $('.data-container').html(data);

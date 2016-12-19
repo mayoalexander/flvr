@@ -46,9 +46,9 @@ pageNumber = "{{ :page }}"
             <div class="col-md-5">
                 <h3>{{ attribute(record, displayColumn) }}</h3>
                 <h4>{{ record.subtitle }}</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
+                <p>{{ record.description }}</p>
                 <a class="btn btn-primary" href="{{ record.url }}" target="_blank">Start {{ record.name }}</a>
-                <a class="btn btn-default" href="{{ record.url }}" target="_blank">More Info<span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-default" href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}" >More Info<span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
         </div>
     {% else %}

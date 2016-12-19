@@ -1,0 +1,17 @@
+title = "Radio"
+url = "/radio"
+layout = "freelabel400"
+is_hidden = 0
+==
+
+<div class="container widget-container"></div>
+
+<script>
+
+	$(function() {
+		$.get('http://freelabel.net/lvtr/views/mag.php',function(result){
+			$('.widget-container').html(result);
+		});
+	});
+
+</script>

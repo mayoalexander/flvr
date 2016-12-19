@@ -16,7 +16,7 @@ $posts = $site->get_explore_posts($_SESSION['user_name'], $_POST['page']);
 <div class="container">
 	<h1 class="page-header">Magazine</h1>
 	<div>
-		<?php $site->display_media_grid($posts, $_SESSION['user_name'], $_POST['page']); ?>
+		<?php $site->display_media_grid_new($posts, $_SESSION['user_name'], $_POST['page']); ?>
 	</div>
 </div>
 <script type="text/javascript" src="<?php echo $site->url ?>js/dashboard.js"></script>
