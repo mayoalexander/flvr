@@ -19,3 +19,26 @@ is_hidden = 0
 		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 	</form>
 </div>
+
+
+<script type="text/javascript">
+
+   function loginUser(elem) {
+      elem.find('button').addClass('disabled')
+      results = $('.login-results');
+      var data = elem.serialize();
+      var url = 'http://freelabel.net/lvtr/config/login.php';
+      $.post(url , data, function(result){
+        results.addClass('label');
+        results.addClass('label-warning');
+        results.html(result);
+      });
+    }
+
+	$(function(){
+		$('.form-signin').submit(function(e) {
+			e.preventDefault();
+			loginUser($(this));
+		});
+	});
+</script>
