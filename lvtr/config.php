@@ -224,8 +224,11 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 
 	function require_login() {
 		if (!isset($_SESSION['user_name'])) {
-			// echo "<script>window.location.assign('{$this->url}?ctrl=login');</script>";
-			echo "<script>window.location.assign('http://freelabel.net/view/login');</script>";
+			if ($_SESSION['user_name']==='admin') {
+				echo "<script>window.location.assign('http://freelabel.net/view/login');</script>";
+			} else {
+				echo "<script>window.location.assign('{$this->url}?ctrl=login');</script>";
+			}
 		} else {
 			return true;
 		}
@@ -233,7 +236,11 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 	function require_content($user_name) {
 		$media = $this->get_user_media($user_name);
 		if (!isset($media)) {
-			echo "<script>window.location.assign('{$this->url}?ctrl=upload');</script>";
+			if ($_SESSION['user_name']==='admin') {
+				echo "<script>window.location.assign('http://freelabel.net/view/login');</script>";
+			} else {
+				echo "<script>window.location.assign('{$this->url}?ctrl=login');</script>";
+			}
 		} else {
 			return true;
 		}
