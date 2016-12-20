@@ -4,10 +4,10 @@ session_start();
 
 
 
-if ($_SESSION['user_logged_in'] || $_SESSION['admin']) {
-	$status = true;
+if (isset($_SESSION['user_logged_in']) && isset($_SESSION['user_name'])) {
+	$status = 1;
 } else {
-	$status = false;
+	$status = 0;
 }
 
 echo $status;

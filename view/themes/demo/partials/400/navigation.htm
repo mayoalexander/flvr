@@ -17,7 +17,7 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collaps e navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="user-nav nav navbar-nav navbar-right hidden">
+                <ul class="user-nav nav navbar-nav navbar-right">
                     <li class="logged-out">
                         <a href="/view/login">Login</a>
                     </li>
@@ -25,7 +25,7 @@
                         <a href="/view/pricing">Register</a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dashboard <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle logged-in" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dashboard <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                           <li class="nav-item navi_button"><a href="/view/dashboard">Home</a></li>
                           <li class="nav-item navi_button"><a href="/view/categories">Categories</a></li>
@@ -56,8 +56,10 @@
 
     <script type="text/javascript">
         $(function(){
-            $.get('http://freelabel.net/lvtr/config/login-status.php',function(result){
-                if (result==1) {
+            $('.logged-in').hide();
+            $('.logged-out').hide();
+            $.get('http://freelabel.net/lvtr/config/login-status.php',function(result) {
+                if (result==='1') {
                     $('.logged-in').show();
                     $('.logged-out').hide();
                 } else {
