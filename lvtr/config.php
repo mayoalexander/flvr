@@ -224,8 +224,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 
 	function require_login() {
 		if (!isset($_SESSION['user_name'])) {
-			// echo "<script>window.location.assign('{$this->url}?ctrl=login');</script>";
-			echo "<script>window.location.assign('http://freelabel.net/view/login');</script>";
+			echo "<script>window.location.assign('{$this->url}?ctrl=login');</script>";
 		} else {
 			return true;
 		}
