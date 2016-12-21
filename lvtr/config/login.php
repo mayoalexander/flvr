@@ -14,8 +14,8 @@ $site = new Config();
 // check if user exists
 if ($site->verify_user_login($_POST)===true) {
 	echo "Logging in..";
-	// echo "<script>window.location.assign('{$site->url}');</script>";
-	echo "<script>window.location.assign('http://freelabel.net/view/dashboard');</script>";
+	echo "<script>window.location.assign('{$site->url}');</script>";
+	// echo "<script>window.location.assign('http://freelabel.net/view/dashboard');</script>";
 } else {
 	echo 'no user exists!';
 }
