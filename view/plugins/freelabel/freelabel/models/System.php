@@ -28,7 +28,8 @@ class System extends Model
 
 
     /* RELATIONS */
-    public $attachOne = [
+
+    public $attachMany = [
         'gallery' => 'System\Models\File'
     ];
 

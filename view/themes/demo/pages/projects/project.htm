@@ -59,8 +59,14 @@ notFoundMessage = "Record not found"
     .background-tint h1 {
       font-size: 7vmax;
     }
+    .background-tint p {
+      font-size: 4vmax;
+    }
     body {
       padding-bottom: 5vh;
+    }
+    .image-gallery div {
+      margin:auto;
     }
   </style>
 </head>
@@ -156,13 +162,17 @@ notFoundMessage = "Record not found"
     </div>
     <!-- /.row -->
     <!-- Footer -->
-    <div class="row">
+
+    {% if record.gallery[0] %}
+    <div class="row image-gallery">
         <h2 class="page-header">Gallery</h2>
-          <div class="col-md-4">
-            <img src="{{ record.gallery.thumb(600,auto) }}" class="img-responsive">
-          </div>
-          
+            {% for image in record.gallery %}
+            <div class="col-md-4">
+                <img src="{{ image.thumb(550,auto) }}" class="img-responsive">
+            </div>
+            {% endfor %}
     </div>
+    {% endif %}
 </div>
 
 

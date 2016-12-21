@@ -106,8 +106,8 @@ tabs:
             span: auto
             type: codeeditor
             tab: Forms
-        poster:
-            label: Poster
+        gallery:
+            label: Gallery
             oc.commentPosition: ''
             mode: image
             useCaption: true
