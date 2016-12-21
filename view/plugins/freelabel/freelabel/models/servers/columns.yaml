@@ -1,0 +1,26 @@
+columns:
+    domain:
+        label: Domain
+        type: text
+        searchable: true
+        invisible: false
+        sortable: true
+        width: '2'
+    hostname:
+        label: Hostname
+        type: text
+        searchable: true
+        sortable: true
+    ip_address:
+        label: 'IP Address'
+        type: text
+        searchable: true
+        sortable: true
+    remote_path:
+        label: 'Remote Path'
+        type: text
+        searchable: true
+    id:
+        label: ID
+        type: number
+        invisible: true

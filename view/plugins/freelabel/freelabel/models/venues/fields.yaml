@@ -1,0 +1,31 @@
+fields:
+    name:
+        label: 'Venue Name'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    phone:
+        label: Phone
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    address:
+        label: Address
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    zipcode:
+        label: Zipcode
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    city:
+        label: City
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    state:
+        label: State
+        oc.commentPosition: ''
+        span: auto
+        type: text

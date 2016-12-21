@@ -1,0 +1,11 @@
+list: $/freelabel/freelabel/models/venues/columns.yaml
+modelClass: Freelabel\Freelabel\Models\Venues
+title: Venues
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'freelabel/freelabel/venues/update/:id'

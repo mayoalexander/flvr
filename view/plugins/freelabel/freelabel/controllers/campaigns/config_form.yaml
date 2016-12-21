@@ -1,0 +1,10 @@
+name: Campaigns
+form: $/freelabel/freelabel/models/system/fields.yaml
+modelClass: Freelabel\Freelabel\Models\System
+defaultRedirect: freelabel/freelabel/campaigns
+create:
+    redirect: 'freelabel/freelabel/campaigns/update/:id'
+    redirectClose: freelabel/freelabel/campaigns
+update:
+    redirect: freelabel/freelabel/campaigns
+    redirectClose: freelabel/freelabel/campaigns

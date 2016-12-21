@@ -1,7 +1,7 @@
 columns:
-    id:
-        label: ID
-        type: number
+    launch_date:
+        label: 'Launch Date'
+        type: datetime
         searchable: true
         sortable: true
     blogtitle:
@@ -9,7 +9,15 @@ columns:
         type: text
         searchable: true
         sortable: true
-    description:
-        label: 'freelabel.freelabel::lang.plugin.description'
-        type: text
+    status:
+        label: Public
+        type: switch
         searchable: true
+        invisible: false
+        sortable: true
+    due_date:
+        label: 'Due Date'
+        type: date
+        searchable: true
+        invisible: true
+        sortable: true

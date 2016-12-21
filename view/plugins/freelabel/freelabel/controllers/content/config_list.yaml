@@ -1,0 +1,11 @@
+title: Content
+modelClass: Freelabel\Freelabel\Models\System
+list: $/freelabel/freelabel/models/system/columns.yaml
+recordUrl: 'freelabel/freelabel/content/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'

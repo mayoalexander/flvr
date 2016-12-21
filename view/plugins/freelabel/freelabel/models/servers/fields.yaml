@@ -1,0 +1,51 @@
+fields:
+    domain:
+        label: Domain
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    ip_address:
+        label: 'IP Address'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    hostname:
+        label: Hostname
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    key:
+        label: Key
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    user:
+        label: Username
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    remote_path:
+        label: 'Remote Path'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+tabs:
+    fields:
+        sql_username:
+            label: 'SQL User'
+            oc.commentPosition: ''
+            span: auto
+            type: text
+            tab: SQL
+        sql_key:
+            label: 'SQL Key'
+            oc.commentPosition: ''
+            span: auto
+            type: text
+            tab: SQL
+        github_url:
+            label: 'Github URL'
+            oc.commentPosition: ''
+            span: auto
+            type: text
+            tab: Github

@@ -1,11 +1,11 @@
 title = "Project"
-url = "/project/:id"
+url = "/project/:slug"
 is_hidden = 0
 
 [builderDetails]
 modelClass = "Freelabel\Freelabel\Models\System"
-identifierValue = "{{ :id }}"
-modelKeyColumn = "id"
+identifierValue = "{{ :slug }}"
+modelKeyColumn = "slug"
 displayColumn = "blogtitle"
 notFoundMessage = "Record not found"
 ==
@@ -18,7 +18,13 @@ notFoundMessage = "Record not found"
   <meta name='twitter:player' content='' />
   <meta name='twitter:player:width' content='300' />
   <meta name='twitter:player:height' content='300' />
-  <meta name='twitter:image' content='http://freelabel.net{{ record.photo |media}}' />
+  
+  {% if record.photo_social %}
+      <meta name='twitter:image' content='http://freelabel.net{{ record.photo_social |media}}' />
+  {% else %}
+      <meta name='twitter:image' content='http://freelabel.net{{ record.photo |media}}' />
+  {% endif %}
+  
   <meta name='twitter:site' content='http://freelabel.net/view/project/{{ record.id }}' />
   <meta name='twitter:creator' content='@freelabelnet' />
   <meta name='twitter:title' content='{{ record.blogtitle }}' />
@@ -26,11 +32,37 @@ notFoundMessage = "Record not found"
   <meta property='og:url' content='http://freelabel.net/view/project/{{ record.id }}'>
   <meta property='og:title' content='{{ record.blogtitle }}'>
   <meta property='og:description' content='{{ html_limit(html_strip(record.description),100) }}... | FREELABEL // TV | RADIO | MAG | Login at FREELABEL.net'>
-  <meta property='og:image' content='http://freelabel.net{{ record.photo |media}}'>
+  
+  {% if record.photo_social %}
+      <meta name='og:image' content='http://freelabel.net{{ record.photo_social |media}}' />
+  {% else %}
+      <meta name='og:image' content='http://freelabel.net{{ record.photo |media}}' />
+  {% endif %}
+  
   <meta property='og:image:type' content='image/png'>
   <meta property='og:image:width' content='1024'>
   <meta property='og:image:height' content='1024'>
   {% partial "templates/resources" %}
+
+
+
+
+  <style type="text/css">
+    .header_banner {
+      height:100vh;
+    }
+    .header_banner .background-tint {
+      padding-top:25vh;
+      padding-left: 5vw;
+      padding-right: 5vw;
+    }
+    .background-tint h1 {
+      font-size: 7vmax;
+    }
+    body {
+      padding-bottom: 5vh;
+    }
+  </style>
 </head>
 
 <body>
@@ -47,6 +79,8 @@ notFoundMessage = "Record not found"
 <!-- BODY AREA -->
 
 
+
+
 {% set record = builderDetails.record %}
 
 {% set displayColumn = builderDetails.displayColumn %}
@@ -54,8 +88,12 @@ notFoundMessage = "Record not found"
 {% set notFoundMessage = builderDetails.notFoundMessage %}
 
 
-<header class="header_banner hero-01" style="background-image:url('{{ record.photo |media}}');">
-
+  {% if record.photo_background %}
+     <header class="header_banner hero-01" style="background-image:url('{{ record.photo_background |media}}');">
+  {% else %}
+      <header class="header_banner hero-01" style="background-image:url('{{ record.photo |media}}');">
+  {% endif %}
+  
     <div class="background-tint">
 
         <h1>{{ record.blogtitle }}</h1>
@@ -79,45 +117,63 @@ notFoundMessage = "Record not found"
 
 
 <div class="container">
-
-    {% if record %}
-
-        <div class="page-header clearfix row">
-            <div class="col-md-10"></div>
+      <div class="page-header row">
+            <h1 class="col-md-10">{{ record.blogtitle }}</h1>
             <div class="col-md-2 btn-group">
                 <button class="share-page-trigger btn btn-link pull-right" data-id="{{ record.id }}" data-title="{{ record.blogtitle }}" data-twitter="@{{ record.twitter }}" data-method="twitter"><i class="fa fa-twitter"></i> Twitter</button>
                 <button class="share-page-trigger btn btn-link pull-right" data-id="{{ record.id }}" data-title="{{ record.blogtitle }}" data-twitter="@{{ record.twitter }}" data-method="facebook"><i class="fa fa-facebook"></i> Facebook</button>
             </div>
-        </div>
+      </div>
 
-        <p>@{{ record.twitter }}</p>
 
-        <p>{{ record.description|raw }}</p>
+    <div class="row">
+        <div class="col-sm-8 lead">
+            <p>{{ record.description|raw }}</p>
+            <hr>
+            {% if record.cta_form %}
 
-        <hr>
-            {% if record.cta_url %}
-
-                <a href="{{ record.cta_url }}" class="btn btn-lg btn-primary" target="_blank">{{ record.cta_button }} - ${{ record.cta_price }}</a>
+                {{ record.cta_form|raw }}
 
             {% endif %}
-        
-    {% else %}
-
-        {{ notFoundMessage }}
-
-    {% endif %}
-
-
+        </div>
+        <div class="col-sm-4">
+                {% if record.photo %}
+                   <img class="img-responsive" src="{{ record.photo |media}}" style="max-width:100%;">
+                {% endif %}
+            <h3>{{ record.launch_date|date("M d, Y") }}</h3>
+<!--             <address>
+                <strong>Start Bootstrap</strong>
+                <br>3481 Melrose Place
+                <br>Beverly Hills, CA 90210
+                <br>
+            </address>
+            <address>
+                <abbr title="Phone">P:</abbr>(123) 456-7890
+                <br>
+                <abbr title="Email">E:</abbr> <a href="mailto:#">admin@freelabel.net</a>
+            </address> -->
+        </div>
+    </div>
+    <!-- /.row -->
+    <!-- Footer -->
+    <div class="row">
+        <h2 class="page-header">Gallery</h2>
+          <div class="col-md-4">
+            <img src="{{ record.gallery.thumb(600,auto) }}" class="img-responsive">
+          </div>
+          
+    </div>
 </div>
+
+
+
+
 
 <script type="text/javascript" src="http://freelabel.net/lvtr/js/dashboard.js"></script>
 
 <!-- BODY AREA -->
 <!-- BODY AREA -->
 <!-- BODY AREA -->
-
-
-
 
 
 {% partial "templates/footer" %}

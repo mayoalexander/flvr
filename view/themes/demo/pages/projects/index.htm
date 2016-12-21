@@ -1,5 +1,5 @@
 title = "Projects"
-url = "/projects"
+url = "/projects/:page?"
 layout = "freelabel400"
 is_hidden = 0
 
@@ -9,9 +9,12 @@ scope = "-"
 displayColumn = "blogtitle"
 noRecordsMessage = "No records found"
 detailsPage = "projects/project"
-detailsKeyColumn = "id"
-detailsUrlParameter = "id"
+detailsKeyColumn = "slug"
+detailsUrlParameter = "slug"
+recordsPerPage = 9
 pageNumber = "{{ :page }}"
+sortColumn = "launch_date"
+sortDirection = "desc"
 ==
 {% content "hero/slider" %}
 

@@ -1,4 +1,13 @@
 fields:
+    in_progress:
+        label: 'In Progress'
+        span: auto
+        required: 1
+        type: switch
+    status:
+        label: Public
+        span: auto
+        type: switch
     blogtitle:
         label: Title
         size: ''
@@ -7,36 +16,104 @@ fields:
         cssClass: input-blogtitle
         required: 1
         type: textarea
-    description:
-        label: Description
-        size: ''
-        oc.commentPosition: ''
-        span: auto
-        type: richeditor
-    photo:
-        label: 'Media finder'
-        oc.commentPosition: ''
-        mode: file
-        span: auto
-        type: mediafinder
     twitter:
         label: Twitter
-        oc.commentPosition: ''
         span: auto
         cssClass: input-twitter
         required: 1
+        preset:
+            field: twitter
+            type: slug
         type: text
-    status:
-        label: Status
-        oc.commentPosition: ''
-        options:
-            Public: Public
-            Private: Private
-            Unlisted: Unlisted
+        comment: 'main headliner or event owner'
+    description:
+        label: Description
+        size: ''
         span: auto
-        cssClass: input-status
-        type: dropdown
-    partial:
+        type: richeditor
+        comment: 'Main Flyer + Front Page text'
+    slug:
+        label: 'URL Slug'
         span: auto
-        path: $/partials/form/upload-validation.htm
-        type: partial
+        preset:
+            field: blogtitle
+            type: slug
+        type: text
+        comment: 'example: http://freelabel.net/{{your-slug-here}}'
+tabs:
+    fields:
+        due_date:
+            label: 'Due Date'
+            mode: date
+            span: auto
+            required: 1
+            type: datepicker
+            comment: 'The date set for our internal team to be completed with all production'
+            tab: Schedule
+        launch_date:
+            label: 'Launch Date'
+            mode: datetime
+            span: auto
+            required: 1
+            type: datepicker
+            comment: 'The date set for the project to go public'
+            tab: Schedule
+        photo:
+            label: 'Default Photo'
+            mode: image
+            span: auto
+            type: mediafinder
+            comment: 'Must be 1000px x 1000px'
+            tab: Images
+        photo_social:
+            label: 'Social Media Preview Photo'
+            mode: image
+            span: auto
+            type: mediafinder
+            comment: '800px x 320px'
+            tab: Images
+        photo_background:
+            label: 'Background/Theme Image'
+            oc.commentPosition: ''
+            mode: image
+            span: left
+            type: mediafinder
+            tab: Images
+        cta_button:
+            label: 'CTA Button Text'
+            oc.commentPosition: ''
+            span: auto
+            type: text
+            tab: Pricing
+        cta_url:
+            label: 'CTA URL'
+            oc.commentPosition: ''
+            span: auto
+            type: text
+            tab: Pricing
+        cta_price:
+            label: 'CTA Price'
+            oc.commentPosition: ''
+            span: auto
+            default: '0'
+            type: text
+            tab: Pricing
+        cta_form:
+            label: 'Form Embed Code'
+            oc.commentPosition: ''
+            size: giant
+            language: php
+            span: auto
+            type: codeeditor
+            tab: Forms
+        poster:
+            label: Poster
+            oc.commentPosition: ''
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: Gallery

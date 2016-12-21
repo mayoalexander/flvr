@@ -1,0 +1,10 @@
+name: Packages
+form: $/freelabel/freelabel/models/packages/fields.yaml
+modelClass: Freelabel\Freelabel\Models\Packages
+defaultRedirect: freelabel/freelabel/packages
+create:
+    redirect: 'freelabel/freelabel/packages/update/:id'
+    redirectClose: freelabel/freelabel/packages
+update:
+    redirect: freelabel/freelabel/packages
+    redirectClose: freelabel/freelabel/packages

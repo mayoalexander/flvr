@@ -1,0 +1,4 @@
+title: Servers
+modelClass: Freelabel\Freelabel\Models\Servers
+toolbar:
+    buttons: reorder_toolbar

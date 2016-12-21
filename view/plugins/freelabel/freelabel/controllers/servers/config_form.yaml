@@ -1,0 +1,10 @@
+name: Servers
+form: $/freelabel/freelabel/models/servers/fields.yaml
+modelClass: Freelabel\Freelabel\Models\Servers
+defaultRedirect: freelabel/freelabel/servers
+create:
+    redirect: 'freelabel/freelabel/servers/update/:id'
+    redirectClose: freelabel/freelabel/servers
+update:
+    redirect: freelabel/freelabel/servers
+    redirectClose: freelabel/freelabel/servers

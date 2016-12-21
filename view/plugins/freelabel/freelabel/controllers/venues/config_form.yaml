@@ -1,0 +1,10 @@
+name: Venues
+form: $/freelabel/freelabel/models/venues/fields.yaml
+modelClass: Freelabel\Freelabel\Models\Venues
+defaultRedirect: freelabel/freelabel/venues
+create:
+    redirect: 'freelabel/freelabel/venues/update/:id'
+    redirectClose: freelabel/freelabel/venues
+update:
+    redirect: freelabel/freelabel/venues
+    redirectClose: freelabel/freelabel/venues

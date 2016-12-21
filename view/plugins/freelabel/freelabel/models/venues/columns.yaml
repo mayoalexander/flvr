@@ -1,0 +1,16 @@
+columns:
+    name:
+        label: Name
+        type: text
+        searchable: true
+        sortable: true
+    city:
+        label: City
+        type: text
+        searchable: true
+        sortable: true
+    state:
+        label: State
+        type: text
+        searchable: true
+        sortable: true

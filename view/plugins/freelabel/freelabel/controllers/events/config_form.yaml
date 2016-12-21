@@ -1,0 +1,10 @@
+name: Events
+form: $/freelabel/freelabel/models/system/fields.yaml
+modelClass: Freelabel\Freelabel\Models\System
+defaultRedirect: freelabel/freelabel/events
+create:
+    redirect: 'freelabel/freelabel/events/update/:id'
+    redirectClose: freelabel/freelabel/events
+update:
+    redirect: freelabel/freelabel/events
+    redirectClose: freelabel/freelabel/events

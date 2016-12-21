@@ -1,0 +1,4 @@
+title: Packages
+modelClass: Freelabel\Freelabel\Models\Packages
+toolbar:
+    buttons: reorder_toolbar

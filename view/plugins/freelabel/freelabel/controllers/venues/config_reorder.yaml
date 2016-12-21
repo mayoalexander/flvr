@@ -1,0 +1,4 @@
+title: Venues
+modelClass: Freelabel\Freelabel\Models\Venues
+toolbar:
+    buttons: reorder_toolbar

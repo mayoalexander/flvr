@@ -15,3 +15,72 @@
 1.0.6:
     - 'Updated table freelabel_freelabel_'
     - builder_table_update_freelabel_freelabel__4.php
+1.0.7:
+    - 'Updated table freelabel_freelabel_'
+    - builder_table_update_freelabel_freelabel__17.php
+1.0.8:
+    - 'Updated table freelabel_freelabel_'
+    - builder_table_update_freelabel_freelabel__18.php
+1.0.9:
+    - 'Updated table freelabel_freelabel_'
+    - builder_table_update_freelabel_freelabel__19.php
+1.0.10:
+    - 'Updated table freelabel_freelabel_'
+    - builder_table_update_freelabel_freelabel__20.php
+1.0.11:
+    - 'Updated table freelabel_freelabel_'
+    - builder_table_update_freelabel_freelabel__21.php
+1.0.12:
+    - 'Updated table freelabel_freelabel_'
+    - builder_table_update_freelabel_freelabel__22.php
+1.0.13:
+    - 'Updated table freelabel_freelabel_'
+    - builder_table_update_freelabel_freelabel__23.php
+1.0.14:
+    - 'Updated table freelabel_freelabel_'
+    - builder_table_update_freelabel_freelabel__24.php
+1.0.15:
+    - 'Created table freelabel_freelabel_packages'
+    - builder_table_create_freelabel_freelabel_packages.php
+1.0.16:
+    - 'Updated table freelabel_freelabel_packages'
+    - builder_table_update_freelabel_freelabel_packages.php
+1.0.17:
+    - 'Updated table freelabel_freelabel_packages'
+    - builder_table_update_freelabel_freelabel_packages_2.php
+1.0.18:
+    - 'Updated table freelabel_freelabel_packages'
+    - builder_table_update_freelabel_freelabel_packages_3.php
+1.0.19:
+    - 'Created table freelabel_freelabel_servers'
+    - builder_table_create_freelabel_freelabel_servers.php
+1.0.20:
+    - 'Updated table freelabel_freelabel_servers'
+    - builder_table_update_freelabel_freelabel_servers.php
+1.0.21:
+    - 'Updated table freelabel_freelabel_servers'
+    - builder_table_update_freelabel_freelabel_servers_2.php
+1.0.22:
+    - 'Updated table freelabel_freelabel_servers'
+    - builder_table_update_freelabel_freelabel_servers_3.php
+1.0.23:
+    - 'Updated table freelabel_freelabel_servers'
+    - builder_table_update_freelabel_freelabel_servers_4.php
+1.0.24:
+    - 'Updated table freelabel_freelabel_servers'
+    - builder_table_update_freelabel_freelabel_servers_5.php
+1.0.25:
+    - 'Updated table freelabel_freelabel_'
+    - builder_table_update_freelabel_freelabel__25.php
+1.0.26:
+    - 'Updated table freelabel_freelabel_'
+    - builder_table_update_freelabel_freelabel__26.php
+1.0.27:
+    - 'Created table freelabel_freelabel_venues'
+    - builder_table_create_freelabel_freelabel_venues.php
+1.0.28:
+    - 'Updated table freelabel_freelabel_venues'
+    - builder_table_update_freelabel_freelabel_venues.php
+1.0.29:
+    - 'Updated table freelabel_freelabel_venues'
+    - builder_table_update_freelabel_freelabel_venues_2.php
