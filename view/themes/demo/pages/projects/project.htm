@@ -25,11 +25,11 @@ notFoundMessage = "Record not found"
       <meta name='twitter:image' content='http://freelabel.net{{ record.photo |media}}' />
   {% endif %}
   
-  <meta name='twitter:site' content='http://freelabel.net/view/project/{{ record.id }}' />
+  <meta name='twitter:site' content='http://freelabel.net/view/project/{{ record.slug }}' />
   <meta name='twitter:creator' content='@freelabelnet' />
   <meta name='twitter:title' content='{{ record.blogtitle }}' />
   <meta name='twitter:text:description' content='{{ html_limit(html_strip(record.description),100) }}... | FREELABEL // TV | RADIO | MAG | Login at FREELABEL.net' />
-  <meta property='og:url' content='http://freelabel.net/view/project/{{ record.id }}'>
+  <meta property='og:url' content='http://freelabel.net/view/project/{{ record.slug }}'>
   <meta property='og:title' content='{{ record.blogtitle }}'>
   <meta property='og:description' content='{{ html_limit(html_strip(record.description),100) }}... | FREELABEL // TV | RADIO | MAG | Login at FREELABEL.net'>
   
@@ -61,6 +61,7 @@ notFoundMessage = "Record not found"
     }
     .background-tint p {
       font-size: 4vmax;
+      color:#e3e3e3;
     }
     body {
       padding-bottom: 5vh;
@@ -68,6 +69,22 @@ notFoundMessage = "Record not found"
     .image-gallery div {
       margin:auto;
     }
+    .background-tint img {
+      width:600px;
+    }
+
+
+@media (max-width: 600px) {
+  .background-tint img {
+    width:300px;
+  }
+}
+
+@media (max-width: 600px) {
+  .background-tint img {
+    width:300px;
+  }
+}
   </style>
 </head>
 
@@ -102,7 +119,12 @@ notFoundMessage = "Record not found"
   
     <div class="background-tint">
 
+        {% if record.photo_logo %}
+        <img src="{{ record.photo_logo|media }}" style="margin:auto;" class="img-responsive"> 
+        {% else %}
         <h1>{{ record.blogtitle }}</h1>
+        {% endif %}
+        
 
         <p>@{{ record.twitter }}</p>
 
@@ -124,7 +146,7 @@ notFoundMessage = "Record not found"
 
 <div class="container">
       <div class="page-header row">
-            <h1 class="col-md-10">{{ record.blogtitle }}</h1>
+            <h1 class="col-md-10">{{ record.blogtitle }} <small>{{ record.launch_date|date("M d, Y") }}</small></h1>
             <div class="col-md-2 btn-group">
                 <button class="share-page-trigger btn btn-link pull-right" data-id="{{ record.id }}" data-title="{{ record.blogtitle }}" data-twitter="@{{ record.twitter }}" data-method="twitter"><i class="fa fa-twitter"></i> Twitter</button>
                 <button class="share-page-trigger btn btn-link pull-right" data-id="{{ record.id }}" data-title="{{ record.blogtitle }}" data-twitter="@{{ record.twitter }}" data-method="facebook"><i class="fa fa-facebook"></i> Facebook</button>
@@ -142,11 +164,13 @@ notFoundMessage = "Record not found"
 
             {% endif %}
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4"
+                
                 {% if record.photo %}
-                   <img class="img-responsive" src="{{ record.photo |media}}" style="max-width:100%;">
+                   <div class="col-md-12 clearfix"><img class="img-responsive" src="{{ record.photo |media}}" style="max-width:100%;"></div>
                 {% endif %}
-            <h3>{{ record.launch_date|date("M d, Y") }}</h3>
+            <h3></h3>
+        
 <!--             <address>
                 <strong>Start Bootstrap</strong>
                 <br>3481 Melrose Place
@@ -187,6 +211,7 @@ notFoundMessage = "Record not found"
 
 
 {% partial "templates/footer" %}
+{% partial "templates/mediaplayer" %}
 
 </body>
 

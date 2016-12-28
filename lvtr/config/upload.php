@@ -121,4 +121,6 @@ $status = $upload->create_new_post();
 if ($status) {
 	echo $upload->postTotwitter();
 }
-// echo $status;
+
+/* OPEN NEW PAGE*/
+echo $status;

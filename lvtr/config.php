@@ -379,7 +379,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 		}
 
 		return '
-						<div class="dropup clearfix">
+						<div class="dropdown clearfix">
 						'.$this->display_play_button($post).'
 						  <span class="button-tint btn btn-link btn-'.$post['id'].' dropdown-toggle pull-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="display:inline-block;"><i class="fa fa-ellipsis-h"></i></span>
 						  <ul class="dropdown-menu panel-body pull-right" aria-labelledby="dropdownMenu1">
@@ -2126,7 +2126,7 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 
 		// write tags
 		if ($tagwriter->WriteTags()) {
-			// echo 'Success! ';
+			// echo 'Success!';
 			// print_r($_GET);
 			if (!empty($tagwriter->warnings)) {
 				echo 'There were some warnings:<br>'.implode('<br><br>', $tagwriter->warnings);
