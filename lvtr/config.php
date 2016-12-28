@@ -151,16 +151,16 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 		foreach ($nav as $link) {
 			$build .= '<li class="nav-item navi_button"><a class="nav-link" href="#">'.$link.'</a></li>';
 		}
-			$build .= '
-					<li class="dropdown">
-					    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore <span class="caret"></span></a>
-					    <ul class="dropdown-menu">
-					      <li class="nav-item navi_button"><a href="#">Mag</a></li>
-					      <li class="nav-item navi_button"><a href="#">TV</a></li>
-					      <li class="nav-item navi_button"><a href="#">Radio</a></li>
-					      <li class="nav-item navi_button"><a href="#">Events</a></li>
-					    </ul>
-					 </li>';
+			// $build .= '
+			// 		<li class="dropdown">
+			// 		    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore <span class="caret"></span></a>
+			// 		    <ul class="dropdown-menu">
+			// 		      <li class="nav-item navi_button"><a href="#">Mag</a></li>
+			// 		      <li class="nav-item navi_button"><a href="#">TV</a></li>
+			// 		      <li class="nav-item navi_button"><a href="#">Radio</a></li>
+			// 		      <li class="nav-item navi_button"><a href="#">Events</a></li>
+			// 		    </ul>
+			// 		 </li>';
 		return $build;
 	}
 

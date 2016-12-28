@@ -149,8 +149,8 @@ $site->require_login();
 		        // if (ext.toLowerCase() !=='png' && ext.toLowerCase() !=='jpeg' && ext.toLowerCase() !=='jpg' && ext.toLowerCase() !=='gif') {
 		        	if (ext.toLowerCase() ==='png' || ext.toLowerCase() ==='jpeg' || ext.toLowerCase() ==='jpg' || ext.toLowerCase() ==='gif') {
 		        		path = '<?php echo $site->url; ?>config/upload-photo.php';
-		        	// } else if (ext.toLowerCase() ==='mp4' || ext.toLowerCase() ==='mov') {
-		        		// path = '<?php echo $site->url; ?>config/upload-video.php';
+		        	} else if (ext.toLowerCase() ==='mp4' || ext.toLowerCase() ==='mov') {
+		        		path = '<?php echo $site->url; ?>config/upload-video.php';
 		        	} else if (ext.toLowerCase() ==='mp3') {
 		        		path = '<?php echo $site->url; ?>config/upload-file.php';
 		        	} else {
