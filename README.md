@@ -90,6 +90,7 @@ key: `d111ea334e75`
 ####initialize
 ```zsh
 /Users/amayo/Sites/flvr/css/sass/
+sublime .
 sass --watch .
 ```
 

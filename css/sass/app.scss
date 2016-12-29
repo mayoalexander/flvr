@@ -241,6 +241,11 @@ a {
 	}
 }
 
+.form-signin {
+	width:360px;
+	margin:auto;
+}
+
 
 
 
@@ -258,6 +263,23 @@ a {
 
 
 
+
+
+.account-type-panel {
+	width: 49%;
+	display: inline-block;
+	margin:0;
+	.panel {
+		transition: all 0.2s;
+		text-align: center;
+		&:hover {
+			color:$brand_body_text_light;
+		}
+		&.active {
+			color:$brand_body_text_light;
+		}
+	}
+}
 
 /* DROPDOWN MENUS */
 .dropdown-menu  {
@@ -313,5 +335,4 @@ a {
 .btn:hover {
 	border:1px solid $brand_well_color;
 }
-
 

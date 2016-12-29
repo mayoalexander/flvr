@@ -1,0 +1,36 @@
+title = "Admin"
+url = "/dashboard/admin"
+layout = "freelabel400"
+is_hidden = 0
+==
+<div class="data-container"></div>
+
+
+<script type="text/javascript">
+	
+	
+
+    function openWidget(elem, siteURL){
+      var d = elem.attr('data-page');
+      // alert(d);
+      var url = siteURL + 'views/' + d.toLowerCase() + '.php';
+      var wrapper = $('.widget-container');
+      // please wait
+      wrapper.html('Loading..');
+      // sets the history
+        var stateObj = { foo: "bar" };
+      history.pushState(stateObj, "page 2", '?ctrl='+d.toLowerCase());
+      // load and insert page
+      $.post(url, function(result){
+        wrapper.html(result);
+      });
+    }
+    
+    
+    
+	var url = 'http://freelabel.net/lvtr/views/admin.php';
+        $.get(url, function(data){
+          $('.data-container').html(data);
+        });
+
+</script>
