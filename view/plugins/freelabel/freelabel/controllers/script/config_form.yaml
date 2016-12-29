@@ -1,0 +1,10 @@
+name: Script
+form: $/freelabel/freelabel/models/script/fields.yaml
+modelClass: Freelabel\Freelabel\Models\Script
+defaultRedirect: freelabel/freelabel/script
+create:
+    redirect: 'freelabel/freelabel/script/update/:id'
+    redirectClose: freelabel/freelabel/script
+update:
+    redirect: freelabel/freelabel/script
+    redirectClose: freelabel/freelabel/script

@@ -7,7 +7,7 @@ plugin:
 navigation:
     main-menu-item:
         label: Admin
-        url: freelabel/freelabel/config
+        url: freelabel/freelabel/servers
         icon: icon-dashboard
         sideMenu:
             pricing-packages:
@@ -19,9 +19,13 @@ navigation:
                 url: freelabel/freelabel/servers
                 icon: icon-server
             side-menu-item:
-                label: Automation
-                url: /
-                icon: icon-sliders
+                label: 'Radio Schedule'
+                url: freelabel/freelabel/radioshows
+                icon: icon-volume-up
+            script-menu-item:
+                label: Script
+                url: freelabel/freelabel/script
+                icon: icon-list-alt
     content-item:
         label: Content
         url: freelabel/freelabel/content
@@ -29,17 +33,13 @@ navigation:
         sideMenu:
             side-menu-item:
                 label: Campaigns
-                url: freelabel/freelabel/campaigns
+                url: freelabel/freelabel/content
                 icon: icon-archive
-            articles-menu-item:
-                label: Articles
-                url: /rainlab/blog/posts
-                icon: icon-newspaper-o
-            side-menu-item2:
-                label: Events
-                url: /
-                icon: icon-ticket
             side-menu-item3:
                 label: Venues
                 url: freelabel/freelabel/venues
                 icon: icon-building-o
+            side-menu-item2:
+                label: Marketing
+                url: freelabel/freelabel/marketing
+                icon: icon-star

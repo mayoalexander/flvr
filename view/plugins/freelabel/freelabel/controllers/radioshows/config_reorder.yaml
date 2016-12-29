@@ -1,0 +1,4 @@
+title: Radioshows
+modelClass: Freelabel\Freelabel\Models\Radioshows
+toolbar:
+    buttons: reorder_toolbar

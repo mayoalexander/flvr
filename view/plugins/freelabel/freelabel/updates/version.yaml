@@ -84,3 +84,27 @@
 1.0.29:
     - 'Updated table freelabel_freelabel_venues'
     - builder_table_update_freelabel_freelabel_venues_2.php
+1.0.30:
+    - 'Updated table freelabel_freelabel_'
+    - builder_table_update_freelabel_freelabel__27.php
+1.0.31:
+    - 'Created table freelabel_freelabel_marketing'
+    - builder_table_create_freelabel_freelabel_marketing.php
+1.0.32:
+    - 'Updated table freelabel_freelabel_marketing'
+    - builder_table_update_freelabel_freelabel_marketing.php
+1.0.33:
+    - 'Created table freelabel_freelabel_radioshows'
+    - builder_table_create_freelabel_freelabel_radioshows.php
+1.0.34:
+    - 'Updated table freelabel_freelabel_radioshows'
+    - builder_table_update_freelabel_freelabel_radioshows.php
+1.0.35:
+    - 'Updated table freelabel_freelabel_radioshows'
+    - builder_table_update_freelabel_freelabel_radioshows_2.php
+1.0.36:
+    - 'Created table freelabel_freelabel_script'
+    - builder_table_create_freelabel_freelabel_script.php
+1.0.37:
+    - 'Updated table freelabel_freelabel_script'
+    - builder_table_update_freelabel_freelabel_script.php

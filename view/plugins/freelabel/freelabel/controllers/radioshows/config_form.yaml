@@ -1,0 +1,10 @@
+name: Radioshows
+form: $/freelabel/freelabel/models/radioshows/fields.yaml
+modelClass: Freelabel\Freelabel\Models\Radioshows
+defaultRedirect: freelabel/freelabel/radioshows
+create:
+    redirect: 'freelabel/freelabel/radioshows/update/:id'
+    redirectClose: freelabel/freelabel/radioshows
+update:
+    redirect: freelabel/freelabel/radioshows
+    redirectClose: freelabel/freelabel/radioshows

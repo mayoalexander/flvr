@@ -1,0 +1,39 @@
+fields:
+    title:
+        label: Title
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    text:
+        label: Message
+        size: ''
+        oc.commentPosition: ''
+        span: auto
+        type: textarea
+    order:
+        label: Order
+        oc.commentPosition: ''
+        options:
+            - '0'
+            - '1'
+            - '2'
+            - '3'
+            - '4'
+            - '5'
+            - '6'
+            - '7'
+            - '8'
+            - '9'
+        span: auto
+        type: dropdown
+    type:
+        label: Type
+        oc.commentPosition: ''
+        options:
+            twitter_messages: twitter_messages
+            twitter_organic: twitter_organic
+            twitter_som: twitter_som
+            twitter_promo: twitter_promo
+            twitter_pinned: twitter_pinned_tweet
+        span: auto
+        type: dropdown

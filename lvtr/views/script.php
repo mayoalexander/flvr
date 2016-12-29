@@ -3,7 +3,7 @@
 require('../config.php');
 $site = new Config();	
 
-$site->debug($_SERVER,1);
+// $site->debug($_SERVER,1);
 $script = $site->get_script();		
 ?>
 

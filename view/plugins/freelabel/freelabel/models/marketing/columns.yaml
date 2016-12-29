@@ -1,0 +1,26 @@
+columns:
+    id:
+        label: ID
+        type: text
+        invisible: true
+        sortable: true
+    title:
+        label: Title
+        type: text
+        invisible: false
+        sortable: true
+    subtitle:
+        label: Subtitle
+        type: text
+        invisible: false
+        sortable: true
+    description:
+        label: Description
+        type: text
+        invisible: false
+        sortable: true
+    photo:
+        label: Photos
+        type: text
+        invisible: true
+        sortable: true

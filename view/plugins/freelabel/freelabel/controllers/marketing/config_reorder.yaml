@@ -1,0 +1,4 @@
+title: Marketing
+modelClass: Freelabel\Freelabel\Models\Marketing
+toolbar:
+    buttons: reorder_toolbar

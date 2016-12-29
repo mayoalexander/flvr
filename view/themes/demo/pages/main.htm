@@ -1,4 +1,4 @@
-title = "Landing Page"
+title = "Home"
 url = "/"
 layout = "freelabel400"
 is_hidden = 0
@@ -11,8 +11,42 @@ noRecordsMessage = "No records found"
 detailsPage = "-"
 detailsUrlParameter = "id"
 pageNumber = "{{ :page }}"
+
+[builderList sliderContent]
+modelClass = "Freelabel\Freelabel\Models\Marketing"
+scope = "-"
+displayColumn = "photo"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
 ==
-{% content "hero/slider" %}
+<!-- SLIDER CONTENT -->
+
+{% content 'hero/slider' %}
+
+
+
+<!-- END OF SLIDER CONTENT -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- BODY CONTENT -->
 
 <link href="https://blackrockdigital.github.io/startbootstrap-one-page-wonder/css/one-page-wonder.css" rel="stylesheet">
 <style>
@@ -26,13 +60,26 @@ pageNumber = "{{ :page }}"
 {% set detailsPage = builderList.detailsPage %}
 {% set detailsKeyColumn = builderList.detailsKeyColumn %}
 {% set detailsUrlParameter = builderList.detailsUrlParameter %}
+{% set offsetCounter = 1 %}
+
 
 <div class="container record-list">
     {% for record in records %}
+
+        {% if offsetCounter == 1 %}
+            {% set offsetCounter =  offsetCounter + 1 %}
+            {% set offsetAlignment =  'pull-right' %}
+        {% else %}
+            {% set offsetCounter =  offsetCounter - 1 %}
+            {% set offsetAlignment =  'pull-left' %}
+        {% endif %}
+
+
+
     
         <hr class="featurette-divider">
         <div class="featurette" id="about">
-            <img class="featurette-image img-circle img-responsive pull-right" src="{{ record.photo|media }}" style="max-width:360px;">
+            <img class="featurette-image img-circle img-responsive {{ offsetAlignment }}" src="{{ record.photo|media }}" style="max-width:100%;">
             <h2 class="featurette-heading">{{ record.title }}
                 <span class="text-muted">{{ record.subtitle }}</span>
             </h2>
@@ -60,3 +107,6 @@ pageNumber = "{{ :page }}"
         {% endif %}
     </ul>
 {% endif %}
+
+
+<!-- END OF BODY CONTENT -->

@@ -1,0 +1,10 @@
+name: Marketing
+form: $/freelabel/freelabel/models/marketing/fields.yaml
+modelClass: Freelabel\Freelabel\Models\Marketing
+defaultRedirect: freelabel/freelabel/marketing
+create:
+    redirect: 'freelabel/freelabel/marketing/update/:id'
+    redirectClose: freelabel/freelabel/marketing
+update:
+    redirect: freelabel/freelabel/marketing
+    redirectClose: freelabel/freelabel/marketing

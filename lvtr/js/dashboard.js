@@ -199,7 +199,8 @@ function audioPlayer(elem) {
 
 		$('.view-post-trigger').click(function(e){
 			e.preventDefault();
-			window.open($(this).parent().parent().parent().parent().attr('href'));
+			var url = $(this).parent().parent().parent().parent().find('a').attr('href');
+			window.open(url);
 		});
 
 	// $('.tracklist-panel a').click(function(e){

@@ -1,0 +1,4 @@
+title: Script
+modelClass: Freelabel\Freelabel\Models\Script
+toolbar:
+    buttons: reorder_toolbar

@@ -1,0 +1,19 @@
+title = "Browse"
+url = "/feed/browse"
+layout = "freelabel400"
+is_hidden = 0
+==
+<div class="container">
+	<h1 class="page-header">Browse</h1>
+	<div class="data-container"></div>
+<div>
+
+<script type="text/javascript">
+	
+	var url = 'http://freelabel.net/lvtr/views/explore.php';
+        $.get(url, function(data){
+          $('.data-container').html(data);
+        }); 
+
+
+</script>

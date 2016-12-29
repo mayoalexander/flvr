@@ -19,6 +19,9 @@ a {
   a:hover {
     text-decoration: none;
     color: #e3e3e3; }
+  a:focus, a:hover {
+    text-decoration: none;
+    color: #676767; }
 
 .jumbotron,
 .table-striped > tbody > tr:nth-child(odd) > td,
@@ -53,12 +56,12 @@ a {
 .table > tbody > tr > td, .table > tfoot > tr > td {
   border-color: rgba(64, 64, 64, 0.21); }
 
-.navbar-brand img {
+.navbar-fixed-top .navbar-brand img {
   width: 40px;
   display: inline-block;
   position: relative;
   bottom: 10px; }
-.navbar-brand span {
+.navbar-fixed-top .navbar-brand span {
   position: relative;
   bottom: 1px;
   font-size: 2em; }
@@ -72,6 +75,8 @@ a {
   border: #101010;
   border-bottom: 3px solid #FE3F44;
   border-radius: 0; }
+  .navbar-inverse .navbar-toggle {
+    border-color: transparent; }
   .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
     color: #e3e3e3; }
 
@@ -148,8 +153,10 @@ a {
   font-size: 1.5em;
   padding: 1em; }
   .form-control:focus {
+    border-color: transparent;
     border-left: 2px #FE3F44 solid;
-    color: #e3e3e3; }
+    color: #e3e3e3;
+    box-shadow: none; }
 
 .edit input {
   background-color: transparent;
@@ -195,25 +202,88 @@ a {
       background-color: #FE3F44;
       color: #303030; }
 
-.tracklist-panel .dropdown-menu {
-  text-align: center; }
-  .tracklist-panel .dropdown-menu .btn-link {
-    color: #e3e3e3; }
-    .tracklist-panel .dropdown-menu .btn-link:hover {
-      color: #FE3F44;
-      text-decoration: none; }
-  .tracklist-panel .dropdown-menu li {
-    display: inline-block;
-    width: 49%; }
-    .tracklist-panel .dropdown-menu li .fa {
-      font-size: 2em;
-      display: block; }
+.list-group-item {
+  background-color: rgba(64, 64, 64, 0.21);
+  border-color: #141414; }
 
+.tracklist-header {
+  display: block;
+  margin-bottom: 2em; }
+
+.tracklist-panel {
+  padding: 0em 2em 2em 2em;
+  /* PLAY BUTTON */ }
+  .tracklist-panel .img-responsive {
+    width: 100%; }
+  .tracklist-panel .dropdown {
+    background-color: rgba(64, 64, 64, 0.21);
+    position: relative;
+    bottom: 34px;
+    width: 100%;
+    transition: all 0.2s; }
+    .tracklist-panel .dropdown:hover {
+      background-color: rgba(254, 63, 68, 0.77); }
+  .tracklist-panel .play_button {
+    background-color: #FE3F44;
+    border-radius: 0px; }
+  .tracklist-panel .caption, .tracklist-panel .status {
+    position: relative;
+    bottom: 34px; }
+    .tracklist-panel .caption h5, .tracklist-panel .status h5 {
+      font-size: 1.75em;
+      color: #FE3F44; }
+  .tracklist-panel .btn-link {
+    color: #e3e3e3; }
+  .tracklist-panel .dropdown-menu {
+    text-align: center; }
+    .tracklist-panel .dropdown-menu .btn-link {
+      color: #e3e3e3; }
+      .tracklist-panel .dropdown-menu .btn-link:hover {
+        color: #FE3F44;
+        text-decoration: none; }
+    .tracklist-panel .dropdown-menu li {
+      display: inline-block;
+      width: 49%; }
+      .tracklist-panel .dropdown-menu li .fa {
+        font-size: 2em;
+        display: block; }
+
+/* AUDIO PLAYER TOOLBAR */
+.audio-player-toolbar .navbar-brand {
+  font-size: 1em; }
+
+/* HIDE AT FIRST, SHOW VIA JAVASCRIPT */
 /* BUTTONS */
 .btn {
   transition: all 0.3s; }
 
 .btn:hover {
   border: 1px solid rgba(64, 64, 64, 0.21); }
+
+@media (max-width: 600px) {
+  .caption, .status {
+    position: relative;
+    bottom: 34px; }
+    .caption h5, .status h5 {
+      font-size: 1.75em;
+      color: #FE3F44; }
+    .caption span, .status span {
+      font-size: 2em; }
+
+  .audio-player-toolbar .navbar-brand {
+    max-width: 300px;
+    font-size: 0.9em; }
+
+  .navbar-fixed-top .navbar-collapse {
+    font-size: 3em;
+    height: 100vh;
+    max-height: 100vh; }
+    .navbar-fixed-top .navbar-collapse .nav-item {
+      font-size: 2em; }
+    .navbar-fixed-top .navbar-collapse .navbar-nav {
+      height: 100vh;
+      max-height: 100vh; }
+    .navbar-fixed-top .navbar-collapse .navbar-nav .open .dropdown-menu > li > a {
+      line-height: 28px; } }
 
 /*# sourceMappingURL=app.css.map */

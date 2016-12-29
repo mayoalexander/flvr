@@ -35,12 +35,15 @@ $liked = $site->get_user_liked($_SESSION['user_name']);
 		<div class="col-md-4 col-xs-12">
 			<!-- <h3>You</h3> -->
 			<panel class="profile clearfix">
-				<a href="<?php echo $site->get_user_url($user); ?>" target="_blank"><img src="<?php $site->display_profile_photo($profile); ?>" class="user_profile_img col-md-4" ></a>
-				<div class="pull-right"">
+				<div class="col-md-4">
+					<a href="<?php echo $site->get_user_url($user); ?>" target="_blank"><img src="<?php $site->display_profile_photo($profile); ?>" class="img-responsive user_profile_img" ></a>
+				</div>
+				<div class="col-md-8">
 					<h4><a href="<?php echo $site->get_user_url($user); ?>" >@<?php echo $user['user_name']; ?></a></h4>
 					<p><?php echo $profile['name']; ?></p>
 					<p><?php echo $profile['location']; ?></p>
 				</div>
+				
 			</panel>
 			<panel class="hidden-xs hidden-sm">
 				<h4>Friends</h5>
@@ -55,7 +58,7 @@ $liked = $site->get_user_liked($_SESSION['user_name']);
 
 
 		<div class="col-md-8 col-xs-12">
-			<panel class="clearfix">
+			<panel class="tracklist-header clearfix">
 				<h4 class="pull-left">Tracks</h4>
 				<div class="pull-right">
 					<input type="text" name="q" id="search" placeholder="Search your uploads.." class="form-control">

@@ -79,6 +79,14 @@ tabs:
             span: left
             type: mediafinder
             tab: Images
+        photo_logo:
+            label: Logo
+            oc.commentPosition: ''
+            mode: image
+            span: auto
+            type: mediafinder
+            comment: 'Needs to be PNG with a transparent background'
+            tab: Images
         cta_button:
             label: 'CTA Button Text'
             oc.commentPosition: ''

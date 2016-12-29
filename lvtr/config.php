@@ -425,13 +425,17 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 						echo '<div class="row section">';
 					}
 					echo '<article class="tracklist-panel '.$col.'">';
-						echo '<a href="'.$this->create_url($post).'" data-id="'.$post['id'].'"> 
-						<img src="'.$post['photo'].'" class="img-responsive"/> 
+					echo '
+						<a href="'.$this->create_url($post).'" data-id="'.$post['id'].'"> 
+							<img src="'.$post['photo'].'" class="img-responsive"/>
+						</a> 
 						'.$this->display_post_options_button($post, $user_name_session).'
-						<b>'.$post['twitter'].'</b>
-						</a>
-						'.$post['blogtitle'];
-						echo '<div>'.$this->display_post_status($post).'</div>';
+						<div class="caption">
+							<h5>'.$post['twitter'].'</h5>
+							<span>'.$post['blogtitle'].'</span>
+						</div>
+						';
+						echo '<div class="status">'.$this->display_post_status($post).'</div>';
 					echo '</article>';
 					if ($i===2) {
 						echo '</div>';
@@ -628,10 +632,12 @@ function display_promos_grid($media, $user_name_session=NULL, $page=0) {
 	}
 	function display_post_status($post) {
 		if ($post['status']=='private') {
-			return '<i class="fa fa-eye-slash"></i>';
+			$res = '<i class="fa fa-eye-slash"></i>';
 		} else {
-			return ''.$post['views'].' <i class="fa fa-eye"></i>';
+			$res = ''.$post['views'].' <i class="fa fa-eye"></i>';
 		}
+		$build = "<span class='stats'>".$res."</span>";
+		return $build;
 	}
 
 
