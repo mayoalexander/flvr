@@ -2016,7 +2016,7 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 			$remote_file = 'production/'.$file['twitter']." - ".$file['blogtitle'].".mp3"; 
 			$debug[] = "Uploading to ".$remote_file;
 
-		} elseif($file['user_name'] != 'submission') {
+		} elseif($file['user_name'] !== 'submission') {
 			// PAID UPLOAD
 			$remote_file = 'clients/'.$file['twitter']." - ".$file['blogtitle'].".mp3"; 
 			$debug[] = "Uploading to ".$remote_file;
@@ -2041,7 +2041,6 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 		// login with username and password 
 		$login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass); 
 
-		var_dump($login_result);
 		// upload a file 
 		if (ftp_put($conn_id, $remote_file, $fileupload, FTP_BINARY)) { 
 			$ftp_status = true;

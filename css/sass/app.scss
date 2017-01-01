@@ -13,6 +13,7 @@ $brand_white:#e3e3e3;
 $brand_panel_color:transparent;
 $brand_border_color:#141414;
 $brand_well_color:rgba(64, 64, 64, 0.21);
+$brand_modal_color:rgba(10, 10, 10, 0.88);
 
 
 $font_family_raleway: 'Raleway';
@@ -417,6 +418,67 @@ a {
 }
 .btn:hover {
 	border:1px solid $brand_well_color;
+}
+
+
+/* MODALS */
+.modal {
+	.modal-content {
+		background-color:$brand_modal_color;
+	}	
+}
+
+
+.file_input {
+    position: absolute;
+    top: 56px;
+    right: 0;
+    margin: 0;
+    opacity: 0;
+    -ms-filter: 'alpha(opacity=0)';
+    font-size: 410px;
+    direction: ltr;
+    cursor: pointer;
+    z-index: 100000;
+}
+
+
+/* UPLOADER */
+.dashboard {
+	.upload-panel {
+		min-height:450px;
+		display: block;
+	    background-color: transparent;
+	    padding: 1em;
+	    border-top: red solid 1px;
+	}
+	.upload-trigger {
+	    cursor: pointer;
+	    text-align: center;
+	    display: block;
+	    margin: auto;
+	}
+	.file_input {
+	    position: absolute;
+	    top: 56px;
+	    right: 0;
+	    margin: 0;
+	    opacity: 0;
+	    -ms-filter: 'alpha(opacity=0)';
+	    font-size: 410px;
+	    direction: ltr;
+	    cursor: pointer;
+	    z-index: 100000;
+	}
+	.upload-trigger i {
+	    font-size: 6em;
+	}
+	hr {
+		border:transparent;
+	}
+	.progress-bar {
+		background-color:$brand_red;
+	}
 }
 
 

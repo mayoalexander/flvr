@@ -10,7 +10,7 @@ function showProfilePicture($value) {
 	echo '<h4><i class="fa fa-photo"></i> Update Photo</h4>
 	<div class="upload-profile-photo-area clearfix">
 		<input type="file" class="form-control post_photo file_input" name="photo" style="height:200px;">
-		<img src="'.$value.'">
+		<img src="'.$value.'" class="img-responsive">
 		<span class="file-upload-results"></span>
 	</div>';
 }

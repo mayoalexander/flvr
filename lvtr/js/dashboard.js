@@ -208,7 +208,7 @@ function audioPlayer(elem) {
 			e.preventDefault();
 			$('#postModal').modal('show');
 		// $.get('views/widgets/view_post.php', {
-			$.get('views/widgets/edit_post.php', {
+			$.get('http://freelabel.net/lvtr/views/widgets/edit_post.php', {
 				post_id: $(this).attr('data-id')
 			}, function(result){
 				$('#postWrapper').html(result);
@@ -222,7 +222,7 @@ function audioPlayer(elem) {
 			e.preventDefault();
 			$('#postModal').modal('show');
 		// $.get('views/widgets/view_post.php', {
-			$.get('views/widgets/add_to_categories.php', {
+			$.get('http://freelabel.net/lvtr/views/widgets/add_to_categories.php', {
 				post_id: $(this).attr('data-id'),
 				user_name: $(this).attr('data-user')
 			}, function(result){
@@ -237,9 +237,9 @@ function audioPlayer(elem) {
 			var data = $(this);
 			var post_id = $(this).attr('data-id');
 		// hide wrap
-		wrap = $(this).parent().parent().parent().parent().parent();
+		wrap = $(this).parent().parent().parent().parent();
 		wrap.hide('fast');
-		$.post('config/update.php', {
+		$.post('http://freelabel.net/lvtr/config/update.php', {
 			action: 'delete',
 			post_id: post_id
 		}, function(result){
