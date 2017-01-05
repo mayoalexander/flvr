@@ -1,5 +1,6 @@
 <?php
-header('Location: /lvtr');
+// header('Location: /lvtr');
+header('Location: /view');
 // echo 'hello everybody';
 exit;
 /**
