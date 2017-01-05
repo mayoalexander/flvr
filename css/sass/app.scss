@@ -179,6 +179,27 @@ a {
 	}
 }
 
+
+header.carousel {
+	height:95vh !important;
+}
+.carousel-caption {
+	h2 {
+		background-color:rgba(254, 63, 68, 0.54);
+		// padding:1em 2em;
+		color:$brand_body_text_light;
+		font-size:5vmax;
+		font-weight: bold;
+	    padding: 22px;
+	    text-shadow: none;
+	    a {
+	    	color:$brand_body_text_light;
+	    	border-color:$brand_body_text_light;
+	    }
+	}
+	padding-bottom: 30vh;
+}
+
 .projects {
 	padding:0;
 	li {
@@ -419,6 +440,23 @@ a {
 .btn:hover {
 	border:1px solid $brand_well_color;
 }
+
+.btn-default {
+	border-color:$brand_body_text_muted;
+	&:hover, &:active, &:focus, &:active:hover, &:active:focus {
+		background-color:rgb(12, 12, 12);
+		color:$brand_white;
+		border-color: $brand_body_text_muted;
+	}
+}
+
+.btn-primary, .btn-success, .btn-default, .btn-danger, .btn-warning {
+    background-color: transparent;
+    color: $brand_body_text_muted;
+}
+
+
+
 
 
 /* MODALS */

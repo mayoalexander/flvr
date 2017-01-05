@@ -104,6 +104,22 @@ a {
     padding-top: 10em;
     height: inherit; }
 
+header.carousel {
+  height: 95vh !important; }
+
+.carousel-caption {
+  padding-bottom: 30vh; }
+  .carousel-caption h2 {
+    background-color: rgba(254, 63, 68, 0.54);
+    color: #e3e3e3;
+    font-size: 5vmax;
+    font-weight: bold;
+    padding: 22px;
+    text-shadow: none; }
+    .carousel-caption h2 a {
+      color: #e3e3e3;
+      border-color: #e3e3e3; }
+
 .projects {
   padding: 0; }
   .projects li {
@@ -259,6 +275,17 @@ a {
 
 .btn:hover {
   border: 1px solid rgba(64, 64, 64, 0.21); }
+
+.btn-default {
+  border-color: #676767; }
+  .btn-default:hover, .btn-default:active, .btn-default:focus, .btn-default:active:hover, .btn-default:active:focus {
+    background-color: #0c0c0c;
+    color: #e3e3e3;
+    border-color: #676767; }
+
+.btn-primary, .btn-success, .btn-default, .btn-danger, .btn-warning {
+  background-color: transparent;
+  color: #676767; }
 
 /* MODALS */
 .modal .modal-content {

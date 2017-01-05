@@ -101,7 +101,6 @@ class Upload extends Config
 
 			if ($result = mysqli_query($con,$query)) {
 			    $res = "New Post Added!<script>setTimeout(function(){window.location.assign('".SITE."?ctrl=upload'); window.open('http://freelabel.net/".$twitter."')},3000)</script> ";
-			    $res = '';
 			} else {
 			    $res = "Error: " . $sql . "<br>" . mysqli_error($con);
 			    return $res;

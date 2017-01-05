@@ -192,11 +192,15 @@ $site->require_login();
 
 		
 		status.html(PleaseWait);
-		$.post('<?php echo $site->url; ?>config/upload.php', data, function(result){
+		var uploadPath = 'http://freelabel.net/lvtr/config/upload.php';
+		$.post(uploadPath, data, function(result){
 			elem.html('');
 			elem.html(result);
-			// alert(result);
-			console.log('file uploaded! Data below');
+
+
+			// alert('testing initiated');
+			// alert(result); // delete me 
+			// console.log('file uploaded! Data below'); delete me
 			console.log(result);
 		});
 	});
