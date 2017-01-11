@@ -72,6 +72,8 @@ function savePlay(post_id,user_name) {
 
 
 function audioPlayer(elem) {
+	console.log(elem);
+	console.log(elem.attr('data-mp3'));
 	currentState = elem.html();
 	playButtonElem = '<i class="fa fa-play"></i>';
 	pauseButtonElem = '<i class="fa fa-pause"></i>';
@@ -266,8 +268,9 @@ function audioPlayer(elem) {
 
 		$('.tracklist-panel a').click(function(e){
 			e.preventDefault();
-		// var data = $(this).find('.play_button');
-		// audioPlayer(data);
+			var data = $(this).parent().find('.play_button');
+			// console.log(data)
+			audioPlayer(data);
 	});
 
 		$(".play_button").click(function(e) {

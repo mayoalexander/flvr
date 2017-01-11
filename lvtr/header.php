@@ -46,3 +46,6 @@ $site = new Config();
 <?php
 
 include('/home/freelabelnet/public_html/view/themes/demo/content/400/navigation.htm');
+include('/home/freelabelnet/public_html/view/themes/demo/content/400/mediaplayer.htm');
+
+// 
