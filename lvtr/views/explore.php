@@ -13,10 +13,6 @@ $posts = $site->get_explore_posts($_SESSION['user_name'], $_POST['page']);
 // $posts = $site->get_user_liked('admin');
 
 ?>
-<div class="container">
-	<h1 class="page-header">Explore</h1>
-	<div>
-		<?php $site->display_media_grid($posts, $_SESSION['user_name'], $_POST['page']); ?>
-	</div>
-</div>
+<?php $site->display_media_grid($posts, $_SESSION['user_name'], $_POST['page']); ?>
+
 <script type="text/javascript" src="<?php echo $site->url ?>js/dashboard.js"></script>

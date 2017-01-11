@@ -416,6 +416,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 	}
 
 	function display_media_grid($media, $user_name_session=NULL, $page=0) {
+		$res='';
 		if (count($media)!==1) {
 			$col = 'col-md-4 col-sm-6';
 		} else {
@@ -427,11 +428,11 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 		if (isset($media)) {
 			$i=0;
 			foreach ($media as $key => $post) {
-					if ($i===0) {
-						echo '<div class="row section">';
-					}
-					echo '<article class="tracklist-panel '.$col.'">';
-					echo '
+					// if ($i===0) {
+					// 	$res .= '<div class="row section">';
+					// }
+					$res .= '<article class="flex-item tracklist-panel '.$col.'">';
+					$res .= '
 						<a href="'.$this->create_url($post).'" data-id="'.$post['id'].'"> 
 							<img src="'.$post['photo'].'" class="img-responsive"/>
 						</a> 
@@ -441,23 +442,26 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 							<span>'.$post['blogtitle'].'</span>
 						</div>
 						';
-						echo '<div class="status">'.$this->display_post_status($post).'</div>';
-					echo '</article>';
-					if ($i===2) {
-						echo '</div>';
-						$i=0;
-					} else {
-						$i++;
-					}
+						$res .= '<div class="status">'.$this->display_post_status($post).'</div>';
+					$res .= '</article>';
+					// if ($i===2) {
+					// 	$res .= '</div>';
+					// 	$i=0;
+					// } else {
+					// 	$i++;
+					// }
 			}
 			if (count($media)==$this->max_post_per_page) {
-				echo $load_more_button;
+				$res .= $load_more_button;
 			}
 		} else {
-				echo '<p class="tracklist-item label nothing-found text-center">';
-						echo '<i class="fa fa-alert"></i> Nothing found..';
-				echo '</p>';
+				$res .= '<p class="tracklist-item label nothing-found text-center">';
+						$res .= '<i class="fa fa-alert"></i> Nothing found..';
+				$res .= '</p>';
 		}
+		echo '<div class="tracklist-container">';
+		echo $res;
+		echo '</div>';
 
 	}
 

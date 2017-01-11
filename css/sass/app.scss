@@ -367,7 +367,11 @@ header.carousel .fill {
 	display:block;
 	margin-bottom:2em;
 }
+.tracklist-container {
+
+}
 .tracklist-panel {
+	flex:1;
 	padding:0em 0.5em 2em 0.5em;
 	.img-responsive {
 		width:100%;
@@ -560,6 +564,14 @@ header.carousel .fill {
 
 
 @media (max-width: 600px) {
+	.container {
+		padding-left:5px;
+		padding-right:5px;
+	}
+	.tracklist-panel {
+		padding-left:0;
+		padding-right:0;
+	}
 	.caption, .status {
 		position:relative;
 		bottom:34px;
@@ -568,7 +580,7 @@ header.carousel .fill {
 			color:$brand_red;
 		}
 		span {
-			font-size:2em;
+			// font-size:2em;
 		}
 	}
 	.audio-player-toolbar {
