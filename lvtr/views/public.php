@@ -60,7 +60,7 @@ $site->update_stats($post['views'], $post['id']);
 				background-position: center center;
 				font-weight: 700;
 				/*letter-spacing: 10px;*/
-				text-shadow: 2px 2px 20px #000000;
+				/*text-shadow: 2px 2px 20px #000000;*/
 				box-shadow: 0 0 10px #303030;
 				height: 100vh;
 				background-size: cover;
@@ -70,6 +70,7 @@ $site->update_stats($post['views'], $post['id']);
 			}
 			.profile-header-banner p {
 				font-size: 4vw;
+				color:#e3e3e3;
 			}
 /*			.profile .section {
 				padding-top:20vh;
@@ -99,7 +100,6 @@ $site->update_stats($post['views'], $post['id']);
 
 			<section class="profile-body clearfix">
 
-				<div class="row">
 					<div class="track-details">
 						<div><?php echo $post['description']; ?></div>
 						<div class="track-controls"></div>
@@ -111,7 +111,6 @@ $site->update_stats($post['views'], $post['id']);
 						?>
 					</div>
 
-				</div>
 			</section>
 
 			<div>

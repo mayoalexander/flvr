@@ -252,9 +252,11 @@ header.carousel .fill {
   .tracklist-panel .play_button {
     background-color: #FE3F44;
     border-radius: 0px; }
+  .tracklist-panel .caption {
+    padding-top: 1em; }
   .tracklist-panel .caption, .tracklist-panel .status {
     position: relative;
-    bottom: 34px; }
+    bottom: 48px; }
     .tracklist-panel .caption h5, .tracklist-panel .status h5 {
       font-size: 1.75em;
       color: #FE3F44; }

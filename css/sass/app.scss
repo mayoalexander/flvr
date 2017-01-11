@@ -394,9 +394,12 @@ header.carousel .fill {
 		border-radius:0px;
 	}
 
+	.caption {
+		padding-top: 1em;
+	}
 	.caption, .status {
 		position:relative;
-		bottom:34px;
+		bottom:48px;
 		h5 {
 			font-size:1.75em;
 			color:$brand_red;

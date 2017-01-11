@@ -428,9 +428,9 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 		if (isset($media)) {
 			$i=0;
 			foreach ($media as $key => $post) {
-					// if ($i===0) {
-					// 	$res .= '<div class="row section">';
-					// }
+					if ($i===0) {
+						$res .= '<div class="section">';
+					}
 					$res .= '<article class="flex-item tracklist-panel '.$col.'">';
 					$res .= '
 						<a href="'.$this->create_url($post).'" data-id="'.$post['id'].'"> 
@@ -444,12 +444,12 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 						';
 						$res .= '<div class="status">'.$this->display_post_status($post).'</div>';
 					$res .= '</article>';
-					// if ($i===2) {
-					// 	$res .= '</div>';
-					// 	$i=0;
-					// } else {
-					// 	$i++;
-					// }
+					if ($i===2) {
+						$res .= '</div>';
+						$i=0;
+					} else {
+						$i++;
+					}
 			}
 			if (count($media)==$this->max_post_per_page) {
 				$res .= $load_more_button;
