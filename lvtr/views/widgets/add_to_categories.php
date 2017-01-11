@@ -14,6 +14,7 @@ $dropdown = $config->create_select_dropdown($categories, 'unique_id');
 
 <form class="add-to-category-form row" style="padding:3em;">
 	<h2>Adding</h2>
+	<p class="feedback alert alert-success hidden"></p>
 	<h4><?php echo $post['twitter'].' - '.$post['blogtitle']; ?> to:</h4>
 	<div class="col-md-7 col-sm-7"><?php echo $dropdown; ?></div>
 	<div class="col-md-5 col-sm-5"><button class="btn btn-primary btn-block pull-right">Add</button></div>
@@ -36,11 +37,19 @@ $dropdown = $config->create_select_dropdown($categories, 'unique_id');
 
 		e.preventDefault();
 		var form = $(this);
+		var wrap = $(this).parent().parent().parent().parent();
 		var data = form.serialize();
 
-		form.hide();
+		
+
+		
+		
 		$.post(url, data ,function(result){
-			alert(result);
+			form.find('.feedback').html(result);
+			form.find('.feedback').removeClass('hidden');
+			setTimeout(function(){
+				wrap.modal('hide');
+			},2000);
 		})
 	});
 

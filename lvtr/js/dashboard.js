@@ -500,13 +500,16 @@ function audioPlayer(elem) {
 			var lead_username = $(this).attr('data-user');
 			var wrap = $(this).parent().parent().parent();
 			var button = $(this);
-			var lead_name = $(this).parent().parent().parent().find('blockquote').text();
+			var lead_name = $(this).parent().parent().parent().find('.list-group').children()[0].innerText;//.get(0);
 			var data = {
 				lead_twitter:lead_username,
 				lead_name:lead_name,
 				action:'add_to_leads'
 			}
 			var url = 'http://freelabel.net/lvtr/config/update.php';
+
+			// alert(lead_name);
+			// console.log(lead_name);
 			$.post(url, data, function(result){
 				updateButtonCallback(wrap, button, result)
 			});

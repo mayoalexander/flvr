@@ -122,7 +122,7 @@ function displayInputGroup($post) {
 	            // alert("its a photo!");
 	        }
             // var formdata_PHO = $('#artwork_photo')[0].files[0];
-           	path = '<?php echo $site->url; ?>config/upload-profile-photo.php';
+           	path = 'http://freelabel.net/lvtr/config/upload-profile-photo.php';
             elem = $(this);
             formdata_PHO = $(this).get(0).files[0];
 			var formdata = new FormData();
@@ -168,7 +168,7 @@ function displayInputGroup($post) {
 			console.log(element);
 			console.log(data);
 			element.modal('hide');
-			$.post('config/update.php', data, function(data){
+			$.post('http://freelabel.net/lvtr/config/update.php', data, function(data){
 				alert(data);
 			})	
 		});

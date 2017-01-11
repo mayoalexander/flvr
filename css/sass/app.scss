@@ -41,6 +41,9 @@ body, html {
 
 body {
 	font-family:$font_family_abel;
+	h1, h2, h3, h4, h5, h6 {
+		font-family:$font_family_raleway;
+	}
 	h1, h2, .jumbotron h1 {
 		color:$brand_red;
 	}
@@ -423,6 +426,21 @@ header.carousel .fill {
 
 
 
+
+.categorieslist-item {
+	a.active {
+		color:$brand_red;
+	}
+	a {
+		color:$brand_body_text_muted;
+		&:hover {
+			color:$brand_red;
+		}
+	}
+}
+
+
+
 /* AUDIO PLAYER TOOLBAR */
 .audio-player-toolbar {
 	.navbar-brand {
@@ -529,6 +547,11 @@ header.carousel .fill {
 	.progress-bar {
 		background-color:$brand_red;
 	}
+}
+
+
+.video-container {
+	padding:0 0 5em 0  !important;
 }
 
 

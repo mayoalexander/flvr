@@ -35,6 +35,12 @@ class Config
 		$this->meta_keywords = 'music promotion,music promotions,music promotions company,music promotions companies,music promotion company,music promotion companies,music promotion services,music promotion blog,free music promotion,music promotion sites,	
 online music promotion,free music promotion sites,hip hop music promotion,music promotion app,music promotion package,music promotion service,best music promotion services,independent music promotion,free music promotions,indie music promotion,free online music promotion,music promotional items,music promotion jobs,online music promotion services,buy music promotion,music promotion free';
 
+
+
+
+		/* SETTINGS */
+		$this->max_post_per_page = 21;
+
 		/* CORE URL PATHS */
 		$this->admin_url = 'http://freelabel.net/view/';
 		$this->media_url = 'http://freelabel.net/view/storage/app/media/';
@@ -444,7 +450,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 						$i++;
 					}
 			}
-			if (count($media)==21) {
+			if (count($media)==$this->max_post_per_page) {
 				echo $load_more_button;
 			}
 		} else {
@@ -995,7 +1001,7 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 		if ($categories) {
 			foreach ($categories as $key => $post) {
 				echo '<p class="categorieslist-item" data-id="'.$post['id'].'" data-user="'.$post['user_name'].'">';
-					echo '<b>'.$post['name'].'</b>';
+					echo '<a href="#">'.$post['name'].'</a>';
 					echo '<i class="edit-category fa fa-ellipsis-h pull-right" data-id="'.$post['id'].'"></i>';
 				echo '</p>';
 			}
@@ -1121,11 +1127,12 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 			$date_added =$this->get_time_ago(strtotime($leads[0]['entry_date']));
 
 
-
+			echo '<article class="list-group">';
 			foreach ($newleads as $key => $lead) {
 				$priority = count($lead);
 				$twitter_url = "http://twitter.com/@".$key;
 
+				echo '<panel class="list-group-item">';
 				echo '<p class="leadlist-item row">';
 					echo '<span class="col-md-1 col-sm-3 priority">'.$priority.'</span>';
 					echo '<span class="col-md-1 col-sm-3">'.$date_added.'</span>';
@@ -1138,12 +1145,16 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 					echo '<a class="btn btn-primary call-us-button" data-user="'.$key.'" href="#"><i class="fa fa-phone"></i> Call Us</a>';
 					echo '<i class="fa fa-ellipsis-h pull-right view-details" data-user='.$lead['id'].'></i>';
 				echo '</p>';
-				echo '<div class="row">';
+
+				echo '<div class="row hidden">';
 					echo '<form method="POST" class="twitter-response-box col-md-11" data-twitter="'.$key.'"><input class="form-control" rows="3" placeholder="Enter Message.."></input></form>
 					<div class="col-md-1 btn btn-primary">Send</div>
 					</div>';
 				echo '</div>';
+			echo '</panel>';
 			}
+			echo '</article>';
+
 		} else {
 				echo '<p class="userlist-item">';
 					echo '<p>You have no friends! :(</p>';
@@ -1425,7 +1436,7 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 		WHERE `user_name` LIKE '%$slug%' $status
 		OR `blogtitle` LIKE '%$slug%' $status
 		OR `twitter` LIKE '%$slug%' $status
-		ORDER BY `id` DESC LIMIT 24";
+		ORDER BY `id` DESC LIMIT $this->max_post_per_page";
 		$result = mysqli_query($con,$query);
 		while ($row = mysqli_fetch_assoc($result)) {
 			$post[] = $row;
@@ -1644,13 +1655,13 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 				$sender_location = $message->sender->location;
 				$sender_msg = $message->text;
 				$sender_img = $message->sender->profile_image_url;
-				$msg =  '<blockquote><p>'.$sender_msg.'</p></blockquote>'; // <footer>'.$sender_name.' in <cite title="Source Title">'.$sender_location.'</cite></footer>
+				$msg =  '<div class="list-group-item"><p class="message">'.$sender_msg.'</p></div>'; // <footer>'.$sender_name.' in <cite title="Source Title">'.$sender_location.'</cite></footer>
 				$messages[$sender_twitter]['sender'] = $sender_twitter;
 				$messages[$sender_twitter]['sender_img'] = $sender_img;
 				$messages[$sender_twitter]['messages'][]['text'] = $msg;
 			}
 			foreach ($messages as $convo) {
-				echo '<article class="message-item">';
+				echo '<article class="well message-item">';
 				echo '<h4 class="page-header clearfix">
 				<img width="36px" src="'.$convo['sender_img'].'" class="img-thumbnail">
 				@'.$convo['sender'].'
@@ -1660,9 +1671,11 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 					<a class="btn btn-primary call-us-button" data-user="'.$convo['sender'].'" href="#"><i class="fa fa-phone"></i> Call Us</a>
 				</span>
 				</h4>';
+				echo '<div class="list-group">';
 				foreach ($convo['messages'] as $message) {
 					echo $message['text'];
 				}
+				echo '</div>';
 
 				// echo '<div class="row">
 				// <form method="POST" class="twitter-response-box col-md-11" data-twitter="'.$convo['sender'].'"><input class="form-control" rows="3" placeholder="Enter Message.."></input></form>

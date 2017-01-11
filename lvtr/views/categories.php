@@ -52,13 +52,18 @@ $ads = $site->get_user_categories($_SESSION['user_name']); // '0' pulling the 1s
 
 
 
-	$('.categorieslist-item b').click(function(){
+	$('.categorieslist-item a').click(function(e){
+		e.preventDefault()
 		var wrapper = $('.category-container');
 		wrapper.html('Loading...');
 		var category_id = $(this).parent().attr('data-id');
 		var user_name = $(this).parent().attr('data-user');
 		var data = { category_id: category_id, user_name:user_name };
 		console.log(data);
+
+		$('.categorieslist-item a').removeClass('active');
+		$(this).addClass('active');
+
 		var url = 'http://freelabel.net/lvtr/views/widgets/view_category.php';
 		$.get(url, data, function(result){
 			// console.log(wrapper);

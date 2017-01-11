@@ -8,6 +8,8 @@ body, html {
 
 body {
   font-family: "Abel"; }
+  body h1, body h2, body h3, body h4, body h5, body h6 {
+    font-family: "Raleway"; }
   body h1, body h2, body .jumbotron h1 {
     color: #FE3F44; }
   body hr {
@@ -271,6 +273,13 @@ header.carousel .fill {
         font-size: 2em;
         display: block; }
 
+.categorieslist-item a.active {
+  color: #FE3F44; }
+.categorieslist-item a {
+  color: #676767; }
+  .categorieslist-item a:hover {
+    color: #FE3F44; }
+
 /* AUDIO PLAYER TOOLBAR */
 .audio-player-toolbar .navbar-brand {
   font-size: 1em; }
@@ -342,6 +351,9 @@ header.carousel .fill {
   border: transparent; }
 .dashboard .progress-bar {
   background-color: #FE3F44; }
+
+.video-container {
+  padding: 0 0 5em 0  !important; }
 
 @media (max-width: 600px) {
   .caption, .status {

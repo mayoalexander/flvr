@@ -176,7 +176,7 @@ function displayInputGroup($post) {
 			console.log(element);
 			console.log(data);
 			element.modal('hide');
-			$.post('config/update.php', data, function(data){
+			$.post('http://freelabel.net/lvtr/config/update.php', data, function(data){
 				alert(data);
 			})	
 		});
