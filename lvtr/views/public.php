@@ -36,9 +36,6 @@ $site->update_stats($post['views'], $post['id']);
 			iframe {
 				width: 100%;
 			}
-			.tracklist-panel {
-				padding:1em;
-			}
 			.profile-body {
 				margin-bottom: 5em;
 			}
