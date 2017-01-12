@@ -46,8 +46,14 @@ $site = new Config();
 <section class="widget-container container"></section>
 
 
+
+
+<script type="text/javascript" src="http://freelabel.net/lvtr/js/application.js"></script>
 <script type="text/javascript">
-	$('.widget-navigation a').click(function(e){
+
+
+$(function(){
+  $('.widget-navigation a').click(function(e){
     $('.widget-navigation a').parent().removeClass('active');
     $(this).parent().addClass('active');
     e.preventDefault();
@@ -55,10 +61,14 @@ $site = new Config();
   });
 
 
-	$('.sc_url').submit(function(e){
-		e.preventDefault();
+  $('.sc_url').submit(function(e){
+    e.preventDefault();
     openDownloadApi($(this).find('#url').val());
   });
+
+
+});
+
 </script>
 
 
