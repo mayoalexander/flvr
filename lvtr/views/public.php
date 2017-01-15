@@ -83,6 +83,8 @@ $site->update_stats($post['views'], $post['id']);
 			}
 		</style>
 
+
+
 		<div class="jumbotron profile-header-banner section" style="background-image:url('<?php echo $post['photo']; ?>');">
 			<div class="background-tint">
 				<h1><?php echo $post['twitter']; ?></h1>
@@ -96,6 +98,9 @@ $site->update_stats($post['views'], $post['id']);
 		<section class="profile container">
 
 			<section class="profile-body clearfix">
+				<div class="social-share-buttons">
+					<?php echo $site->display_social_buttons($post); ?>
+				</div>
 
 					<div class="track-details">
 						<div><?php echo $post['description']; ?></div>
