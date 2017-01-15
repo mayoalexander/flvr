@@ -85,12 +85,20 @@ function audioPlayer(elem) {
 	var activeMp3Type = elem.attr('data-type');
 	var activeMp3Text = elem.attr('data-twitter') + ' - ' + elem.attr('data-title');
 	var tracks = [];
+
+	/* BUILD PLAYLIST */
 	$.each($('.play_button'),function(index,value){
 		tracks[index] =  {
 			title: value.getAttribute('data-twitter') + ' - ' + value.getAttribute('data-title'),
 			file: value.getAttribute('data-mp3')
 		}
 	});
+
+	/* ADD ACTIVE CLASS */
+	$('.tracklist-container article').removeClass('active');
+	var postWrapper = elem.parent().parent();
+	postWrapper.addClass('active')
+	console.log();
 
 	var FLPlayer = {};
 	FLPlayer.started = true;
