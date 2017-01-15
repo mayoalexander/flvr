@@ -56,7 +56,7 @@ foreach ($_FILES as $file) {
 
 	$arr = array_reverse(explode('.', $photo));
 	$rand = rand(0,982348237434);
-	$photo = $arr[1].'-'.$rand.'-.'.$arr[0];
+	$photo = preg_replace('/\s+/', '', $arr[1].'-'.$rand.'-.'.$arr[0]);
 	// echo $temp.' acutally moving to '.	$photo;
 
 	$new_path = 'public/img/uploads/'.$photo;

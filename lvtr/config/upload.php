@@ -30,7 +30,7 @@ class Upload extends Config
 		return;
 	}
 	function formatTwitter($twitter) {
-		$twitter = str_replace('http://twitter.com/', '', strtolower($twitter));
+		$twitter = str_replace('https://twitter.com/', '', strtolower($twitter));
 		return $twitter;
 	}
 
