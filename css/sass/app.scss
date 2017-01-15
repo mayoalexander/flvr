@@ -591,11 +591,20 @@ header.carousel .fill {
 
 
 
+/* UPDATE PROFILE */
+.profile {
+	.file_input {
+		width: inherit;
+		height:inherit;
+	}
+}
 
 
 
+
+
+/* PLAY BUTTON */
 .profile-header-banner {
-	/* PLAY BUTTON */
 	.play_button {
 		background-color:$brand_red;
 		border-radius:55%;

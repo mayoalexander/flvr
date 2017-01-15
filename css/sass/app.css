@@ -360,19 +360,23 @@ header.carousel .fill {
 .video-container {
   padding: 0 0 5em 0  !important; }
 
-.profile-header-banner {
-  /* PLAY BUTTON */ }
-  .profile-header-banner .play_button {
-    background-color: #FE3F44;
-    border-radius: 55%;
-    font-size: 48px;
-    width: 85px; }
-    .profile-header-banner .play_button .fa {
-      color: #e3e3e3; }
-    .profile-header-banner .play_button .fa-play {
-      position: relative;
-      left: 6px;
-      top: 1px; }
+/* UPDATE PROFILE */
+.profile .file_input {
+  width: inherit;
+  height: inherit; }
+
+/* PLAY BUTTON */
+.profile-header-banner .play_button {
+  background-color: #FE3F44;
+  border-radius: 55%;
+  font-size: 48px;
+  width: 85px; }
+  .profile-header-banner .play_button .fa {
+    color: #e3e3e3; }
+  .profile-header-banner .play_button .fa-play {
+    position: relative;
+    left: 6px;
+    top: 1px; }
 
 @media (max-width: 600px) {
   .container {
