@@ -347,6 +347,9 @@ header.carousel .fill {
 
 
 
+
+
+/*  */
 .parallax {
     background-attachment: fixed;
     box-shadow: inset 0 8px 8px -8px rgba(0,0,0,.4), inset 0 -8px 8px -8px rgba(0,0,0,.4);
@@ -362,6 +365,13 @@ header.carousel .fill {
 	background-color:$brand_well_color;
 	border-color:$brand_border_color;
 }
+
+
+
+
+
+
+/* TRACKLIST */
 
 .tracklist-header {
 	display:block;
@@ -458,15 +468,10 @@ header.carousel .fill {
 
 
 
-/* HIDE AT FIRST, SHOW VIA JAVASCRIPT */
-// .logged-in {
-// 	display:none !important;
-// }
+
+
 
 /* BUTTONS */
-// .btn-link {
-// 	color:$brand_red;
-// }
 .btn {
 	transition:all 0.3s;
 }
@@ -496,6 +501,20 @@ header.carousel .fill {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* MODALS */
 .modal {
 	.modal-content {
@@ -516,6 +535,10 @@ header.carousel .fill {
     cursor: pointer;
     z-index: 100000;
 }
+
+
+
+
 
 
 /* UPLOADER */
@@ -557,9 +580,38 @@ header.carousel .fill {
 }
 
 
+
+
+
+/* VIDEO PLAYER */
 .video-container {
 	padding:0 0 5em 0  !important;
 }
+
+
+
+
+
+
+
+.profile-header-banner {
+	/* PLAY BUTTON */
+	.play_button {
+		background-color:$brand_red;
+		border-radius:55%;
+	    font-size: 48px;
+	    width: 85px;
+		.fa {
+			color:$brand_body_text_light;
+		}
+		.fa-play {
+		    position: relative;
+		    left: 6px;
+		    top: 1px;
+		}
+	}
+}
+
 
 
 

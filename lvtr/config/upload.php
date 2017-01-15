@@ -100,7 +100,8 @@ class Upload extends Config
 			VALUES ('$user_name', '".mysqli_real_escape_string($con, $title[$key])."', '".mysqli_real_escape_string($con, $photo)."', '".mysqli_real_escape_string($con, $twitter)."', '$status[$key]', '$file', '$type', '$description', '$posters[$key]', '$twitpic', '$submission_date', '$tags', '$blogentry')";
 
 			if ($result = mysqli_query($con,$query)) {
-			    $res = "New Post Added!<script>setTimeout(function(){window.location.assign('".SITE."?ctrl=upload'); window.open('http://freelabel.net/".$twitter."')},3000)</script> ";
+			    // $res = "New Post Added!<script>setTimeout(function(){window.location.assign('".SITE."?ctrl=upload'); window.open('http://freelabel.net/".$twitter."')},3000)</script> ";
+			    $res = "New Post Added!<script>setTimeout(function(){window.location.assign('http://freelabel.net/view/dashboard/upload'); window.open('http://freelabel.net/".$twitter."')},3000)</script> ";
 			} else {
 			    $res = "Error: " . $sql . "<br>" . mysqli_error($con);
 			    return $res;

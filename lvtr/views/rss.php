@@ -71,7 +71,7 @@ function displaySites($feeds) {
 ?>
 <div class="rss-container container" id="tabs" style="width:600px;">      
 	<h2>RSS</h2>         
-	<a target="_blank" href="<?php $site->url; ?>?ctrl=upload" class="btn btn-primary pull-right">Open Uploader</a>
+	<a target="_blank" href="http://freelabel.net/view/dashboard/upload" class="btn btn-primary pull-right">Open Uploader</a>
 	<div id="tabs-1">
  	<?php //echo $build;
 	 	if (!isset($_GET['site'])) {
