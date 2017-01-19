@@ -625,6 +625,20 @@ header.carousel .fill {
 
 
 
+/* CLIENTS */
+.clients {
+	article {
+		img {
+			max-width:80px;
+			border-radius:50%;
+		}	
+	}
+}
+
+
+
+
+
 
 
 @media (max-width: 600px) {

@@ -140,6 +140,11 @@
       });
     }
 
+    function openModal(content) {
+      $('.modal').modal('toggle');
+      $('.modal .modal-body').html(content);
+    }
+
 
     function openDownloadApi(src) {
       if (src.includes('w.soundcloud.com/player') || src.includes('soundcloud.com')) {
@@ -147,7 +152,11 @@
         newsrc = src.replace('https://w.soundcloud.com/player/?url=', '');
         var url = 'http://anything2mp3.com?url=' + decodeURI(newsrc);
       } else if (src.includes('youtu')) {
-        var url = 'http://keepvid.com?url=' + encodeURI(src);
+        // var url = 'http://keepvid.com?url=' + encodeURI(src);
+        var content = "<h1>Copy URL</h1><input type='text' value='" + src + "' class='form-control'>\
+        <a href='http://freelabel.net/view/backend/freelabel/freelabel/tv/create' target='_blank' class='btn btn-primary'>Post To TV</a>";
+        openModal(content);
+        return;
       } else {
         alert('this is not a valid url!: ' + src );
         return;
