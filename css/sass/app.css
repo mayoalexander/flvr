@@ -245,13 +245,24 @@ header.carousel .fill {
   display: block;
   margin-bottom: 2em; }
 
-.tracklist-container .active {
-  border: 2px solid #FE3F44; }
+.tracklist-container {
+  /* FLEXBOX */ }
+  .tracklist-container .active {
+    border-top: 2px solid #FE3F44;
+    background-color: #171717; }
+  .tracklist-container .section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-basis: 300px; }
+    .tracklist-container .section article {
+      flex: 1;
+      min-width: 200px; }
 
 .tracklist-panel {
   flex: 1;
-  padding: 0em 0.5em 2em 0.5em;
-  border: 2px solid transparent;
+  margin: 0em 0.5em 2em 0.5em;
+  border-top: 2px solid transparent;
   /* PLAY BUTTON */ }
   .tracklist-panel .img-responsive {
     width: 100%; }
@@ -269,6 +280,8 @@ header.carousel .fill {
   .tracklist-panel .caption {
     padding-top: 1em; }
   .tracklist-panel .caption, .tracklist-panel .status {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
     position: relative;
     bottom: 48px; }
     .tracklist-panel .caption h5, .tracklist-panel .status h5 {
@@ -420,6 +433,16 @@ header.carousel .fill {
       height: 100vh;
       max-height: 100vh; }
     .navbar-fixed-top .navbar-collapse .navbar-nav .open .dropdown-menu > li > a {
-      line-height: 28px; } }
+      line-height: 28px; }
+
+  .tracklist-container {
+    /* FLEXBOX */ }
+    .tracklist-container .active {
+      border-top: 2px solid #FE3F44;
+      background-color: #171717; }
+    .tracklist-container .section {
+      flex-direction: column; }
+      .tracklist-container .section article {
+        min-width: 200px; } }
 
 /*# sourceMappingURL=app.css.map */

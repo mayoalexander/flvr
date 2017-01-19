@@ -389,13 +389,25 @@ header.carousel .fill {
 }
 .tracklist-container {
 	.active {
-		border:2px solid $brand_red;
+		border-top:2px solid $brand_red;
+		background-color:#171717;
+	}
+	/* FLEXBOX */
+	.section {
+		display:flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		flex-basis: 300px;
+		article {
+			flex:1;
+			min-width: 200px;
+		}
 	}
 }
 .tracklist-panel {
 	flex:1;
-	padding:0em 0.5em 2em 0.5em;
-	border:2px solid transparent;
+	margin:0em 0.5em 2em 0.5em;
+	border-top:2px solid transparent;
 
 	.img-responsive {
 		width:100%;
@@ -422,6 +434,8 @@ header.carousel .fill {
 		padding-top: 1em;
 	}
 	.caption, .status {
+		padding-left:0.5em;
+		padding-right:0.5em;
 		position:relative;
 		bottom:48px;
 		h5 {
@@ -680,6 +694,22 @@ header.carousel .fill {
 		max-height:100vh;
 		.navbar-nav .open .dropdown-menu>li>a {
 		    line-height: 28px;
+		}
+	}
+
+
+	.tracklist-container {
+		.active {
+			border-top:2px solid $brand_red;
+			background-color:#171717;
+		}
+		/* FLEXBOX */
+		.section {
+
+			flex-direction: column;
+			article {
+				min-width: 200px;
+			}
 		}
 	}
 }

@@ -431,7 +431,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 					if ($i===0) {
 						$res .= '<div class="section">';
 					}
-					$res .= '<article class="flex-item tracklist-panel '.$col.'">';
+					$res .= '<article class="tracklist-panel ">';
 					$res .= '
 						<a href="'.$this->create_url($post).'" data-id="'.$post['id'].'"> 
 							<img src="'.$post['photo'].'" class="img-responsive"/>
