@@ -32,11 +32,11 @@ if ($_GET=='') {
 				$uploadedmedia = 'http://'.str_replace(' ', '%20', $_GET['f']);
 				$debug[] = 'photos detected: "'.$uploadedmedia.'"';
 				$media1 = $connection->upload('media/upload', array('media' => $uploadedmedia));
-				if (strlen($_GET['t']) > 90) {
-					$text = substr($_GET['t'], 0,90).'...';
-				} else {
+				// if (strlen($_GET['t']) > 90) {
+				// 	$text = substr($_GET['t'], 0,90).'...';
+				// } else {
 					$text = $_GET['t'];
-				}
+				// }
 				$parameters = array(
 				    'status' => $text, 
 				    'media_ids' =>  $media1->media_id_string//implode(',', array($media1->media_id_string, $media2->media_id_string)),
