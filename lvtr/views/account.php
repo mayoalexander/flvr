@@ -1,4 +1,44 @@
-		<?php $site->require_login($_SESSION); ?>
+<style type="text/css">
+	
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: red;
+}
+.inputfile + label {
+	cursor: pointer; /* "hand" cursor */
+}
+
+.profile-img {
+	width: 100%;
+	border:3px solid transparent;
+	transition: border-color 0.5s;
+}
+
+.profile-img:hover {
+	/*border-color: #303030;*/
+}
+
+</style>
+
+
+	<?php $site->require_login($_SESSION); ?>
 	<section class="profile clearfix">
 
 			<h3 class="clearfix">
@@ -12,16 +52,21 @@
 				<p class="section-description text-muted">Use this form to complete your FREELABEL Profile. We will use this information to build your campaign as well as tag you during promotional campaigns!</p>
 
 				<div class="row">
-					<div class="col-md-4 col-sm-6">
-						<div class="upload-profile-photo-area clearfix">
+					<div class="col-md-4 col-sm-6 profile-photo-container">
+						<input type="file" name="file" id="file" class="inputfile profile_photo_file" />
+						<label for="file"><img class="profile-img" src="<?php $site->display_profile_photo($profile); ?>"></label>
+						<input type="hidden" name="photo" value="<?php $site->display_profile_photo($profile); ?>">
+
+
+<!-- 						<div class="upload-profile-photo-area clearfix">
 
 							<h4><i class="fa fa-photo"></i> Upload Profile Photo</h4>
 							<input type="file" class="form-control profile_photo" name="photo" >
-							<img class="img-responsive" src="<?php $site->display_profile_photo($profile); ?>">
+							<img class="profile-img" src="<?php $site->display_profile_photo($profile); ?>">
 							<span class="file-upload-results">
 								<input type="hidden" name="photo" value="<?php $site->display_profile_photo($profile); ?>">
 							</span>
-						</div>
+						</div> -->
 					</div>
 
 					<div class="col-md-4 col-sm-6">
@@ -125,17 +170,15 @@
 		});
 
 
-		$('.profile_photo').click(function(e){
+		$('.profile_photo_file').click(function(e){
 			console.log($(this).siblings());
 		});
 
 
 
 
-	$(".profile_photo").change(function (){
-		$(this).hide();
-		$(this).siblings()[1].remove();
-    	$('.upload-trigger i').hide();
+	$(".profile_photo_file").change(function (){
+		// $(this).hide();
 		var img = $(this).val();
 		var ext = img.split('.').pop();
         if (ext.toLowerCase() !=='png' && ext.toLowerCase() !=='jpeg' && ext.toLowerCase() !=='jpg' && ext.toLowerCase() !=='gif') {
@@ -147,12 +190,15 @@
             // alert("its a photo!");
         }
         // var formdata_PHO = $('#artwork_photo')[0].files[0];
-       	path = '<?php echo $site->url; ?>config/upload-profile-photo.php';
+       	path = 'http://freelabel.net/lvtr/config/upload-profile-photo.php';
         elem = $(this);
         formdata_PHO = $(this).get(0).files[0];
 		var formdata = new FormData();
         // Add the file to the request.
         formdata.append('photos[]', formdata_PHO);
+
+
+        console.log(formdata);
 
         $.ajax({
             // Uncomment the following to send cross-domain cookies:
@@ -171,14 +217,17 @@
             },
             // Now you should be able to do this:
             mimeType: 'multipart/form-data'    //Property added in 1.5.1
-        }).always(function () {
+        }).always(function (result) {
             console.log(formdata_PHO);
         }).fail(function(jqXHR){
             // alert(jqXHR.statusText + 'oh no it didnt work!')
+        	// alert('its done! ' +jqXHR);
             $('.file-upload-results').html('You didnt upload the correct file format!');
         }).done(function (result) {
-            $('.file-upload-results').html(result);
-            $('.file-upload-results').append('<input type="hidden" name="user_name" value="<?php echo $_SESSION['user_name']; ?>">');
+        	$('.profile-photo-container label').html(result);
+        	// alert('its done! ' +result);
+            // $('.file-upload-results').html(result);
+            $('.profile-photo-container').append('<input type="hidden" name="user_name" value="<?php echo $_SESSION['user_name']; ?>">');
 			// $('.file-upload-results').append('<button class="btn btn-primary save_profile_photo">Save As Profile Image</button> <button class="btn btn-danger"><i class="fa fa-trash"></i></button>');
         });
 	});

@@ -38,9 +38,9 @@ if ($profile==NULL) {
 			iframe {
 				width: 100%;
 			}
-			.tracklist-panel {
+/*			.tracklist-panel {
 				padding:1em;
-			}
+			}*/
 			.heading {
 				padding-bottom: 4em;
 			    margin-bottom: 3em;
@@ -51,7 +51,7 @@ if ($profile==NULL) {
 				margin-top:0;
 				display: inline-block;
 			}
-			.profile button {
+			.profile .follow-button {
 				color:#3897f0;
 				border:1px solid #3897f0;
 			    position: relative;
@@ -78,7 +78,7 @@ if ($profile==NULL) {
 						<h1>
 							<a href="<?php echo $site->url; ?>views/view.php?user_name=<?php echo $user['user_name']; ?>" ><?php echo $profile['name']; ?></a>
 						</h1>
-						<button>Follow</button>
+						<button class="follow-button">Follow</button>
 
 						<h4><a href="<?php echo $site->url; ?>views/view.php?user_name=<?php echo $user['user_name']; ?>" >
 							@<?php echo $user['user_name']; ?></a> - <?php echo $profile['location']; ?></h4>
@@ -110,10 +110,12 @@ if ($profile==NULL) {
 						$media = $site->get_post_by_search($user['user_name']);
 						shuffle($media);
 					
-						$media1 = $site->get_post_by_search($profile['twitter']); 
-						foreach ($media1 as $value) {
-							array_push($media, $value);
+						if ($media1 = $site->get_post_by_search($profile['twitter'])) {
+								foreach ($media1 as $value) {
+									array_push($media, $value);
+								}
 						}
+
 
 						foreach ($media as $key => $value) {
 							// echo '<pre>';
@@ -121,6 +123,8 @@ if ($profile==NULL) {
 							// echo $value.'<br>';
 						}
 						echo $site->display_media_grid($posts);
+
+
 					} else {
 						echo $profile['name'].' has not uploaded any new music yet!';
 					}

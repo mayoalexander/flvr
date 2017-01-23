@@ -344,7 +344,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 		return $media;
 	}
 
-	function display_play_button($post)
+	function display_play_button($post, $key)
 	{
 
 		if ($post['type']!=='photo') {
@@ -353,7 +353,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 			$icon = 'fa-expand';
 		}
 
-		return '<span class="play_button button-tint btn btn-link btn-'.$post['id'].' pull-left" style="display:inline-block;" data-type="'.$post['type'].'" data-mp3="'.$post['trackmp3'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-id="'.$post['id'].'"><i class="fa '.$icon.'"></i></span>';
+		return '<span class="play_button button-tint btn btn-link btn-'.$post['id'].' pull-left" style="display:inline-block;" data-type="'.$post['type'].'" data-mp3="'.$post['trackmp3'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-id="'.$post['id'].'" data-order="'.$key.'"><i class="fa '.$icon.'"></i></span>';
 	}
 
 	function display_post_functions($post,$user_name_session) {
@@ -367,7 +367,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 	}
 
 
-	function display_post_options_button($post, $user_name_session=NULL) {
+	function display_post_options_button($post, $user_name_session=NULL, $key=NULL) {
 		$logged_in_only_buttons='';
 		if (isset($user_name_session) && trim($user_name_session)==trim($post['user_name']) || $user_name_session=='admin') {
 
@@ -386,7 +386,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 
 		return '
 						<div class="dropdown clearfix">
-						'.$this->display_play_button($post).'
+						'.$this->display_play_button($post, $key).'
 						  <span class="button-tint btn btn-link btn-'.$post['id'].' dropdown-toggle pull-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="display:inline-block;"><i class="fa fa-ellipsis-h"></i></span>
 						  <ul class="dropdown-menu panel-body pull-right" aria-labelledby="dropdownMenu1">
 						  	<li><button class="view-post-trigger btn btn-link" data-id="'.$post['id'].'" data-user="'.$user_name_session.'"><i class="fa fa-globe"></i> View</button></li>
@@ -436,7 +436,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 						<a href="'.$this->create_url($post).'" data-id="'.$post['id'].'"> 
 							<img src="'.$post['photo'].'" class="img-responsive"/>
 						</a> 
-						'.$this->display_post_options_button($post, $user_name_session).'
+						'.$this->display_post_options_button($post, $user_name_session, $key).'
 						<div class="caption">
 							<h5>'.$post['twitter'].'</h5>
 							<span>'.$post['blogtitle'].'</span>
@@ -1511,6 +1511,13 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
 		$snapchat = mysqli_real_escape_string($con, $data['snapchat']);
 
 		$todays_date = date('Y-m-d');
+
+
+
+		// put @ in username
+		// $twitter
+		$twitter = str_replace('https://twitter.com/', '', strtolower($twitter));
+		$twitter = '@'.str_replace('@', '', $twitter);
 
 		if ($this->verify_user_profile($data)===NULL) {
 			$query = "INSERT INTO user_profiles (id, date_created ,name, location, brand, twitter, description, instagram, soundcloud, youtube, paypal, snapchat, photo)

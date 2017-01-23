@@ -7,6 +7,17 @@
     addtionalDetails = '<textarea name="description" type="text" class="form-control" rows="3" placeholder="Enter Description.."></textarea>\
     <textarea name="description" type="text" class="form-control" rows="3" placeholder="Enter Description.."></textarea>';
 
+
+
+
+    function displayLoader(elem) {
+      var loader = '<div class="mask-loading"><div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div></div>';
+      elem.html(loader);
+      $(".mask-loading").css("height", elem.height());
+      $(".spinner").css("top", (elem.height() / 2) - 25);
+    }
+
+
     function getUrlVars() {
       var vars = {};
       var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
