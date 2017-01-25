@@ -53,15 +53,6 @@ $site->update_stats($post['views'], $post['id']);
 			#play_button i {
 				font-size:4em;
 			}
-			.profile-header-banner {
-				background-position: center center;
-				font-weight: 700;
-				/*letter-spacing: 10px;*/
-				/*text-shadow: 2px 2px 20px #000000;*/
-				box-shadow: 0 0 10px #303030;
-				height: 100vh;
-				background-size: cover;
-			}
 			.profile-header-banner h1 {
 				font-size: 10vw;
 			}
@@ -69,29 +60,15 @@ $site->update_stats($post['views'], $post['id']);
 				font-size: 4vw;
 				color:#e3e3e3;
 			}
-/*			.profile .section {
-				padding-top:20vh;
-			}*/
-			.jumbotron {
-				padding: 0;
-			}
-			.background-tint {
-				padding:5em;
-				height: inherit;
-				background: rgba(0,0,0,0.4);
-				overflow-x: hidden;
-			}
+
 		</style>
 
 
 
-		<div class="jumbotron profile-header-banner section" style="background-image:url('<?php echo $post['photo']; ?>');">
+		<div class="profile-header-banner section" style="background-image:url('<?php echo $post['photo']; ?>');">
 			<div class="background-tint">
-				<h1><?php echo $post['twitter']; ?></h1>
-				<p><?php echo($post['blogtitle']); ?></p>
-				<div>
-					<?php echo $site->display_play_button($post); ?>
-				</div>
+				<h1 class="title"><?php echo $post['twitter']; ?></h1>
+				<p class="subtitle"><?php echo($post['blogtitle']); ?></p>
 			</div>
 		</div>
 
