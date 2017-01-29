@@ -1,7 +1,7 @@
 <?php
-	include('../header.php');
+	include($_SERVER["DOCUMENT_ROOT"].'/lvtr/header.php');
 
-  require_once ($_SERVER["DOCUMENT_ROOT"].'/lvtr/config/api/youtube.php');
+	require_once ($_SERVER["DOCUMENT_ROOT"].'/lvtr/config/api/youtube.php');
 ?>
 
 
@@ -39,4 +39,4 @@
 
 
 
-<?php include('../footer.php');?>
+<?php include($_SERVER["DOCUMENT_ROOT"].'/lvtr/footer.php');?>

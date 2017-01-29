@@ -39,9 +39,9 @@
     ##
     ## Block all PHP files, except index
     ##
-    RewriteCond %{REQUEST_FILENAME} -f
-    RewriteCond %{REQUEST_FILENAME} \.php$
-    RewriteRule !^index.php index.php [L,NC]
+    ##RewriteCond %{REQUEST_FILENAME} -f
+    ##RewriteCond %{REQUEST_FILENAME} \.php$
+    ##RewriteRule !^index.php index.php [L,NC]
 
     ##
     ## Standard routes

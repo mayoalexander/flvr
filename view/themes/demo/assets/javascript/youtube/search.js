@@ -15,7 +15,8 @@ function search() {
   var q = $('#query').val();
   var request = gapi.client.youtube.search.list({
     q: q,
-    part: 'snippet'
+    part: 'snippet',
+    maxResults:'20'
   });
 
   request.execute(function(response) {
@@ -25,10 +26,13 @@ function search() {
     
     var videos = JSON.parse(str);
     var wrapper = $('#search-container');
+
+    // reset wrapper
+    wrapper.html('');
     
     $.each(videos.items,function(index, video){
         console.log(video.id.videoId)
-        var path = "http://freelabel.net/lvtr/views/youtube.php?q=" + video.id.videoId;
+        var path = "http://freelabel.net/view/themes/demo/assets/php/youtube.php?q=" + encodeURI(video.id.videoId);
         // var path = "http://freelabel.net/view/tv/youtube/" + video.id.videoId + '?t=' + video.snippet.title;
         wrapper.append("<div class='col-md-4'><a href='"+ path + "'><img src='" + video.snippet.thumbnails.medium.url + "' class='img-responsive'></a><p>" + video.snippet.title + "<p></div>");
             // console.log(video.snippet.title)

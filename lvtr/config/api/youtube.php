@@ -1,7 +1,14 @@
 <?php
 if ($_GET['q']) {
+
   $range = 25;
 
+  if (strpos($_GET['q'], '-')!==NULL) {
+    $query = str_replace('-', '', $_GET['q']);
+  } else {
+    $query = $_GET['q'];
+  }
+  
 
 
   // Call set_include_path() as needed to point to your client library.
@@ -18,9 +25,10 @@ if ($_GET['q']) {
 
   $youtube = new Google_YoutubeService($client);
 
+
   try {
     $searchResponse = $youtube->search->listSearch('id,snippet', array(
-      'q' => $_GET['q'],
+      'q' => $query,
       'maxResults' =>$range,
     ));
 

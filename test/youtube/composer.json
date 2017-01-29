@@ -1,0 +1,12 @@
+{
+    "name": "alexmayo/youtube",
+    "authors": [
+        {
+            "name": "Alex Mayo",
+            "email": "mayoalexandertd@icloud.com"
+        }
+    ],
+    "require": {
+        "google/apiclient": "~2.0"
+    }
+}
