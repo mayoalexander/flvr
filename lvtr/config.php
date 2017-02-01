@@ -242,11 +242,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 	function require_content($user_name) {
 		$media = $this->get_user_media($user_name);
 		if (!isset($media)) {
-			if ($_SESSION['user_name']==='admin') {
-				echo "<script>window.location.assign('http://freelabel.net/view/login');</script>";
-			} else {
-				echo "<script>window.location.assign('{$this->url}?ctrl=login');</script>";
-			}
+				echo "<script>window.location.assign('http://freelabel.net/view/dashboard/upload');</script>";
 		} else {
 			return true;
 		}
