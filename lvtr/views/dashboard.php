@@ -2,6 +2,10 @@
 include_once('../config.php');
 $site = new Config();
 if ($site->require_login($_SESSION)===true) { 
+
+	// if logged in, and no profile, redirect to the profile page
+	$site->require_profile($site->get_user_profile($_SESSION['user_name']));
+	
 	// if logged in, and no content, redirect to the uploader
 	$site->require_content($_SESSION['user_name']); 
 } 
@@ -14,23 +18,6 @@ $liked = $site->get_user_liked($_SESSION['user_name']);
 ?>
 	<section class="dashboard row">
 
-<!-- 		<div class="dashboard-header">
-			<h1 class="pull-left">Dashboard</h1>
-		</div> -->
-			
-		
-
-<!-- 		<div class="col-md-12 col-xs-12">
-			<h3>You</h3>
-			<panel class="profile clearfix">
-				<a class="edit_profile_img_trigger" href="#"><img src="<?php echo($profile['photo']); ?>" class="user_profile_img col-md-4" ></a>
-				<h4 class="pull-right">
-					<?php echo $user['user_name']; ?>
-					<span>Tracks</span>
-					<span>Friends</span>
-				</h4>
-			</panel>
-		</div> -->
 
 		<div class="col-md-4 col-xs-12">
 			<!-- <h3>You</h3> -->

@@ -239,6 +239,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 			return true;
 		}
 	}
+
 	function require_content($user_name) {
 		$media = $this->get_user_media($user_name);
 		if (!isset($media)) {
@@ -247,6 +248,16 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 			return true;
 		}
 	}
+
+	function require_profile($user_name) {
+		$media = $this->get_user_media($user_name);
+		if (!isset($media)) {
+				echo "<script>window.location.assign('http://freelabel.net/view/dashboard/profile');</script>";
+		} else {
+			return true;
+		}
+	}
+
 
 
 	function check_notifications($user_id) {
@@ -340,7 +351,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 		return $media;
 	}
 
-	function display_play_button($post, $key)
+	function display_play_button($post, $key, $stand_alone=false)
 	{
 
 		if ($post['type']!=='photo') {
@@ -349,7 +360,13 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 			$icon = 'fa-expand';
 		}
 
-		return '<span class="play_button button-tint btn btn-link btn-'.$post['id'].' pull-left" style="display:inline-block;" data-type="'.$post['type'].'" data-mp3="'.$post['trackmp3'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-id="'.$post['id'].'" data-order="'.$key.'"><i class="fa '.$icon.'"></i></span>';
+		if ($stand_alone===true) {
+			$classes = '';
+		} else {
+			$classes = 'pull-left';
+		}
+
+		return '<span class="play_button button-tint btn btn-link btn-'.$post['id'].' '.$classes.'" style="display:inline-block;" data-type="'.$post['type'].'" data-mp3="'.$post['trackmp3'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-id="'.$post['id'].'" data-order="'.$key.'"><i class="fa '.$icon.'"></i></span>';
 	}
 
 	function display_post_functions($post,$user_name_session) {

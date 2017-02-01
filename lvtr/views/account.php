@@ -56,17 +56,6 @@
 						<input type="file" name="file" id="file" class="inputfile profile_photo_file" />
 						<label for="file"><img class="profile-img" src="<?php $site->display_profile_photo($profile); ?>"></label>
 						<input type="hidden" name="photo" value="<?php $site->display_profile_photo($profile); ?>">
-
-
-<!-- 						<div class="upload-profile-photo-area clearfix">
-
-							<h4><i class="fa fa-photo"></i> Upload Profile Photo</h4>
-							<input type="file" class="form-control profile_photo" name="photo" >
-							<img class="profile-img" src="<?php $site->display_profile_photo($profile); ?>">
-							<span class="file-upload-results">
-								<input type="hidden" name="photo" value="<?php $site->display_profile_photo($profile); ?>">
-							</span>
-						</div> -->
 					</div>
 
 					<div class="col-md-4 col-sm-6">
@@ -224,6 +213,8 @@
         	// alert('its done! ' +jqXHR);
             $('.file-upload-results').html('You didnt upload the correct file format!');
         }).done(function (result) {
+        	$('.profile-photo-container input[name="photo"]').remove();
+        	
         	$('.profile-photo-container label').html(result);
         	// alert('its done! ' +result);
             // $('.file-upload-results').html(result);

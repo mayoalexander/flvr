@@ -68,14 +68,17 @@ $site->update_stats($post['views'], $post['id']);
 		<div class="profile-header-banner section" style="background-image:url('<?php echo $post['photo']; ?>');">
 			<div class="background-tint">
 				<h1 class="title"><?php echo $post['twitter']; ?></h1>
-				<p class="subtitle"><?php echo($post['blogtitle']); ?></p>
+				<p class="subtitle"><?php echo $site->display_play_button($post, 0, true); ?> <?php echo($post['blogtitle']); ?></p>
+				<div class="play-button-wrap">
+
+				</div>
 			</div>
 		</div>
 
 		<section class="profile container">
 
 			<section class="profile-body clearfix">
-				<div class="social-share-buttons">
+				<div class="social-share-buttons container-padded-large">
 					<?php echo $site->display_social_buttons($post); ?>
 				</div>
 
