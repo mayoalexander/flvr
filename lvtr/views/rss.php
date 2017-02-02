@@ -72,6 +72,7 @@ function displaySites($feeds) {
 <div class="rss-container container" id="tabs" style="width:600px;">      
 	<h2>RSS</h2>         
 	<a target="_blank" href="http://freelabel.net/view/dashboard/upload" class="btn btn-primary pull-right">Open Uploader</a>
+	<a target="_blank" href="http://freelabel.net/view/backend/rainlab/blog/posts/create" class="btn btn-primary pull-right">Open Magazine Editor</a>
 	<div id="tabs-1">
  	<?php //echo $build;
 	 	if (!isset($_GET['site'])) {
@@ -87,14 +88,22 @@ function displaySites($feeds) {
 
 <script type="text/javascript">
 	$(function() {
+
+		/* DOWNLOAD FILE CONTENTS */
 		$('.get-mp3-trigger').click(function(){
 			var val = $(this).siblings()[1];
 			var data = val.querySelector("iframe");
+			$('#postModal').modal('show');
+			$('#postModal .modal-body').html('<textarea class="form-control" rows="20">' + val.innerHTML + '</textarea>');
 		    openDownloadApi(data.getAttribute('src'));
 		});
+
+		/* CHANGE DL TYPE */
 		$('.get-mp3-dltype-switch').change(function(e){
 			console.log($(this).get(0).checked);
 		});
+
+		/* SEARCH POST */
 		$('.search-rss-trigger').click(function(){
 			$(this).parent().css('border-bottom','green solid 3px');
 			var title = $(this).attr('data-title');
@@ -102,6 +111,8 @@ function displaySites($feeds) {
 			window.open(url);
 		});
 
+
+		/* OPEN SITE */
 		$('.rss-feed-site').click(function(e){
 			e.preventDefault();
 			var site = $(this).attr('data-site');
