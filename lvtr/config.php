@@ -250,7 +250,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 	}
 
 	function require_profile($user_name) {
-		$media = $this->get_user_media($user_name);
+		$media = $this->get_user_profile($user_name);
 		if (!isset($media)) {
 				echo "<script>window.location.assign('http://freelabel.net/view/dashboard/profile');</script>";
 		} else {
@@ -366,7 +366,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 			$classes = 'pull-left';
 		}
 
-		return '<span class="play_button button-tint btn btn-link btn-'.$post['id'].' '.$classes.'" style="display:inline-block;" data-type="'.$post['type'].'" data-mp3="'.$post['trackmp3'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-id="'.$post['id'].'" data-order="'.$key.'"><i class="fa '.$icon.'"></i></span>';
+		return '<span class="play_button button-tint btn btn-link btn-'.$post['id'].' '.$classes.'" data-type="'.$post['type'].'" data-mp3="'.$post['trackmp3'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-id="'.$post['id'].'" data-order="'.$key.'"><i class="fa '.$icon.'"></i></span>';
 	}
 
 	function display_post_functions($post,$user_name_session) {

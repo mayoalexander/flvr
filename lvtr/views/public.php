@@ -68,7 +68,7 @@ $site->update_stats($post['views'], $post['id']);
 		<div class="profile-header-banner section" style="background-image:url('<?php echo $post['photo']; ?>');">
 			<div class="background-tint">
 				<h1 class="title"><?php echo $post['twitter']; ?></h1>
-				<p class="subtitle"><?php echo $site->display_play_button($post, 0, true); ?> <?php echo($post['blogtitle']); ?></p>
+				<p class="subtitle"><?php echo $site->display_play_button($post, 0, true); ?> <span class="trackname"><?php echo($post['blogtitle']); ?></span></p>
 				<div class="play-button-wrap">
 
 				</div>

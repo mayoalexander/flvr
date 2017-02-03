@@ -4,7 +4,7 @@ $site = new Config();
 if ($site->require_login($_SESSION)===true) { 
 
 	// if logged in, and no profile, redirect to the profile page
-	$site->require_profile($site->get_user_profile($_SESSION['user_name']));
+	$site->require_profile($_SESSION['user_name']);
 	
 	// if logged in, and no content, redirect to the uploader
 	$site->require_content($_SESSION['user_name']); 
