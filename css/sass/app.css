@@ -359,13 +359,18 @@ header.carousel .fill {
   display: flex;
   flex-wrap: wrap; }
   .media-gallery .media-gallery-item {
+    border: 1px solid rgba(0, 0, 0, 0.85);
     min-width: 350px;
     height: 300px;
     overflow: hidden;
     flex: 1;
     padding: 0; }
     .media-gallery .media-gallery-item h1, .media-gallery .media-gallery-item h2, .media-gallery .media-gallery-item h3, .media-gallery .media-gallery-item h4 {
-      z-index: 1; }
+      z-index: 1;
+      background-color: rgba(254, 63, 68, 0.77);
+      padding: 10px 10px; }
+      .media-gallery .media-gallery-item h1 a, .media-gallery .media-gallery-item h2 a, .media-gallery .media-gallery-item h3 a, .media-gallery .media-gallery-item h4 a {
+        color: #e3e3e3; }
     .media-gallery .media-gallery-item img {
       transition: all 0.5s;
       width: 100%;

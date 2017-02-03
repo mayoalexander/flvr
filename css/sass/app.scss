@@ -561,6 +561,7 @@ header.carousel .fill {
     display:flex;
     flex-wrap:wrap;
 	.media-gallery-item {
+		border:1px solid $brand_black_transparent;
 		min-width:350px;
 		height:300px;
 		overflow:hidden;
@@ -568,6 +569,11 @@ header.carousel .fill {
 	    padding:0;
 	    h1,h2,h3,h4 {
 	    	z-index:1;
+	    	background-color:$brand_red_transparent;
+	    	padding:10px 10px;
+	    	a {
+	    		color:#e3e3e3;
+	    	}
 	    }
 		img {
 			transition: all 0.5s;
