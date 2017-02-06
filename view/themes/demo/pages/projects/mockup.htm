@@ -1,0 +1,43 @@
+title = "Mockup"
+url = "/mockup/:slug"
+layout = "codrops-post"
+is_hidden = 0
+
+[builderDetails]
+modelClass = "Freelabel\Freelabel\Models\System"
+identifierValue = "{{ :slug }}"
+modelKeyColumn = "slug"
+displayColumn = "blogtitle"
+notFoundMessage = "Record not found"
+==
+{% set record = builderDetails.record %}
+{% set displayColumn = builderDetails.displayColumn %}
+{% set notFoundMessage = builderDetails.notFoundMessage %}
+
+			<header class="header">
+				<div class="bg-img"><img src="{{ record.photo_background |media}}" alt="Background Image"/></div>
+				<div class="title">
+					<h1>{{ record.blogtitle }}</h1>
+				</div>
+			</header>
+			<button class="trigger" data-info="View More"><span>Trigger</span></button>
+			<div class="title">
+				{% if record %}
+                    <h1>{{ record.blogtitle }}</h1>
+				    <p class="subline">@{{ record.twitter }}</p>
+				    <p>by <strong>Henry James</strong> &#8212; Posted in <strong>Inspiration</strong> on <strong>May 21, 2014</strong></p>
+                {% else %}
+                    {{ notFoundMessage }}
+                {% endif %}
+                
+				
+			</div>
+			<article class="content">
+				<div>
+                    <p>{{ record.description|raw }}</p>
+                    <hr>
+                    {% if record.cta_form %}
+                        {{ record.cta_form|raw }}
+                    {% endif %}
+				</div>
+			</article>

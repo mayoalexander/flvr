@@ -5,8 +5,24 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <title>{{ record.title }}</title>
+    <meta name="description" content='FREELABEL // TV | RADIO | MAG '/>
+    <meta name='twitter:card' content='summary_large_image' />
+    <meta name='twitter:player' content='' />
+    <meta name='twitter:player:width' content='300' />
+    <meta name='twitter:player:height' content='300' />
+    <meta name='twitter:image' content='https://i.ytimg.com/vi/{{ record.media_id }}/hqdefault.jpg' />
+    <meta name='twitter:site' content='http://freelabel.net/view/tv/{{ post.slug }}' />
+    <meta name='twitter:creator' content='@freelabelnet' />
+    <meta name='twitter:title' content='{{ record.title }}' />
+    <meta name='twitter:text:description' content='Watch {{ html_limit(html_strip(record.title),200) }} on FREELABEL TV' />
+    <meta property='og:url' content='http://freelabel.net/view/mag/{{ post.slug }}'>
+    <meta property='og:title' content='{{ post.title }}'>
+    <meta property='og:description' content='Watch {{ html_limit(html_strip(record.title),200) }} on FREELABEL TV'>
+    <meta property='og:image' content='https://i.ytimg.com/vi/{{ record.media_id }}/hqdefault.jpg'>
+    <meta property='og:image:type' content='image/png'>
+    <meta property='og:image:width' content='1024'>
+    <meta property='og:image:height' content='1024'>
     <link rel='icon' type='image/png' href='http://freelabel.net/lvtr/img/fllogo.png'>
 	<link rel='apple-touch-icon' sizes='180x180' type='image/png' href='http://freelabel.net/lvtr/img/favicons/apple-touch-icon.png'>
 	<link rel='icon' type='image/png' href='http://freelabel.net/lvtr/img/favicons/favicon-32x32.png' sizes='32x32'>

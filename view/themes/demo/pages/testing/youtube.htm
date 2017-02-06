@@ -1,38 +1,35 @@
-title = "Video"
-url = "/tv/:slug"
+title = "Youtube"
+url = "/tv/youtube/:id"
+layout = "freelabel400"
 is_hidden = 0
-
-[builderDetails]
-modelClass = "Freelabel\Freelabel\Models\Tv"
-identifierValue = "{{ :slug }}"
-modelKeyColumn = "slug"
-displayColumn = "media_id"
-notFoundMessage = "Record not found"
 ==
-{% set record = builderDetails.record %}
-{% set displayColumn = builderDetails.displayColumn %}
-{% set notFoundMessage = builderDetails.notFoundMessage %}
+<script>
+
+$(function(){
+    var url = window.location.pathname;
+    var search = window.location.search;
+    console.log(window.location);
+    var youTubeURL = 'https://www.youtube.com/embed/' + url.replace('/view/tv/youtube/','');
+    $('#ytplayer').attr('src',youTubeURL);
     
-{% if record %}
+    
+    var str = decodeURI(search.replace('?t=',''));
+    $('#yttitle').text(str);
+});    
 
-
-
-{% partial "tv/header" %}
-  
-
-
+</script>
 
 
 
 <div class="container video-container" style="background: #000;">
 
     <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ record.media_id }}?modestbranding=1&showinfo=0&playsinline=1&autoplay=1" ></iframe>
+        <iframe id="ytplayer" class="embed-responsive-item" src="https://www.youtube.com/embed/{{ record.media_id }}?modestbranding=1&showinfo=0&playsinline=1&autoplay=1" ></iframe>
     </div>
     
     <div class="container">
         <div class="page-header row">
-            <h2 class="col-md-10">{{record.title}}</h2>
+            <h2 id="yttitle" class="col-md-10">{{record.title}}</h2>
             <div class="col-md-2 btn-group">
                 <button class="share-page-trigger btn btn-link pull-right" data-id="{{ record.id }}" data-title="{{ record.title }}" data-twitter="{{ record.twitter }}" data-method="twitter"><i class="fa fa-twitter"></i> Twitter</button>
                 <button class="share-page-trigger btn btn-link pull-right" data-id="{{ record.id }}" data-title="{{ record.title }}" data-twitter="{{ record.twitter }}" data-method="facebook"><i class="fa fa-facebook"></i> Facebook</button>
@@ -53,11 +50,4 @@ notFoundMessage = "Record not found"
     
 </div>
 
-{% else %}
-    {{ notFoundMessage }}
-{% endif %}
-
-<script type="text/javascript" src="http://freelabel.net/lvtr/js/dashboard.js"></script>
-
-
-{% partial "400/footer" %}
+<script src="http://freelabel.net/lvtr/js/dashboard.js" type="text/javascript"></script>

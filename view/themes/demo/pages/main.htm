@@ -3,7 +3,7 @@ url = "/"
 layout = "freelabel400"
 is_hidden = 0
 
-[builderList]
+[builderList marketingContent]
 modelClass = "Freelabel\Freelabel\Models\Marketing"
 scope = "-"
 displayColumn = "title"
@@ -12,22 +12,22 @@ detailsPage = "-"
 detailsUrlParameter = "id"
 pageNumber = "{{ :page }}"
 
-[builderList sliderContent]
-modelClass = "Freelabel\Freelabel\Models\Marketing"
+[builderList sliderImages]
+modelClass = "Freelabel\Freelabel\Models\System"
 scope = "-"
 displayColumn = "photo"
 noRecordsMessage = "No records found"
 detailsPage = "-"
 detailsUrlParameter = "id"
+recordsPerPage = 3
 pageNumber = "{{ :page }}"
+sortColumn = "launch_date"
+sortDirection = "desc"
 ==
-<!-- SLIDER CONTENT -->
-
-{% content 'hero/slider' %}
+{% partial "frontpage/projects-slider" %}
 
 
-
-<!-- END OF SLIDER CONTENT -->
+{% partial "frontpage/marketing-content-flex" %}
 
 
 
@@ -36,77 +36,46 @@ pageNumber = "{{ :page }}"
 
 
 
+<div class="container container-padded-large hidden">
+	<h1 class="page-header">Browse</h1>
+	<div class="data-container"></div>
+<div>
+
+</div></div>
 
 
 
+<!-- PARALLAX --> 
+<div class="container-hero parallax hidden" style="background-image: url('http://freelabel.net/view/storage/app/media/ui/backgrounds/019.jpg');"></div>
 
 
 
-
-
-
-
-<!-- BODY CONTENT -->
-
-<link href="https://blackrockdigital.github.io/startbootstrap-one-page-wonder/css/one-page-wonder.css" rel="stylesheet">
-<style>
-    body {
-        margin-top:0;    
-    }
-</style>
-{% set records = builderList.records %}
-{% set displayColumn = builderList.displayColumn %}
-{% set noRecordsMessage = builderList.noRecordsMessage %}
-{% set detailsPage = builderList.detailsPage %}
-{% set detailsKeyColumn = builderList.detailsKeyColumn %}
-{% set detailsUrlParameter = builderList.detailsUrlParameter %}
-{% set offsetCounter = 1 %}
-
-
-<div class="container record-list">
-    {% for record in records %}
-
-        {% if offsetCounter == 1 %}
-            {% set offsetCounter =  offsetCounter + 1 %}
-            {% set offsetAlignment =  'pull-right' %}
-        {% else %}
-            {% set offsetCounter =  offsetCounter - 1 %}
-            {% set offsetAlignment =  'pull-left' %}
-        {% endif %}
-
-
-
-    
-        <hr class="featurette-divider">
-        <div class="featurette" id="about">
-            <img class="featurette-image img-circle img-responsive {{ offsetAlignment }}" src="{{ record.photo|media }}" style="max-width:100%;">
-            <h2 class="featurette-heading">{{ record.title }}
-                <span class="text-muted">{{ record.subtitle }}</span>
-            </h2>
-            <p class="lead">{{ record.description }}</p>
+<div class="callout-ribbon hidden">
+    <div class="container">
+        <div class="row text-center text-large text-white">
+            <div class="col-md-2">&nbsp;</div>
+            <div class="col-md-8">
+                <p>FREELABEL is the Leader in Online Showcasing. Join the Movement.</p>
+                <div>
+                    <a href="/view/pricing" class="btn btn-default btn-lg">Create Your Account</a>
+                </div>
+            </div>
+            <div class="col-md-2">&nbsp;</div>
         </div>
-    {% else %}
-        <li class="no-data">{{ noRecordsMessage }}</li>
-    {% endfor %}
+    </div>
 </div>
 
-{% if records.lastPage > 1 %}
-    <ul class="pagination">
-        {% if records.currentPage > 1 %}
-            <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage-1) }) }}">&larr; Prev</a></li>
-        {% endif %}
 
-        {% for page in 1..records.lastPage %}
-            <li class="{{ records.currentPage == page ? 'active' : null }}">
-                <a href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
-            </li>
-        {% endfor %}
 
-        {% if records.lastPage > records.currentPage %}
-            <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage+1) }) }}">Next &rarr;</a></li>
-        {% endif %}
-    </ul>
-{% endif %}
 
+<script type="text/javascript">
+	
+	var url = 'http://freelabel.net/lvtr/views/explore.php';
+        $.get(url, function(data){
+          $('.data-container').html(data);
+        }); 
+
+
+</script>
 
 <!-- END OF BODY CONTENT -->

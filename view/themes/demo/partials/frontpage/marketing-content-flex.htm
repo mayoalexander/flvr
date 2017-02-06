@@ -1,0 +1,69 @@
+==
+<!-- BODY - MARKETING CONTENT -->
+
+<link href="https://blackrockdigital.github.io/startbootstrap-one-page-wonder/css/one-page-wonder.css" rel="stylesheet">
+<style>
+    body {
+        margin-top:0;    
+    }
+</style>
+{% set records = marketingContent.records %}
+{% set displayColumn = marketingContent.displayColumn %}
+{% set noRecordsMessage = marketingContent.noRecordsMessage %}
+{% set detailsPage = marketingContent.detailsPage %}
+{% set detailsKeyColumn = marketingContent.detailsKeyColumn %}
+{% set detailsUrlParameter = marketingContent.detailsUrlParameter %}
+{% set offsetCounter = 1 %}
+
+
+<div class="media-gallery">
+    {% for record in records %}
+
+        {% if offsetCounter == 1 %}
+            {% set offsetCounter =  offsetCounter + 1 %}
+            {% set offsetAlignment =  'pull-right' %}
+        {% else %}
+            {% set offsetCounter =  offsetCounter - 1 %}
+            {% set offsetAlignment =  'pull-left' %}
+        {% endif %}
+
+
+
+    
+        <!-- <hr class="featurette-divider"> -->
+        <div class="col-md-4 media-gallery-item">
+            
+            <a href="http://freelabel.net/view{{ record.path }}">
+                <div class="card card-inverse">
+                  <img class="card-img" src="{{ record.photo|media }}" alt="Card image">
+                  <div class="card-img-overlay">
+                    <h3 class="card-title">{{ record.title }}</h3>
+                    <p class="card-text">{{ record.subtitle }}</p>
+                    <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                  </div>
+                </div>
+            </a>
+
+        </div>
+    {% else %}
+        <li class="no-data">{{ noRecordsMessage }}</li>
+    {% endfor %}
+</div>
+
+{% if records.lastPage > 1 %}
+    <ul class="pagination">
+        {% if records.currentPage > 1 %}
+            <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage-1) }) }}">&larr; Prev</a></li>
+        {% endif %}
+
+        {% for page in 1..records.lastPage %}
+            <li class="{{ records.currentPage == page ? 'active' : null }}">
+                <a href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
+            </li>
+        {% endfor %}
+
+        {% if records.lastPage > records.currentPage %}
+            <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage+1) }) }}">Next &rarr;</a></li>
+        {% endif %}
+    </ul>
+{% endif %}

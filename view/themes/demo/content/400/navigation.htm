@@ -1,4 +1,3 @@
-==
 <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -24,7 +23,6 @@
                     <li class="logged-out">
                         <a href="/view/pricing">Register</a>
                     </li>
-                    
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle logged-in" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dashboard <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -33,21 +31,20 @@
                           <li class="nav-item navi_button"><a href="/view/dashboard/likes">Likes</a></li>
                           <li class="nav-item navi_button"><a href="/view/dashboard/profile">Profile</a></li>
                           <li class="nav-item navi_button"><a href="/view/dashboard/upload">Upload</a></li>
+                          <li class="nav-item navi_button"><a href="/view/dashboard/admin">Admin</a></li>
                           <li class="nav-item navi_button"><a href="/lvtr/?ctrl=logout">Logout</a></li>
-                          <li class="admin-only" style="display:none;">
-                            <a href="/view/dashboard/admin">Admin</a>
-                          </li>
                         </ul>
                      </li>
                     <li class="dropdown">
 					    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore <span class="caret"></span></a>
 					    <ul class="dropdown-menu">
-                          <li class="nav-item navi_button"><a href="/view/feed/browse">Browse</a></li>
-					      <li class="nav-item navi_button"><a href="/view/magazine">Mag</a></li>
-					      <li class="nav-item navi_button"><a href="/view/tv">TV</a></li>
+                          <li class="nav-item navi_button"><a href="/view/feed/browse">Community</a></li>
+					      <!-- <li class="nav-item navi_button"><a href="/view/mag">Mag</a></li> -->
+					      <li class="nav-item navi_button"><a href="/view/tv/search">TV</a></li>
 					      <li class="nav-item navi_button"><a href="/view/radio">Radio</a></li>
-                          <!-- <li class="nav-item navi_button"><a href="/view/events">Events</a></li> -->
+                          <li class="nav-item navi_button"><a href="/view/events">Events</a></li>
 					      <li class="nav-item navi_button"><a href="/view/projects">Projects</a></li>
+					      <!-- <li class="nav-item navi_button"><a href="/view/projects">Venues</a></li> -->
 					    </ul>
 					 </li>
                 </ul>
@@ -63,24 +60,13 @@
             $('.logged-in').hide();
             $('.logged-out').hide();
             $.get('http://freelabel.net/lvtr/config/login-status.php',function(result) {
-                
-                
-                if (result!=='') {
-                    // logged in
+                if (result==='1') {
                     $('.logged-in').show();
                     $('.logged-out').hide();
-                    // if admin
-                    if (result=='admin') {
-                        $('.admin-only').show();
-                    } else {
-                        // $('.admin-only').hide();
-                    }
                 } else {
-                    // not logged in
-                    $('.logged-out').show();
                     $('.logged-in').hide();
+                    $('.logged-out').show();
                 }
-    
             });
         });
     </script>
