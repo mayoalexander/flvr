@@ -1,0 +1,10 @@
+name: Tv
+form: $/freelabel/freelabel/models/tv/fields.yaml
+modelClass: Freelabel\Freelabel\Models\Tv
+defaultRedirect: freelabel/freelabel/tv
+create:
+    redirect: 'freelabel/freelabel/tv/update/:id'
+    redirectClose: freelabel/freelabel/tv
+update:
+    redirect: freelabel/freelabel/tv
+    redirectClose: freelabel/freelabel/tv

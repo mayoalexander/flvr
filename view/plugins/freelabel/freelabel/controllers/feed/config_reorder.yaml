@@ -1,0 +1,4 @@
+title: Feed
+modelClass: Freelabel\Freelabel\Models\Feed
+toolbar:
+    buttons: reorder_toolbar
