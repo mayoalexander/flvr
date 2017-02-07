@@ -12,6 +12,22 @@ detailsPage = "-"
 detailsUrlParameter = "id"
 pageNumber = "{{ :page }}"
 ==
+{% set records = builderList.records %}
+{% set displayColumn = builderList.displayColumn %}
+{% set noRecordsMessage = builderList.noRecordsMessage %}
+{% set detailsPage = builderList.detailsPage %}
+{% set detailsKeyColumn = builderList.detailsKeyColumn %}
+{% set detailsUrlParameter = builderList.detailsUrlParameter %}
+
+
+<style>
+
+    .radio-img {
+         width:100%;
+    }
+
+</style>
+
 <div class="container ">
 	<h1 class="page-header">Radio <small>24/7 Streaming Broadcast</small></h1>
 
@@ -23,44 +39,41 @@ pageNumber = "{{ :page }}"
 		<div class="col-md-8">
 			<h2>Radio Schedule</h2>
 			<div class="radio-schedule-list">
-			    {% set records = builderList.records %}
-{% set displayColumn = builderList.displayColumn %}
-{% set noRecordsMessage = builderList.noRecordsMessage %}
-{% set detailsPage = builderList.detailsPage %}
-{% set detailsKeyColumn = builderList.detailsKeyColumn %}
-{% set detailsUrlParameter = builderList.detailsUrlParameter %}
 
-<ul class="record-list list-group">
-    {% for record in records %}
-        <li class="list-group-item">
-            {# Use spaceless tag to remove spaces inside the A tag. #}
-            {% spaceless %}
-                <h3>{{ record.title}} <span class="label label-default">New</span></h3>
-                <p>Description will go here. right nere. read thi shit here . get money all day okay get money. taht s what we do okay bitch.</p>
-            {% endspaceless %}
-        </li>
-    {% else %}
-        <li class="no-data">{{ noRecordsMessage }}</li>
-    {% endfor %}
-</ul>
+                <ul class="record-list list-group">
+                    {% for record in records %}
+                        <li class="list-group-item row">
+                            <div class="col-md-3">
+                                <img src="{{ record.photo |media}}" class="radio-img">
+                            </div>
+                                
+                            <div class="col-md-9">
+                                <h3>{{ record.title}} <span class="label label-default hidden">New</span></h3>
+                                <p>{{ record.description }}</p>
+                            </div>  
+                        </li>
+                    {% else %}
+                        <li class="no-data">{{ noRecordsMessage }}</li>
+                    {% endfor %}
+                </ul>
 
-{% if records.lastPage > 1 %}
-    <ul class="pagination">
-        {% if records.currentPage > 1 %}
-            <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage-1) }) }}">&larr; Prev</a></li>
-        {% endif %}
-
-        {% for page in 1..records.lastPage %}
-            <li class="{{ records.currentPage == page ? 'active' : null }}">
-                <a href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
-            </li>
-        {% endfor %}
-
-        {% if records.lastPage > records.currentPage %}
-            <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage+1) }) }}">Next &rarr;</a></li>
-        {% endif %}
-    </ul>
-{% endif %}
+                {% if records.lastPage > 1 %}
+                    <ul class="pagination">
+                        {% if records.currentPage > 1 %}
+                            <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage-1) }) }}">&larr; Prev</a></li>
+                        {% endif %}
+                
+                        {% for page in 1..records.lastPage %}
+                            <li class="{{ records.currentPage == page ? 'active' : null }}">
+                                <a href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
+                            </li>
+                        {% endfor %}
+                
+                        {% if records.lastPage > records.currentPage %}
+                            <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage+1) }) }}">Next &rarr;</a></li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
 			</div>
 		</div>
 	</div>

@@ -277,7 +277,7 @@ header.carousel .fill {
     width: 100%;
     transition: all 0.2s; }
     .tracklist-panel .dropdown:hover {
-      background-color: rgba(254, 63, 68, 0.77); }
+      background-color: rgba(254, 63, 68, 0.54); }
   .tracklist-panel .play_button {
     background-color: #FE3F44;
     border-radius: 0px; }
@@ -367,7 +367,7 @@ header.carousel .fill {
     padding: 0; }
     .media-gallery .media-gallery-item h1, .media-gallery .media-gallery-item h2, .media-gallery .media-gallery-item h3, .media-gallery .media-gallery-item h4 {
       z-index: 1;
-      background-color: rgba(254, 63, 68, 0.77);
+      background-color: rgba(254, 63, 68, 0.54);
       padding: 10px 10px; }
       .media-gallery .media-gallery-item h1 a, .media-gallery .media-gallery-item h2 a, .media-gallery .media-gallery-item h3 a, .media-gallery .media-gallery-item h4 a {
         color: #e3e3e3; }
