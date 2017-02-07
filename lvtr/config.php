@@ -1139,32 +1139,34 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 	function display_leads($leads) {
 		if ($leads) {
 			foreach ($leads as $key => $leaddata) {
+				$newleads[$leaddata['lead_twitter']]['entry_date'] = $leaddata['entry_date']; 
 				$newleads[$leaddata['lead_twitter']][] = $leaddata['lead_name']; 
 			}
-			$date_added =$this->get_time_ago(strtotime($leads[0]['entry_date']));
 
 
 			echo '<ul class="list-group leads">';
-			foreach ($newleads as $key => $lead) {
+			foreach ($newleads as $lead_name => $lead) {
+				$date_added =$this->get_time_ago(strtotime($lead['entry_date']));
 				$priority = count($lead);
-				$twitter_url = "http://twitter.com/@".$key;
+				$twitter_url = "http://twitter.com/@".$lead_name;
 
 			echo '<li class="list-group-item">';
 					echo '<p class="leadlist-item row">';
-						echo '<span class="col-md-2 col-sm-3 lead"><a href="'.$twitter_url.'" target="_blank">@'.$key.'</a></span>';
+						echo '<span class="col-md-2 col-sm-3 lead"><a href="'.$twitter_url.'" target="_blank">@'.$lead_name.'</a></span>';
 						echo '<span class="col-md-1 col-sm-3 priority">'.$priority.'</span>';
 						echo '<span class="col-md-1 col-sm-3">'.$date_added.'</span>';
 						
 						echo '<span class="col-md-6 col-sm-3 text-muted lead">';
-						foreach ($lead as $key => $message) {
-							echo '<span class="lead-message">'.$message.'</span>';
-						}
-						echo '</span>';
-						echo '<span class="col-md-2 col-sm-3"><a class="btn btn-primary btn-block call-us-button" data-user="'.$key.'" href="#"><i class="fa fa-phone"></i> Call Us</a></span>';
+						// foreach ($lead as $key => $message) {
+							echo '<span class="lead-message">'.$lead[0].'</span>';
+						// }
+						echo '</span>'; 
+						// echo '<span class="col-md-2 col-sm-3"><a class="btn btn-primary btn-block call-us-button" data-user="'.$key.'" href="#"><i class="fa fa-phone"></i> Call Us</a></span>';
+						echo '<span class="col-md-2 col-sm-3"><a class="btn btn-primary btn-block open-lead-button" data-toggle="modal" data-target="#postModal" data-user="'.$lead_name.'" href="#"><i class="fa fa-phone"></i> Call Us</a></span>';
 					echo '</p>';
 
 					echo '<div class="row hidden">';
-						echo '<form method="POST" class="twitter-response-box col-md-11" data-twitter="'.$key.'"><input class="form-control" rows="3" placeholder="Enter Message.."></input></form>
+						echo '<form method="POST" class="twitter-response-box col-md-11" data-twitter="'.$lead_name.'"><input class="form-control" rows="3" placeholder="Enter Message.."></input></form>
 						<div class="col-md-1 btn btn-primary">Send</div>
 						</div>';
 					echo '</div>';
@@ -1276,6 +1278,28 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 	    mysqli_close($con);
 		return $leads;
 	}
+
+
+
+	function get_lead($lead_name=NULL) {
+		require(ROOT.'config/connection.php');
+		$dp = '';
+		$dp = "WHERE `lead_twitter` LIKE '%$lead_name%'";
+		$query = "SELECT * FROM `leads` $dp ORDER BY `id` DESC LIMIT 500";
+		$result = mysqli_query($con,$query);
+		if (mysqli_num_rows($result)===0) {
+			echo "Uh oh, there was no leads found! (Search Filter: ".$lead_name.") ";
+			exit;
+		} else {
+			while ($row = mysqli_fetch_assoc($result)) {
+				$leads[] = $row;
+			}
+		}
+	    mysqli_close($con);
+		return $leads;
+	}
+
+
 
 
 	function get_som($date_param=NULL) {

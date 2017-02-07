@@ -35,6 +35,20 @@ $users = $site->get_leads();
 				});
 		}
 
+		function updateLeadsPriority() {
+			// do nothing!
+		}
+		function getLeadData(lead_name) {
+			var url = 'http://freelabel.net/lvtr/config/leads.php';
+			var action = 'get_info';
+			$.post(url,{ 
+				lead_name:lead_name, 
+				action:action 
+			}, function(result){
+				$('#postModal .modal-body').html(result);
+			});
+		}
+
 			/* NOT FINISHED */
 			$('.twitter-response-box').submit(function(e) {
 				e.preventDefault();
@@ -46,13 +60,18 @@ $users = $site->get_leads();
 				// updateViewCallback(wrap,result);
 			});
 
+			$('.open-lead-button').click(function(){
+				var lead_name = $(this).attr('data-user');
+				getLeadData(lead_name);
+			});
+
 
 		$('.leads .list-group-item').click(function(){
-
 			if ($(this).hasClass('active')) {
 				$(this).hide('fast');
 			} else {				
 				$(this).addClass('active');
+				updateLeadsPriority();
 			}
 		});
 
