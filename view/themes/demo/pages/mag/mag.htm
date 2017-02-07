@@ -1,11 +1,11 @@
 title = "Mag"
-url = "/mag"
+url = "/magazine/:page?"
 layout = "freelabel400"
 is_hidden = 0
 
 [blogPosts]
 pageNumber = "{{ :page }}"
-postsPerPage = 10
+postsPerPage = 16
 noPostsMessage = "No posts found"
 sortOrder = "published_at desc"
 categoryPage = 404
@@ -13,38 +13,52 @@ postPage = "mag/page"
 ==
 {% set posts = blogPosts.posts %}
 
-{% content "hero/slider" %}
 
-<ul class="post-list container">
+
+
+<ul class="container media-gallery">
 
     {% for post in posts %}
-        <li>
-
-            <h3><a href="http://freelabel.net/view/mag/{{ post.slug }}">{{ post.title }}</a></h3>
-
-
-
-            <p class="info">
-
-                Posted
-
-                {% if post.categories.count %} in {% endif %}
-
-                {% for category in post.categories %}
-
-                    <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
-
-                {% endfor %}
-
-                on {{ post.published_at|date('M d, Y') }}
-
-            </p>
+    
+        <div class="col-md-4 media-gallery-item">
+            
+                <div class="card card-inverse">
+                {% if post.featured_images[0].path %}
+                  <a href="http://freelabel.net/view/mag/{{ post.slug }}"><img class="card-img" src="{{post.featured_images[0].path}}" alt="{{ post.description }}"></a>
+                {% endif %}
+                  <div class="card-img-overlay">
+                    <h3 class="card-title"><a href="http://freelabel.net/view/mag/{{ post.slug }}">{{ post.title }}</a></h3>
+                    <p class="card-text">{{ html_limit( post.summary , 200) }}...</p>
+                    <p class="card-text"><small class="text-muted">{{ post.published_at|date('M d, Y') }}</small></p>
+                  </div>
+                </div>
+        </div>
+        
 
 
 
-            <p class="excerpt">{{ post.summary }}</p>
 
-        </li>
+        <p class="info hidden">
+
+            Posted
+
+            {% if post.categories.count %} in {% endif %}
+
+            {% for category in post.categories %}
+
+                <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
+
+            {% endfor %}
+
+            on {{ post.published_at|date('M d, Y') }}
+
+        </p>
+
+
+
+        
+
+
 
     {% else %}
 
@@ -56,8 +70,10 @@ postPage = "mag/page"
 
 
 
-{% if posts.lastPage > 1 %}
 
+
+{% if posts.lastPage > 1 %}
+<div class="container">
     <ul class="pagination">
 
         {% if posts.currentPage > 1 %}
@@ -87,5 +103,5 @@ postPage = "mag/page"
         {% endif %}
 
     </ul>
-
+</div>
 {% endif %}

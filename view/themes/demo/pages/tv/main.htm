@@ -2,15 +2,62 @@ title = "TV"
 url = "/tv"
 layout = "freelabel400"
 is_hidden = 0
+
+[builderList]
+modelClass = "Freelabel\Freelabel\Models\Tv"
+scope = "-"
+displayColumn = "slug"
+noRecordsMessage = "No records found"
+detailsPage = "tv/video"
+detailsKeyColumn = "slug"
+detailsUrlParameter = "slug"
+pageNumber = "{{ :page }}"
+sortColumn = "id"
+sortDirection = "desc"
 ==
-<div class="container widget-container"></div>
+{% set records = builderList.records %}
+{% set displayColumn = builderList.displayColumn %}
+{% set noRecordsMessage = builderList.noRecordsMessage %}
+{% set detailsPage = builderList.detailsPage %}
+{% set detailsKeyColumn = builderList.detailsKeyColumn %}
+{% set detailsUrlParameter = builderList.detailsUrlParameter %}
 
-<script>
+<h1 class="container page-header">{{this.page.title}}</h1>
+<div class="container record-list media-gallery">
+    
+    {% for record in records %}
 
-	$(function() {
-		$.get('http://freelabel.net/lvtr/views/mag.php',function(result){
-			$('.widget-container').html(result);
-		});
-	});
+    <div class="col-md-3 media-gallery-item">
+        
+            <div class="card card-inverse">
+            
+              <a href="http://freelabel.net/view/tv/{{ record.slug }}"><img class="card-img" src="https://i.ytimg.com/vi/{{ record.media_id }}/hqdefault.jpg" alt="{{ record.description }}" style="transform: scale(1.7);"></a>
+            
+              <div class="card-img-overlay">
+                <h3 class="card-title"><a href="http://freelabel.net/view/tv/{{ record.slug }}">{{record.title}}</a></h3>
+                <p class="card-text hidden"><small class="text-muted">{{ record.published_at|date('M d, Y') }}</small></p>
+              </div>
+            </div>
+    </div>
+    {% else %}
+        <li class="no-data">{{ noRecordsMessage }}</li>
+    {% endfor %}
+</div>
 
-</script>
+{% if records.lastPage > 1 %}
+    <ul class="pagination">
+        {% if records.currentPage > 1 %}
+            <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage-1) }) }}">&larr; Prev</a></li>
+        {% endif %}
+
+        {% for page in 1..records.lastPage %}
+            <li class="{{ records.currentPage == page ? 'active' : null }}">
+                <a href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
+            </li>
+        {% endfor %}
+
+        {% if records.lastPage > records.currentPage %}
+            <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage+1) }) }}">Next &rarr;</a></li>
+        {% endif %}
+    </ul>
+{% endif %}

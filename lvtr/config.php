@@ -370,13 +370,13 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 	}
 
 	function display_post_functions($post,$user_name_session) {
-		return '<li><button class="like-post-trigger btn btn-link" data-id="'.$post['id'].'" data-user="'.$user_name_session.'"><i class="fa fa-star-o"></i> Like</button></li>
-	  	<li><button class="add-post-trigger btn btn-link" data-id="'.$post['id'].'" data-user="'.$user_name_session.'"><i class="fa fa-plus"></i> Add To</button></li>';
+		return '<li><a class="like-post-trigger btn btn-link" data-id="'.$post['id'].'" data-user="'.$user_name_session.'"><i class="fa fa-star-o"></i> Like</a></li>
+	  	<li><a class="add-post-trigger btn btn-link" data-id="'.$post['id'].'" data-user="'.$user_name_session.'"><i class="fa fa-plus"></i> Add To</a></li>';
 	}
 
 	function display_social_buttons($post) {
-		return '<li><button class="share-post-trigger btn btn-link" data-id="'.$post['id'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-method="twitter"><i class="fa fa-twitter"></i> Twitter</button></li>
-	  	<li><button class="share-post-trigger btn btn-link" data-id="'.$post['id'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-method="facebook"><i class="fa fa-facebook" ></i> Facebook</button></li>';
+		return '<li><a class="share-post-trigger btn btn-link" data-id="'.$post['id'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-method="twitter"><i class="fa fa-twitter"></i> Twitter</a></li>
+	  	<li><a class="share-post-trigger btn btn-link" data-id="'.$post['id'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-method="facebook"><i class="fa fa-facebook" ></i> Facebook</a></li>';
 	}
 
 
@@ -1144,33 +1144,33 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 			$date_added =$this->get_time_ago(strtotime($leads[0]['entry_date']));
 
 
-			echo '<article class="list-group">';
+			echo '<ul class="list-group leads">';
 			foreach ($newleads as $key => $lead) {
 				$priority = count($lead);
 				$twitter_url = "http://twitter.com/@".$key;
 
-				echo '<panel class="list-group-item">';
-				echo '<p class="leadlist-item row">';
-					echo '<span class="col-md-1 col-sm-3 priority">'.$priority.'</span>';
-					echo '<span class="col-md-1 col-sm-3">'.$date_added.'</span>';
-					echo '<span class="col-md-2 col-sm-3"><a href="'.$twitter_url.'" target="_blank">@'.$key.'</a></span>';
-					echo '<span class="col-md-5 col-sm-3 text-muted">';
-					foreach ($lead as $key => $message) {
-						echo '<span class="lead-message">'.$message.'</span>';
-					}
-					echo '</span>';
-					echo '<a class="btn btn-primary call-us-button" data-user="'.$key.'" href="#"><i class="fa fa-phone"></i> Call Us</a>';
-					echo '<i class="fa fa-ellipsis-h pull-right view-details" data-user='.$lead['id'].'></i>';
-				echo '</p>';
+			echo '<li class="list-group-item">';
+					echo '<p class="leadlist-item row">';
+						echo '<span class="col-md-2 col-sm-3 lead"><a href="'.$twitter_url.'" target="_blank">@'.$key.'</a></span>';
+						echo '<span class="col-md-1 col-sm-3 priority">'.$priority.'</span>';
+						echo '<span class="col-md-1 col-sm-3">'.$date_added.'</span>';
+						
+						echo '<span class="col-md-6 col-sm-3 text-muted lead">';
+						foreach ($lead as $key => $message) {
+							echo '<span class="lead-message">'.$message.'</span>';
+						}
+						echo '</span>';
+						echo '<span class="col-md-2 col-sm-3"><a class="btn btn-primary btn-block call-us-button" data-user="'.$key.'" href="#"><i class="fa fa-phone"></i> Call Us</a></span>';
+					echo '</p>';
 
-				echo '<div class="row hidden">';
-					echo '<form method="POST" class="twitter-response-box col-md-11" data-twitter="'.$key.'"><input class="form-control" rows="3" placeholder="Enter Message.."></input></form>
-					<div class="col-md-1 btn btn-primary">Send</div>
-					</div>';
-				echo '</div>';
-			echo '</panel>';
+					echo '<div class="row hidden">';
+						echo '<form method="POST" class="twitter-response-box col-md-11" data-twitter="'.$key.'"><input class="form-control" rows="3" placeholder="Enter Message.."></input></form>
+						<div class="col-md-1 btn btn-primary">Send</div>
+						</div>';
+					echo '</div>';
+			echo '</li>';
 			}
-			echo '</article>';
+			echo '</ul>';
 
 		} else {
 				echo '<p class="userlist-item">';

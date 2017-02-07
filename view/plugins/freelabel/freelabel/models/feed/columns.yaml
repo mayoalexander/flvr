@@ -1,0 +1,31 @@
+columns:
+    title:
+        label: Title
+        type: text
+        searchable: true
+        sortable: true
+    type:
+        label: Type
+        type: text
+        searchable: true
+        sortable: true
+    slug:
+        label: Slug
+        type: text
+        searchable: true
+        sortable: true
+    description:
+        label: Description
+        type: text
+        searchable: true
+        sortable: true
+    id:
+        label: ID
+        type: text
+        searchable: true
+        sortable: true
+    twitter:
+        label: Twitter
+        type: text
+        searchable: true
+        sortable: true

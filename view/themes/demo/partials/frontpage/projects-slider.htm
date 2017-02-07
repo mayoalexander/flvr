@@ -1,0 +1,85 @@
+==
+<!-- SLIDER CONTENT -->
+ <header id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+            <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            
+            {% set records = sliderImages.records %}
+            {% set displayColumn = sliderImages.displayColumn %}
+            {% set noRecordsMessage = sliderImages.noRecordsMessage %}
+            {% set detailsPage = sliderImages.detailsPage %}
+            {% set detailsKeyColumn = sliderImages.detailsKeyColumn %}
+            {% set detailsUrlParameter = sliderImages.detailsUrlParameter %}
+            {% set index = 0 %}
+            
+            
+                {% for record in records %}
+                {% if index == 0 %}
+                    {% set active = ' active' %}
+                {% else %}
+                    {% set active = '' %}
+                {% endif %}
+                {% set index = index+1 %}
+                
+                    <div class="item{{active}}">
+                        <div class="fill" style="background-image:url('{{record.photo_background|media}}');"></div>
+                        <div class="carousel-caption">
+                        
+                            {% if record.photo_logo %}
+                                <a href="http://freelabel.net/view/project/{{record.slug}}"><img src="{{ record.photo_logo|media }}" style="margin:auto;max-height:480px;" class="img-responsive"></a>
+                            {% else %}
+                                <h1>{{ record.blogtitle }} <a href="http://freelabel.net/view/project/{{record.slug}}" class="btn btn-default">View</a></h1>
+                            {% endif %}
+                        
+                            <!--  -->
+                        </div>
+                    </div>
+                {% else %}
+                    <li class="no-data">{{ noRecordsMessage }}</li>
+                {% endfor %}
+            
+            
+            {% if records.lastPage > 1 %}
+                <ul class="pagination">
+                    {% if records.currentPage > 1 %}
+                        <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage-1) }) }}">&larr; Prev</a></li>
+                    {% endif %}
+            
+                    {% for page in 1..records.lastPage %}
+                        <li class="{{ records.currentPage == page ? 'active' : null }}">
+                            <a href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
+                        </li>
+                    {% endfor %}
+            
+                    {% if records.lastPage > records.currentPage %}
+                        <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage+1) }) }}">Next &rarr;</a></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+            
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+    </header>
+    
+    
+    <script>
+        $('.carousel').carousel({
+            interval: 5000 //changes the speed
+        })
+    </script>
+
+<!-- END OF SLIDER CONTENT -->

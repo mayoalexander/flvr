@@ -1,6 +1,5 @@
 title = "Video"
-url = "/tv/video/:slug"
-layout = "freelabel400"
+url = "/tv/:slug"
 is_hidden = 0
 
 [builderDetails]
@@ -15,6 +14,15 @@ notFoundMessage = "Record not found"
 {% set notFoundMessage = builderDetails.notFoundMessage %}
     
 {% if record %}
+
+
+
+{% partial "tv/header" %}
+  
+
+
+
+
 
 <div class="container video-container" style="background: #000;">
 
@@ -50,3 +58,6 @@ notFoundMessage = "Record not found"
 {% endif %}
 
 <script type="text/javascript" src="http://freelabel.net/lvtr/js/dashboard.js"></script>
+
+
+{% partial "400/footer" %}

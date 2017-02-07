@@ -9,11 +9,15 @@ is_hidden = 0
 <div>
 
 <script type="text/javascript">
-	
-	var url = 'http://freelabel.net/lvtr/views/explore.php';
-        $.get(url, function(data){
-          $('.data-container').html(data);
-        }); 
+
+$(function(){
+    displayLoader( $('.data-container'));
+    var url = 'http://freelabel.net/lvtr/views/explore.php';
+    $.get(url, function(data){
+      $('.data-container').html(data);
+    }); 
+});
+
 
 
 </script>

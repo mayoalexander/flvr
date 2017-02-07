@@ -1,0 +1,10 @@
+name: Feed
+form: $/freelabel/freelabel/models/feed/fields.yaml
+modelClass: Freelabel\Freelabel\Models\Feed
+defaultRedirect: freelabel/freelabel/feed
+create:
+    redirect: 'freelabel/freelabel/feed/update/:id'
+    redirectClose: freelabel/freelabel/feed
+update:
+    redirect: freelabel/freelabel/feed
+    redirectClose: freelabel/freelabel/feed

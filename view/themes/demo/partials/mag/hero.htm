@@ -1,0 +1,18 @@
+==
+<header class="header_banner hero-01" style="background-image:url('http://freelabel.net/{{ post.featured_images[0].path }}');">
+
+    <div class="background-tint">
+
+        <h1>{{ post.title }}</h1>
+
+        <!-- <p>{{ post.published_at|date('M d, Y') }}</p> -->
+        
+        {% if record.cta_url %}
+            <section class="row">
+                    <a href="{{ record.cta_url }}" class="btn btn-lg btn-primary" target="_blank">{{ record.cta_button }} - ${{ record.cta_price }}</a>
+            </section>
+        {% endif %}
+
+    </div>
+
+</header>

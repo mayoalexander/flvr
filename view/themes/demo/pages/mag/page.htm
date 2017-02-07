@@ -6,38 +6,64 @@ is_hidden = 0
 slug = "{{ :id }}"
 categoryPage = 404
 ==
-{% set post = blogPost.post %}
-<!DOCTYPE html>
-<html>
-<head>
-  <title>{{ post.title }}</title>
-  <meta name="description" content='FREELABEL // TV | RADIO | MAG '/>
-  <meta name='twitter:card' content='summary_large_image' />
-  <meta name='twitter:player' content='' />
-  <meta name='twitter:player:width' content='300' />
-  <meta name='twitter:player:height' content='300' />
-  <meta name='twitter:image' content='http://freelabel.net{{ post.featured_images[0].path }}' />
-  <meta name='twitter:site' content='http://freelabel.net/view/mag/{{ post.slug }}' />
-  <meta name='twitter:creator' content='@freelabelnet' />
-  <meta name='twitter:title' content='{{ post.title }}' />
-  <meta name='twitter:text:description' content='{{ html_limit(html_strip(post.description),100) }}... | FREELABEL // TV | RADIO | MAG | Login at FREELABEL.net' />
-  <meta property='og:url' content='http://freelabel.net/view/mag/{{ post.slug }}'>
-  <meta property='og:title' content='{{ post.title }}'>
-  <meta property='og:description' content='{{ html_limit(html_strip(post.description),100) }} | FREELABEL // TV | RADIO | MAG | Login at FREELABEL.net'>
-  <meta property='og:image' content='http://freelabel.net{{ post.featured_images[0].path }}'>
-  <meta property='og:image:type' content='image/png'>
-  <meta property='og:image:width' content='1024'>
-  <meta property='og:image:height' content='1024'>
-  {% partial "templates/resources" %}
-</head>
-
-<body>
-
+{% partial "mag/header" %}
 
 {% partial "400/navigation" %}
 
+<style>
 
 
+.header_banner .background-tint h1 {
+    background-color: rgba(254, 63, 68, 0.54);
+    color: #e3e3e3;
+    font-size: 5vmax;
+    font-weight: bold;
+    padding: 22px;
+    text-shadow: none;
+}
+.header_banner .background-tint {
+    display:flex;
+    flex-direction:row;
+    
+    justify-content:center;
+    align-items:center;
+}
+.header_banner .background-tint * {
+    flex:1;
+}
+
+.featured-images {
+    display:flex;
+    align-items:top;
+    flex-direction:row;
+    flex-wrap:wrap;
+    flex-basis:300px;
+    justify-content:space-between;
+}
+
+.featured-images p {
+    height:250px;
+    width:100%;
+    overflow:hidden;
+    flex:1;    
+    min-width:300px;
+    margin:0 0.5em 1em 0.5em;
+}
+
+.featured-images img {
+    width:100%;
+    transition: all .2s ease-in-out;
+}
+.featured-images p:hover img {
+    transform:scale(1.1);
+}
+.container-padded-large {
+    padding-top:5em;
+    padding-bottom:5em;
+}
+
+
+</style>
 
 
 <!-- BODY AREA -->
@@ -45,63 +71,9 @@ categoryPage = 404
 <!-- BODY AREA -->
 
 
-<header class="header_banner hero-01" style="background-image:url('http://freelabel.net/{{ post.featured_images[0].path }}');">
+{% partial "mag/hero" %}
 
-    <div class="background-tint">
-
-        <h1>{{ post.title }}</h1>
-
-        <p>{{ post.published_at|date('M d, Y') }}</p>
-
-        <section class="row">
-            {% if record.cta_url %}
-
-                <a href="{{ record.cta_url }}" class="btn btn-lg btn-primary" target="_blank">{{ record.cta_button }} - ${{ record.cta_price }}</a>
-                
-            {% endif %}
-        </section>
-
-    </div>
-
-</header>
-
-
-
-<div class="container">
-    <div class="page-header clearfix row">
-        <div class="col-md-10"></div>
-        <div class="col-md-2 btn-group">
-            <button class="share-mag-trigger btn btn-link pull-right" data-id="{{ post.id }}" data-title="{{ post.title }}" data-twitter="@{{ post.twitter }}" data-method="twitter"><i class="fa fa-twitter"></i> Twitter</button>
-            <button class="share-mag-trigger btn btn-link pull-right" data-id="{{ post.id }}" data-title="{{ post.title }}" data-twitter="@{{ post.twitter }}" data-method="facebook"><i class="fa fa-facebook"></i> Facebook</button>
-        </div>
-    </div>
-    <div class="content">{{ post.content_html|raw }}</div>
-    <hr>
-
-    {% if post.featured_images.count %}
-        <div class="featured-images text-center">
-            {% for image in post.featured_images %}
-                <p>
-                    <img
-                        data-src="{{ image.filename }}"
-                        src="{{ image.path }}"
-                        alt="{{ image.description }}"
-                        style="max-width: 100%" />
-                </p>
-            {% endfor %}
-        </div>
-    {% endif %}
-
-    <p class="info">
-        Posted
-        {% if post.categories.count %} in
-            {% for category in post.categories %}
-                <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
-            {% endfor %}
-        {% endif %}
-        on {{ post.published_at|date('M d, Y') }}
-    </p>
-</div>
+{% partial "mag/content" %}
 
 <script type="text/javascript" src="http://freelabel.net/lvtr/js/dashboard.js"></script>
 
@@ -113,8 +85,4 @@ categoryPage = 404
 
 
 
-{% partial "templates/footer" %}
-
-</body>
-
-</html>
+{% partial "mag/footer" %}

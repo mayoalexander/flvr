@@ -6,6 +6,18 @@ $users = $site->get_leads();
 // $site->debug($users,1);
 ?>
 
+<style type="text/css">
+	
+	.leads .active, .list-group-item.active:focus, .list-group-item.active:hover {
+		border:1px solid #303030;
+		background-color: #0c2e4c;
+	}
+	.leads .list-group-item {
+		cursor: pointer;
+		border:1px solid transparent;
+	}
+</style>
+
 <section class="container">
 	<h1 class="page-header">Leads</h1>
 	<?php $site->display_leads($users); ?>
@@ -33,6 +45,17 @@ $users = $site->get_leads();
 				wrap.hide('fast');
 				// updateViewCallback(wrap,result);
 			});
+
+
+		$('.leads .list-group-item').click(function(){
+
+			if ($(this).hasClass('active')) {
+				$(this).hide('fast');
+			} else {				
+				$(this).addClass('active');
+			}
+		});
+
 
 	});
 </script>

@@ -1,0 +1,27 @@
+title = "Youtube Search"
+url = "/tv/search"
+layout = "freelabel400"
+is_hidden = 0
+==
+<div class="container">
+    <h1>Youtube Search</h1>
+      <form class="youtube-search-form">
+        <div class="input-group">
+          <input id="query"  type="text" class="form-control" placeholder="Search for...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" id="search-button" disabled onclick="search()" >Go!</button>
+          </span>
+        </div><!-- /input-group -->
+      </form><!-- /.col-lg-6 -->
+    
+    <hr>
+    
+    <div id="search-container"></div>
+    <script
+      src="http://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script src="/view/themes/demo/assets/javascript/youtube/auth.js"></script>
+    <script src="/view/themes/demo/assets/javascript/youtube/search.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+</div>

@@ -126,7 +126,6 @@ notFoundMessage = "Record not found"
         {% endif %}
         
 
-        <p>@{{ record.twitter }}</p>
 
         <section class="row">
             {% if record.cta_url %}
@@ -188,13 +187,15 @@ notFoundMessage = "Record not found"
     <!-- Footer -->
 
     {% if record.gallery[0] %}
-    <div class="row image-gallery">
-        <h2 class="page-header">Gallery</h2>
-            {% for image in record.gallery %}
-            <div class="col-md-4">
-                <img src="{{ image.thumb(550,auto) }}" class="img-responsive">
-            </div>
-            {% endfor %}
+    <div class="container">
+        <div class="row image-gallery">
+            <h2 class="page-header">Gallery</h2>
+                {% for image in record.gallery %}
+                <div class="col-md-4">
+                    <img src="{{ image.thumb(550,auto) }}" class="img-responsive">
+                </div>
+                {% endfor %}
+        </div>
     </div>
     {% endif %}
 </div>

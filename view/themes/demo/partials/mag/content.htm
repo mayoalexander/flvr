@@ -1,0 +1,50 @@
+==
+<div class="container">
+    <div class="page-header clearfix row">
+        <div class="col-md-10"></div>
+        <div class="col-md-2 btn-group">
+            <button class="share-mag-trigger btn btn-link pull-right" data-id="{{ post.id }}" data-title="{{ post.title }}" data-twitter="@{{ post.twitter }}" data-method="twitter"><i class="fa fa-twitter"></i> Twitter</button>
+            <button class="share-mag-trigger btn btn-link pull-right" data-id="{{ post.id }}" data-title="{{ post.title }}" data-twitter="@{{ post.twitter }}" data-method="facebook"><i class="fa fa-facebook"></i> Facebook</button>
+        </div>
+    </div>
+    
+    
+    
+    
+    
+    <!-- ARTICLE CONTENT -->
+    <div class="content container-padded-large lead">
+    
+        <blockquote>
+          <p>{{ post.excerpt }}</p>
+        </blockquote>
+    
+        {{ post.content_html|raw }}
+    </div>
+    
+
+    <!-- FEATURED IMAGES -->
+    {% if post.featured_images.count %}
+        <div class="featured-images text-center">
+            {% for image in post.featured_images %}
+                <p>
+                    <img
+                        data-src="{{ image.filename }}"
+                        src="{{ image.path }}"
+                        alt="{{ image.description }}"
+                        style="max-width: 100%" />
+                </p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <p class="info">
+        Posted
+        {% if post.categories.count %} in
+            {% for category in post.categories %}
+                <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        {% endif %}
+        on {{ post.published_at|date('M d, Y') }}
+    </p>
+</div>

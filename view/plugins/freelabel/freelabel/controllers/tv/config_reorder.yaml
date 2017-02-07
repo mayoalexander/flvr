@@ -1,0 +1,4 @@
+title: Tv
+modelClass: Freelabel\Freelabel\Models\Tv
+toolbar:
+    buttons: reorder_toolbar
