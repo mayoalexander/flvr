@@ -95,7 +95,7 @@ $site = new Config();
 
 
 
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 <script type="text/javascript" src="http://freelabel.net/lvtr/js/application.js"></script>
 <script type="text/javascript">
 
