@@ -1411,7 +1411,7 @@ FROM users ORDER BY user_id DESC LIMIT 100";
 	function get_all_users($table, $db_page=0) {
 		require(ROOT.'config/connection.php');
 $query = "SELECT *
-FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 100";
+FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 200";
 		$result = mysqli_query($con,$query);
 		if (mysqli_num_rows($result)===0) {
 			echo "Uh oh, there was no users found!";

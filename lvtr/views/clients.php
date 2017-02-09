@@ -16,6 +16,12 @@ $users = $site->get_all_users('users');
 		    <ul class="nav navbar-nav">
 		      <li class="active"><a href="/view/dashboard/admin">Back to Admin</a></li>
 		    </ul>
+			<form class="navbar-form navbar-left">
+				<div class="form-group">
+				  <input type="text" class="form-control search" placeholder="Search">
+				</div>
+				<button type="submit" class="btn btn-default">Submit</button>
+			</form>
 		    <ul class="nav navbar-nav navbar-right">
 		      <li class="dropdown">
 		        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort by <span class="caret"></span></a>
@@ -64,7 +70,9 @@ $users = $site->get_all_users('users');
       // var userList = new List('users', options);
 
       var options = {
-        valueNames: [ 'user_name', 'date_created', 'media_uploaded', 'location' ]
+        valueNames: [ 'user_name', 'date_created', 'media_uploaded', 'location' ],
+        page: 20,
+  		pagination: true
       };
 
       var userList = new List('clients', options);
