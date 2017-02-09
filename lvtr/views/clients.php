@@ -14,7 +14,7 @@ $users = $site->get_all_users('users');
 		<div class="container-fluid">
 		  <div id="navbar" class="navbar-collapse collapse">
 		    <ul class="nav navbar-nav">
-		      <li class="active"><a href="#">Home</a></li>
+		      <li class="active"><a href="/view/dashboard/admin">Back to Admin</a></li>
 		    </ul>
 		    <ul class="nav navbar-nav navbar-right">
 		      <li class="dropdown">

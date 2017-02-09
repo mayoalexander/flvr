@@ -19,6 +19,7 @@ class Config
 	function __construct()
 	{
 		$this->url = SITE;
+		$this->domain = 'http://freelabel.net/';
 		$this->background_color = '#101010';
 		$this->primary_color = '#FE3F44';
 		$this->secondary_color_grey = '#414A52';
@@ -319,8 +320,10 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 		return $user;
 	}
 
-	function get_user_url($user) {
-		return $this->url . 'views/view.php?user_name='.$user['user_name'];
+	function get_user_url($profile) {
+		// return $this->url . 'views/view.php?user_name='.$user['user_name'];
+		// return $this->url . 'views/view.php?user_name='.$user['user_name'];
+		return $this->domain . 'user/'.$profile['id'];
 	}
 
 	function get_user_profile($user_name) {
@@ -846,10 +849,20 @@ function display_promos_grid($media, $user_name_session=NULL, $page=0) {
 	}
 
 	function display_profile_photo($profile) {
-		if (isset($profile['photo']) && getimagesize($profile['photo']) !== false) {
+		// if (isset($profile['photo']) && getimagesize($profile['photo']) !== false) {
+		if (isset($profile['photo']) ) {
 			echo $profile['photo'];
 		} else {
 			echo $this->default_user_img;
+		}
+	}
+
+	function get_profile_photo($profile) {
+		// if (isset($profile['photo']) && getimagesize($profile['photo']) !== false) {
+		if (isset($profile['photo']) ) {
+			return $profile['photo'];
+		} else {
+			return $this->default_user_img;
 		}
 	}
 
@@ -1000,10 +1013,16 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 	function display_friends_list($friends) {
 		if ($friends) {
 			foreach ($friends as $key => $post) {
-				echo '<p class="friendslist-item">';
-					echo '<b>'.$post['following'].'</b>';
-					echo '<i class="fa fa-ellipsis-h pull-right"></i>';
-				echo '</p>';
+				$profile = $this->get_user_profile($post['following']);
+				// $profile['user_name'] = $post['following'];
+				$url = $this->get_user_url($profile);
+				// $this->debug($profile);
+				// $this->debug($url,1);
+				echo '<a class="list-group-item friendslist-item flex-container" href="'.$this->get_user_url($profile).'">';
+					echo '<div class="img-wrap flex-item"><img src="'.$this->get_profile_photo($profile).'"/></div>';
+					echo '<div class="user flex-item text-right">'.$post['following'].'</div>';
+					// echo '<div class="options flex-item"><i class="fa fa-ellipsis-h pull-right "></i></div>';
+				echo '</a>';
 			}
 		} else {
 				echo '<p class="friendslist-item">';
