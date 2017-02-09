@@ -78,7 +78,9 @@ if ($profile==NULL) {
 						<h1>
 							<a href="<?php echo $site->url; ?>views/view.php?user_name=<?php echo $user['user_name']; ?>" ><?php echo $profile['name']; ?></a>
 						</h1>
-						<button class="follow-button">Follow</button>
+
+						<?php echo $site->display_follow_button($profile, $_SESSION); ?>
+						
 
 						<h4><a href="<?php echo $site->url; ?>views/view.php?user_name=<?php echo $user['user_name']; ?>" >
 							@<?php echo $user['user_name']; ?></a> - <?php echo $profile['location']; ?></h4>
