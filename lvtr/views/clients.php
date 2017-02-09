@@ -7,14 +7,13 @@ $users = $site->get_all_users('users');
 // $site->debug($users);
 ?>
 
-<section id="clients"  class="container">
-	<h1 class="page-header">Clients</h1>
+<section id="clients">
 	<!-- CONTROLS -->
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 		  <div id="navbar" class="navbar-collapse collapse">
 		    <ul class="nav navbar-nav">
-		      <li class="active"><a href="/view/dashboard/admin">Back to Admin</a></li>
+		      <li class="active"><a href="/view/dashboard/admin">Clients</a></li>
 		    </ul>
 			<form class="navbar-form navbar-left">
 				<div class="form-group">
@@ -32,7 +31,7 @@ $users = $site->get_all_users('users');
 		          <li><button class="sort btn btn-link btn-block" data-sort="date_created">
 		            Date Created
 		          </button></li>
-		          <li><button class="sort btn btn-link btn-block" data-sort="media_uploaded">
+		          <li><button class="sort btn btn-link btn-block" data-sort="media_uploaded"
 		            Media Uploaded
 		          </button></li>
 		          <li><button class="sort btn btn-link btn-block" data-sort="location">
@@ -53,12 +52,6 @@ $users = $site->get_all_users('users');
 
 
 <script type="text/javascript" src="<?php echo $site->url; ?>/js/dashboard.js"></script>
-
-
-
-
-
-
 <script type="text/javascript">
   $(function(){
 

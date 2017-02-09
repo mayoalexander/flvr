@@ -1164,7 +1164,7 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 			}
 
 
-			echo '<ul class="list-group leads">';
+			echo '<ul class="list-group list leads">';
 			foreach ($newleads as $lead_name => $lead) {
 				$date_added =$this->get_time_ago(strtotime($lead['entry_date']));
 				$priority = count($lead);
@@ -1172,17 +1172,17 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 
 			echo '<li class="list-group-item">';
 					echo '<p class="leadlist-item row">';
-						echo '<span class="col-md-2 col-sm-3 lead"><a href="'.$twitter_url.'" target="_blank">@'.$lead_name.'</a></span>';
+						echo '<span class="col-md-2 col-sm-3 lead name"><a href="'.$twitter_url.'" target="_blank">@'.$lead_name.'</a></span>';
 						echo '<span class="col-md-1 col-sm-3 priority">'.$priority.'</span>';
-						echo '<span class="col-md-1 col-sm-3">'.$date_added.'</span>';
+						echo '<span class="col-md-1 col-sm-3">'.$date_added.'<span class="date_created hidden">'.strtotime($lead['entry_date']).'</span></span>';
 						
 						echo '<span class="col-md-6 col-sm-3 text-muted lead">';
 						// foreach ($lead as $key => $message) {
-							echo '<span class="lead-message">'.$lead[0].'</span>';
+							echo '<span class="lead-message message">'.$lead[0].'</span>';
 						// }
 						echo '</span>'; 
 						// echo '<span class="col-md-2 col-sm-3"><a class="btn btn-primary btn-block call-us-button" data-user="'.$key.'" href="#"><i class="fa fa-phone"></i> Call Us</a></span>';
-						echo '<span class="col-md-2 col-sm-3"><a class="btn btn-primary btn-block open-lead-button" data-toggle="modal" data-target="#postModal" data-user="'.$lead_name.'" href="#"><i class="fa fa-phone"></i> Call Us</a></span>';
+						echo '<span class="col-md-2 col-sm-3"><a class="btn btn-primary btn-block open-lead-button" data-toggle="modal" data-target="#postModal" data-user="'.$lead_name.'" href="#"><i class="fa fa-ellipsis-h"></i> Options</a><a class="btn btn-default btn-block open-lead-button" target="_blank" href="http://freelabel.net/@'.$lead_name.'"><i class="fa fa-user"></i> View</a></span>';
 					echo '</p>';
 
 					echo '<div class="row hidden">';
@@ -2096,7 +2096,7 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 				</div>
 			</div>
 			<div class="col-md-12">
-				<button class="btn btn-primary pay-with-paypal disabled" href="#" type="submit">Pay with PayPal</button>
+				<button class="btn btn-success btn-lg btn-block pay-with-paypal disabled" href="#" type="submit">Pay with PayPal  <i class="fa fa-arrow-right" style="margin-left:5px;"></i></button>
 			</div>
 		</div>';
 	}

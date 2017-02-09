@@ -19,7 +19,7 @@ function formatTVTweets($tv_posts) {
  
  " .$post['title']."
  
- http://freelabel.net/view/tv/" .$post['slug'];
+FREELABEL.NET/view/tv/" .$post['slug'];
              $i++;
   }
   return $build;

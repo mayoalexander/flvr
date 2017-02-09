@@ -18,8 +18,47 @@ $users = $site->get_leads();
 	}
 </style>
 
-<section class="container">
+<section id="leads" class="container">
 	<h1 class="page-header">Leads</h1>
+
+
+	<!-- CONTROLS -->
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+		  <div id="navbar" class="navbar-collapse collapse">
+		    <ul class="nav navbar-nav">
+		      <li class="active"><a href="/view/dashboard/admin">Back to Admin</a></li>
+		    </ul>
+			<form class="navbar-form navbar-left">
+				<div class="form-group">
+				  <input type="text" class="form-control search" placeholder="Search">
+				</div>
+				<button type="submit" class="btn btn-default">Submit</button>
+			</form>
+		    <ul class="nav navbar-nav navbar-right">
+		      <li class="dropdown">
+		        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort by <span class="caret"></span></a>
+		        <ul class="dropdown-menu">
+		          <li><button class="sort btn btn-link btn-block" data-sort="name">
+		            Username
+		          </button></li>
+		          <li><button class="sort btn btn-link btn-block" data-sort="message">
+		            Message
+		          </button></li>
+		          <li><button class="sort btn btn-link btn-block" data-sort="date_created">
+		            Date Created
+		          </button></li>
+		          <li><button class="sort btn btn-link btn-block" data-sort="priority">
+		            Priority
+		          </button></li>
+		        </ul>
+		      </li>
+		    </ul>
+		  </div><!--/.nav-collapse -->
+		</div><!--/.container-fluid -->
+	</nav>
+
+	<!-- LEADS LIST -->
 	<?php $site->display_leads($users); ?>
 </section>
 
@@ -77,4 +116,22 @@ $users = $site->get_leads();
 
 
 	});
+</script>
+<script type="text/javascript">
+  $(function(){
+
+
+      // var options = {
+      //   valueNames: [ 'name', 'born' ]
+      // };
+
+      // var userList = new List('users', options);
+
+      var options = {
+        valueNames: [ 'name',  'message', 'date_created', 'priority'],
+      };
+
+      var userList = new List('leads', options);
+
+  });
 </script>

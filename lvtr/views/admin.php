@@ -4,12 +4,10 @@ $site = new Config();
 ?>
 
 
-<section class="container">
-	<h1>Admin</h1>
-	<hr>
+<section class="">
 
   <nav class="navbar navbar-inverse widget-navigation">
-    <div class="container-fluid">
+    <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <span class="sr-only">Toggle navigation</span>
