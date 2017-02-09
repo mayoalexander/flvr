@@ -369,7 +369,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 			$classes = 'pull-left';
 		}
 
-		return '<span class="play_button button-tint btn btn-link btn-'.$post['id'].' '.$classes.'" data-type="'.$post['type'].'" data-mp3="'.$post['trackmp3'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-id="'.$post['id'].'" data-order="'.$key.'"><i class="fa '.$icon.'"></i></span>';
+		return '<span class="play_button button-tint btn btn-link btn-'.$post['id'].' '.$classes.'" data-type="'.$post['type'].'" data-count="'.$post['views'].'" data-mp3="'.$post['trackmp3'].'" data-title="'.$post['blogtitle'].'" data-twitter="'.$post['twitter'].'" data-id="'.$post['id'].'" data-order="'.$key.'"><i class="fa '.$icon.'"></i></span>';
 	}
 
 	function display_post_functions($post,$user_name_session) {
@@ -1675,6 +1675,8 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 200";
 			}
 		}
 		$query = "UPDATE `$table` SET $q_data WHERE `id` = ".$data['id'];
+
+
 		$editquery = mysqli_query($con,$query);
 		if ($editquery) {
 		  $res = true;

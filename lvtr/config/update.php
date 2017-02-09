@@ -91,3 +91,12 @@ if ($_POST['action']==='save_play') {
 		echo 'Something went wrong!';
 	}
 }
+
+
+if ($_POST['action']==='count_play') {
+	if ($site->update('feed',$_POST, $_POST['post_id'])) {
+		echo 'Successfully Updated!';
+	}	else {
+		echo 'Something went wrong!';
+	}
+}

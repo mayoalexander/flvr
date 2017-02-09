@@ -1,11 +1,6 @@
 
-function checkIfPlaying(status) {
-	// console.log(status);
-	if (status===true) {
-		// alert('playing next song!!!');
-	} else {
-		// console.log(status);
-	}
+function checkIfPlaying(status, type) {
+	return status;
 }
 
 function toHHMMSS(time) {
@@ -47,6 +42,7 @@ function showNotification(result) {
 }
 
 
+/* LIKE POST */
 function likePost(post_id,user_name) {
 	var url = 'http://freelabel.net/lvtr/config/like.php';
 	$.post(url, {post_id:post_id, user_name:user_name} , function(result) {
@@ -70,10 +66,34 @@ function savePlay(post_id,user_name) {
 	});
 }
 
+function countPlay(count, post_id) {
+	var url = 'http://freelabel.net/lvtr/config/update.php';
+	$.post(url, { id:post_id, views:count, action:'count_play' } , function(result) {
+		showNotification(result);
+		// alert(result);
+		console.log(result);
+	});
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function audioPlayer(elem) {
-	console.log(elem);
-	console.log(elem.attr('data-mp3'));
+	// console.log(elem);
+	// console.log(elem.attr('data-mp3'));
 	currentState = elem.html();
 	playButtonElem = '<i class="fa fa-play"></i>';
 	pauseButtonElem = '<i class="fa fa-pause"></i>';
@@ -82,31 +102,52 @@ function audioPlayer(elem) {
 	var audioPlayerText = $('#audio_player_text');
 	var audioPlayerToolbar = $('.audio-player-toolbar');
 	var activeMp3 = elem.attr('data-mp3');
+	var activeID = elem.attr('data-id');
+	var activeCount = elem.attr('data-count');
 	var activeMp3Type = elem.attr('data-type');
 	var activeMp3Text = elem.attr('data-twitter') + ' - ' + elem.attr('data-title');
 	var tracks = [];
 
-	/* BUILD PLAYLIST */
-	$.each($('.play_button'),function(index,value){
-		tracks[index] =  {
-			title: value.getAttribute('data-twitter') + ' - ' + value.getAttribute('data-title'),
-			file: value.getAttribute('data-mp3')
-		}
-	});
+
+
+
+	/* SAVE POSTS */
+	var activeCountNew = parseInt(activeCount) + 1;
+	countPlay(activeCountNew, activeID);
+
 
 	/* ADD ACTIVE CLASS */
 	$('.tracklist-container article').removeClass('active');
 	var postWrapper = elem.parent().parent();
 	postWrapper.addClass('active')
-	console.log();
 
+
+
+
+	/* COMPILE TRACKS */
+	$.each($('.play_button'),function(index,value){
+		tracks[index] =  {
+			id : value.getAttribute('data-id'),
+			title: value.getAttribute('data-twitter') + ' - ' + value.getAttribute('data-title'),
+			file: value.getAttribute('data-mp3'),
+			filetype : value.getAttribute('data-type'),
+			order :value.getAttribute('data-order'),
+		}
+	});
+
+
+	/* INITIALIZE PLAYER */
 	var FLPlayer = {};
 	FLPlayer.started = true;
 	FLPlayer.current = {
-		filetype : activeMp3Type,
-		title : activeMp3Text
+		id : elem.attr('data-id'),
+		order : elem.attr('data-order'),
+		file : elem.attr('data-mp3'),
+		filetype : elem.attr('data-type'),
+		title : elem.attr('data-twitter') + ' - ' + elem.attr('data-title')
 	}
 	FLPlayer.playlist = tracks;
+	console.log(FLPlayer);
 
 
 
@@ -117,7 +158,6 @@ function audioPlayer(elem) {
 				// preloadMetaData()
 				$('.play_button').html(playButtonElem); //reset all buttons
 				elem.html(pauseButtonElem);
-				// alert($('.play_button'));
 				audioPlayerText.text(activeMp3Text);
 				globalVideoPlayer.attr('src', activeMp3);
 				globalAudioPlayer[0].pause();
@@ -134,8 +174,8 @@ function audioPlayer(elem) {
 
 				
 
-				/* PLAY AUDIO */
-			} else if (FLPlayer.current.filetype=='audio') { 
+	/* PLAY AUDIO */
+	} else if (FLPlayer.current.filetype=='audio') { 
 				FLPlayer.playerType = FLPlayer.current.filetype;
 
 				// preloadMetaData()
@@ -158,26 +198,84 @@ function audioPlayer(elem) {
 					globalAudioPlayer[0].pause();
 				}
 
-			}
+	}
 
-			$('.play-progress-bar').html('')
 
-			setInterval(function(){
-				if (FLPlayer.playerType=='video') {
-					checkIfPlaying(globalVideoPlayer[0].paused)
-				} else if (FLPlayer.playerType=='audio') {
-					checkIfPlaying(globalAudioPlayer[0].paused);
+	/* INITIALIZE PLAYBAR */
+	$('.play-progress-bar').html('')
+	setInterval(function(){
+		if (FLPlayer.playerType=='video') {
+			// if (globalVideoPlayer[0].paused) {
+			// 	console.log('playing next!!!');
+			// } else {
+			// 	console.log('currently playing..');
+			// }
+		} else if (FLPlayer.playerType=='audio') {
+			if (globalAudioPlayer[0].paused) {
+
+				var nextOrder = parseInt(FLPlayer.current.order) + 1;
+
+				// update src + text to next track
+				audioPlayerText.text(FLPlayer.playlist[nextOrder].title); 
+				globalAudioPlayer.attr('src', FLPlayer.playlist[nextOrder].file); 
+
+				// pause video player, if initialized
+				if (globalVideoPlayer[0]) {
+					globalVideoPlayer[0].pause()
 				}
-				var currentTime = globalAudioPlayer[0].currentTime;
-				var totalTime = globalAudioPlayer[0].duration;
-				var percentComplete =  (currentTime / totalTime * 100) + '%';
-				$('.currentTime').html(toHHMMSS(currentTime))
-				$('.play-progress-bar').css('width', percentComplete)
-				// console.log(percentComplete);
 
-			}, 1000);
-			// console.log(FLPlayer);
+
+				//reset all buttons
+				$('.play_button').html(playButtonElem); 
+
+				$('.btn-' + FLPlayer.playlist[nextOrder].id).html(pauseButtonElem);
+
+				// start playing audio
+				globalAudioPlayer[0].play();
+
+				// update current in FLplayer Object
+				FLPlayer.current = {
+					id : FLPlayer.playlist[nextOrder].id,
+					order : FLPlayer.playlist[nextOrder].order,
+					filetype : FLPlayer.playlist[nextOrder].filetype,
+					title : FLPlayer.playlist[nextOrder].title
+				}
+				console.log(FLPlayer.current);
+
+
+			} else {
+				console.log('currently playing..');
+			}
 		}
+		var currentTime = globalAudioPlayer[0].currentTime;
+		var totalTime = globalAudioPlayer[0].duration;
+		var percentComplete =  (currentTime / totalTime * 100) + '%';
+		$('.currentTime').html(toHHMMSS(currentTime))
+		$('.play-progress-bar').css('width', percentComplete)
+
+	}, 1000);
+
+
+	} /* END OF audioPlayer() */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -285,7 +383,7 @@ function audioPlayer(elem) {
 			e.preventDefault();
 			var post_id = $(this).attr('data-id');
 			var user_name = 'admin';
-			savePlay(post_id, user_name);
+			// savePlay(post_id, user_name);
 			audioPlayer($(this));
 		});	
 
