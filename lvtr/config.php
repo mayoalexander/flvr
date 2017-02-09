@@ -1343,6 +1343,31 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 	}
 
 
+
+
+
+	function get_tv_posts() {
+
+		require(ROOT.'config/connection-october.php');
+		$dp = '';
+		if ($date_param!==NULL) {
+			// $dp = "WHERE `entry_date` LIKE '%".date('Y-m-d',strtotime($date_param))."%'";
+		}
+		$query = "SELECT * FROM `freelabel_freelabel_tv` $dp ORDER BY `id` DESC LIMIT 100";
+		$result = mysqli_query($con,$query);
+		if (mysqli_num_rows($result)===0) {
+			echo "Uh oh, there was no recent SOMs found! (Search Filter: ".$date_param.") ";
+			exit;
+		} else {
+			while ($row = mysqli_fetch_assoc($result)) {
+				$leads[] = $row;
+			}
+		}
+	    mysqli_close($con);
+		return $leads;
+	}
+
+
 	function get_new_clients($date_param=NULL) {
 		require(ROOT.'config/connection.php');
 		$dp = '';

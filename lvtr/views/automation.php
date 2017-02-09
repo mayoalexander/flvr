@@ -7,6 +7,24 @@ $site = new Config();
 // echo '</pre>';
 // exit;
 
+
+
+
+function formatTVTweets($tv_posts) {
+  $i = 0;
+  // $build = [];
+  foreach ($tv_posts as $key => $post) {
+    $build[$i] .= ''.$post['title'];
+ $build[$i] = "#FLTV | ".$post['twitter']."
+ 
+ " .$post['title']."
+ 
+ http://freelabel.net/view/tv/" .$post['slug'];
+             $i++;
+  }
+  return $build;
+}
+
 $action = 'all';
 $_GET['recent'] = true;
 $_GET['mins'] = 4;
@@ -39,7 +57,8 @@ LIMIT 0 , 0";
   $query = "SELECT * FROM  `feed` WHERE `user_name`  NOT LIKE '%admin%' ORDER BY `id` OR `user_name` LIKE '%admin%' LIMIT 0 , 60";
 }
 
-    // echo '<h1>'.$query.'</h1>';
+    echo '<h1>'.$query.'</h1>';
+
     echo '<a class="btn btn-primary" target="_blank" href="#">Open In New Tab</a>';
            $result = mysqli_query($con,$query);
            $i=1;
@@ -150,8 +169,19 @@ http://freelabel.net/users/index/image/'.$post_id;
 
 
 	
+        /* GET TV POSTS */
+        $tv_posts = formatTVTweets($site->get_tv_posts());
+
+        // $site->debug($tv_posts,1);
+
+        /* COMBINE ARRAYS */
+        $posts_to_tweet = array_merge($posts_to_tweet, $tv_posts);
+
+        /* TEST */
+        // $site->debug($posts_to_tweet,1);
 
         shuffle($posts_to_tweet);
+
 
         $already_tweeted = array("0");
         $i=1;
