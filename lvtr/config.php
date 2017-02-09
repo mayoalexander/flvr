@@ -434,7 +434,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 	function display_media_grid($media, $user_name_session=NULL, $page=0) {
 		$res='';
 		if (count($media)!==1) {
-			$col = 'col-md-4 col-sm-6';
+			$col = 'col-md-3 col-sm-6';
 		} else {
 			$col = 'col-md-12';
 		}
@@ -447,7 +447,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 					if ($i===0) {
 						$res .= '<div class="section row">';
 					}
-					$res .= '<article class="tracklist-panel col-xs-6 col-md-3">';
+					$res .= '<article class="tracklist-panel '.$col.'">';
 					$res .= '
 						<a href="'.$this->create_url($post).'" data-id="'.$post['id'].'"> 
 							<img src="'.$post['photo'].'" class="img-responsive"/>
