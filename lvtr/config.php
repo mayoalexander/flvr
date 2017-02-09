@@ -1087,7 +1087,7 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 					echo '<span class="col-md-2 col-sm-3 text-muted">'.$this->get_time_ago(strtotime($profile['date_created'])).'<span class="date_created hidden">'.strtotime($profile['date_created']).'</span></span>';
 					// echo '<span class="col-md-2 col-sm-3 text-muted ">'.strtotime($profile['date_created']).'</span>';
 					echo '<span class="col-md-1 col-sm-3 text-muted media_uploaded">'.$media_status.'</span>';
-					echo '<span class="col-md-2 col-sm-3 text-muted">'.$profile['phone'].'</span>';
+					echo '<span class="col-md-2 col-sm-3 text-muted phone">'.$profile['phone'].'</span>';
 					echo '<span class="col-md-2 col-sm-3 text-muted location">'.$profile['location'].'</span>';
 					echo '<span class="col-md-2 col-sm-3 text-muted dropdown">
 							<div class="dropdown">

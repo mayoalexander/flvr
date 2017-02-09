@@ -70,9 +70,7 @@ $users = $site->get_all_users('users');
       // var userList = new List('users', options);
 
       var options = {
-        valueNames: [ 'user_name', 'date_created', 'media_uploaded', 'location' ],
-        page: 20,
-  		pagination: true
+        valueNames: [ 'user_name', 'date_created', 'media_uploaded', 'location', 'phone' ],
       };
 
       var userList = new List('clients', options);
