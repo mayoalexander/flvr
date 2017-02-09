@@ -67,7 +67,9 @@ $site->update_stats($post['views'], $post['id']);
 
 		<div class="profile-header-banner section" style="background-image:url('<?php echo $post['photo']; ?>');">
 			<div class="background-tint">
-				<h1 class="title"><?php echo $post['twitter']; ?></h1>
+				<div class="title">
+					<h2><?php echo $post['twitter']; ?></h2>
+				</div>
 				<p class="subtitle"><?php echo $site->display_play_button($post, 0, true); ?> <span class="trackname"><?php echo($post['blogtitle']); ?></span></p>
 				<div class="play-button-wrap">
 
@@ -88,8 +90,14 @@ $site->update_stats($post['views'], $post['id']);
 			    </button>
 			    <a class="navbar-brand" href="http://freelabel.net/user/<?php echo $post['user_name']; ?>">Posted by <?php echo $post['user_name']; ?></a>
 			  </div>
+			  <div>
+			  	<ul class="nav navbar-nav visible-xs">
+			  		<?php echo $site->display_social_buttons($post); ?>
+			  	</ul>
+			  </div>
 			  <div id="navbar" class="navbar-collapse collapse">
 			    <ul class="nav navbar-nav">
+
 			      
 			      <li class="dropdown">
 			        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-play"></i> <?php echo $post['views']; ?>
@@ -100,7 +108,7 @@ $site->update_stats($post['views'], $post['id']);
 			      </li>
 			    </ul>
 			    <ul class="nav navbar-nav navbar-right">
-			      <li class="dropdown">
+			      <li class="dropdown hidden-xs">
 			        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-share-alt"></i> Share</a>
 			        <ul class="dropdown-menu">
 			          <?php echo $site->display_social_buttons($post); ?>
