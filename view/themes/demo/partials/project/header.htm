@@ -1,0 +1,27 @@
+==
+{% set record = projectDetails.record %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ post.title }}</title>
+  <meta name="description" content='FREELABEL // TV | RADIO | MAG '/>
+  <meta name='twitter:card' content='summary_large_image' />
+  <meta name='twitter:player' content='' />
+  <meta name='twitter:player:width' content='300' />
+  <meta name='twitter:player:height' content='300' />
+  <meta name='twitter:image' content='http://freelabel.net{{ record.featured_images[0].path }}' />
+  <meta name='twitter:site' content='http://freelabel.net/view/mag/{{ record.slug }}' />
+  <meta name='twitter:creator' content='@freelabelnet' />
+  <meta name='twitter:title' content='{{ post.title }}' />
+  <meta name='twitter:text:description' content='{{ html_limit(html_strip(record.excerpt),200) }}' />
+  <meta property='og:url' content='http://freelabel.net/view/mag/{{ post.slug }}'>
+  <meta property='og:title' content='{{ post.title }}'>
+  <meta property='og:description' content='{{ html_limit(html_strip(record.excerpt),200) }}'>
+  <meta property='og:image' content='http://freelabel.net{{ record.featured_images[0].path }}'>
+  <meta property='og:image:type' content='image/png'>
+  <meta property='og:image:width' content='1024'>
+  <meta property='og:image:height' content='1024'>
+  {% partial "templates/resources" %}
+</head>
+
+<body>
