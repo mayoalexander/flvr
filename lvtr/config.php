@@ -660,7 +660,7 @@ function display_promos_grid($media, $user_name_session=NULL, $page=0) {
 		if ($post['status']=='private') {
 			$res = '<i class="fa fa-eye-slash"></i>';
 		} else {
-			$res = ''.$post['views'].' <i class="fa fa-eye"></i>';
+			$res = '<span class="number">'.$post['views'].'</span> <i class="fa fa-play"></i>';
 		}
 		$build = "<span class='stats'>".$res."</span>";
 		return $build;
@@ -1060,6 +1060,13 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 		$data .= "<li><a href='http://twitter.com/".$profile['twitter']."' target='_blank'><i class='fa fa-twitter'></i> View Twitter</a></li>";
 		$data .= "<li class='email-client' data-id='".$profile['id']."'><a href='#'><i class='fa fa-envelope'></i> Email</a></li>";
 		return $data;
+	}
+
+
+
+	function display_follow_button($profile,$session) {
+		return '<button class="follow-button not-following" data-profile="'.$profile['id'].'" data-user="'.$_SESSION['user_name'].'"><i class="fa fa-plus"></i> Follow</button>';
+		// return '<button class="follow-button following" data-profile="'.$profile['id'].'" data-user="'.$_SESSION['user_name'].'"><i class="fa fa-plus"></i> Follow</button>';
 	}
 
 	function display_users_list($user_profiles) {
@@ -1693,7 +1700,6 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 200";
 		$i=1;
 		$q_data='';
 		// echo 'count: '.(count($data)-1);
-		// var_dump($data);
 		foreach ($data as $key => $value) {
 			if ($key!=='action' && $key!=='id') {
 				$q_data.= ''.$key;

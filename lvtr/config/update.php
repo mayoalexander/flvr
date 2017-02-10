@@ -100,3 +100,16 @@ if ($_POST['action']==='count_play') {
 		echo 'Something went wrong!';
 	}
 }
+
+
+
+
+
+if ($_POST['action']==='follow_user') {
+	$_POST['date_created'] = date('Y-m-d h:s:i');
+	if ($site->add('relationships',$_POST, $_POST['post_id'])) {
+		echo 'Successfully Updated!';
+	}	else {
+		echo 'Something went wrong!';
+	}
+}

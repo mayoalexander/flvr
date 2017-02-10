@@ -107,12 +107,15 @@ function audioPlayer(elem) {
 	var activeMp3Type = elem.attr('data-type');
 	var activeMp3Text = elem.attr('data-twitter') + ' - ' + elem.attr('data-title');
 	var tracks = [];
+	var playCounter = elem.parent().parent().find('.status .stats .number');
+
 
 
 
 
 	/* SAVE POSTS */
 	var activeCountNew = parseInt(activeCount) + 1;
+	playCounter.html(activeCountNew);
 	countPlay(activeCountNew, activeID);
 
 
@@ -147,7 +150,7 @@ function audioPlayer(elem) {
 		title : elem.attr('data-twitter') + ' - ' + elem.attr('data-title')
 	}
 	FLPlayer.playlist = tracks;
-	console.log(FLPlayer);
+	// console.log(FLPlayer);
 
 
 
@@ -523,6 +526,20 @@ function audioPlayer(elem) {
 			var elem = $(this);
 			var data = elem.text();
 			alert(data);;
+		});
+
+
+
+
+		$('.follow-button').click(function(e){
+			var elem = $(this);
+			var wrap = $(this).parent();
+			var user_name = elem.attr('data-user');
+			var following = elem.attr('data-profile');
+			url = 'http://freelabel.net/lvtr/config/update.php';
+			$.post(url, {following:following, user_name:user_name, action:'follow_user'}, function(result){
+				alert(result);
+			});
 		});
 
 
