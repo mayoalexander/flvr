@@ -368,6 +368,9 @@ header.carousel .fill {
     background-size:cover;
 }
 
+
+
+/* PROFILE */
 .profile {
 	.social-share-buttons {
 		text-align: center;
@@ -378,6 +381,23 @@ header.carousel .fill {
 				font-size: 1.25em;
 			}
 		}
+	}
+	.follow-button {
+	    position: relative;
+	    bottom: 6px;
+	    background: transparent;
+	    padding: 0.5em;
+	    border-radius: 5px;
+	    margin-left: 1em;
+	    font-size: 0.8em;
+	    &.not-following {
+			color:#3897f0;
+			border:1px solid #3897f0;
+	    }
+		&.following {
+			color:$brand_body_text_muted;
+			border:1px solid $brand_body_text_muted;
+	    }
 	}
 	// img {
 	// 	width: 100%;

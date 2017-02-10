@@ -660,7 +660,7 @@ function display_promos_grid($media, $user_name_session=NULL, $page=0) {
 		if ($post['status']=='private') {
 			$res = '<i class="fa fa-eye-slash"></i>';
 		} else {
-			$res = '<span class="number">'.$post['views'].'</span> <i class="fa fa-play"></i>';
+			$res = '<span class="number">'.$post['views'].'</span> <i class="fa fa-eye"></i>';
 		}
 		$build = "<span class='stats'>".$res."</span>";
 		return $build;
@@ -947,6 +947,29 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 
 
 
+	function get_relationship($following,$user_name) {
+		$db_page = $page * 20;
+		require(ROOT.'config/connection.php');
+		$query = "SELECT * FROM relationships WHERE user_name = '$user_name' AND following = '$following' ORDER BY id DESC LIMIT 1";
+
+		if ($result = mysqli_query($con,$query)) {		
+			if (mysqli_num_rows($result)===0) {
+				// echo "Uh oh, there was no relationship found!";
+				$res = false;
+			} else {
+				$res = true;
+			}
+		} else {
+			$res = false;
+		}
+	    mysqli_close($con);
+		return $res;
+	}
+
+
+
+
+
 
 
 
@@ -1065,7 +1088,18 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 
 
 	function display_follow_button($profile,$session) {
-		return '<button class="follow-button not-following" data-profile="'.$profile['id'].'" data-user="'.$_SESSION['user_name'].'"><i class="fa fa-plus"></i> Follow</button>';
+
+		// $this->debug($_SESSION);
+		// $this->debug($session);
+		// $this->debug($this->get_relationship($profile['id'], $_SESSION['user_name']),1);
+		// if (isset($_SESSION['user_name'])) {
+		if ($this->get_relationship($profile['id'], $_SESSION['user_name'])===true) {
+			return '<button class="follow-button following" data-profile="'.$profile['id'].'" data-user="'.$_SESSION['user_name'].'"><i class="fa fa-check"></i> Following</button>';
+		} else {
+			return '<button class="follow-button not-following" data-profile="'.$profile['id'].'" data-user="'.$_SESSION['user_name'].'"><i class="fa fa-plus"></i> Follow</button>';
+		}
+
+
 		// return '<button class="follow-button following" data-profile="'.$profile['id'].'" data-user="'.$_SESSION['user_name'].'"><i class="fa fa-plus"></i> Follow</button>';
 	}
 

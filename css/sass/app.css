@@ -238,6 +238,7 @@ header.carousel .fill {
   min-height: 40%;
   background-size: cover; }
 
+/* PROFILE */
 .profile .social-share-buttons {
   text-align: center; }
   .profile .social-share-buttons li {
@@ -245,6 +246,20 @@ header.carousel .fill {
     display: inline-block; }
     .profile .social-share-buttons li .btn {
       font-size: 1.25em; }
+.profile .follow-button {
+  position: relative;
+  bottom: 6px;
+  background: transparent;
+  padding: 0.5em;
+  border-radius: 5px;
+  margin-left: 1em;
+  font-size: 0.8em; }
+  .profile .follow-button.not-following {
+    color: #3897f0;
+    border: 1px solid #3897f0; }
+  .profile .follow-button.following {
+    color: #676767;
+    border: 1px solid #676767; }
 
 .list-group-item {
   background-color: rgba(64, 64, 64, 0.21);

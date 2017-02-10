@@ -51,17 +51,7 @@ if ($profile==NULL) {
 				margin-top:0;
 				display: inline-block;
 			}
-			.profile .follow-button {
-				color:#3897f0;
-				border:1px solid #3897f0;
-			    position: relative;
-			    bottom: 6px;
-			    background: transparent;
-			    padding: 0.5em;
-			    border-radius: 5px;
-			    margin-left: 1em;
-			    font-size: 0.8em;
-			}
+
 		</style>
 		<section class="profile container heading">
 			<div class="col-md-4 col-xs-12">

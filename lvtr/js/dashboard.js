@@ -531,7 +531,7 @@ function audioPlayer(elem) {
 
 
 
-		$('.follow-button').click(function(e){
+		$('.follow-button .not-following').click(function(e){
 			var elem = $(this);
 			var wrap = $(this).parent();
 			var user_name = elem.attr('data-user');
