@@ -198,6 +198,7 @@ header.carousel {
 }
 header.carousel .fill {
     background-attachment: fixed;
+    box-shadow: inset 0px -408px 8000px rgba(0,0,0,0.9);
 }
 .carousel-caption, .profile-header-banner {
 	h1, h2 {
@@ -205,7 +206,7 @@ header.carousel .fill {
 		// padding:1em 2em;
 		color:$brand_body_text_light !important;
 		font-size:5vmax;
-		font-weight: bold;
+		font-weight: 700;
 	    padding: 22px;
 	    text-shadow: none;
 	    a {
