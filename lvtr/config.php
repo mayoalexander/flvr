@@ -416,13 +416,14 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 						</div>';
 	}
 
-	function display_media_list($media) {
+	function display_media_list($media, $user_name=NULL, $page=0) {
 		if (isset($media)) {
 			foreach ($media as $key => $post) {
-				echo '<article class="tracklist-item">';
-					echo '<a href="#" data-id="'.$post['id'].'"> <img src="'.$post['photo'].'"/> <b>'.$post['twitter'].'</b></a>: '.$post['blogtitle'];
-						echo $this->display_post_options_button($post);
-				echo '</article>';
+				// echo '<article class="tracklist-item">';
+				// 	echo '<a href="#" data-id="'.$post['id'].'"> <img src="'.$post['photo'].'"/> <b>'.$post['twitter'].'</b></a>: '.$post['blogtitle'];
+				// 		echo $this->display_post_options_button($post);
+				// echo '</article>';
+				echo '<li class="tracklist-panel tracklist-list-item flex-container"><div class="img-wrap flex-item"><img src="'.$post['photo'].'"/></div><div class="details flex-item"><a href="#" data-src="'.$post['trackmp3'].'"><h4>'.$post['twitter'].'</h4></a><p>'.$post['blogtitle'].'</p></div></li>';
 			}
 		} else {
 				echo '<p class="tracklist-item label nothing-found">';

@@ -78,13 +78,18 @@ pageNumber = "{{ :page }}"
 		</div>
 	</div>
 
+    <div class="row">
+        <h2 class="page-header">Recently Uploaded Songs</h2>
+        <div class="radio-playlist"></div> 
+    </div>
+
 </div>
 
 <script>
 
 	$(function() {
-		$.get('http://freelabel.net/lvtr/views/mag.php',function(result){
-			$('.widget-container').html(result);
+		$.get('http://freelabel.net/lvtr/views/player.php',function(result){
+			$('.radio-playlist').html(result);
 		});
 	});
 
