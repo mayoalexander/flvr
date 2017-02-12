@@ -31,3 +31,11 @@ fields:
         oc.commentPosition: ''
         span: full
         type: textarea
+    slug:
+        label: Slug
+        oc.commentPosition: ''
+        span: auto
+        preset:
+            field: name
+            type: slug
+        type: text

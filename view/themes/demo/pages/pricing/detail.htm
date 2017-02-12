@@ -1,4 +1,4 @@
-title = "pricing/detail"
+title = "Package Details"
 url = "/pricing/package/:slug"
 layout = "freelabel400"
 is_hidden = 0
@@ -6,7 +6,7 @@ is_hidden = 0
 [builderDetails]
 modelClass = "Freelabel\Freelabel\Models\Packages"
 identifierValue = "{{ :slug }}"
-modelKeyColumn = "name"
+modelKeyColumn = "slug"
 displayColumn = "name"
 notFoundMessage = "Record not found"
 ==
@@ -17,7 +17,8 @@ notFoundMessage = "Record not found"
 {% set notFoundMessage = builderDetails.notFoundMessage %}
 
 {% if record %}
-<h1 class="page-header">{{ attribute(record, displayColumn) }}</h1>
+<h1 class="page-header">Packages</h1>
+    {% partial "packages/details" %}
 {% else %}
     {{ notFoundMessage }}
 {% endif %} 

@@ -108,3 +108,33 @@
 1.0.37:
     - 'Updated table freelabel_freelabel_script'
     - builder_table_update_freelabel_freelabel_script.php
+1.0.38:
+    - 'Created table freelabel_freelabel_feed'
+    - builder_table_create_freelabel_freelabel_feed.php
+1.0.39:
+    - 'Updated table freelabel_freelabel_feed'
+    - builder_table_update_freelabel_freelabel_feed.php
+1.0.40:
+    - 'Updated table freelabel_freelabel_feed'
+    - builder_table_update_freelabel_freelabel_feed_2.php
+1.0.41:
+    - 'Updated table freelabel_freelabel_feed'
+    - builder_table_update_freelabel_freelabel_feed_3.php
+1.0.42:
+    - 'Updated table freelabel_freelabel_feed'
+    - builder_table_update_freelabel_freelabel_feed_4.php
+1.0.43:
+    - 'Created table freelabel_freelabel_feed_genres'
+    - builder_table_create_freelabel_freelabel_feed_genres.php
+1.0.44:
+    - 'Created table freelabel_freelabel_genres'
+    - builder_table_create_freelabel_freelabel_genres.php
+1.0.45:
+    - 'Updated table freelabel_freelabel_feed'
+    - builder_table_update_freelabel_freelabel_tv.php
+1.0.46:
+    - 'Updated table freelabel_freelabel_marketing'
+    - builder_table_update_freelabel_freelabel_marketing_2.php
+1.0.47:
+    - 'Updated table freelabel_freelabel_packages'
+    - builder_table_update_freelabel_freelabel_packages_4.php

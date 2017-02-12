@@ -33,14 +33,7 @@ notFoundMessage = "Record not found"
     <div class="container">
 
         {% partial "tv/subnav-bar" %}
-        <div class="page-header row hidden">
-            <h2 class="col-md-10">{{record.title}}</h2>
-            <div class="col-md-2 btn-group">
-                <button class="share-page-trigger btn btn-link pull-right" data-id="{{ record.id }}" data-title="{{ record.title }}" data-twitter="{{ record.twitter }}" data-method="twitter"><i class="fa fa-twitter"></i> Twitter</button>
-                <button class="share-page-trigger btn btn-link pull-right" data-id="{{ record.id }}" data-title="{{ record.title }}" data-twitter="{{ record.twitter }}" data-method="facebook"><i class="fa fa-facebook"></i> Facebook</button>
-            </div>
-        </div>
-        
+
         
         <div class="col-md-7 comments-section" style="height:500px;">
             <h4>Comments</h4>

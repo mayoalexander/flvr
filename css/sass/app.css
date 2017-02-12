@@ -6,6 +6,83 @@ FREELABEL SUCKAAAAA
 */
 /* GOOGLE FONTS */
 @import url("https://fonts.googleapis.com/css?family=Abel|Fjalla+One|Open+Sans+Condensed:300|Raleway");
+.header_banner .background-tint h1 {
+  background-color: rgba(254, 63, 68, 0.54);
+  color: #e3e3e3;
+  font-size: 5vmax;
+  font-weight: bold;
+  padding: 22px;
+  text-shadow: none; }
+
+.header_banner .background-tint {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
+
+.header_banner .background-tint * {
+  flex: 1; }
+
+.featured-images {
+  display: flex;
+  align-items: top;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-basis: 300px;
+  justify-content: space-between; }
+
+.featured-images p {
+  height: 250px;
+  width: 100%;
+  overflow: hidden;
+  flex: 1;
+  min-width: 300px;
+  margin: 0 0.5em 1em 0.5em; }
+
+.featured-images img {
+  width: 100%;
+  transition: all .2s ease-in-out; }
+
+.featured-images p:hover img {
+  transform: scale(1.1); }
+
+.container-padded-large {
+  padding-top: 5em;
+  padding-bottom: 5em; }
+
+.header_banner {
+  background-color: #303030;
+  height: 94vh;
+  text-align: center;
+  background-position: center center;
+  background-size: cover;
+  background-image: url("http://freelabel.net/view/storage/app/media/pexels-photo-87351.jpeg"); }
+  .header_banner .background-tint {
+    background: rgba(0, 0, 0, 0.5);
+    padding-top: 10em;
+    height: inherit;
+    overflow-y: hidden; }
+
+header.carousel {
+  height: 95vh !important; }
+
+header.carousel .fill {
+  background-attachment: fixed;
+  box-shadow: inset 0px -408px 8000px rgba(0, 0, 0, 0.9); }
+
+.carousel-caption, .profile-header-banner {
+  padding-bottom: 30vh; }
+  .carousel-caption h1, .carousel-caption h2, .profile-header-banner h1, .profile-header-banner h2 {
+    background-color: rgba(254, 63, 68, 0.54);
+    color: #e3e3e3 !important;
+    font-size: 5vmax;
+    font-weight: 700;
+    padding: 22px;
+    text-shadow: none; }
+    .carousel-caption h1 a, .carousel-caption h2 a, .profile-header-banner h1 a, .profile-header-banner h2 a {
+      color: #e3e3e3;
+      border-color: #e3e3e3; }
+
 body, html {
   background-color: #101010;
   color: #676767;
@@ -100,39 +177,6 @@ a {
   margin-bottom: 0;
   border-bottom-right-radius: 2.5px;
   border-bottom-left-radius: 2.5px; }
-
-.header_banner {
-  background-color: #303030;
-  height: 94vh;
-  text-align: center;
-  background-position: center center;
-  background-size: cover;
-  background-image: url("http://freelabel.net/view/storage/app/media/pexels-photo-87351.jpeg"); }
-  .header_banner .background-tint {
-    background: rgba(0, 0, 0, 0.5);
-    padding-top: 10em;
-    height: inherit;
-    overflow-y: hidden; }
-
-header.carousel {
-  height: 95vh !important; }
-
-header.carousel .fill {
-  background-attachment: fixed;
-  box-shadow: inset 0px -408px 8000px rgba(0, 0, 0, 0.9); }
-
-.carousel-caption, .profile-header-banner {
-  padding-bottom: 30vh; }
-  .carousel-caption h1, .carousel-caption h2, .profile-header-banner h1, .profile-header-banner h2 {
-    background-color: rgba(254, 63, 68, 0.54);
-    color: #e3e3e3 !important;
-    font-size: 5vmax;
-    font-weight: 700;
-    padding: 22px;
-    text-shadow: none; }
-    .carousel-caption h1 a, .carousel-caption h2 a, .profile-header-banner h1 a, .profile-header-banner h2 a {
-      color: #e3e3e3;
-      border-color: #e3e3e3; }
 
 .projects {
   padding: 0; }
