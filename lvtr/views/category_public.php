@@ -1,27 +1,22 @@
 <?php
-include_once('../header.php');
+include('../config.php');
 $site = new Config();
-$ads = $site->get_user_categories($_SESSION['user_name']); // '0' pulling the 1st page results
+$category = $site->get_category_by_id($_GET['category_id']);
 
+$posts = $site->get_category_posts($category['unique_id'],$_GET['user_name']);
+
+// $site->debug($posts,1);
+
+// exit;
 ?>
-
-<?php
-
-if ($_POST['source']=='dashboard') {
-	// echo "show private tracks";
-}
-$posts = $site->get_explore_posts($_SESSION['user_name'], $_POST['page']);
-
-?>
-<div class="container">
-	<h1 class="page-header">Explore</h1>
-	<div>
-		<?php $site->display_media_grid($posts, $_SESSION['user_name'], $_POST['page']); ?>
-	</div>
-</div>
-<script type="text/javascript" src="<?php echo $site->url ?>js/dashboard.js"></script>
-
-
+<h1 class="page-header clearfix">
+	<?php echo $category['name']; ?>
+</h1>
 <?php 
-include_once('../footer.php');
+	if ($posts===NULL) {
+		echo 'No posts have been added!';
+	} else {
+		$site->display_categories_post($posts);	
+	}
 ?>
+<script type="text/javascript" src="<?php echo $site->url ?>js/dashboard.js"></script>

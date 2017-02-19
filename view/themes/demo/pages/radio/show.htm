@@ -1,0 +1,28 @@
+title = "Show"
+url = "/radioshow/:slug"
+layout = "freelabel400"
+is_hidden = 0
+
+[builderDetails]
+modelClass = "Freelabel\Freelabel\Models\Radioshows"
+identifierValue = "{{ :slug }}"
+modelKeyColumn = "slug"
+displayColumn = "title"
+notFoundMessage = "Record not found"
+==
+{% set record = builderDetails.record %}
+{% set displayColumn = builderDetails.displayColumn %}
+{% set notFoundMessage = builderDetails.notFoundMessage %}
+
+<div class="">
+{% if record %}
+    {% partial "radio/hero" %}
+    {% partial "radio/subnav" %}
+    {% partial "radio/content" %}
+
+{% else %}
+    {{ notFoundMessage }}
+{% endif %}
+</div>
+
+{% partial "radio/audioplayer" %}

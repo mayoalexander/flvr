@@ -10,6 +10,7 @@ function displayLeadsInfo($lead_data) {
 	echo '</ul>';
 }
 
+
 /* INITIALIZE */
 if (isset($_POST)) {
 	switch ($_POST['action']) {
@@ -29,3 +30,13 @@ if (isset($_POST)) {
 }
 
 
+
+/* PULL PROJECTS */
+$promo_url = $site->create_som_url('@'.$lead_data[0]['lead_twitter'],'check it out');
+
+?>
+
+<div class="container">
+	<hr>
+	<button class="btn btn-primary" target="_blank" href="<?php echo $promo_url ?>">Send</button>	
+</div>
