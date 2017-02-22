@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* 
 
 FREELABEL SUCKAAAAA
@@ -5,6 +6,83 @@ FREELABEL SUCKAAAAA
 */
 /* GOOGLE FONTS */
 @import url("https://fonts.googleapis.com/css?family=Abel|Fjalla+One|Open+Sans+Condensed:300|Raleway");
+.header_banner .background-tint h1 {
+  background-color: rgba(254, 63, 68, 0.54);
+  color: #e3e3e3;
+  font-size: 5vmax;
+  font-weight: bold;
+  padding: 22px;
+  text-shadow: none; }
+
+.header_banner .background-tint {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
+
+.header_banner .background-tint * {
+  flex: 1; }
+
+.featured-images {
+  display: flex;
+  align-items: top;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-basis: 300px;
+  justify-content: space-between; }
+
+.featured-images p {
+  height: 250px;
+  width: 100%;
+  overflow: hidden;
+  flex: 1;
+  min-width: 300px;
+  margin: 0 0.5em 1em 0.5em; }
+
+.featured-images img {
+  width: 100%;
+  transition: all .2s ease-in-out; }
+
+.featured-images p:hover img {
+  transform: scale(1.1); }
+
+.container-padded-large {
+  padding-top: 5em;
+  padding-bottom: 5em; }
+
+.header_banner {
+  background-color: #303030;
+  height: 94vh;
+  text-align: center;
+  background-position: center center;
+  background-size: cover;
+  background-image: url("http://freelabel.net/view/storage/app/media/pexels-photo-87351.jpeg"); }
+  .header_banner .background-tint {
+    background: rgba(0, 0, 0, 0.5);
+    padding-top: 10em;
+    height: inherit;
+    overflow-y: hidden; }
+
+header.carousel {
+  height: 95vh !important; }
+
+header.carousel .fill {
+  background-attachment: fixed;
+  box-shadow: inset 0px -408px 8000px rgba(0, 0, 0, 0.9); }
+
+.carousel-caption, .profile-header-banner {
+  padding-bottom: 30vh; }
+  .carousel-caption h1, .carousel-caption h2, .profile-header-banner h1, .profile-header-banner h2 {
+    background-color: rgba(254, 63, 68, 0.54);
+    color: #e3e3e3 !important;
+    font-size: 5vmax;
+    font-weight: 700;
+    padding: 22px;
+    text-shadow: none; }
+    .carousel-caption h1 a, .carousel-caption h2 a, .profile-header-banner h1 a, .profile-header-banner h2 a {
+      color: #e3e3e3;
+      border-color: #e3e3e3; }
+
 body, html {
   background-color: #101010;
   color: #676767;
@@ -117,7 +195,8 @@ header.carousel {
   height: 95vh !important; }
 
 header.carousel .fill {
-  background-attachment: fixed; }
+  background-attachment: fixed;
+  box-shadow: inset 0px -408px 8000px rgba(0, 0, 0, 0.9); }
 
 .carousel-caption, .profile-header-banner {
   padding-bottom: 30vh; }
@@ -125,7 +204,7 @@ header.carousel .fill {
     background-color: rgba(254, 63, 68, 0.54);
     color: #e3e3e3 !important;
     font-size: 5vmax;
-    font-weight: bold;
+    font-weight: 700;
     padding: 22px;
     text-shadow: none; }
     .carousel-caption h1 a, .carousel-caption h2 a, .profile-header-banner h1 a, .profile-header-banner h2 a {
@@ -237,6 +316,7 @@ header.carousel .fill {
   min-height: 40%;
   background-size: cover; }
 
+/* PROFILE */
 .profile .social-share-buttons {
   text-align: center; }
   .profile .social-share-buttons li {
@@ -244,6 +324,20 @@ header.carousel .fill {
     display: inline-block; }
     .profile .social-share-buttons li .btn {
       font-size: 1.25em; }
+.profile .follow-button {
+  position: relative;
+  bottom: 6px;
+  background: transparent;
+  padding: 0.5em;
+  border-radius: 5px;
+  margin-left: 1em;
+  font-size: 0.8em; }
+  .profile .follow-button.not-following {
+    color: #3897f0;
+    border: 1px solid #3897f0; }
+  .profile .follow-button.following {
+    color: #676767;
+    border: 1px solid #676767; }
 
 .list-group-item {
   background-color: rgba(64, 64, 64, 0.21);
@@ -283,6 +377,21 @@ header.carousel .fill {
     transition: all 0.2s; }
     .tracklist-panel .dropdown:hover {
       background-color: rgba(254, 63, 68, 0.54); }
+  .tracklist-panel .thumbnail {
+    width: 100px; }
+  .tracklist-panel .img-wrap {
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    display: inline-block; }
+    .tracklist-panel .img-wrap img {
+      width: 100%; }
+  .tracklist-panel.tracklist-list-item a {
+    display: inline;
+    padding: 0px 0px 0px 20px;
+    vertical-align: top; }
+  .tracklist-panel.tracklist-list-item h3, .tracklist-panel.tracklist-list-item h4 {
+    font-size: 18px; }
   .tracklist-panel .play_button {
     background-color: #FE3F44;
     border-radius: 0px; }
@@ -314,6 +423,95 @@ header.carousel .fill {
         font-size: 2em;
         display: block; }
 
+/* AUDIO PLAYER */
+.tracklist-list-item .details {
+  padding: 10px 0 10px 60px; }
+.tracklist-list-item .img-wrap {
+  height: 200px; }
+
+.audioplayer-list {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  color: #ccc;
+  border-top: 1px solid #ccc;
+  /*font-size: 0.9em;*/ }
+
+.audioplayer-list .tracklist-panel {
+  position: relative;
+  margin: 0px;
+  padding: 9px 2px 10px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer; }
+
+.audioplayer-list .tracklist-panel a {
+  display: inline;
+  vertical-align: top;
+  padding: 0px; }
+
+.tracklist-panel.playing {
+  color: #aaa;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3); }
+
+.tracklist-panel.playing a {
+  color: #000; }
+
+.tracklist-panel.playing:before {
+  content: '♬';
+  width: 14px;
+  height: 14px;
+  padding: 3px;
+  line-height: 14px;
+  margin: 0px;
+  position: absolute;
+  left: -24px;
+  top: 9px;
+  color: #000;
+  /*font-size: 13px; text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);*/ }
+
+#shortcuts {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  color: #666;
+  /*font-size: 0.9em;*/
+  margin: 60px 0px 0px;
+  padding: 20px 20px 15px;
+  background: #f3f3f3;
+  background: rgba(240, 240, 240, 0.7); }
+
+#shortcuts div {
+  width: 460px;
+  margin: 0px auto; }
+
+#shortcuts h1 {
+  margin: 0px 0px 6px; }
+
+#shortcuts p {
+  margin: 0px 0px 18px; }
+
+#shortcuts em {
+  font-style: normal;
+  background: #d3d3d3;
+  padding: 3px 9px;
+  position: relative;
+  left: -3px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); }
+
+@media screen and (max-device-width: 480px) {
+  #audioplayer {
+    position: relative;
+    left: -3%; }
+
+  #shortcuts {
+    display: none; } }
 .categorieslist-item a.active {
   color: #FE3F44; }
 .categorieslist-item a {
