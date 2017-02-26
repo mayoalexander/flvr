@@ -1,0 +1,14 @@
+==
+<div class="container">
+        
+        <div class="col-md-7 comments-section" style="height:500px;">
+            <h4>Comments</h4>
+            <!-- <div class="fb-comments" data-href="http://freelabel.net/view/tv/video/{{ record.slug }}" data-width="600" data-numposts="5" colorscheme="dark"></div> -->
+            {% partial "widgets/comments" %}
+        </div>
+        <div class="col-md-5 comments-section">
+            <h4>Social {{record}}</h4>
+            
+            <a class="twitter-timeline" data-chrome="nofooter noborders transparent" data-theme="dark" data-height="500" href="https://twitter.com/{{ record.twitter }}">{{ record.twitter }}</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+    </div>

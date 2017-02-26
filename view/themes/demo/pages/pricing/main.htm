@@ -43,12 +43,12 @@ pageNumber = "{{ :page }}"
                 </a>
             </div>
             <div class="col-md-5">
-                <h3>{{ attribute(record, displayColumn) }}</h3>
+                <h2>{{ attribute(record, displayColumn) }}</h2>
                 <h4>{{ record.subtitle }}</h4>
-                <p>{{ record.description }}</p>
-                <!--<a class="btn btn-primary" href="{{ record.url }}" target="_blank">Start {{ record.name }}</a>-->
-                <a class="btn btn-primary" href="http://freelabel.net/view/login/create/?p={{ record.name }}">Start {{ record.name }}</a>
-                <a class="btn btn-default" href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}" >More Info<span class="glyphicon glyphicon-chevron-right"></span></a>
+                <!-- <p>{{ record.description }}</p> -->
+                <a class="btn btn-success" href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}" target="_blank">${{ record.price }}/per month</a>
+                <!-- <a class="btn btn-primary" href="http://freelabel.net/view/login/create/?p={{ record.name }}">Start {{ record.name }}</a> -->
+                <a class="btn btn-primary" href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}" >More Info<span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
         </div>
     {% else %}

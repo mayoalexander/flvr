@@ -2,7 +2,7 @@
 include('../config.php');
 $site = new Config();
 ?>
-<div class="container">
+<div class="container-fluid">
 		<?php $site->display_registration_form(false,true); ?>
 	
 </div> <!-- /container -->

@@ -3,10 +3,14 @@
     <!-- Image Background Page Header -->
     <!-- Note: The background image is set within the business-casual.css file. -->
     <header class="business-header adsfsa" style="background-image:url('{{record.photo | media}}');">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="tagline"><span class="pull-left">{{record.name}}</span> <span class="pull-right">${{record.price}}</span></h1>
+                <div class="col-lg-12 clearfix">
+                    <h1 class="tagline"><span class="pull-left">{{record.name}}</span></h1>
+                    <div class="pull-right">
+                        <a href="/view/pricing" class="btn btn-default btn-lg">Back to all</a>
+                        <button class="btn btn-primary btn-lg"><span class="pull-right">${{record.price}}</span></button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -21,23 +25,12 @@
             <div class="col-sm-8">
                 <h2>What We Do</h2>
                 <p class="lead">{{record.description}}</p>
-                <p>
+<!--                 <p>
                     <a class="btn btn-success btn-lg" href="http://freelabel.net/view/login/create/?p={{ record.slug }}">Create Profile »</a>
-                </p>
+                </p> -->
             </div>
             <div class="col-sm-4">
-                <h2>Contact Us</h2>
-                <address>
-                    <strong>FREELABEL NETWORKS</strong>
-                    <br>1110 S. Airport Circle #100
-                    <br>Euless, TX, 76109
-                    <br>
-                </address>
-                <address>
-                    <abbr title="Phone">P:</abbr>(347) 994-0267
-                    <br>
-                    <abbr title="Email">E:</abbr> <a href="mailto:#">admin@freelabel.net</a>
-                </address>
+                <div class="sign-up-form"></div>
             </div>
         </div>
         <!-- /.row -->
@@ -67,3 +60,40 @@
 
     </div>
     <!-- /.container -->
+
+
+
+
+<script type="text/javascript">
+    
+    function registerUser(siteUrl, elem) {
+      elem.find('button').addClass('disabled')
+      results = $('.login-results');
+      var data = elem.serialize();
+      var url = siteUrl + 'config/register.php';
+
+      $.post(url , data, function(result){
+        results.addClass('label');
+        results.addClass('label-warning');
+        results.html(result);
+        // alert(result);
+      });
+    }
+
+    $(function() {
+        var url = "http://freelabel.net/lvtr/views/create.php";
+        var data = {
+            path: window.location.pathname
+
+        };
+        console.log(data);
+        $.get(url, data,  function(result){
+            $('.sign-up-form').html(result);
+        });
+    });
+
+
+
+
+    
+</script>
