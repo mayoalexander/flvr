@@ -468,6 +468,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 						$i++;
 					}
 			}
+			var_dump( count($media) . ' - ' .$this->max_post_per_page );
 			if (count($media)==$this->max_post_per_page) {
 				$res .= $load_more_button;
 			}

@@ -554,7 +554,7 @@ function audioPlayer(elem) {
 			elem = $(this);
 			nextPage = elem.attr('data-next');
 			user_name = elem.attr('data-user');
-			url = 'http://freelabel.net/lvtr/views/feed.php';
+			url = 'http://freelabel.net/lvtr/views/explore.php';
 			$.post(url, {page:nextPage, user_name:user_name}, function(result){
 				wrap.html(result);
 			});
