@@ -10,6 +10,8 @@ $site = new Config();
 
 
 
+
+/* FORMATTING */
 function formatTVTweets($tv_posts) {
   $i = 0;
   // $build = [];
@@ -24,6 +26,43 @@ FREELABEL.NET/view/tv/" .$post['slug'];
   }
   return $build;
 }
+
+
+function formatProjectTweets($project_posts) {
+  $i = 0;
+  // $build = [];
+  foreach ($project_posts as $key => $post) {
+    // $build[$i] .= ''.$post['title'];
+ $build[$i] = "#FL | " .$post['blogtitle']."
+ 
+FREELABEL.NET/view/project/" .$post['slug'];
+             $i++;
+  }
+  return $build;
+}
+
+
+function formatMagTweets($project_posts) {
+  $i = 0;
+  // $build = [];
+  foreach ($project_posts as $key => $post) {
+    // $build[$i] .= ''.$post['title'];
+ $build[$i] = "#FLMAG | " .$post['blogtitle']."
+ 
+FREELABEL.NET/view/mag/" .$post['slug'];
+             $i++;
+  }
+  return $build;
+}
+
+
+
+
+
+
+
+
+
 
 $action = 'all';
 $_GET['recent'] = true;
@@ -171,11 +210,21 @@ http://freelabel.net/users/index/image/'.$post_id;
 	
         /* GET TV POSTS */
         $tv_posts = formatTVTweets($site->get_tv_posts());
-
-        // $site->debug($tv_posts,1);
-
         /* COMBINE ARRAYS */
         $posts_to_tweet = array_merge($posts_to_tweet, $tv_posts);
+
+
+        /* GET PROJECT POSTS */
+        $project_posts = formatProjectTweets($site->get_project_posts());
+        /* COMBINE ARRAYS */
+        $posts_to_tweet = array_merge($posts_to_tweet, $project_posts);
+
+
+        /* GET MAG POSTS */
+        $mag_posts = formatMagTweets($site->get_mag_posts());
+        /* COMBINE ARRAYS */
+        $posts_to_tweet = array_merge($posts_to_tweet, $mag_posts);
+
 
         /* TEST */
         // $site->debug($posts_to_tweet,1);

@@ -1398,7 +1398,51 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 		$query = "SELECT * FROM `freelabel_freelabel_tv` $dp ORDER BY `id` DESC LIMIT 100";
 		$result = mysqli_query($con,$query);
 		if (mysqli_num_rows($result)===0) {
-			echo "Uh oh, there was no recent SOMs found! (Search Filter: ".$date_param.") ";
+			echo "Uh oh, there was no recent TV post found! (Search Filter: ".$date_param.") ";
+			exit;
+		} else {
+			while ($row = mysqli_fetch_assoc($result)) {
+				$leads[] = $row;
+			}
+		}
+	    mysqli_close($con);
+		return $leads;
+	}
+
+
+	function get_project_posts() {
+
+		require(ROOT.'config/connection-october.php');
+		$dp = '';
+		if ($date_param!==NULL) {
+			// $dp = "WHERE `entry_date` LIKE '%".date('Y-m-d',strtotime($date_param))."%'";
+		}
+		$query = "SELECT * FROM `freelabel_freelabel_` $dp ORDER BY `id` DESC LIMIT 100";
+		$result = mysqli_query($con,$query);
+		if (mysqli_num_rows($result)===0) {
+			echo "Uh oh, there was no recent Projects found! (Search Filter: ".$date_param.") ";
+			exit;
+		} else {
+			while ($row = mysqli_fetch_assoc($result)) {
+				$leads[] = $row;
+			}
+		}
+	    mysqli_close($con);
+		return $leads;
+	}
+
+
+	function get_mag_posts() {
+
+		require(ROOT.'config/connection-october.php');
+		$dp = '';
+		if ($date_param!==NULL) {
+			// $dp = "WHERE `entry_date` LIKE '%".date('Y-m-d',strtotime($date_param))."%'";
+		}
+		$query = "SELECT * FROM `rainlab_blog_posts` $dp ORDER BY `id` DESC LIMIT 100";
+		$result = mysqli_query($con,$query);
+		if (mysqli_num_rows($result)===0) {
+			echo "Uh oh, there was no recent Projects found! (Search Filter: ".$date_param.") ";
 			exit;
 		} else {
 			while ($row = mysqli_fetch_assoc($result)) {
@@ -2094,17 +2138,13 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 
 
 
-	function display_registration_form($display_button=false, $display_packages=false, $path=NULL) {
+	function display_registration_form($display_button=false, $display_packages=false) {
 		if ($display_button) {
 			$button = '<button class="btn btn-lg btn-primary btn-block" type="submit">Continue</button>';
 		} else {
 			// $button = 'sdklf';
-			$button = $this->display_packages($path);
+			$button = $this->display_packages();
 		}
-
-
-
-
 		echo '<form class="form-signin registration-form-ajax">
 			<h2 class="form-signin-heading">Create Your Account</h2>
 			<div class="login-results"></div>
@@ -2120,78 +2160,30 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 	}
 
 
-	function display_packages($path=NULL) {
-		$build = '';
-		switch ($path) {
-			case '/view/pricing/package/Basic':
-				// echo 'AYE BITCHHHHH!!!';
-				break;
-			case '/view/pricing/package/Exclusive':
-				// echo 'AYE BITCHHHHH!!!';
-				break;
-			case '/view/pricing/package/Studio':
-				// echo 'AYE BITCHHHHH!!!';
-				break;
-			case '/view/pricing/package/Tour':
-				// echo 'AYE BITCHHHHH!!!';
-				break;
-			
-			default:
-				echo 'Webmaster Must Configure this new package with our system. We have just let them know! Thanks!';
-				break;
-		}
-
-		/* NEED TO PULL THESE FROM THE ACTUAL DATABSE ONE DAY */
-		/* NEED TO PULL THESE FROM THE ACTUAL DATABSE ONE DAY */
-		/* NEED TO PULL THESE FROM THE ACTUAL DATABSE ONE DAY */
-		/* NEED TO PULL THESE FROM THE ACTUAL DATABSE ONE DAY */
-		$packages['basic'] = array(
-					'slug' => "sub",
-					'title' => "Basic",
-					'price' =>  '$10'
-					);
-		$packages['exclusive'] = array(
-					'slug' => "basic",
-					'title' => "Exclusive",
-					'price' =>  '$60'
-					);
-		$packages['tour'] = array(
-					'slug' => "tour",
-					'title' => "Tour",
-					'price' =>  '$200'
-					);
-		$packages['studios'] = array(
-					'slug' => "studios",
-					'title' => "Studios",
-					'price' =>  '$600'
-					);
-
-		foreach ($packages as $key => $package) {
-			$active = '';
-			if ($path == '/view/pricing/package/'.$package['title']) {
-				$active = ' active';
-			}
-			$buttons .= ' <div class="col-md-6 account-type-panel">
-							<div class="panel'.$active.'" data-package="'.$package['slug'].'">
-								<h4>'.$package['title'].'</h4>
-								<p class="price">'.$package['price'].'</p>
-								<p class="price-subtitle">/per month</p>
-							</div>
-						</div>';
-		}
-	
-
-		$build .= '<br><br>
+	function display_packages() {
+		return '<br><br>
 		<div class="form-signin">
 			<h2 class="form-signin-heading">Account Type</h2>
 			<div class="row">
-			'.$buttons.'
+				<div class="col-md-6 account-type-panel">
+					<div class="panel" data-package="sub">
+						<h4>Basic</h4>
+						<p class="price">$10</p>
+						<p class="price-subtitle">/per month</p>
+					</div>
+				</div>
+				<div class="col-md-6 account-type-panel">
+					<div class="panel" data-package="basic">
+						<h4>Exclusive</h4>
+						<p class="price">$60</p>
+						<p class="price-subtitle">/per month</p>
+					</div>
+				</div>
+			</div>
 			<div class="col-md-12">
 				<button class="btn btn-success btn-lg btn-block pay-with-paypal disabled" href="#" type="submit">Pay with PayPal  <i class="fa fa-arrow-right" style="margin-left:5px;"></i></button>
 			</div>
 		</div>';
-
-		return $build;
 	}
 
 
