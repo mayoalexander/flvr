@@ -1,0 +1,60 @@
+
+
+/* GALLERY */
+.media-gallery {
+    display:flex;
+    flex-wrap:wrap;
+	.media-gallery-item {
+		border:1px solid $brand_black_transparent;
+		min-width:350px;
+		height:300px;
+		overflow:hidden;
+		flex:1;
+	    padding:0;
+	    h1,h2,h3,h4 {
+	    	z-index:1;
+	    	background-color:$brand_red_transparent;
+	    	padding:10px 10px;
+	    	display: inline-block;
+	    	a {
+	    		color:#e3e3e3;
+	    	}
+	    }
+		img {
+			transition: all 0.5s;
+		    width:100%;
+		    filter:brightness(40%);//blur(10px);
+		}
+		&:hover img {
+			transform:scale(1.1);
+		}
+		.card-img-overlay {
+		    position: absolute;
+		    top: 0;
+		    right: 0;
+		    bottom: 0;
+		    left: 0;
+		    padding: 1.25rem;
+		    color: #e3e3e3;
+		}
+	}
+}
+
+.image-gallery {
+	.image-gallery-item {
+		margin-bottom:30px;
+		&:hover {
+			cursor: pointer;
+		}
+	}
+}
+
+
+
+
+@media (max-width: 600px) {
+  .media-gallery {
+    flex-direction:column;
+  }
+}
+

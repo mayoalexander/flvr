@@ -1602,13 +1602,14 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 200";
 
 	function get_explore_posts($user_name=NULL, $page=0) {
 		require(ROOT.'config/connection.php');
+		$db_start = $page * $this->max_post_per_page;
 		$status = "AND `status`='public'"; // $slug = get_user_slugs($user_name); [0] = category
 		$slug = '';
 		$query = "SELECT * FROM `feed` 
 		WHERE `user_name` LIKE '%$slug%' $status
 		OR `blogtitle` LIKE '%$slug%' $status
 		OR `twitter` LIKE '%$slug%' $status
-		ORDER BY `id` DESC LIMIT $this->max_post_per_page";
+		ORDER BY `id` DESC LIMIT $db_start, $this->max_post_per_page";
 		$result = mysqli_query($con,$query);
 		while ($row = mysqli_fetch_assoc($result)) {
 			$post[] = $row;

@@ -33,10 +33,10 @@ sortDirection = "desc"
             
               <a href="http://freelabel.net/view/tv/{{ record.slug }}"><img class="card-img" src="https://i.ytimg.com/vi/{{ record.media_id }}/hqdefault.jpg" alt="{{ record.description }}" style="transform: scale(1.7);"></a>
             
-              <div class="card-img-overlay">
-                <h3 class="card-title"><a href="http://freelabel.net/view/tv/{{ record.slug }}">{{record.title}}</a></h3>
+              <a href="http://freelabel.net/view/tv/{{ record.slug }}" class="card-img-overlay">
+                <h3 class="card-title">{{record.title}}</h3>
                 <p class="card-text hidden"><small class="text-muted">{{ record.published_at|date('M d, Y') }}</small></p>
-              </div>
+              </a>
             </div>
     </div>
     {% else %}

@@ -13,7 +13,7 @@ $site = new Config();
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script> -->
 
     <!-- Custom CSS -->
-    <link href="https://blackrockdigital.github.io/startbootstrap-modern-business/css/modern-business.css" rel="stylesheet">
+    <link href="/css/modern-business.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="https://blackrockdigital.github.io/startbootstrap-modern-business/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -45,7 +45,7 @@ $site = new Config();
 
 <?php
 
-include('/home/freelabelnet/public_html/view/themes/demo/partials/400/navigation.htm');
+include('/home/freelabelnet/public_html/view/themes/demo/content/400/navigation.htm');
 include('/home/freelabelnet/public_html/view/themes/demo/content/400/mediaplayer.htm');
 
 // 
