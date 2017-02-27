@@ -178,39 +178,6 @@ a {
   border-bottom-right-radius: 2.5px;
   border-bottom-left-radius: 2.5px; }
 
-.header_banner {
-  background-color: #303030;
-  height: 94vh;
-  text-align: center;
-  background-position: center center;
-  background-size: cover;
-  background-image: url("http://freelabel.net/view/storage/app/media/pexels-photo-87351.jpeg"); }
-  .header_banner .background-tint {
-    background: rgba(0, 0, 0, 0.5);
-    padding-top: 10em;
-    height: inherit;
-    overflow-y: hidden; }
-
-header.carousel {
-  height: 95vh !important; }
-
-header.carousel .fill {
-  background-attachment: fixed;
-  box-shadow: inset 0px -408px 8000px rgba(0, 0, 0, 0.9); }
-
-.carousel-caption, .profile-header-banner {
-  padding-bottom: 30vh; }
-  .carousel-caption h1, .carousel-caption h2, .profile-header-banner h1, .profile-header-banner h2 {
-    background-color: rgba(254, 63, 68, 0.54);
-    color: #e3e3e3 !important;
-    font-size: 5vmax;
-    font-weight: 700;
-    padding: 22px;
-    text-shadow: none; }
-    .carousel-caption h1 a, .carousel-caption h2 a, .profile-header-banner h1 a, .profile-header-banner h2 a {
-      color: #e3e3e3;
-      border-color: #e3e3e3; }
-
 .projects {
   padding: 0; }
   .projects li {
