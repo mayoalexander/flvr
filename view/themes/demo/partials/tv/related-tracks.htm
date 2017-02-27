@@ -1,0 +1,16 @@
+==
+<h2 class="page-header">Related</h2>
+<div class="related-tracks"></div>
+
+<script type="text/javascript">
+	$(function(){
+		var twitter = "{{record.twitter}}";
+		var url = "http://freelabel.net/lvtr/views/related.php";
+
+		$.get(url, { twitter:twitter }, function(result){
+			$('.related-tracks').html(result);
+		});
+	});
+
+
+</script>

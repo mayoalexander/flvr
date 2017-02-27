@@ -31,6 +31,15 @@ sortDirection = "desc"
 {% set detailsUrlParameter = builderList.detailsUrlParameter %}
 
 
+<style type="text/css">
+    .media-gallery-item .card-img {
+        transform: scale(1.4);
+    }
+    .media-gallery-item .card-img:hover {
+        transform: scale(1.7);
+    }
+</style>
+
 
 <h1 class="page-header">Projects</h1>
 
@@ -57,12 +66,12 @@ sortDirection = "desc"
 
                 {% endif %}
                 
-                    <div class="col-md-4 media-gallery-item">
+                    <div class="col-md-6 media-gallery-item" style="min-width: 460px;">
                         
                         
                             <div class="card card-inverse">
                             {% if record.photo %}
-                              <a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}"><img class="card-img" src="{{ record.photo |media }}" alt="{{ record.blogtitle }}"></a>
+                              <a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}"><img class="card-img" src="{{ record.photo_background |media }}" alt="{{ record.blogtitle }}"></a>
                             {% endif %}
                               <div class="card-img-overlay">
                                 <h3 class="card-title"><a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}">{{ record.blogtitle }}</a></h3>

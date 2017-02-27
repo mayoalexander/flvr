@@ -1,0 +1,85 @@
+<!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/view">
+                    <img src="/lvtr/img/fllogo.png" class="site-logo">
+                    <span class="hidden-xs">FREELABEL</span>
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="logged-out">
+                        <a href="/view/login">Login</a>
+                    </li>
+                    <li class="logged-out">
+                        <a href="/view/pricing">Register</a>
+                    </li>
+                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle logged-in" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dashboard <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li class="nav-item navi_button"><a href="/view/dashboard">Home</a></li>
+                          <li class="nav-item navi_button"><a href="/view/dashboard/sets">Sets</a></li>
+                          <li class="nav-item navi_button"><a href="/view/dashboard/likes">Likes</a></li>
+                          <li class="nav-item navi_button"><a href="/view/dashboard/profile">Profile</a></li>
+                          <li class="nav-item navi_button"><a href="/view/dashboard/upload">Upload</a></li>
+                          <li class="nav-item navi_button"><a href="/lvtr/?ctrl=logout">Logout</a></li>
+                          <li class="admin-only" style="display:none;">
+                            <a href="/view/dashboard/admin">Admin</a>
+                          </li>
+                        </ul>
+                     </li>
+                    <li class="dropdown">
+					    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore <span class="caret"></span></a>
+					    <ul class="dropdown-menu">
+                          <li class="nav-item navi_button"><a href="/view/feed/browse">Browse</a></li>
+					      <li class="nav-item navi_button"><a href="/view/magazine">Mag</a></li>
+					      <li class="nav-item navi_button"><a href="/view/tv">TV</a></li>
+					      <li class="nav-item navi_button"><a href="/view/radio">Radio</a></li>
+                          <!-- <li class="nav-item navi_button"><a href="/view/events">Events</a></li> -->
+					      <li class="nav-item navi_button"><a href="/view/projects">Projects</a></li>
+					    </ul>
+					 </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>  
+        <!-- /.container -->
+    </nav>
+
+
+    <script type="text/javascript">
+        $(function(){
+            $('.logged-in').hide();
+            $('.logged-out').hide();
+            $.get('http://freelabel.net/lvtr/config/login-status.php',function(result) {
+                
+                
+                if (result!=='') {
+                    // logged in
+                    $('.logged-in').show();
+                    $('.logged-out').hide();
+                    // if admin
+                    if (result=='admin') {
+                        $('.admin-only').show();
+                    } else {
+                        // $('.admin-only').hide();
+                    }
+                } else {
+                    // not logged in
+                    $('.logged-out').show();
+                    $('.logged-in').hide();
+                }
+    
+            });
+        });
+    </script>

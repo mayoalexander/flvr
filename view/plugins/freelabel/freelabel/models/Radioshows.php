@@ -25,4 +25,12 @@ class Radioshows extends Model
      * @var string The database table used by the model.
      */
     public $table = 'freelabel_freelabel_radioshows';
+
+
+    /* RELATIONS */
+
+    public $attachMany = [
+        'radioshows' => 'System\Models\File'
+    ];
+
 }

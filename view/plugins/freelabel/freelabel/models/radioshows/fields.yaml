@@ -4,3 +4,13 @@ fields:
         oc.commentPosition: ''
         span: auto
         type: text
+    description:
+        label: 'freelabel.freelabel::lang.plugin.description'
+        size: large
+        span: auto
+        type: textarea
+    photo:
+        label: Photo
+        mode: image
+        span: auto
+        type: mediafinder

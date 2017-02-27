@@ -416,13 +416,14 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 						</div>';
 	}
 
-	function display_media_list($media) {
+	function display_media_list($media, $user_name=NULL, $page=0) {
 		if (isset($media)) {
 			foreach ($media as $key => $post) {
-				echo '<article class="tracklist-item">';
-					echo '<a href="#" data-id="'.$post['id'].'"> <img src="'.$post['photo'].'"/> <b>'.$post['twitter'].'</b></a>: '.$post['blogtitle'];
-						echo $this->display_post_options_button($post);
-				echo '</article>';
+				// echo '<article class="tracklist-item">';
+				// 	echo '<a href="#" data-id="'.$post['id'].'"> <img src="'.$post['photo'].'"/> <b>'.$post['twitter'].'</b></a>: '.$post['blogtitle'];
+				// 		echo $this->display_post_options_button($post);
+				// echo '</article>';
+				echo '<li class="tracklist-panel tracklist-list-item flex-container"><div class="img-wrap flex-item"><img src="'.$post['photo'].'"/></div><div class="details flex-item"><a href="#" data-src="'.$post['trackmp3'].'"><h4>'.$post['twitter'].'</h4></a><p>'.$post['blogtitle'].'</p></div></li>';
 			}
 		} else {
 				echo '<p class="tracklist-item label nothing-found">';
@@ -660,7 +661,7 @@ function display_promos_grid($media, $user_name_session=NULL, $page=0) {
 		if ($post['status']=='private') {
 			$res = '<i class="fa fa-eye-slash"></i>';
 		} else {
-			$res = '<span class="number">'.$post['views'].'</span> <i class="fa fa-play"></i>';
+			$res = '<span class="number">'.$post['views'].'</span> <i class="fa fa-eye"></i>';
 		}
 		$build = "<span class='stats'>".$res."</span>";
 		return $build;
@@ -947,6 +948,29 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 
 
 
+	function get_relationship($following,$user_name) {
+		$db_page = $page * 20;
+		require(ROOT.'config/connection.php');
+		$query = "SELECT * FROM relationships WHERE user_name = '$user_name' AND following = '$following' ORDER BY id DESC LIMIT 1";
+
+		if ($result = mysqli_query($con,$query)) {		
+			if (mysqli_num_rows($result)===0) {
+				// echo "Uh oh, there was no relationship found!";
+				$res = false;
+			} else {
+				$res = true;
+			}
+		} else {
+			$res = false;
+		}
+	    mysqli_close($con);
+		return $res;
+	}
+
+
+
+
+
 
 
 
@@ -1065,7 +1089,18 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 
 
 	function display_follow_button($profile,$session) {
-		return '<button class="follow-button not-following" data-profile="'.$profile['id'].'" data-user="'.$_SESSION['user_name'].'"><i class="fa fa-plus"></i> Follow</button>';
+
+		// $this->debug($_SESSION);
+		// $this->debug($session);
+		// $this->debug($this->get_relationship($profile['id'], $_SESSION['user_name']),1);
+		// if (isset($_SESSION['user_name'])) {
+		if ($this->get_relationship($profile['id'], $_SESSION['user_name'])===true) {
+			return '<button class="follow-button following" data-profile="'.$profile['id'].'" data-user="'.$_SESSION['user_name'].'"><i class="fa fa-check"></i> Following</button>';
+		} else {
+			return '<button class="follow-button not-following" data-profile="'.$profile['id'].'" data-user="'.$_SESSION['user_name'].'"><i class="fa fa-plus"></i> Follow</button>';
+		}
+
+
 		// return '<button class="follow-button following" data-profile="'.$profile['id'].'" data-user="'.$_SESSION['user_name'].'"><i class="fa fa-plus"></i> Follow</button>';
 	}
 
@@ -1363,7 +1398,51 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 		$query = "SELECT * FROM `freelabel_freelabel_tv` $dp ORDER BY `id` DESC LIMIT 100";
 		$result = mysqli_query($con,$query);
 		if (mysqli_num_rows($result)===0) {
-			echo "Uh oh, there was no recent SOMs found! (Search Filter: ".$date_param.") ";
+			echo "Uh oh, there was no recent TV post found! (Search Filter: ".$date_param.") ";
+			exit;
+		} else {
+			while ($row = mysqli_fetch_assoc($result)) {
+				$leads[] = $row;
+			}
+		}
+	    mysqli_close($con);
+		return $leads;
+	}
+
+
+	function get_project_posts() {
+
+		require(ROOT.'config/connection-october.php');
+		$dp = '';
+		if ($date_param!==NULL) {
+			// $dp = "WHERE `entry_date` LIKE '%".date('Y-m-d',strtotime($date_param))."%'";
+		}
+		$query = "SELECT * FROM `freelabel_freelabel_` $dp ORDER BY `id` DESC LIMIT 100";
+		$result = mysqli_query($con,$query);
+		if (mysqli_num_rows($result)===0) {
+			echo "Uh oh, there was no recent Projects found! (Search Filter: ".$date_param.") ";
+			exit;
+		} else {
+			while ($row = mysqli_fetch_assoc($result)) {
+				$leads[] = $row;
+			}
+		}
+	    mysqli_close($con);
+		return $leads;
+	}
+
+
+	function get_mag_posts() {
+
+		require(ROOT.'config/connection-october.php');
+		$dp = '';
+		if ($date_param!==NULL) {
+			// $dp = "WHERE `entry_date` LIKE '%".date('Y-m-d',strtotime($date_param))."%'";
+		}
+		$query = "SELECT * FROM `rainlab_blog_posts` $dp ORDER BY `id` DESC LIMIT 100";
+		$result = mysqli_query($con,$query);
+		if (mysqli_num_rows($result)===0) {
+			echo "Uh oh, there was no recent Projects found! (Search Filter: ".$date_param.") ";
 			exit;
 		} else {
 			while ($row = mysqli_fetch_assoc($result)) {

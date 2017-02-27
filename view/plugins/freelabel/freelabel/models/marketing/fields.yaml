@@ -21,3 +21,26 @@ fields:
         mode: file
         span: auto
         type: mediafinder
+    path:
+        label: Path
+        oc.commentPosition: ''
+        options:
+            /feed/browse: Browse
+            /tv: TV
+            /radio: Radio
+            /magazine: Mag
+            /projects: Projects
+            /events: Events
+            /venues: Venues
+            /studios: Studios
+            /store: Store
+        span: auto
+        type: dropdown
+    type:
+        label: Type
+        oc.commentPosition: ''
+        options:
+            frontpage-cta: 'Front Page -  Call To Action'
+            frontpage-slider: 'Front Page - Slider'
+        span: auto
+        type: dropdown

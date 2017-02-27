@@ -8,8 +8,9 @@ modelClass = "Freelabel\Freelabel\Models\Radioshows"
 scope = "-"
 displayColumn = "title"
 noRecordsMessage = "No records found"
-detailsPage = "-"
-detailsUrlParameter = "id"
+detailsPage = "radio/show"
+detailsKeyColumn = "slug"
+detailsUrlParameter = "slug"
 pageNumber = "{{ :page }}"
 ==
 {% set records = builderList.records %}
@@ -42,7 +43,9 @@ pageNumber = "{{ :page }}"
 
                 <ul class="record-list list-group">
                     {% for record in records %}
-                        <li class="list-group-item row">
+
+                        {% if record.public == 1 %}
+                        <a class="list-group-item row" href="/view/radioshow/{{record.slug}}">
                             <div class="col-md-3">
                                 <img src="{{ record.photo |media}}" class="radio-img">
                             </div>
@@ -51,7 +54,8 @@ pageNumber = "{{ :page }}"
                                 <h3>{{ record.title}} <span class="label label-default hidden">New</span></h3>
                                 <p>{{ record.description }}</p>
                             </div>  
-                        </li>
+                        </a>
+                        {% endif %}
                     {% else %}
                         <li class="no-data">{{ noRecordsMessage }}</li>
                     {% endfor %}
@@ -78,13 +82,18 @@ pageNumber = "{{ :page }}"
 		</div>
 	</div>
 
+    <div class="row">
+        <h2 class="page-header">Recently Uploaded Songs</h2>
+        <div class="radio-playlist"></div> 
+    </div>
+
 </div>
 
 <script>
 
 	$(function() {
-		$.get('http://freelabel.net/lvtr/views/mag.php',function(result){
-			$('.widget-container').html(result);
+		$.get('http://freelabel.net/lvtr/views/player.php',function(result){
+			$('.radio-playlist').html(result);
 		});
 	});
 

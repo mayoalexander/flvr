@@ -196,15 +196,18 @@ function audioPlayer(elem) {
 					$('.play_button').html(playButtonElem); //reset all buttons
 					elem.html(pauseButtonElem);
 					globalAudioPlayer[0].play();
+					var pausedByUser = false;
 				} else if (currentState==pauseButtonElem) { // pause audio
 					elem.html(playButtonElem);
 					globalAudioPlayer[0].pause();
+					var pausedByUser = true;
 				}
 
 	}
 
 
 	/* INITIALIZE PLAYBAR */
+	/* MANAGE INTERVALS */
 	$('.play-progress-bar').html('')
 	setInterval(function(){
 		if (FLPlayer.playerType=='video') {
@@ -214,7 +217,8 @@ function audioPlayer(elem) {
 			// 	console.log('currently playing..');
 			// }
 		} else if (FLPlayer.playerType=='audio') {
-			if (globalAudioPlayer[0].paused) {
+			console.log(pausedByUser);
+			if (globalAudioPlayer[0].paused && pausedByUser===false) {
 
 				var nextOrder = parseInt(FLPlayer.current.order) + 1;
 
@@ -231,6 +235,7 @@ function audioPlayer(elem) {
 				//reset all buttons
 				$('.play_button').html(playButtonElem); 
 
+				// update next button
 				$('.btn-' + FLPlayer.playlist[nextOrder].id).html(pauseButtonElem);
 
 				// start playing audio
@@ -531,7 +536,7 @@ function audioPlayer(elem) {
 
 
 
-		$('.follow-button').click(function(e){
+		$('.follow-button .not-following').click(function(e){
 			var elem = $(this);
 			var wrap = $(this).parent();
 			var user_name = elem.attr('data-user');
@@ -720,6 +725,14 @@ function audioPlayer(elem) {
 		// 	$(this).addClass('form-validation-success');
 		// 	console.log('input has changed!');
 		// });
+
+
+
+
+
+
+
+
 
 
 

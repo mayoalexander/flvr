@@ -1,0 +1,81 @@
+title = "Home Test"
+url = "/home-test"
+layout = "freelabel400"
+is_hidden = 0
+
+[builderList marketingContent]
+modelClass = "Freelabel\Freelabel\Models\Marketing"
+scope = "-"
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+
+[builderList sliderImages]
+modelClass = "Freelabel\Freelabel\Models\System"
+scope = "-"
+displayColumn = "blogtitle"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+recordsPerPage = 3
+pageNumber = "{{ :page }}"
+sortColumn = "id"
+sortDirection = "desc"
+==
+{% partial "heros/button-slider" %}
+
+
+{% partial "frontpage/marketing-content-flex" %}
+
+
+
+
+
+
+
+
+<div class="container container-padded-large hidden">
+	<h1 class="page-header">Browse</h1>
+	<div class="data-container"></div>
+<div>
+
+</div></div>
+
+
+
+<!-- PARALLAX --> 
+<div class="container-hero parallax hidden" style="background-image: url('http://freelabel.net/view/storage/app/media/ui/backgrounds/019.jpg');"></div>
+
+
+
+<div class="callout-ribbon hidden">
+    <div class="container">
+        <div class="row text-center text-large text-white">
+            <div class="col-md-2">&nbsp;</div>
+            <div class="col-md-8">
+                <p>FREELABEL is the Leader in Online Showcasing. Join the Movement.</p>
+                <div>
+                    <a href="/view/pricing" class="btn btn-default btn-lg">Create Your Account</a>
+                </div>
+            </div>
+            <div class="col-md-2">&nbsp;</div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+	
+	var url = 'http://freelabel.net/lvtr/views/explore.php';
+        $.get(url, function(data){
+          $('.data-container').html(data);
+        }); 
+
+
+</script>
+
+<!-- END OF BODY CONTENT -->
