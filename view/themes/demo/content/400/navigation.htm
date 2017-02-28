@@ -1,6 +1,6 @@
 <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
+        <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -31,22 +31,38 @@
                           <li class="nav-item navi_button"><a href="/view/dashboard/likes">Likes</a></li>
                           <li class="nav-item navi_button"><a href="/view/dashboard/profile">Profile</a></li>
                           <li class="nav-item navi_button"><a href="/view/dashboard/upload">Upload</a></li>
-                          <li class="nav-item navi_button"><a href="/view/dashboard/admin">Admin</a></li>
                           <li class="nav-item navi_button"><a href="/lvtr/?ctrl=logout">Logout</a></li>
+                          <li class="admin-only" style="display:none;">
+                            <a href="/view/dashboard/admin">Admin</a>
+                          </li>
                         </ul>
                      </li>
                     <li class="dropdown">
-					    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore <span class="caret"></span></a>
-					    <ul class="dropdown-menu">
-                          <li class="nav-item navi_button"><a href="/view/feed/browse">Community</a></li>
-					      <!-- <li class="nav-item navi_button"><a href="/view/mag">Mag</a></li> -->
-					      <li class="nav-item navi_button"><a href="/view/tv/search">TV</a></li>
-					      <li class="nav-item navi_button"><a href="/view/radio">Radio</a></li>
-                          <li class="nav-item navi_button"><a href="/view/events">Events</a></li>
-					      <li class="nav-item navi_button"><a href="/view/projects">Projects</a></li>
-					      <!-- <li class="nav-item navi_button"><a href="/view/projects">Venues</a></li> -->
-					    </ul>
-					 </li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li class="nav-item navi_button"><a href="/view/feed/browse">Browse</a></li>
+                          <li class="nav-item navi_button"><a href="/view/magazine">Mag</a></li>
+                          <li class="nav-item navi_button"><a href="/view/tv">TV</a></li>
+                          <li class="nav-item navi_button"><a href="/view/radio">Radio</a></li>
+                          <!-- <li class="nav-item navi_button"><a href="/view/events">Events</a></li> -->
+                          <li class="nav-item navi_button"><a href="/view/projects">Projects</a></li>
+                        </ul>
+                     </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-search"></i></a>
+                        <ul class="dropdown-menu" style="width:420px;">
+                            <form class="global-search-bar navbar-form" role="search" action="http://freelabel.net/lvtr/views/search.php">
+                              <div class="form-group">
+                                <input type="text" name="q" class="form-control" placeholder="Search for anything.." required style="font-size:26px;">
+                              </div>
+                            </form>
+                            <div class="search-results" style="max-height: 480px;overflow-y: scroll;"></div>
+                        </ul>
+                     </li>
+
+
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -57,16 +73,68 @@
 
     <script type="text/javascript">
         $(function(){
+
+
             $('.logged-in').hide();
             $('.logged-out').hide();
             $.get('http://freelabel.net/lvtr/config/login-status.php',function(result) {
-                if (result==='1') {
+                
+                
+                if (result!=='') {
+                    // logged in
                     $('.logged-in').show();
                     $('.logged-out').hide();
+                    // if admin
+                    if (result=='admin') {
+                        $('.admin-only').show();
+                    } else {
+                        // $('.admin-only').hide();
+                    }
                 } else {
-                    $('.logged-in').hide();
+                    // not logged in
                     $('.logged-out').show();
+                    $('.logged-in').hide();
+                }
+    
+            });
+
+
+
+
+            function search(force) {
+                var user_name = 'admin';
+                var q = $(".global-search-bar").find('input').val();
+                var source = 'dashboard';
+                var search_url = 'http://freelabel.net/lvtr/views/search-list.php';
+                if (!force && q.length < 3) return; //wasn't enter, not > 2 char
+                    $.post(search_url, {q:q, user_name:user_name, source:source} , function(result){
+                        $('.search-results').html(result);
+                    });
+            }
+
+
+            $('.global-search-bar').keyup(function(e){
+
+                var q = $(this).find('input').val();
+                var min = 3;
+                
+                if (q.length<min) {
+                    console.log('Please enter more than ' + min + ' characters for a search.')
+                } else {
+                    clearTimeout($.data(this, 'timer'));
+                    if (e.keyCode == 13){
+                      search(true);
+                      console.log('enter pressed!');
+                    } else {
+                      $(this).data('timer', setTimeout(search, 500));
+                    }
+
                 }
             });
+
+
+
+
+
         });
     </script>
