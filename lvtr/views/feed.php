@@ -8,6 +8,9 @@ $site = new Config();
 if ($_POST['source']=='dashboard') {
 	// echo "show private tracks";
 }
+if (!isset($_POST['page'])) {
+	$_POST['page'] = 0;
+}
 $posts = $site->get_user_media($_POST['user_name'], $_POST['page']);
 $site->display_media_grid($posts, $_POST['user_name'], $_POST['page']);
 ?>

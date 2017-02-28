@@ -342,10 +342,10 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 	}
 
 	function get_user_media($user_name, $page=0) {
-		$range = 21;
-		$db_page = $page * $range;
+		$db_page = $page * $this->max_post_per_page;
 		require(ROOT.'config/connection.php');
-		$query = "SELECT * FROM `feed` WHERE `user_name` = '$user_name' ORDER BY `id` DESC LIMIT $db_page, $range";
+		$query = "SELECT * FROM `feed` WHERE `user_name` = '$user_name' ORDER BY `id` DESC LIMIT $db_page, $this->max_post_per_page";
+		// var_dump($query);
 		$result = mysqli_query($con,$query);
 		while ($row = mysqli_fetch_assoc($result)) {
 			$media[] = $row;
