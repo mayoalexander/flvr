@@ -345,7 +345,6 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 		$db_page = $page * $this->max_post_per_page;
 		require(ROOT.'config/connection.php');
 		$query = "SELECT * FROM `feed` WHERE `user_name` = '$user_name' ORDER BY `id` DESC LIMIT $db_page, $this->max_post_per_page";
-		// var_dump($query);
 		$result = mysqli_query($con,$query);
 		while ($row = mysqli_fetch_assoc($result)) {
 			$media[] = $row;
@@ -468,6 +467,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 						$i++;
 					}
 			}
+			// var_dump( count($media) . ' - ' .$this->max_post_per_page );
 			if (count($media)==$this->max_post_per_page) {
 				$res .= $load_more_button;
 			}
