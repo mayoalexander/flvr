@@ -47,7 +47,7 @@ function formatMagTweets($project_posts) {
   // $build = [];
   foreach ($project_posts as $key => $post) {
     // $build[$i] .= ''.$post['title'];
- $build[$i] = "#FLMAG | " .$post['blogtitle']."
+ $build[$i] = "#FLMAG | " .$post['title']."
  
 FREELABEL.NET/view/mag/" .$post['slug'];
              $i++;

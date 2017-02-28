@@ -8,6 +8,6 @@ columns:
     price:
         label: Price
         type: number
-    url:
-        label: Url
+    slug:
+        label: Slug
         type: text

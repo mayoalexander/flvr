@@ -1,7 +1,18 @@
 columns:
     id:
         label: ID
-        type: number
+        type: text
     title:
         label: Title
         type: text
+        sortable: true
+    radioshows:
+        label: 'Radio Shows'
+        type: text
+        searchable: true
+        sortable: true
+    public:
+        label: Public
+        type: switch
+        searchable: false
+        sortable: true

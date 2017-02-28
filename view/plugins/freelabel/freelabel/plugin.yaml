@@ -18,10 +18,6 @@ navigation:
                 label: Servers
                 url: freelabel/freelabel/servers
                 icon: icon-server
-            side-menu-item:
-                label: 'Radio Schedule'
-                url: freelabel/freelabel/radioshows
-                icon: icon-volume-up
             script-menu-item:
                 label: Script
                 url: freelabel/freelabel/script
@@ -32,7 +28,7 @@ navigation:
         icon: icon-cubes
         sideMenu:
             side-menu-item:
-                label: Campaigns
+                label: Projects
                 url: freelabel/freelabel/content
                 icon: icon-archive
             side-menu-item3:
@@ -43,3 +39,11 @@ navigation:
                 label: Marketing
                 url: freelabel/freelabel/marketing
                 icon: icon-star
+            side-menu-item4:
+                label: TV
+                url: freelabel/freelabel/tv
+                icon: icon-video-camera
+            side-menu-item5:
+                label: Radioshows
+                url: freelabel/freelabel/radioshows
+                icon: icon-volume-up
