@@ -18,6 +18,45 @@ function sortByDay($content)
 	return $postsByDate;
 }
 
+function displayByDay($content)
+{
+	foreach ($content as $date => $posts) {
+		echo '<div class="list-group">';
+		echo '<h2 class="list-group-item">'.$date.'</h2>';
+		foreach ($posts as $key => $message) {
+			echo '<p class="list-group-item">'.$message.'</p>';
+		}
+	}
+}
+
+function time_elapsed_string($datetime, $full = false) {
+    $now = new DateTime;
+    $ago = new DateTime($datetime);
+    $diff = $now->diff($ago);
+
+    $diff->w = floor($diff->d / 7);
+    $diff->d -= $diff->w * 7;
+
+    $string = array(
+        'y' => 'year',
+        'm' => 'month',
+        'w' => 'week',
+        'd' => 'day',
+        'h' => 'hour',
+        'i' => 'minute',
+        's' => 'second',
+    );
+    foreach ($string as $k => &$v) {
+        if ($diff->$k) {
+            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+        } else {
+            unset($string[$k]);
+        }
+    }
+
+    if (!$full) $string = array_slice($string, 0, 1);
+    return $string ? implode(', ', $string) . ' ago' : 'just now';
+}
 
 
 ?>
@@ -52,7 +91,7 @@ $compose_new_form = '
 
 
 if (isset($_POST['action'])) {
-	echo 'Action: '.$_POST['action'];
+	// echo 'Action: '.$_POST['action'];
 	switch ($_POST['action']) {
 
 		/* POST TO PUBLIC */
@@ -92,7 +131,7 @@ if (isset($_POST['action'])) {
 			$options['screen_name'] = $_POST['twitter'];
 			$options['count'] = '100';
 			$content = $connection->get($setting, $options);
-			$site->debug(sortByDay($content));
+			displayByDay(sortByDay($content));
 			// echo $site->display_twitter_timeline($content);
 			break;
 
@@ -142,7 +181,7 @@ if (isset($_POST['action'])) {
 
 
 <?php if (!isset($_POST['action'])) { ?>
-	<div class="container">
+	<div class="container-fluid">
 		<!-- HTML -->
 		<h1 class="page-header">Twitter</h1>
 		<button class="twOpen btn btn-primary" data-action="compose_new">Create New Post</button>
@@ -150,6 +189,7 @@ if (isset($_POST['action'])) {
 		<button class="twOpen btn btn-primary" data-action="statuses/user_timeline">Display Timeline</button>
 		<!-- <button class="twOpen btn btn-primary">statuses/destroy</button> -->
 		<hr>
+		<div class="twModule"></div>
 	</div>
 <?php } ?>
 
@@ -180,7 +220,7 @@ if (isset($_POST['action'])) {
 
 		var action = button.attr('data-action');
 		var data = {action: action};
-		var elem = $('.widget-container');
+		var elem = $('.twModule');
 		// var path = "<?php echo $_SERVER['SCRIPT_NAME']?>";
 		var path = "http://freelabel.net/lvtr/views/twitter.global.php";
 		// var path = window.location.href;
