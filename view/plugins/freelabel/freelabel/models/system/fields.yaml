@@ -1,12 +1,18 @@
 fields:
+    status:
+        label: Status
+        oc.commentPosition: ''
+        options:
+            public: Public
+            private: Private
+            unlisted: Unlisted
+        span: auto
+        required: 1
+        type: dropdown
     in_progress:
         label: 'In Progress'
         span: auto
         required: 1
-        type: switch
-    status:
-        label: Public
-        span: auto
         type: switch
     blogtitle:
         label: Title
@@ -81,7 +87,6 @@ tabs:
             tab: Images
         photo_logo:
             label: Logo
-            oc.commentPosition: ''
             mode: image
             span: auto
             type: mediafinder

@@ -2318,7 +2318,6 @@ ON relationships.following=user_profiles.id WHERE relationships.user_name = '$us
 			'year'          => array('2017'),
 			'genre'         => array('Good Music'),
 			'comment'       => array('All New Music @ FREELABEL.net'),
-			//'track'         => array('01/10'),
 			'popularimeter' => array('email'=>'admin@freelabel.net', 'rating'=>128, 'data'=>0),
 		);
 		$tagwriter->tag_data = $TagData;

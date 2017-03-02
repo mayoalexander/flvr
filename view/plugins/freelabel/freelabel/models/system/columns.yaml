@@ -11,13 +11,12 @@ columns:
         sortable: true
     status:
         label: Public
-        type: switch
+        type: text
         searchable: true
-        invisible: false
         sortable: true
     due_date:
         label: 'Due Date'
-        type: date
+        type: timetense
         searchable: true
         invisible: true
         sortable: true

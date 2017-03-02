@@ -17,7 +17,7 @@ use Abraham\TwitterOAuth\TwitterOAuth;
 $connection = new TwitterOAuth('yaN4EQqnWE8Q4YGFL4lR0xRxi', 'rudYALyDVhfGosR3L4WxPt3go4X6rRwlSuwfmYspkqEJbo9wmX', $site->twitter['oauth_token'], $site->twitter['oauth_token_secret']);
 
 /*
-** Example call: http://freelabel.net/social-test/?a=uploadmedia&f=freelabel.net/images/fllogo.png
+** Example call: http://freelabel.net/social-test/?a=uploadmedia&t=freelabel.net&f=freelabel.net/lvtr/img/fllogo.png
 */
 if ($_GET=='') {
 	// NO PARAMTERS FOUND!
@@ -28,23 +28,32 @@ if ($_GET=='') {
 		case 'uploadmedia':
 			// confirm that file parameters are set
 			$debug[] = 'Media Upload Initialized<br>';
-			if ($_GET['f']!='' AND $_GET['t']!='') {
-				$uploadedmedia = 'http://'.str_replace(' ', '%20', $_GET['f']);
+			if ($_GET['f']!='') {
+				if (strpos($_GET['f'], 'http') !== false) {
+					// contains http
+					$uploadedmedia = str_replace( 'http://', 'http://', $_GET['f'] );
+				} else {
+					// does not contain http, so add it on
+					$uploadedmedia = 'http://'.str_replace(' ', '%20', $_GET['f']);
+				}
+
+
 				$debug[] = 'photos detected: "'.$uploadedmedia.'"';
 				$media1 = $connection->upload('media/upload', array('media' => $uploadedmedia));
-				// if (strlen($_GET['t']) > 90) {
-				// 	$text = substr($_GET['t'], 0,90).'...';
-				// } else {
+
+				/* SET TEXT */
+				if ($_GET['t']!='') {
 					$text = $_GET['t'];
-				// }
+				} else {
+					$text = '';
+				}
+
+				/* POST TO TWITER */
 				$parameters = array(
 				    'status' => $text, 
 				    'media_ids' =>  $media1->media_id_string//implode(',', array($media1->media_id_string, $media2->media_id_string)),
 				);
-
 				$content = $connection->post('statuses/update', $parameters);
-
-				//print_r($content->entities->media[0]->display_url);
 				$twitpic = $content->entities->media[0]->display_url;
 				$debug[] = $media1;
 				$debug[] = $content;

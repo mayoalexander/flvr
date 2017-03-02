@@ -26,11 +26,11 @@ postPage = "mag/page"
                 {% if post.featured_images[0].path %}
                   <a href="http://freelabel.net/view/mag/{{ post.slug }}"><img class="card-img" src="{{post.featured_images[0].path}}" alt="{{ post.description }}"></a>
                 {% endif %}
-                  <div class="card-img-overlay">
-                    <h3 class="card-title"><a href="http://freelabel.net/view/mag/{{ post.slug }}">{{ post.title }}</a></h3>
+                  <a href="http://freelabel.net/view/mag/{{ post.slug }}" class="card-img-overlay">
+                    <h3 class="card-title">{{ post.title }}</h3>
                     <p class="card-text">{{ html_limit( post.summary , 200) }}...</p>
                     <p class="card-text"><small class="text-muted">{{ post.published_at|date('M d, Y') }}</small></p>
-                  </div>
+                  </a>
                 </div>
         </div>
         
