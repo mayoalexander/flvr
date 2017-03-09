@@ -1,4 +1,4 @@
-title = "Package Details"
+title = "Service Details"
 url = "/pricing/package/:slug"
 layout = "freelabel400"
 is_hidden = 0
@@ -10,15 +10,16 @@ modelKeyColumn = "slug"
 displayColumn = "slug"
 notFoundMessage = "Record not found"
 ==
-<div class="container">
-
 {% set record = builderDetails.record %}
 {% set displayColumn = builderDetails.displayColumn %}
 {% set notFoundMessage = builderDetails.notFoundMessage %}
 
 {% if record %}
-<h1 class="page-header">Packages</h1>
-    {% partial "packages/details" %}
+    <div class="container">
+        <h1 class="page-header">Services</h1>
+        {% partial "services/details" %}
+    </div>
+    {% partial "frontpage/parallax.htm" %}
 {% else %}
     {{ notFoundMessage }}
 {% endif %} 

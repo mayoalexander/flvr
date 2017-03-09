@@ -1,0 +1,15 @@
+==
+{% if post.featured_images.count %}
+    <!-- PARALLAX --> 
+    <style>
+    .parallax {
+        min-height: 40%; 
+        background-image: url('{{ post.featured_images[0].path }}');
+        background-size:cover;
+        background-attachment:fixed;
+        margin-top:3em;
+    }
+    
+    </style>
+    <div class="container-hero parallax" style=""></div>
+{% endif %}

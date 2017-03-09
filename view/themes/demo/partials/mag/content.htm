@@ -4,9 +4,9 @@
     <!-- ARTICLE CONTENT -->
     <div class="content container-padded-large lead">
     
-        <blockquote>
-          <p>{{ post.excerpt }}</p>
-        </blockquote>
+        <p style="font-size:32px;">
+          {{ post.excerpt }}
+        </p>
     
         {{ post.content_html|raw }}
     </div>
@@ -27,7 +27,7 @@
         </div>
     {% endif %}
 
-    <p class="info">
+    <p class="info hidden">
         Posted
         {% if post.categories.count %} in
             {% for category in post.categories %}

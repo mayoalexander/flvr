@@ -10,9 +10,22 @@ columns:
         label: 'Radio Shows'
         type: text
         searchable: true
+        invisible: true
         sortable: true
     public:
         label: Public
         type: switch
         searchable: false
         sortable: true
+    day_of_week:
+        label: Day
+        type: text
+    start_time:
+        label: 'Start Time'
+        type: text
+    end_time:
+        label: 'End Time'
+        type: text
+    frequency:
+        label: Frequency
+        type: text

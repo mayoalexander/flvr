@@ -47,7 +47,7 @@ sortDirection = "desc"
 
     {% for record in records %}
 
-
+        {% if record.status=='public' %}
 
     
 
@@ -60,11 +60,6 @@ sortDirection = "desc"
 
             {% spaceless %}
 
-                {% if detailsPage %}
-
-                    <!-- <a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}"> -->
-
-                {% endif %}
                 
                     <div class="col-md-6 media-gallery-item" style="min-width: 460px;">
                         
@@ -112,13 +107,6 @@ sortDirection = "desc"
                 
 
         
-
-                {% if detailsPage %}
-
-                    <!-- </a> -->
-
-                {% endif %}
-
             {% endspaceless %}
 
             <!-- <img src='{{ record.photo |media }}' width="80px"><br> -->
@@ -126,10 +114,9 @@ sortDirection = "desc"
             <!-- {{ record.description|raw }} -->
 
 
-    {% else %}
-
-        <li class="no-data">{{ noRecordsMessage }}</li>
-
+            {% else %}
+        
+          {% endif %}
     {% endfor %}
 
 </div>

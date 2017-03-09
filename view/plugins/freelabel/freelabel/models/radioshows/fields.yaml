@@ -1,8 +1,21 @@
 fields:
+    public:
+        label: Public
+        span: full
+        required: 0
+        type: switch
     title:
         label: Title
         oc.commentPosition: ''
         span: auto
+        type: text
+    slug:
+        label: Slug
+        oc.commentPosition: ''
+        span: auto
+        preset:
+            field: title
+            type: slug
         type: text
     description:
         label: 'freelabel.freelabel::lang.plugin.description'
@@ -11,6 +24,107 @@ fields:
         type: textarea
     photo:
         label: Photo
+        oc.commentPosition: ''
         mode: image
         span: auto
         type: mediafinder
+tabs:
+    fields:
+        radioshows:
+            label: 'Radio Shows'
+            oc.commentPosition: ''
+            mode: file
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: full
+            type: fileupload
+            tab: Episodes
+        twitter:
+            label: Twitter
+            span: auto
+            type: text
+            comment: 'Do not include @ symbol'
+            tab: Social
+        instagram:
+            label: Instagram
+            span: auto
+            type: text
+            comment: 'Do not include @ symbol'
+            tab: Social
+        start_time:
+            label: 'Start Time'
+            oc.commentPosition: ''
+            options:
+                1: '1'
+                2: '2'
+                3: '3'
+                4: '4'
+                5: '5'
+                6: '6'
+                7: '7'
+                8: '8'
+                9: '9'
+                10: '10'
+                11: '11'
+                12: '12'
+            span: auto
+            type: dropdown
+            tab: Schedule
+        frequency:
+            label: Frequency
+            oc.commentPosition: ''
+            options:
+                day: Daily
+                week: Weekly
+                month: Monthly
+                '2 weeks': 'Bi-weekly (2 weeks)'
+            span: auto
+            type: dropdown
+            tab: Schedule
+        end_time:
+            label: 'End Time'
+            oc.commentPosition: ''
+            options:
+                1: '1'
+                2: '2'
+                3: '3'
+                4: '4'
+                5: '5'
+                6: '6'
+                7: '7'
+                8: '8'
+                9: '9'
+                10: '10'
+                11: '11'
+                12: '12'
+            span: auto
+            type: dropdown
+            tab: Schedule
+        day_of_week:
+            label: 'Day of Week'
+            oc.commentPosition: ''
+            options:
+                Monday: Monday
+                Tuesday: Tuesday
+                Wednesday: Wednesday
+                Thursday: Thursday
+                Friday: Friday
+                Saturday: Saturday
+                Sunday: Sunday
+            span: auto
+            required: 1
+            type: dropdown
+            tab: Schedule
+        timezone:
+            label: Timezone
+            oc.commentPosition: ''
+            options:
+                cst: 'Central (CST)'
+                mst: 'Mountain (MST)'
+                pst: 'Pacific (PST)'
+                est: 'Eastern (EST)'
+            span: auto
+            type: dropdown
+            tab: Schedule

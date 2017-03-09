@@ -8,7 +8,7 @@ modelClass = "Freelabel\Freelabel\Models\Packages"
 scope = "-"
 displayColumn = "name"
 noRecordsMessage = "No records found"
-detailsPage = "pricing/detail"
+detailsPage = "services/detail"
 detailsKeyColumn = "slug"
 detailsUrlParameter = "slug"
 pageNumber = "{{ :page }}"
@@ -23,6 +23,7 @@ pageNumber = "{{ :page }}"
 
 <div class="container pricing-list">
     <h1 class="page-header">{{this.page.title}}</h1>
+    <p class="lead">Choose the account type that fits your needs.</p>
         
         
     {% for record in records %}
@@ -46,7 +47,7 @@ pageNumber = "{{ :page }}"
                 <h2>{{ attribute(record, displayColumn) }}</h2>
                 <h4>{{ record.subtitle }}</h4>
                 <!-- <p>{{ record.description }}</p> -->
-                <a class="btn btn-success" href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}">${{ record.price }}/per month</a>
+                <a class="btn btn-success" href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}">${{ record.price }}/per {{ record.frequency }}</a>
                 <!-- <a class="btn btn-primary" href="http://freelabel.net/view/login/create/?p={{ record.name }}">Start {{ record.name }}</a> -->
                 <a class="btn btn-primary" href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}" >More Info<span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>

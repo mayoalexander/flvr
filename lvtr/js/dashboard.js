@@ -36,6 +36,11 @@ function updateButtonCallback(wrap, button, result) {
 	
 }
 
+function debug(data) {
+	console.log(data);
+	// alert(data);
+}
+
 
 function showNotification(result) {
 	console.log(result);	
@@ -725,6 +730,22 @@ function audioPlayer(elem) {
 		// 	$(this).addClass('form-validation-success');
 		// 	console.log('input has changed!');
 		// });
+
+
+
+
+
+
+
+		$('.featured-images img').click(function(){
+			var data = $(this)[0].src;
+			var content = '<img src="' + data + '" class="img-responsive" />';
+			$('.modal .modal-content').html(content);
+			$('.modal').modal('show');
+		});
+
+
+
 
 
 

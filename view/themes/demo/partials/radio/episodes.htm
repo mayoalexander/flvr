@@ -7,6 +7,7 @@
         <h4>{{show.title}}</h4>
         <p>{{show.description}}</p>
                 <audio
+                    preload="metadata"
                     data-src="{{ show.filename }}"
                     src="{{ show.path }}"
                     alt="{{ show.description }}" /></audio>

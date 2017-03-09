@@ -1,13 +1,25 @@
 columns:
     id:
         label: ID
-        type: number
+        type: text
+        sortable: true
     name:
         label: Name
         type: text
+        sortable: true
     price:
         label: Price
         type: number
+        sortable: true
+    frequency:
+        label: Frequency
+        type: text
+        sortable: true
     slug:
         label: Slug
         type: text
+        sortable: true
+    modal_button_text:
+        label: 'Action Text'
+        type: text
+        sortable: true

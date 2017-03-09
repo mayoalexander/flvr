@@ -1,6 +1,5 @@
 title = "Show"
 url = "/radioshow/:slug"
-layout = "freelabel400"
 is_hidden = 0
 
 [builderDetails]
@@ -13,8 +12,7 @@ notFoundMessage = "Record not found"
 {% set record = builderDetails.record %}
 {% set displayColumn = builderDetails.displayColumn %}
 {% set notFoundMessage = builderDetails.notFoundMessage %}
-
-<div class="">
+{% partial "radio/header" %}
 {% if record %}
     {% partial "radio/hero" %}
     {% partial "radio/subnav" %}
@@ -24,6 +22,8 @@ notFoundMessage = "Record not found"
 {% else %}
     {{ notFoundMessage }}
 {% endif %}
-</div>
+
 
 {% partial "radio/audioplayer" %}
+
+{% partial "400/footer" %}

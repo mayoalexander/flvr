@@ -5,24 +5,24 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-      <title>{{ record.blogtitle }}</title>
-      <meta name="description" content='{{ html_limit(html_strip(record.excerpt),200) }} - FREELABEL // TV | RADIO | MAG '/>
-      <meta name='twitter:card' content='summary_large_image' />
-      <meta name='twitter:player' content='' />
-      <meta name='twitter:player:width' content='300' />
-      <meta name='twitter:player:height' content='300' />
-      <meta name='twitter:image' content='http://freelabel.net{{ record.photo_social|media }}' />
-      <meta name='twitter:site' content='http://freelabel.net/view/project/{{ record.slug }}' />
-      <meta name='twitter:creator' content='@freelabelnet' />
-      <meta name='twitter:title' content='{{ record.blogtitle }}' />
-      <meta name='twitter:text:description' content='{{ html_limit(html_strip(record.excerpt),200) }} - FREELABEL.NET' />
-      <meta property='og:url' content='http://freelabel.net/view/project/{{ record.slug }}'>
-      <meta property='og:title' content='{{ record.blogtitle }}'>
-      <meta property='og:description' content='{{ html_limit(html_strip(record.excerpt),200) }}'>
-      <meta property='og:image' content='http://freelabel.net{{ record.photo_social|media }}'>
-      <meta property='og:image:type' content='image/png'>
-      <meta property='og:image:width' content='1024'>
-      <meta property='og:image:height' content='1024'>
+    <title>{{ record.title }}</title>
+    <meta name="description" content='FREELABEL // TV | RADIO | MAG '/>
+    <meta name='twitter:card' content='summary_large_image' />
+    <meta name='twitter:player' content='' />
+    <meta name='twitter:player:width' content='300' />
+    <meta name='twitter:player:height' content='300' />
+    <meta name='twitter:image' content='http://freelabel.net{{ record.photo | media }}' />
+    <meta name='twitter:site' content='http://freelabel.net/view/radioshow/{{ record.slug }}' />
+    <meta name='twitter:creator' content='@freelabelnet' />
+    <meta name='twitter:title' content='{{ record.title }}' />
+    <meta name='twitter:text:description' content='Listen to {{ html_limit(html_strip(record.title),200) }} on FREELABEL RADIO' />
+    <meta property='og:url' content='http://freelabel.net/view/radioshow/{{ record.slug }}'>
+    <meta property='og:title' content='{{ post.title }}'>
+    <meta property='og:description' content='Listen to {{ html_limit(html_strip(record.title),200) }} on FREELABEL RADIO'>
+    <meta property='og:image' content='http://freelabel.net{{ record.photo | media }}'>
+    <meta property='og:image:type' content='image/png'>
+    <meta property='og:image:width' content='1024'>
+    <meta property='og:image:height' content='1024'>
     <link rel='icon' type='image/png' href='http://freelabel.net/lvtr/img/fllogo.png'>
 	<link rel='apple-touch-icon' sizes='180x180' type='image/png' href='http://freelabel.net/lvtr/img/favicons/apple-touch-icon.png'>
 	<link rel='icon' type='image/png' href='http://freelabel.net/lvtr/img/favicons/favicon-32x32.png' sizes='32x32'>
@@ -31,6 +31,7 @@
 	<link rel='mask-icon' href='http://freelabel.net/lvtr/img/favicons/safari-pinned-tab.svg' color='#5bbad5'>
 	<meta name='theme-color' content='#ffffff'>
 
+    <title>{{ this.page.title }} | FREELABEL</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="https://blackrockdigital.github.io/startbootstrap-modern-business/css/bootstrap.min.css" rel="stylesheet">
@@ -81,21 +82,3 @@
     {% content "400/navigation" %}
     
     {% partial "templates/mediaplayer" %}
-
-
-
-<header class="header_banner hero-01" style="background-image:url('http://freelabel.net/{{ record.photo_background |media }}');">
-
-    <div class="background-tint">
-
-        <h1>{{ record.blogtitle }}</h1>
-        
-        {% if record.cta_url %}
-            <section class="row">
-                    <a href="{{ record.cta_url }}" class="btn btn-lg btn-primary" target="_blank">{{ record.cta_button }} - ${{ record.cta_price }}</a>
-            </section>
-        {% endif %}
-
-    </div>
-
-</header>

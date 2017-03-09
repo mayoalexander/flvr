@@ -19,8 +19,8 @@
             </div>
 
             <div class="col-md-4">
-                <h3>{{record.title}}</h3>
-                <p>Updated: {{record.radioshows[0].updated_at |date('l, F j Y')}}</p>
+                <h3>Every <span style="text-transform:capitalize;">{{record.frequency}}</span> on {{record.day_of_week}}s</h3>
+                <h4>Broadcasting Live @ {{record.start_time}} to {{record.end_time}} <span style="text-transform:uppercase;">{{record.timezone}}</span></h4>
                 <p>{{record.description}}</p>
                 <h3>Featuring:</h3>
                 <ul>

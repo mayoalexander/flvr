@@ -4,27 +4,6 @@ fields:
         oc.commentPosition: ''
         span: auto
         type: text
-    price:
-        label: Price
-        oc.commentPosition: ''
-        span: auto
-        type: text
-    url:
-        label: URL
-        oc.commentPosition: ''
-        span: auto
-        type: text
-    photo:
-        label: Photo
-        oc.commentPosition: ''
-        mode: file
-        span: auto
-        type: mediafinder
-    subtitle:
-        label: Subtitle
-        oc.commentPosition: ''
-        span: auto
-        type: text
     slug:
         label: Slug
         oc.commentPosition: ''
@@ -33,12 +12,59 @@ fields:
             field: name
             type: slug
         type: text
+    price:
+        label: Price
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    frequency:
+        label: Frequency
+        oc.commentPosition: ''
+        options:
+            month: Monthly
+            week: Week
+            hour: Hour
+            session: Session
+        span: auto
+        type: dropdown
+    subtitle:
+        label: Subtitle
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    url:
+        label: URL
+        oc.commentPosition: ''
+        span: auto
+        type: text
     description:
         label: Description
         oc.commentPosition: ''
         size: giant
         language: php
-        span: full
+        span: auto
         required: 0
         stretch: 1
         type: codeeditor
+    photo:
+        label: Photo
+        oc.commentPosition: ''
+        mode: file
+        span: auto
+        type: mediafinder
+tabs:
+    fields:
+        modal_form:
+            label: 'Modal Form Code'
+            oc.commentPosition: ''
+            size: giant
+            language: php
+            span: auto
+            type: codeeditor
+            tab: Modal
+        modal_button_text:
+            label: 'Modal Button Text'
+            oc.commentPosition: ''
+            span: auto
+            type: text
+            tab: Modal
