@@ -1734,6 +1734,11 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 200";
 	}
 
 
+
+
+
+
+
 	function delete($table, $id='') {
 		include(ROOT.'config/connection.php');
 		$deletequery = mysqli_query($con,"DELETE FROM `$table` WHERE `$table`.`id` = ".$id." LIMIT 1");
@@ -1783,7 +1788,7 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 200";
 		foreach ($data as $key => $value) {
 			if ($key!=='action' && $key!=='id') {
 				$q_data.= ''.$key;
-				if ($i!==(count($data)-1)) {
+				if ($i!==(count($data))) {
 					$q_data .=', ';
 				}
 				$i++;
@@ -1794,7 +1799,7 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 200";
 		foreach ($data as $key => $value) {
 			if ($key!=='action' && $key!=='id') {
 				$q_data2.= "'".mysqli_real_escape_string($con,$value)."'";
-				if ($i!==(count($data)-1)) {
+				if ($i!==(count($data))) {
 					$q_data2 .=', ';
 				}
 				$i++;
