@@ -501,9 +501,10 @@ a {
     text-align: center; }
     .tracklist-panel .dropdown-menu .btn-link {
       color: #e3e3e3; }
-      .tracklist-panel .dropdown-menu .btn-link:hover {
+      .tracklist-panel .dropdown-menu .btn-link:hover, .tracklist-panel .dropdown-menu .btn-link:focus {
         color: #FE3F44;
-        text-decoration: none; }
+        text-decoration: none;
+        border-color: transparent; }
     .tracklist-panel .dropdown-menu li {
       display: inline-block;
       width: 49%; }

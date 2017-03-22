@@ -500,9 +500,10 @@ a {
 		text-align:center;
 		.btn-link {
 			color:$brand_white;
-			&:hover {
+			&:hover , &:focus {
 				color:$brand_red;
 				text-decoration: none;
+				border-color:transparent;
 			}
 		}
 		li {

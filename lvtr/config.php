@@ -404,7 +404,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 						'.$this->display_play_button($post, $key).'
 						  <span class="button-tint btn btn-link btn-'.$post['id'].' dropdown-toggle pull-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="display:inline-block;"><i class="fa fa-ellipsis-h"></i></span>
 						  <ul class="dropdown-menu panel-body pull-right" aria-labelledby="dropdownMenu1">
-						  	<li><button class="view-post-trigger btn btn-link" data-id="'.$post['id'].'" data-user="'.$user_name_session.'"><i class="fa fa-globe"></i> View</button></li>
+						  	<li><a class="view-post-trigger btn btn-link" data-id="'.$post['id'].'" data-user="'.$user_name_session.'"><i class="fa fa-globe"></i> View</a></li>
 
 						  	'.$user_owned_buttons.'
 						  	'.$logged_in_only_buttons.'
