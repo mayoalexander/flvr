@@ -1,4 +1,4 @@
-var dest = "./";
+var dest = "./sass/";
 var src = "./";
 
 module.exports = {

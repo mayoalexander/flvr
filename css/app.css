@@ -114,7 +114,7 @@ header.carousel .fill {
       color: #e3e3e3;
       border-color: #e3e3e3; }
 
-/* GALLERY */
+/* GALLERY - Flexbox */
 .media-gallery {
   display: flex;
   flex-wrap: wrap; }
@@ -147,6 +147,36 @@ header.carousel .fill {
       padding: 1.25rem;
       color: #e3e3e3; }
 
+/* GALLERY - Bootstrap */
+.media-gallery-bs .media-gallery-item-bs {
+  border: 1px solid rgba(0, 0, 0, 0.85);
+  min-width: 350px;
+  height: 300px;
+  overflow: hidden;
+  padding: 0; }
+  .media-gallery-bs .media-gallery-item-bs h1, .media-gallery-bs .media-gallery-item-bs h2, .media-gallery-bs .media-gallery-item-bs h3, .media-gallery-bs .media-gallery-item-bs h4 {
+    z-index: 1;
+    background-color: rgba(254, 63, 68, 0.54);
+    padding: 10px 10px;
+    display: inline-block; }
+    .media-gallery-bs .media-gallery-item-bs h1 a, .media-gallery-bs .media-gallery-item-bs h2 a, .media-gallery-bs .media-gallery-item-bs h3 a, .media-gallery-bs .media-gallery-item-bs h4 a {
+      color: #e3e3e3; }
+  .media-gallery-bs .media-gallery-item-bs img {
+    transition: all 0.5s;
+    width: 100%;
+    filter: brightness(40%); }
+  .media-gallery-bs .media-gallery-item-bs:hover img {
+    transform: scale(1.1); }
+  .media-gallery-bs .media-gallery-item-bs .card-img-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1.25rem;
+    color: #e3e3e3; }
+
+/* GALLERY - Images */
 .image-gallery .image-gallery-item {
   margin-bottom: 30px; }
   .image-gallery .image-gallery-item:hover {
