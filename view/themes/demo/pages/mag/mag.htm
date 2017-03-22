@@ -16,11 +16,11 @@ postPage = "mag/page"
 
 
 
-<ul class="container media-gallery">
+<ul class="container media-gallery-bs">
 
     {% for post in posts %}
     
-        <div class="col-md-4 media-gallery-item">
+        <div class="col-md-12 media-gallery-item-bs">
             
                 <div class="card card-inverse">
                 {% if post.featured_images[0].path %}
@@ -28,6 +28,7 @@ postPage = "mag/page"
                 {% endif %}
                   <a href="http://freelabel.net/view/mag/{{ post.slug }}" class="card-img-overlay">
                     <h3 class="card-title">{{ post.title }}</h3>
+                    <p class="card-text lead">{{ html_limit( post.excerpt , 200) }}</p>
                     <p class="card-text">{{ html_limit( post.summary , 200) }}...</p>
                     <p class="card-text"><small class="text-muted">{{ post.published_at|date('M d, Y') }}</small></p>
                   </a>

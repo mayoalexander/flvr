@@ -391,7 +391,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 			$user_owned_buttons .= $this->display_edit_button($post);
 			$logged_in_only_buttons .= $this->display_post_functions($post,$user_name_session);
 			
-		} elseif (isset($user_name_session)) {
+		} elseif (isset($user_name_session) || isset($_SESSION['user_name'])) {
 			
 			/* DISPLAY LIKE, FAV, DELETE, AND EDIT */
 			$logged_in_only_buttons .= $this->display_post_functions($post,$user_name_session);
@@ -431,7 +431,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 		}
 	}
 
-	function display_media_grid($media, $user_name_session=NULL, $page=0) {
+	function display_media_grid($media, $user_name_session=NULL, $page=0, $hide_controls=NULL) {
 		$res='';
 		if (count($media)!==1) {
 			$col = 'col-md-3 col-sm-6';
@@ -443,7 +443,13 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 		//
 		if (isset($media)) {
 			$i=0;
+			if ($hide_controls===true) {
+				$user_name = NULL;
+			} else {
+				$user_name = $user_name_session;
+			}
 			foreach ($media as $key => $post) {
+
 					if ($i===0) {
 						$res .= '<div class="section row">';
 					}
@@ -452,7 +458,7 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 						<a href="'.$this->create_url($post).'" data-id="'.$post['id'].'"> 
 							<img src="'.$post['photo'].'" class="img-responsive"/>
 						</a> 
-						'.$this->display_post_options_button($post, $user_name_session, $key).'
+						'.$this->display_post_options_button($post, $user_name, $key).'
 						<div class="caption">
 							<h5>'.$post['twitter'].'</h5>
 							<span>'.$post['blogtitle'].'</span>
