@@ -403,6 +403,11 @@ a {
 		transition: border-color 0.5s;
 		border-top:6px solid transparent;
 	}
+	.img-wrap {
+		img {
+			width: 100%;
+		}
+	}
 	.active {
 		img {
 			border-color:$brand_red;			
@@ -421,6 +426,7 @@ a {
 		}
 	}
 }
+
 .tracklist-panel {
 	flex:1;
 	margin:0 0 2em 0;
@@ -527,12 +533,21 @@ a {
 
 
 .tracklist-list-item {
-	.details {
-		padding:10px 0 10px 60px;
+	&.playing {
+		.img-wrap img {
+			border-top:6px solid $brand_red;
+		}
 	}
-	.img-wrap {
-		height: 200px;
+	&:hover {
+		.img-wrap img {
+			border-top:6px solid $brand_red;
+		}
 	}
+	// .img-wrap {
+	// 	// img {
+	// 	// 	width: 100%;
+	// 	// }
+	// }
 }
 .audioplayer-list { padding: 0px; margin: 0px; list-style: none; color: #ccc; border-top: 1px solid #ccc; /*font-size: 0.9em;*/ }
 .audioplayer-list .tracklist-panel { position: relative; margin: 0px; padding: 9px 2px 10px; border-bottom: 1px solid #ccc; cursor: pointer; }
