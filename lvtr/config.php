@@ -415,33 +415,71 @@ online music promotion,free music promotion sites,hip hop music promotion,music 
 						</div>';
 	}
 
-	function display_media_list($media, $user_name=NULL, $page=0) {
-		if (isset($media)) {
-			foreach ($media as $key => $post) {
-				// echo '<article class="tracklist-item">';
-				// 	echo '<a href="#" data-id="'.$post['id'].'"> <img src="'.$post['photo'].'"/> <b>'.$post['twitter'].'</b></a>: '.$post['blogtitle'];
-				// 		echo $this->display_post_options_button($post);
-				// echo '</article>';
-				// echo '<li class="tracklist-panel tracklist-list-item flex-container"><div class="img-wrap flex-item"><img src="'.$post['photo'].'"/></div><div class="details flex-item"><a href="#" data-src="'.$post['trackmp3'].'"><h4>'.$post['twitter'].'</h4></a><p>'.$post['blogtitle'].'</p></div></li>';
-				echo '<li class="col-md-4 col-sm-4 tracklist-list-item"><div class="img-wrap"><img src="'.$post['photo'].'"/></div><div class="details flex-item"><a href="#" data-src="'.$post['trackmp3'].'"><h4>'.$post['twitter'].'</h4></a><p>'.$post['blogtitle'].'</p></div></li>';
-				// echo '<article class="tracklist-panel col-md-3 col-sm-6">
-				// 		<a href="'.$this->create_url($post).'" data-id="'.$post['id'].'"> 
-				// 			<img src="'.$post['photo'].'" class="img-responsive">
-				// 		</a> 
-						
-				// 		'.$this->display_post_options_button($post, $user_name, $key).'
+	function display_post_options_button_new($post, $user_name_session=NULL, $key=NULL) {
+		$logged_in_only_buttons='';
+		if (isset($user_name_session) && trim($user_name_session)==trim($post['user_name']) || $user_name_session=='admin') {
 
-				// 		<div class="caption">
-				// 			<h5>'.$post['twitter'].'</h5>
-				// 			<span>'.$post['blogtitle'].'</span>
-				// 		</div>
-				// 		<div class="status">'.$this->display_post_status($post).'</div></article>';
+			/* DISPLAY LIKE, FAV, DELETE, AND EDIT */
+			$user_owned_buttons = $this->display_delete_button($post);
+			$user_owned_buttons .= $this->display_edit_button($post);
+			$logged_in_only_buttons .= $this->display_post_functions($post,$user_name_session);
+			
+		} elseif (isset($user_name_session) || isset($_SESSION['user_name'])) {
+			
+			/* DISPLAY LIKE, FAV, DELETE, AND EDIT */
+			$logged_in_only_buttons .= $this->display_post_functions($post,$user_name_session);
+		} else {
+			$delete_button = '';
+		}
+
+		return '
+						<div class="dropup clearfix">
+						  <span class="button-tint btn btn-link btn-'.$post['id'].' dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="display:inline-block;"><i class="fa fa-ellipsis-h"></i></span>
+						  <ul class="dropdown-menu panel-body pull-right" aria-labelledby="dropdownMenu1">
+						  	<li><a class="view-post-trigger btn btn-link" data-id="'.$post['id'].'" data-url="'.$this->create_url($post).'" data-user="'.$user_name_session.'"><i class="fa fa-globe"></i> View</a></li>
+
+						  	'.$user_owned_buttons.'
+						  	'.$logged_in_only_buttons.'
+
+						  	'.$this->display_social_buttons($post).'
+						    <input type="hidden" name="user_name" value="'.$post['user_name'].'">
+						  </ul>
+						</div>';
+	}
+
+	function display_media_list($media, $user_name=NULL, $page=0, $hide_controls=NULL) {
+		$load_more_button = '<button data-user="'.$user_name.'" data-next="'.($page+1).'" class="load_more_button btn btn-link btn-block">Load More</button>';
+		if ($hide_controls===true) {
+			$user_name = NULL;
+		} else {
+			$user_name = $user_name_session;
+		}
+
+		if (isset($media)) {
+			$res .= '<div class="audioplayer-list">';
+			foreach ($media as $key => $post) {
+				$res .= '<li class="col-md-4 col-sm-4 tracklist-list-item">
+							<div class="img-wrap">
+								<img src="'.$post['photo'].'"/>
+							</div>
+							<div class="details flex-item">
+								'.$this->display_post_options_button_new($post, $user_name, $key).'
+								<a class="source" href="#" data-src="'.$post['trackmp3'].'"><h4>'.$post['twitter'].'</h4></a>
+								<br>
+								<p>'.$post['blogtitle'].'</p>
+							</div>
+						</li>';
+			}
+			$res .= '</div>';
+			if (count($media)==$this->max_post_per_page) {
+				$res .= $load_more_button;
 			}
 		} else {
-				echo '<p class="tracklist-item label nothing-found">';
-						echo '<i class="fa fa-alert"></i> No tracks uploaded..';
-				echo '</p>';
+				$res .= '<p class="tracklist-item label nothing-found">';
+						$res .= '<i class="fa fa-alert"></i> No tracks uploaded..';
+				$res .= '</p>';
 		}
+		echo $res;
 	}
 
 	function display_media_grid($media, $user_name_session=NULL, $page=0, $hide_controls=NULL) {
@@ -670,11 +708,11 @@ function display_promos_grid($media, $user_name_session=NULL, $page=0) {
 		} else {
 			$action = 'delete-post-trigger';
 		}
-		return '<li><button class="'.$action.' btn btn-link" data-id="'.$post['id'].'"><i class="fa fa-trash"></i> Delete</button></li>';
+		return '<li><a href="#" class="'.$action.' btn btn-link" data-id="'.$post['id'].'"><i class="fa fa-trash"></i> Delete</a></li>';
 
 	}
 	function display_edit_button($post) {
-			return '<li><button class="edit-post-trigger btn btn-link" data-id="'.$post['id'].'"><i class="fa fa-edit"></i> Edit</button></li>';
+			return '<li><a href="#" class="edit-post-trigger btn btn-link" data-id="'.$post['id'].'"><i class="fa fa-edit"></i> Edit</a></li>';
 	}
 	function display_post_status($post) {
 		if ($post['status']=='private') {
@@ -1493,6 +1531,47 @@ ON likes.post_id=feed.id WHERE likes.user_name = '$user_name' ORDER BY likes.id 
 	}
 
 
+	function get_new_uploads($date_param=NULL) {
+		require(ROOT.'config/connection.php');
+		$dp = '';
+		if ($date_param!==NULL) {
+			$dp = "WHERE `submission_date` LIKE '%".date('Y-m-d',strtotime($date_param))."%'";
+		}
+		$query = "SELECT * FROM `feed` $dp ORDER BY `id` DESC LIMIT 100";
+		$result = mysqli_query($con,$query);
+		if (mysqli_num_rows($result)===0) {
+			$leads[] = NULL;
+		} else {
+			while ($row = mysqli_fetch_assoc($result)) {
+				$leads[] = $row;
+			}
+		}
+	    mysqli_close($con);
+		return $leads;
+	}
+
+
+	function get_new_projects($date_param=NULL) {
+		require(ROOT.'config/connection-october.php');
+		$dp = '';
+		if ($date_param!==NULL) {
+			$dp = "WHERE `launch_date` LIKE '%".date('Y-m',strtotime($date_param))."%'";
+		}
+		$query = "SELECT * FROM `freelabel_freelabel_` $dp ORDER BY `id` DESC LIMIT 100";
+		$result = mysqli_query($con,$query);
+		if (mysqli_num_rows($result)===0) {
+			$leads[] = NULL;
+		} else {
+			while ($row = mysqli_fetch_assoc($result)) {
+				$leads[] = $row;
+			}
+		}
+	    mysqli_close($con);
+		return $leads;
+	}
+
+
+
 	
 
 	function get_all_clients($table, $db_page=0) {
@@ -1807,7 +1886,7 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 200";
 		foreach ($data as $key => $value) {
 			if ($key!=='action' && $key!=='id') {
 				$q_data.= ''.$key;
-				if ($i!==(count($data))) {
+				if ($i!==(count($data)-1)) {
 					$q_data .=', ';
 				}
 				$i++;
@@ -1818,7 +1897,7 @@ FROM user_profiles ORDER BY user_profiles.date_created DESC LIMIT 200";
 		foreach ($data as $key => $value) {
 			if ($key!=='action' && $key!=='id') {
 				$q_data2.= "'".mysqli_real_escape_string($con,$value)."'";
-				if ($i!==(count($data))) {
+				if ($i!==(count($data)-1)) {
 					$q_data2 .=', ';
 				}
 				$i++;

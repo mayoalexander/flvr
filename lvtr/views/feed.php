@@ -12,6 +12,6 @@ if (!isset($_POST['page'])) {
 	$_POST['page'] = 0;
 }
 $posts = $site->get_user_media($_POST['user_name'], $_POST['page']);
-$site->display_media_grid($posts, $_POST['user_name'], $_POST['page']);
+$site->display_media_list($posts, $_POST['user_name'], $_POST['page']);
 ?>
 <script type="text/javascript" src="<?php echo $site->url ?>js/dashboard.js"></script>

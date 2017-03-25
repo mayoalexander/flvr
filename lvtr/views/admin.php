@@ -48,6 +48,19 @@ $site = new Config();
             </ul>
           </li>
 
+          <!-- CONTENT -->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Leads <span class="caret"></span></a>
+            <ul class="dropdown-menu ">
+              <li><a href="#" data-page="Clients">Clients</a></li>
+              <li><a href="#" data-page="Twitter">Twitter</a></li>
+              <li><a href="#" data-page="Script">Script</a></li>
+              <li><a href="#" data-page="SOM">SOM</a></li>
+              <li><a href="#" data-page="Leads">Leads</a></li>
+              <li><a href="#" data-page="Analytics">Analytics</a></li>
+            </ul>
+          </li>
+
         </ul>
       </div><!--/.nav-collapse -->
     </div><!--/.container-fluid -->

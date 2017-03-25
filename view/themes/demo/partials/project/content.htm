@@ -1,37 +1,51 @@
 ==
 <div class="container">
-    
-    
-    <!-- ARTICLE CONTENT -->
-    <div class="content container-padded-large lead">
-        {{ record.description |raw }}
+
+        <!-- Portfolio Item Row -->
+        <div class="row">
+
+            <div class="col-md-8">
+                <img class="img-responsive" src="{{ record.photo|media }}" alt="" style="width:100%;">
+            </div>
+
+            <div class="col-md-4">
+                <h3>{{ record.blogtitle }}</h3>
+                <p>{{ record.description |raw }}</p>
+                
+                {% if record.cta_button %}
+                    <div class="well">
+                        <button class="btn btn-primary btn-block btn-lg">{{ record.cta_text }}</button>
+                    </div>
+                {%endif%}
+                
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <!-- Related Projects Row -->
+        <div class="row">
+        
+        
+            <div class="col-md-7 comments-section" style="height:500px;">
+                <h4 class="page-header">Comments</h4>
+                <!-- <div class="fb-comments" data-href="http://freelabel.net/view/tv/video/{{ record.slug }}" data-width="600" data-numposts="5" colorscheme="dark"></div> -->
+                {% partial "widgets/comments" %}
+            </div>
+            <div class="col-md-5 comments-section">
+                <h4 class="page-header">Social</h4>
+                <a class="twitter-timeline" data-chrome="nofooter noborders transparent" data-theme="dark" data-height="500" href="https://twitter.com/{{ record.twitter }}" data-widget-id="366599709059579906"></a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+
+
     </div>
     
-
-    <!-- FEATURED IMAGES -->
-    {% if post.featured_images.count %}
-        <div class="featured-images text-center">
-            {% for image in post.featured_images %}
-                <p>
-                    <img
-                        data-src="{{ image.filename }}"
-                        src="{{ image.path }}"
-                        alt="{{ image.description }}"
-                        style="max-width: 100%" />
-                </p>
-            {% endfor %}
-        </div>
-    {% endif %}
-
-    <p class="info">
-        Posted
-        {% if post.categories.count %} in
-            {% for category in post.categories %}
-                <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
-            {% endfor %}
-        {% endif %}
-        on {{ post.published_at|date('M d, Y') }}
-    </p>
-</div>
+    
 
 <script type="text/javascript" src="http://freelabel.net/lvtr/js/dashboard.js"></script>

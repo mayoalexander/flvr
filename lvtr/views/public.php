@@ -131,7 +131,7 @@ $site->update_stats($post['views'], $post['id']);
 						<?php 
 							if ($media) {
 								echo '<h4 class="page-header">Related</h4>';
-								echo $site->display_media_grid($media);
+								echo $site->display_media_list($media, NULL , NULL, true);
 							} 
 						?>
 					</div>

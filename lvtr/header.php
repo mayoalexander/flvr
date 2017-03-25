@@ -19,13 +19,14 @@ $site = new Config();
     <link href="https://blackrockdigital.github.io/startbootstrap-modern-business/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://freelabel.net/css/sass/app.css" rel="stylesheet" type="text/css">
 
-
+    <script src="http://freelabel.net/js/audiojs.js"></script>
 
 
     <script
     src="https://code.jquery.com/jquery-3.1.1.min.js"
     integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
     crossorigin="anonymous"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -46,6 +47,6 @@ $site = new Config();
 <?php
 
 include('/home/freelabelnet/public_html/view/themes/demo/content/400/navigation.htm');
-include('/home/freelabelnet/public_html/view/themes/demo/content/400/mediaplayer.htm');
+include('/home/freelabelnet/public_html/view/themes/demo/partials/templates/mediaplayer.htm');
 
 // 

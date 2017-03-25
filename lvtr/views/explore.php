@@ -17,6 +17,7 @@ $posts = $site->get_user_media('admin', $_POST['page']);
 // $posts = $site->get_user_liked('admin');
 
 ?>
-<?php $site->display_media_grid($posts, 'admin', $_POST['page'], true); ?>
+<?php //$site->display_media_grid($posts, 'admin', $_POST['page'], true); ?>
+<?php $site->display_media_list($posts, 'admin', $_POST['page'], true); ?>
 
 <script type="text/javascript" src="<?php echo $site->url ?>js/dashboard.js"></script>

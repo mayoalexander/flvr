@@ -12,6 +12,8 @@ foreach ($leads as $key => $lead) {
 $num_of_leads = count($leads_compiled);
 $num_of_som = count($site->get_som('today'));
 $num_of_new_clients = count($site->get_new_clients('today'));
+$num_of_uploads = count($site->get_new_uploads('today'));
+$num_of_projects = count($site->get_new_projects('today'));
 
 /* COMPLIE POSTS */
 
@@ -57,7 +59,9 @@ $client_percentages = round(($num_of_new_clients / 10) * 100);
 </div>
 
 
-<section class="container">
+
+
+<section class="container container-padded-large">
 	<div class="col-md-12">
 		<h2 class="page-header">Leads <small><?php echo $num_of_leads; ?>%</small></h2>
 		<div class="progress">
@@ -89,13 +93,40 @@ $client_percentages = round(($num_of_new_clients / 10) * 100);
 
 
 
+<section class="container container-padded-large">
+	<div class="col-md-4">
+		<h3 class="page-header">Leads</h3>
+		<canvas id="lead_quota" width="400" height="400"></canvas>
+	</div>
+	<div class="col-md-4">
+		<h3 class="page-header">SOMS</h3>
+		<canvas id="som_quota" width="400" height="400"></canvas>
+	</div>
+	<div class="col-md-4">
+		<h3 class="page-header">Clients</h3>
+		<canvas id="client_quota" width="400" height="400"></canvas>
+	</div>
+	<div class="col-md-6">
+		<h3 class="page-header">Uploads</h3>
+		<canvas id="uploads_quota" width="400" height="400"></canvas>
+	</div>
+	<div class="col-md-6">
+		<h3 class="page-header">Projects</h3>
+		<canvas id="projects_quota" width="400" height="400"></canvas>
+	</div>
+	
+</section>
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
 <script>
 
-$(function(){
+
 
 
 // var myLineChart = new Chart(ctx, {
@@ -104,19 +135,41 @@ $(function(){
 //     options: options
 // });
 
-	function initializeChart(chart) {
+
+	function getDataSet(type) {
+		switch(type) {
+		    case 'leads':
+		        var dataset = ['<?php echo ($num_of_leads); ?>','<?php echo (80 - $num_of_leads); ?>'];
+		        break;
+		    case 'soms':
+		        var dataset = ['<?php echo ($num_of_som); ?>','<?php echo (16 - $num_of_som); ?>'];
+		        break;
+		    case 'clients':
+		        var dataset = ['<?php echo $num_of_new_clients; ?>','<?php echo (6 - $num_of_new_clients); ?>'];
+		        break;
+		    case 'uploads':
+		        var dataset = ['<?php echo $num_of_uploads; ?>','<?php echo (30 - $num_of_uploads); ?>'];
+		        break;
+		    case 'projects':
+		        var dataset = ['<?php echo $num_of_projects; ?>','<?php echo (30 - $num_of_projects); ?>'];
+		        break;
+		}
+		return dataset;
+	}
+
+	function initializeChart(chart, type) {
 		var ctx = document.getElementById(chart);
-		var dataset = ['<?php echo ($num_of_leads * 0.1); ?>','<?php echo $num_of_new_clients; ?>','<?php echo ($num_of_som/4); ?>',]
+		var dataset = getDataSet(type);
 		var myChart = new Chart(ctx, {
 		    type: 'doughnut',
 		    data: {
-		        labels: ['Leads',"New Clients", "SOM Deploys"],
+		        labels: ['Completed', "Remaining"],
 		        datasets: [{
 		            label: '# of Leads Today',
 		            data: dataset,
 		            backgroundColor: [
-		                'rgba(255, 99, 132, 0.2)',
-		                'rgba(255, 159, 64, 0.2)',
+		                '#45b7cd',
+		                '#FF6384',
 		                'pink'
 		            ],
 		            borderColor: [
@@ -138,9 +191,54 @@ $(function(){
 		});
 	}
 
-	// initializeChart('myChart','bar');
-	// initializeChart('pieChart', 'pie');	
-});
+	initializeChart('lead_quota','leads');
+	initializeChart('som_quota', 'soms');	
+	initializeChart('client_quota', 'clients');	
+	initializeChart('uploads_quota', 'uploads');	
+	initializeChart('projects_quota', 'projects');	
+
+
+
+
+
+// var ctx = document.getElementById("lead_quota");
+// var myChart = new Chart(ctx, {
+//     type: 'bar',
+//     data: {
+//         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+//         datasets: [{
+//             label: '# of Votes',
+//             data: [12, 19, 3, 5, 2, 3],
+//             backgroundColor: [
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(54, 162, 235, 0.2)',
+//                 'rgba(255, 206, 86, 0.2)',
+//                 'rgba(75, 192, 192, 0.2)',
+//                 'rgba(153, 102, 255, 0.2)',
+//                 'rgba(255, 159, 64, 0.2)'
+//             ],
+//             borderColor: [
+//                 'rgba(255,99,132,1)',
+//                 'rgba(54, 162, 235, 1)',
+//                 'rgba(255, 206, 86, 1)',
+//                 'rgba(75, 192, 192, 1)',
+//                 'rgba(153, 102, 255, 1)',
+//                 'rgba(255, 159, 64, 1)'
+//             ],
+//             borderWidth: 1
+//         }]
+//     },
+//     options: {
+//         scales: {
+//             yAxes: [{
+//                 ticks: {
+//                     beginAtZero:true
+//                 }
+//             }]
+//         }
+//     }
+// });
+
 
 
 </script>
