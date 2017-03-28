@@ -97,14 +97,21 @@ $client_percentages = round(($num_of_new_clients / 10) * 100);
 	<div class="col-md-4">
 		<h3 class="page-header">Leads</h3>
 		<canvas id="lead_quota" width="400" height="400"></canvas>
+		<br>
+		<h2><?php echo $num_of_leads; ?>/100</h2>
 	</div>
 	<div class="col-md-4">
 		<h3 class="page-header">SOMS</h3>
 		<canvas id="som_quota" width="400" height="400"></canvas>
+		<br>
+		<h2><?php echo $num_of_som; ?></h2>
 	</div>
 	<div class="col-md-4">
 		<h3 class="page-header">Clients</h3>
 		<canvas id="client_quota" width="400" height="400"></canvas>
+		<br>
+		<h2><?php echo $num_of_new_clients; ?></h2>
+		<h2><?php echo $estimates; ?></h2>
 	</div>
 	<div class="col-md-6">
 		<h3 class="page-header">Uploads</h3>

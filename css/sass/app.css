@@ -200,7 +200,8 @@ header.carousel .fill {
   .media-gallery {
     flex-direction: column; }
   .media-gallery-bs .media-gallery-item-bs {
-    height: 100px; } }
+    min-height: 100px;
+    max-height: 145px; } }
 
 body, html {
   background-color: #101010;
@@ -811,6 +812,11 @@ a.list-group-item {
       flex-direction: column; }
       .tracklist-container .section article {
         min-width: 200px; } }
+
+.cd-full-width h2, .cd-full-width p {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  padding: 1em 1em; }
 
 /* FLEXBOX */
 .flex-container {

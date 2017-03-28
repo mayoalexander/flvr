@@ -153,8 +153,10 @@ Slider
 
 .cd-hero-slider {
   position: relative;
-  height: 360px;
+  height: 450px;
+  margin-bottom:0px;
   overflow: hidden;
+  transition: all 0.4s;
 }
 .cd-hero-slider li {
   position: absolute;
@@ -193,12 +195,13 @@ Slider
 }
 @media only screen and (min-width: 768px) {
   .cd-hero-slider {
-    height: 500px;
+    min-height: 600px;
+    height:95vh;
   }
 }
 @media only screen and (min-width: 1170px) {
   .cd-hero-slider {
-    height: 680px;
+    height:95vh;
   }
 }
 
@@ -383,7 +386,7 @@ Single slide style
 @media only screen and (min-width: 1170px) {
   .cd-hero-slider .cd-full-width,
   .cd-hero-slider .cd-half-width {
-    padding-top: 220px;
+    padding-top: 120px;
   }
   .cd-hero-slider h2, .cd-hero-slider p {
     margin-bottom: 20px;

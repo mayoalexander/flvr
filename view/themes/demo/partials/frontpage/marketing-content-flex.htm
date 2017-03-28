@@ -16,7 +16,7 @@
 {% set offsetCounter = 1 %}
 
 
-<div class="media-gallery">
+<div class="media-gallery-bs">
     {% for record in records %}
 
         {% if offsetCounter == 1 %}
@@ -31,7 +31,7 @@
 
     
         <!-- <hr class="featurette-divider"> -->
-        <div class="col-md-4 media-gallery-item">
+        <div class="col-md-2 col-sm-4 col-xs-6 media-gallery-item-bs">
             
             <a href="http://freelabel.net/view{{ record.path }}">
                 <div class="card card-inverse">

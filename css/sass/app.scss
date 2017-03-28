@@ -913,6 +913,18 @@ a.list-group-item {
 
 
 
+
+
+.cd-full-width {
+	h2, p {
+		background-color:$brand_black_transparent;
+		color:#fff;
+		padding:1em 1em;
+	}
+}
+
+
+
 /* FLEXBOX */
 
 .flex-container {
